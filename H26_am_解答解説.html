@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>H26年度 電気数学 午前 解答解説</title>
+  <script>
+    MathJax = { tex: { inlineMath: [['$','$']], displayMath: [['$$','$$']] } };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "Yu Gothic", "游ゴシック", sans-serif;
+      font-size: 13pt;
+      line-height: 1.9;
+      color: #1a1a2e;
+      background: #f4f7fb;
+      padding: 40px;
+    }
+    h1 { font-size: 20pt; color: #0d2b5e; border-bottom: 3px solid #0d2b5e; padding-bottom: 10px; margin-bottom: 6px; }
+    .subtitle { color: #666; font-size: 11pt; margin-bottom: 36px; }
+    h2 { font-size: 15pt; color: #0d2b5e; margin: 40px 0 16px; padding: 8px 16px; background: #e8f0fb; border-left: 5px solid #1e5fa8; border-radius: 4px; }
+    h3 { font-size: 13pt; color: #1e5fa8; margin: 28px 0 10px; border-bottom: 1px solid #c5d8f5; padding-bottom: 4px; }
+    .answer-box { background: #fff; border: 1px solid #c5d8f5; border-radius: 8px; padding: 20px 28px; margin: 12px 0 20px; }
+    .step { background: #f0f6ff; border-left: 3px solid #1e5fa8; padding: 10px 18px; margin: 10px 0; border-radius: 0 4px 4px 0; }
+    .result { background: #fff8e1; border: 2px solid #f9a825; border-radius: 6px; padding: 10px 18px; margin: 12px 0; font-weight: bold; }
+    .note { background: #f3f9f3; border-left: 3px solid #4caf50; padding: 8px 16px; margin: 10px 0; font-size: 11.5pt; color: #2e5f2e; }
+    footer { margin-top: 60px; color: #aaa; font-size: 10pt; text-align: center; }
+    a { color: #1e5fa8; }
+    table { border-collapse: collapse; margin: 12px 0; }
+    th, td { border: 1px solid #c5d8f5; padding: 6px 14px; }
+    th { background: #e8f0fb; color: #0d2b5e; }
+  </style>
+</head>
+<body>
+
+<h1>H26年度 電気数学 午前 解答解説</h1>
+<p class="subtitle">平成25年8月21日実施 ／ 電気数学</p>
+
+<!-- ===== 大問1 ===== -->
+<h2>大問1：2階非斉次線形微分方程式 $y'' + y' = R(x)$</h2>
+
+<h3>問1）$R(x)=0$ の一般解 $y_0$</h3>
+<div class="answer-box">
+  <div class="step">
+    特性方程式：$\lambda^2 + \lambda = 0 \implies \lambda(\lambda+1) = 0 \implies \lambda = 0,\,-1$
+  </div>
+  <div class="result">
+    $$y_0 = C_1 + C_2 e^{-x} \quad (C_1,C_2 \text{ は任意定数})$$
+  </div>
+</div>
+
+<h3>問2）$R(x)=x^2$ の多項式特殊解 $y_P$</h3>
+<div class="answer-box">
+  <div class="step">
+    右辺 $x^2$ に対して通常 $y_P = ax^2+bx+c$ を試みるが，$\lambda=0$ が特性根に含まれるため $y=c$ が斉次解に属する。次数を1上げて $y_P = ax^3+bx^2+cx$ と設定：
+    $$y_P' = 3ax^2+2bx+c, \quad y_P'' = 6ax+2b$$
+    代入：
+    $$y_P''+y_P' = (6ax+2b)+(3ax^2+2bx+c) = 3ax^2+(6a+2b)x+(2b+c) = x^2$$
+  </div>
+  <div class="step">
+    係数比較：
+    $x^2$：$3a = 1 \Rightarrow a = \dfrac{1}{3}$<br>
+    $x^1$：$6a+2b = 0 \Rightarrow b = -1$<br>
+    $x^0$：$2b+c = 0 \Rightarrow c = 2$
+  </div>
+  <div class="result">
+    $$y_P = \frac{1}{3}x^3 - x^2 + 2x$$
+  </div>
+</div>
+
+<h3>問3）$R(x)=x^2$ の一般解と初期値問題</h3>
+<div class="answer-box">
+  <div class="step">
+    一般解 $y = y_0 + y_P$：
+    $$y = C_1 + C_2 e^{-x} + \frac{1}{3}x^3 - x^2 + 2x$$
+    導関数：$y' = -C_2 e^{-x} + x^2 - 2x + 2$
+  </div>
+  <div class="step">
+    初期条件 $y(0)=0$，$y'(0)=1$：
+    $$y(0) = C_1 + C_2 = 0 \quad\cdots(1)$$
+    $$y'(0) = -C_2 + 2 = 1 \implies C_2 = 1 \quad\cdots(2)$$
+    (1)より $C_1 = -1$
+  </div>
+  <div class="result">
+    $$\boxed{y = -1 + e^{-x} + \frac{1}{3}x^3 - x^2 + 2x}$$
+  </div>
+</div>
+
+<!-- ===== 大問2 ===== -->
+<h2>大問2：複素関数 $f(z) = \dfrac{3+j}{z^2-(1+j)z-(2+j)}$</h2>
+
+<h3>問1）特異点</h3>
+<div class="answer-box">
+  <div class="step">
+    分母 $z^2-(1+j)z-(2+j) = 0$ の根を求める。$z=-1$ を試すと：
+    $$(-1)^2-(1+j)(-1)-(2+j) = 1+1+j-2-j = 0 \quad \checkmark$$
+    因数分解：$z^2-(1+j)z-(2+j) = (z+1)(z-(2+j))$
+
+    確認：$(z+1)(z-(2+j)) = z^2-(2+j)z+z-(2+j) = z^2-(1+j)z-(2+j)$ ✓
+  </div>
+  <div class="result">
+    特異点（1位の極）：$z = -1$ および $z = 2+j$
+  </div>
+</div>
+
+<h3>問2）点 $P_3$ の複素数 $z_3$</h3>
+<div class="answer-box">
+  <div class="step">
+    $z_2 - z_1 = (5+3j)-(1+j) = 4+2j$（$P_1$ から $P_2$ へのベクトル）<br>
+    時計まわりに $\pi/3$ 回転 $\Leftrightarrow$ 乗算 $e^{-j\pi/3} = \cos(-60°)+j\sin(-60°) = \dfrac{1}{2}-j\dfrac{\sqrt{3}}{2}$：
+    $$(4+2j)\!\cdot\!\left(\frac{1}{2}-j\frac{\sqrt{3}}{2}\right) = 4\cdot\frac{1}{2}+4\cdot\left(-j\frac{\sqrt{3}}{2}\right)+2j\cdot\frac{1}{2}+2j\cdot\left(-j\frac{\sqrt{3}}{2}\right)$$
+    $$= 2 - 2\sqrt{3}j + j + \sqrt{3} = (2+\sqrt{3}) + j(1-2\sqrt{3})$$
+    $$z_3 = z_1 + (2+\sqrt{3}) + j(1-2\sqrt{3}) = (1+j) + (2+\sqrt{3}) + j(1-2\sqrt{3})$$
+  </div>
+  <div class="result">
+    $$z_3 = (3+\sqrt{3}) + j(2-2\sqrt{3}) = (3+\sqrt{3}) + 2(1-\sqrt{3})j$$
+    数値近似：$\approx 4.73 - 1.46j$
+  </div>
+</div>
+
+<h3>問3）三角形 $C$（反時計まわり）の周回積分</h3>
+<div class="answer-box">
+  <div class="step">
+    三角形の頂点：$P_1=(1,1)$，$P_2=(5,3)$，$P_3\approx(4.73,-1.46)$。<br>
+    特異点 $z=-1$（$= (-1,0)$）：三角形のx範囲（1〜5）の外 → <b>三角形の外部</b>。<br>
+    特異点 $z=2+j$（$= (2,1)$）：バリセントリック座標で確認（$s>0$, $t>0$, $s+t<1$が成立） → <b>三角形の内部</b>。
+  </div>
+  <div class="step">
+    留数（$z=2+j$ における）：
+    $$\text{Res}_{z=2+j} f(z) = \frac{3+j}{(2+j)+1} = \frac{3+j}{3+j} = 1$$
+    留数定理（反時計まわり）：
+    $$\oint_C f(z)\,dz = 2\pi j \sum_{\text{内部}} \text{Res} = 2\pi j \cdot 1$$
+  </div>
+  <div class="result">
+    $$\oint_C f(z)\,dz = 2\pi j$$
+  </div>
+</div>
+
+<!-- ===== 大問3 ===== -->
+<h2>大問3：畳み込み積分</h2>
+
+<p>
+$f_1(t) = \begin{cases}1 & 0\le t\le 1\\ 0 & \text{otherwise}\end{cases}$，
+$f_2(t) = \begin{cases}\sin(2\pi t) & 0\le t\le 2\\ 0 & \text{otherwise}\end{cases}$
+</p>
+
+<h3>問1）畳み込み $f(t) = \int_0^\infty f_1(\tau)f_2(t-\tau)d\tau$</h3>
+<div class="answer-box">
+  <div class="step">
+    $f_1(\tau)\ne0$ の条件：$0\le\tau\le 1$。$f_2(t-\tau)\ne0$ の条件：$0\le t-\tau\le 2$，すなわち $t-2\le\tau\le t$。
+
+    有効積分区間：$\max(0,t-2)\le\tau\le\min(1,t)$
+  </div>
+
+  <b>Region 1：$0\le t\le 1$</b>（$\tau$ 区間：$[0,t]$）
+  <div class="step">
+    $$f(t) = \int_0^t \sin(2\pi(t-\tau))\,d\tau$$
+    $u = t-\tau$ とおくと：
+    $$= \int_0^t \sin(2\pi u)\,du = \left[-\frac{\cos(2\pi u)}{2\pi}\right]_0^t = \frac{1-\cos(2\pi t)}{2\pi}$$
+  </div>
+
+  <b>Region 2：$1< t\le 2$</b>（$\tau$ 区間：$[0,1]$）
+  <div class="step">
+    $$f(t) = \int_0^1 \sin(2\pi(t-\tau))\,d\tau = \left[-\frac{\cos(2\pi(t-\tau))}{2\pi}\right]_0^1$$
+    $$= \frac{-\cos(2\pi t-2\pi)+\cos(2\pi t)}{2\pi} = \frac{-\cos(2\pi t)+\cos(2\pi t)}{2\pi} = 0$$
+    （$\sin(2\pi\tau)$のちょうど1周期分の積分のため）
+  </div>
+
+  <b>Region 3：$2< t\le 3$</b>（$\tau$ 区間：$[t-2,1]$）
+  <div class="step">
+    $$f(t) = \int_{t-2}^1 \sin(2\pi(t-\tau))\,d\tau = \left[-\frac{\cos(2\pi(t-\tau))}{2\pi}\right]_{t-2}^1$$
+    $$= \frac{-\cos(2\pi(t-1))+\cos(2\pi(t-2))}{2\pi} = \frac{-\cos(2\pi t)+\cos(2\pi t)}{2\pi}$$
+
+    待って：$\cos(2\pi(t-1)) = \cos(2\pi t - 2\pi) = \cos(2\pi t)$，$\cos(2\pi(t-2)) = \cos(2\pi t)$...
+
+    正確に計算：
+    $$= \frac{1}{2\pi}\left[-\cos(2\pi(t-1)) + \cos(2\pi(t-2))\right] = \frac{-\cos(2\pi t) + \cos(2\pi t)}{2\pi}$$
+
+    誤り：$t-\tau$ を正しく追跡する。$\tau=t-2$ → $t-\tau = 2$，$\tau=1$ → $t-\tau = t-1$
+    $$f(t) = \left[-\frac{\cos(2\pi u)}{2\pi}\right]_{t-1}^{2} = \frac{-\cos(4\pi)+\cos(2\pi(t-1))}{2\pi}$$
+    $$= \frac{-1+\cos(2\pi t-2\pi)}{2\pi} = \frac{\cos(2\pi t)-1}{2\pi}$$
+  </div>
+
+  <div class="result">
+    $$f(t) = \begin{cases}
+    0 & (t < 0) \\
+    \dfrac{1-\cos(2\pi t)}{2\pi} & (0\le t\le 1) \\[6pt]
+    0 & (1 < t \le 2) \\[6pt]
+    \dfrac{\cos(2\pi t)-1}{2\pi} & (2 < t \le 3) \\[6pt]
+    0 & (t > 3)
+    \end{cases}$$
+  </div>
+</div>
+
+<h3>問2）$f(t)$ のグラフ（$-1\le t\le4$）</h3>
+<div class="answer-box">
+  <div class="step">
+    各区間の値：
+    <table>
+      <tr><th>$t$</th><th>$f(t)$</th><th>備考</th></tr>
+      <tr><td>$t < 0$</td><td>$0$</td><td>—</td></tr>
+      <tr><td>$t = 0$</td><td>$0$</td><td>$(1-\cos0)/(2\pi)=0$</td></tr>
+      <tr><td>$t = 0.5$</td><td>$1/\pi \approx 0.318$</td><td>$(1-\cos\pi)/(2\pi)=2/(2\pi)$</td></tr>
+      <tr><td>$t = 1$</td><td>$0$</td><td>$(1-\cos(2\pi))/(2\pi)=0$</td></tr>
+      <tr><td>$1 < t \le 2$</td><td>$0$</td><td>—</td></tr>
+      <tr><td>$t = 2.5$</td><td>$-1/\pi \approx -0.318$</td><td>$(\cos\pi-1)/(2\pi)=-1/\pi$</td></tr>
+      <tr><td>$t = 3$</td><td>$0$</td><td>$(\cos(6\pi)-1)/(2\pi)=0$</td></tr>
+      <tr><td>$t > 3$</td><td>$0$</td><td>—</td></tr>
+    </table>
+  </div>
+  <div class="note">
+    グラフの特徴：<br>
+    ・$0\le t\le 1$ では $f(t) = (1-\cos(2\pi t))/(2\pi)$ — 正の半波形（$t=0.5$ で最大 $1/\pi$）<br>
+    ・$1 < t \le 2$ では $f(t) = 0$（平坦）<br>
+    ・$2 < t \le 3$ では $f(t) = (\cos(2\pi t)-1)/(2\pi)$ — 負の半波形（$t=2.5$ で最小 $-1/\pi$）<br>
+    ・それ以外はゼロ
+  </div>
+</div>
+
+<!-- ===== 大問4 ===== -->
+<h2>大問4：ベクトル場の回転と面積分</h2>
+
+<p>$\boldsymbol{A} = -x^2y\,\boldsymbol{i} + xy^2\,\boldsymbol{j} + z^2\,\boldsymbol{k}$</p>
+
+<h3>問1）$\text{rot}\,\boldsymbol{A}$</h3>
+<div class="answer-box">
+  <div class="step">
+    $$\text{rot}\,\boldsymbol{A} = \nabla\times\boldsymbol{A} = \begin{vmatrix}\boldsymbol{i}&\boldsymbol{j}&\boldsymbol{k}\\\partial_x&\partial_y&\partial_z\\-x^2y&xy^2&z^2\end{vmatrix}$$
+    $\boldsymbol{i}$成分：$\partial_y(z^2) - \partial_z(xy^2) = 0 - 0 = 0$<br>
+    $\boldsymbol{j}$成分：$-[\partial_x(z^2) - \partial_z(-x^2y)] = -[0 - 0] = 0$<br>
+    $\boldsymbol{k}$成分：$\partial_x(xy^2) - \partial_y(-x^2y) = y^2 - (-x^2) = x^2+y^2$
+  </div>
+  <div class="result">
+    $$\text{rot}\,\boldsymbol{A} = (x^2+y^2)\,\boldsymbol{k}$$
+  </div>
+</div>
+
+<h3>問2）半球面 $S$（$x^2+y^2+z^2=1$，$z\ge0$）の面積分</h3>
+<div class="answer-box">
+  <div class="step">
+    <b>ストークスの定理を利用</b>：$S$ の境界 $C$ は単位円 $x^2+y^2=1$，$z=0$（法線が $+z$ 方向のとき，$C$ は $xy$ 平面で反時計まわり）。
+    $$\iint_S \text{rot}\,\boldsymbol{A}\cdot\boldsymbol{n}\,dS = \oint_C \boldsymbol{A}\cdot d\boldsymbol{r}$$
+    $C$ 上：$x=\cos\theta$，$y=\sin\theta$，$z=0$，$d\boldsymbol{r} = (-\sin\theta, \cos\theta, 0)d\theta$<br>
+    $\boldsymbol{A}|_{z=0} = (-\cos^2\theta\sin\theta,\;\cos\theta\sin^2\theta,\;0)$：
+    $$\boldsymbol{A}\cdot d\boldsymbol{r} = \cos^2\theta\sin^2\theta + \cos^2\theta\sin^2\theta = 2\cos^2\theta\sin^2\theta = \frac{\sin^2(2\theta)}{2}$$
+    $$\oint_C \boldsymbol{A}\cdot d\boldsymbol{r} = \int_0^{2\pi}\frac{\sin^2(2\theta)}{2}\,d\theta = \frac{1}{2}\cdot\pi = \frac{\pi}{2}$$
+    （$\int_0^{2\pi}\sin^2(2\theta)d\theta = \pi$ を使用）
+  </div>
+  <div class="step">
+    <b>直接計算で確認</b>：$\text{rot}\,\boldsymbol{A}\cdot\boldsymbol{n} = (x^2+y^2)\cdot z$（単位球なので $\boldsymbol{n}=(x,y,z)$，$z$成分）。<br>
+    球座標（$x=\sin\phi\cos\theta$，$y=\sin\phi\sin\theta$，$z=\cos\phi$，$dS=\sin\phi\,d\phi\,d\theta$）：
+    $$\iint_S (x^2+y^2)z\,dS = \int_0^{2\pi}\int_0^{\pi/2}\sin^2\phi\cos\phi\cdot\sin\phi\,d\phi\,d\theta = 2\pi\int_0^{\pi/2}\sin^3\phi\cos\phi\,d\phi$$
+    $= 2\pi\left[\dfrac{\sin^4\phi}{4}\right]_0^{\pi/2} = 2\pi\cdot\dfrac{1}{4} = \dfrac{\pi}{2}$ ✓
+  </div>
+  <div class="result">
+    $$\iint_S \text{rot}\,\boldsymbol{A}\cdot\boldsymbol{n}\,dS = \frac{\pi}{2}$$
+  </div>
+</div>
+
+<footer>
+  解答解説作成：Claude（Anthropic）| <a href="index.html">← 一覧に戻る</a>
+</footer>
+
+</body>
+</html>

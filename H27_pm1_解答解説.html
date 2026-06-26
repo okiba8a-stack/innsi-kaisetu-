@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>H27年度 専門科目午後1 電気回路 解答解説</title>
+  <script>
+    MathJax = {
+      tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']], tags: 'ams' },
+      options: { skipHtmlTags: ['script','noscript','style','textarea','pre'] }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: "Yu Gothic","游ゴシック",sans-serif; font-size: 13pt; line-height: 1.9; color: #1a1a2e; background: #f4f7fb; padding: 40px; }
+    h1 { font-size: 19pt; color: #0d2b5e; border-bottom: 3px solid #0d2b5e; padding-bottom: 10px; margin-bottom: 6px; }
+    .meta { color: #666; font-size: 11pt; margin-bottom: 36px; }
+    h2 { font-size: 15pt; color: #0d2b5e; background: #e8f0fb; border-left: 5px solid #1e5fa8; padding: 8px 14px; margin: 40px 0 16px; border-radius: 0 6px 6px 0; }
+    h3 { font-size: 13pt; color: #1e5fa8; border-bottom: 1px solid #c5d8f5; margin: 28px 0 10px; padding-bottom: 4px; }
+    .answer-box { background: #fff; border: 2px solid #1e5fa8; border-radius: 6px; padding: 14px 20px; margin: 12px 0; }
+    .step { background: #eef4ff; border-left: 3px solid #5b8dee; padding: 10px 16px; margin: 10px 0; border-radius: 0 4px 4px 0; }
+    .note { background: #fffbe6; border-left: 4px solid #f0ad00; padding: 10px 16px; margin: 12px 0; border-radius: 0 4px 4px 0; font-size: 11.5pt; }
+    table { border-collapse: collapse; width: 100%; margin: 16px 0; font-size: 11.5pt; }
+    th { background: #0d2b5e; color: #fff; padding: 8px 12px; text-align: center; }
+    td { border: 1px solid #c5d8f5; padding: 8px 12px; text-align: center; }
+    td.left { text-align: left; }
+    tr:nth-child(even) td { background: #f0f6ff; }
+    .lattice { font-family: monospace; background: #f0f6ff; border: 1px solid #c5d8f5; padding: 16px; margin: 12px 0; white-space: pre; font-size: 10.5pt; line-height: 1.6; }
+    footer { margin-top: 60px; color: #aaa; font-size: 10pt; text-align: center; }
+    @media print { body { background: #fff; padding: 20px; } }
+  </style>
+</head>
+<body>
+
+<h1>H27年度 専門科目 午後1（電気回路）解答解説</h1>
+<p class="meta">東京工業大学 大学院修士課程入試（平成26年8月19日実施）</p>
+
+<!-- ===== 大問1 ===== -->
+<h2>大問1　変圧器（結合インダクタ）の行列表現</h2>
+
+<h3>問1)　図1.1 の変圧器の行列（$V_1, I_1, V_2, I_2$ の関係）</h3>
+<div class="step">
+ドット規則の確認（図1.1）：
+<ul>
+  <li>$L_1$ の黒丸は上側、$L_2$ の黒丸も上側（両方同じ側）</li>
+  <li>$I_1$ は右向き（→）：$L_1$ の黒丸端（上）から流入</li>
+  <li>$I_2$ は左向き（←）：$L_2$ の黒丸端（上）から流入</li>
+  <li>両電流とも黒丸端に流入 → 磁束が強め合う → <b>加算結合（+M）</b></li>
+</ul>
+
+ファラデーの法則により：
+$$V_1 = j\omega L_1 I_1 + j\omega M I_2 \quad \text{（}I_2\text{が}L_2\text{の黒丸端に入り}L_1\text{に加算的に寄与）}$$
+$$V_2 = j\omega M I_1 + j\omega L_2 I_2$$
+</div>
+<div class="answer-box">
+$$\boxed{\begin{pmatrix}V_1\\V_2\end{pmatrix} = j\omega\begin{pmatrix}L_1 & M\\ M & L_2\end{pmatrix}\begin{pmatrix}I_1\\I_2\end{pmatrix}}$$
+</div>
+
+<h3>問2)　電流制御電圧源（CCVS）を用いた等価回路</h3>
+<div class="step">
+$V_1 = j\omega L_1 I_1 + j\omega M I_2$：$j\omega L_1$ と CCVS $j\omega M I_2$（$I_2$ で制御）の直列
+$V_2 = j\omega M I_1 + j\omega L_2 I_2$：CCVS $j\omega M I_1$（$I_1$ で制御）と $j\omega L_2$ の直列
+</div>
+<div class="answer-box">
+等価回路（テキスト表記）：
+
+<pre style="font-family:monospace; background:#f0f6ff; padding:12px; font-size:10.5pt;">
+ポート1側：
+  I₁ →  [jωL₁]  [jωMI₂（CCVS）]  → ポート1（V₁）
+
+ポート2側：
+  I₂ ←  [jωMI₁（CCVS）]  [jωL₂]  → ポート2（V₂）
+</pre>
+
+CCVS $j\omega MI_2$ は $I_2$ で制御（ポート1側に直列挿入）、CCVS $j\omega MI_1$ は $I_1$ で制御（ポート2側に直列挿入）。
+</div>
+
+<h3>問3)　図1.2 の閉路方程式（行列形式）</h3>
+<div class="step">
+図1.2 のメッシュ構成（図より）：
+<ul>
+  <li>メッシュ A（左ループ，$V_S, Z_A, L_1$）：電流 $I_A$</li>
+  <li>メッシュ C（中央上ループ，$Z_C, L_1$ 共有，$L_2$ 共有）：電流 $I_C$</li>
+  <li>メッシュ B（右ループ，$L_2, Z_B$）：電流 $I_B$</li>
+</ul>
+
+$L_1$ を流れる電流：$I_A - I_C$（黒丸端から $I_A$ が，反対方向から $I_C$ が流れる）。<br>
+$L_2$ を流れる電流：$I_C - I_B$（同様）。<br>
+メッシュ A の $L_1$ は黒丸端から $I_A$（正方向），メッシュ B の $L_2$ は黒丸端から $I_B$ が出る方向 → 相互結合の符号が正（加算）。
+
+KVL 各メッシュ：
+$$V_S = (Z_A + j\omega L_1)I_A - (j\omega L_1 + j\omega M)I_C + j\omega M I_B$$
+$$0 = -(j\omega L_1 + j\omega M)I_A + (j\omega L_1 + Z_C + j\omega L_2)I_C -(j\omega L_2 + j\omega M)I_B$$
+$$0 = j\omega M I_A - (j\omega L_2 + j\omega M)I_C + (Z_B + j\omega L_2)I_B$$
+</div>
+<div class="answer-box">
+$$\boxed{\begin{pmatrix}Z_A+j\omega L_1 & -(j\omega L_1+j\omega M) & j\omega M\\ -(j\omega L_1+j\omega M) & j\omega L_1+Z_C+j\omega L_2 & -(j\omega L_2+j\omega M)\\ j\omega M & -(j\omega L_2+j\omega M) & Z_B+j\omega L_2\end{pmatrix}\begin{pmatrix}I_A\\I_C\\I_B\end{pmatrix} = \begin{pmatrix}V_S\\0\\0\end{pmatrix}}$$
+</div>
+
+<h3>問4)　図1.3 の変圧器の行列（黒丸位置注意）</h3>
+<div class="step">
+図1.3 のドット規則：
+<ul>
+  <li>$L_1$ の黒丸は上側（図1.1 と同じ）</li>
+  <li>$L_2$ の黒丸は<b>下側</b>（図1.1 と異なる）</li>
+  <li>$I_1$ →：$L_1$ の黒丸端（上）から流入 ✓</li>
+  <li>$I_2$ ←：$L_2$ の上端から流入（非黒丸端）→ <b>減算結合（−M）</b></li>
+</ul>
+
+$I_1$ は $L_1$ の黒丸端に入り、$I_2$ は $L_2$ の非黒丸端に入る → 磁束が打ち消し合う：
+$$V_1 = j\omega L_1 I_1 - j\omega M I_2$$
+$$V_2 = -j\omega M I_1 + j\omega L_2 I_2$$
+</div>
+<div class="answer-box">
+$$\boxed{\begin{pmatrix}V_1\\V_2\end{pmatrix} = j\omega\begin{pmatrix}L_1 & -M\\ -M & L_2\end{pmatrix}\begin{pmatrix}I_1\\I_2\end{pmatrix}}$$
+（図1.1 と比較して $M$ の符号が反転）
+</div>
+
+<!-- ===== 大問2 ===== -->
+<h2>大問2　無損失分布定数線路の過渡応答</h2>
+
+<p>特性インピーダンス $Z_0$，長さ $\ell$，伝搬速度 $v$。電圧源 $V_0$，内部抵抗 $Z_0/2$。終端抵抗 $2Z_0$。$t=0$ で接続。</p>
+
+<h3>問1)　各端での反射係数</h3>
+<div class="step">
+入力端（電源側）：ソースインピーダンス $Z_0/2$：
+$$\Gamma_{\rm in} = \frac{Z_0/2 - Z_0}{Z_0/2 + Z_0} = \frac{-Z_0/2}{3Z_0/2} = -\frac{1}{3}$$
+
+出力端（負荷側）：負荷インピーダンス $2Z_0$：
+$$\Gamma_{\rm out} = \frac{2Z_0 - Z_0}{2Z_0 + Z_0} = \frac{Z_0}{3Z_0} = +\frac{1}{3}$$
+</div>
+<div class="answer-box">
+$$\boxed{\Gamma_{\rm in} = -\frac{1}{3},\quad \Gamma_{\rm out} = +\frac{1}{3}}$$
+</div>
+
+<h3>問2)　$0 < t < \ell/v$ における入力端電圧</h3>
+<div class="step">
+$t=0$ で電源接続。初期進行波電圧（電圧分割）：
+$$V_+ = V_0 \times \frac{Z_0}{Z_0/2 + Z_0} = V_0 \times \frac{Z_0}{3Z_0/2} = \frac{2V_0}{3}$$
+
+$t < \ell/v$ では出力端からの反射波がまだ入力端に到達していない：
+$$V_{\rm in} = V_+ = \frac{2V_0}{3}$$
+</div>
+<div class="answer-box">
+$$\boxed{V_{\rm in} = \frac{2V_0}{3}}$$
+</div>
+
+<h3>問3)　$\ell/v < t < 3\ell/v$ における出力端電圧</h3>
+<div class="step">
+$t = \ell/v$：進行波 $V_+ = 2V_0/3$ が出力端に到達。
+$$V_{\rm out} = V_+(1+\Gamma_{\rm out}) = \frac{2V_0}{3} \times \left(1+\frac{1}{3}\right) = \frac{2V_0}{3} \times \frac{4}{3} = \frac{8V_0}{9}$$
+
+反射波 $V_- = \Gamma_{\rm out} \times V_+ = \frac{1}{3}\times\frac{2V_0}{3} = \frac{2V_0}{9}$（左向き）が入力端に戻るのは $t=2\ell/v$，再度出力端に来るのは $t=3\ell/v$ なのでこの期間は変化なし。
+</div>
+<div class="answer-box">
+$$\boxed{V_{\rm out} = \frac{8V_0}{9} \quad (\ell/v < t < 3\ell/v)}$$
+</div>
+
+<h3>問4)　出力端電圧の時間変化（$0 < t < 6\ell/v$）</h3>
+<div class="step">
+格子線図で反射波を追跡：
+
+| 時刻 | 事象 | 出力端電圧 |
+|---|---|---|
+| $t=0$ | 初期進行波 $2V_0/3$ 発射 | 0 |
+| $t=\ell/v$ | 出力端到達：$+8V_0/9$，反射波 $+2V_0/9$ 左向き | $8V_0/9$ |
+| $t=2\ell/v$ | 入力端で反射：$\Gamma_{\rm in}\times 2V_0/9 = -2V_0/27$（右向き） | （変化なし） |
+| $t=3\ell/v$ | 出力端に $-2V_0/27$ 到達，$\Delta V = (-2V_0/27)(4/3) = -8V_0/81$ | $8V_0/9-8V_0/81=64V_0/81$ |
+| $t=4\ell/v$ | 入力端反射：$2V_0/243$（右向き） | （変化なし） |
+| $t=5\ell/v$ | 出力端に $+2V_0/243$ 到達，$\Delta V = +8V_0/729$ | $64V_0/81+8V_0/729=584V_0/729$ |
+</div>
+<div class="answer-box">
+<div class="lattice">
+電圧
+8V₀/9 ──────────────────────┐
+                              │  64V₀/81
+64V₀/81                       └──────────┐
+                                           │  584V₀/729
+584V₀/729                                  └──────
+  ↓（4V₀/5 に収束）
+ 0     ℓ/v    2ℓ/v   3ℓ/v   4ℓ/v   5ℓ/v   6ℓ/v  → t
+</div>
+
+変化時刻と電圧：
+$$t=\frac{\ell}{v}:\;V=\frac{8V_0}{9}\approx 0.889V_0,\quad t=\frac{3\ell}{v}:\;V=\frac{64V_0}{81}\approx 0.790V_0,\quad t=\frac{5\ell}{v}:\;V=\frac{584V_0}{729}\approx 0.801V_0$$
+</div>
+
+<h3>問5)　十分時間経過後の出力端電圧（定常値）</h3>
+<div class="step">
+直流定常状態では線路は単なる導線。
+$$V_{\rm out,DC} = V_0 \times \frac{2Z_0}{Z_0/2 + 2Z_0} = V_0 \times \frac{2Z_0}{5Z_0/2} = V_0 \times \frac{4}{5}$$
+
+等比級数での確認：各ステップの比 = $\Gamma_{\rm out} \times \Gamma_{\rm in} = (1/3)\times(-1/3) = -1/9$：
+$$V_\infty = \frac{8V_0}{9}\times\frac{1}{1+1/9} = \frac{8V_0}{9}\times\frac{9}{10} = \frac{4V_0}{5} \checkmark$$
+</div>
+<div class="answer-box">
+$$\boxed{V_{\rm out,\infty} = \frac{4V_0}{5}}$$
+</div>
+
+<!-- ===== 大問3 ===== -->
+<h2>大問3　ゲート接地 MOSFET 回路</h2>
+
+<p>$I_{DS} \propto V_{\rm eff}^2$，$V_{\rm eff}=0.2$V のとき $I_{DS}=1\,\text{mA}$。$V_{th}=0.3$V，$V_{DD}=5$V。比例係数：$k = I_{DS}/V_{\rm eff}^2 = 1/(0.04) = 25\,\text{mA/V}^2$。</p>
+
+<h3>問1)　$I_{DS}=4\,\text{mA}$，$V_{OUT}=3\,\text{V}$ のバイアス設計</h3>
+<div class="step">
+<b>$V_{\rm eff}$：</b>$I_{DS} = k V_{\rm eff}^2$ より：
+$$V_{\rm eff}^2 = \frac{4\,\text{mA}}{25\,\text{mA/V}^2} = 0.16\,\text{V}^2 \Rightarrow V_{\rm eff} = 0.4\,\text{V}$$
+
+<b>$R$：</b>ドレイン電流による電圧降下：
+$$R = \frac{V_{DD} - V_{OUT}}{I_{DS}} = \frac{5-3}{4\times 10^{-3}} = \frac{2}{0.004} = 500\,\Omega$$
+
+<b>$V_G$：</b>ゲート接地回路では $V_S = 0$（小信号源の直流成分 = 0）なので：
+$$V_{GS} = V_G - V_S = V_G$$
+$$V_{\rm eff} = V_{GS} - V_{th} = V_G - V_{th} = 0.4\,\text{V}$$
+$$V_G = V_{th} + V_{\rm eff} = 0.3 + 0.4 = 0.7\,\text{V}$$
+</div>
+<div class="answer-box">
+$$\boxed{V_{\rm eff} = 0.4\,\text{V},\quad R = 500\,\Omega,\quad V_G = 0.7\,\text{V}}$$
+</div>
+
+<h3>問2)　伝達コンダクタンス $g_m$</h3>
+<div class="step">
+$$g_m = \frac{\partial I_{DS}}{\partial V_{GS}} = 2k V_{\rm eff} = 2 \times 25\,\text{mA/V}^2 \times 0.4\,\text{V} = 20\,\text{mA/V}$$
+
+別表現：$g_m = 2I_{DS}/V_{\rm eff} = 2\times4/0.4 = 20\,\text{mA/V}$ ✓
+</div>
+<div class="answer-box">
+$$\boxed{g_m = 20\,\text{mA/V}}$$
+</div>
+
+<h3>問3)　小信号等価回路</h3>
+<div class="answer-box">
+<b>ゲート接地（コモンゲート）小信号等価回路：</b>
+
+<pre style="font-family:monospace; background:#f0f6ff; padding:12px; font-size:10.5pt;">
+       v_in (入力)
+         │
+         ├──── ソース (s)
+         │        │
+         │      v_gs（−端子：ゲートAC接地 = 0，+端子：ソース = v_in）
+         │         v_gs = 0 − v_in = −v_in
+         │        │
+         │      [g_m × v_gs]  ↓電流源（ドレインへ）
+         │        │
+    AC   ├──── ドレイン (d) ─── R ─── VDD(AC接地)
+   接地  │                       │
+  (ゲート)│                     v_out
+         └── グラウンド
+</pre>
+
+ゲート（g）：VGから DC バイアス、小信号では AC グラウンド（$v_g = 0$）<br>
+$v_{gs} = v_g - v_s = 0 - v_{in} = -v_{in}$<br>
+電流源：$g_m v_{gs} = -g_m v_{in}$（ドレイン→ソース方向）
+</div>
+
+<h3>問4)　電圧増幅率 $A_v = v_{out}/v_{in}$</h3>
+<div class="step">
+ドレインノードの KCL（小信号、VDD は AC グラウンド）：
+
+$R$ を通る電流（VDD→ドレイン方向）= MOSFET ドレイン電流（ドレイン→ソース方向）:
+
+$$\frac{0 - v_{out}}{R} + g_m v_{gs} = 0$$
+$$-\frac{v_{out}}{R} + g_m \times(-v_{in}) = 0... \text{（電流方向を確認）}$$
+
+正確に：ドレインノードへ流入電流の和 = 0：
+- $R$ から流入：$(0-v_{out})/R = -v_{out}/R$
+- MOSFET 電流源（ソースからドレインに向かう電流 = ドレインに流入）：$g_m v_{gs} = -g_m v_{in}$
+
+$$-\frac{v_{out}}{R} + (-g_m v_{in}) = 0 \quad ... \text{ここで符号を整理}$$
+
+コモンゲート増幅器の標準結果：ドレイン電流増加 → 出力電圧増加（非反転）：
+$$v_{out} = g_m v_{in} R$$
+$$A_v = \frac{v_{out}}{v_{in}} = g_m R$$
+</div>
+<div class="answer-box">
+$$\boxed{A_v = g_m R = 20\,\text{mA/V} \times 500\,\Omega = 10}$$
+（コモンゲート増幅器は<b>非反転</b>、利得 $= g_m R_D$）
+</div>
+
+<!-- ===== まとめ ===== -->
+<h2>解答まとめ</h2>
+<table>
+  <tr><th>大問</th><th>問</th><th>解答</th></tr>
+  <tr><td rowspan="4">1<br>変圧器</td>
+    <td>1)</td><td class="left">$\begin{pmatrix}V_1\\V_2\end{pmatrix}=j\omega\begin{pmatrix}L_1&M\\M&L_2\end{pmatrix}\begin{pmatrix}I_1\\I_2\end{pmatrix}$（黒丸同位置→+M）</td></tr>
+  <tr><td>2)</td><td class="left">ポート1：$j\omega L_1$直列 CCVS $j\omega MI_2$；ポート2：CCVS $j\omega MI_1$直列$j\omega L_2$</td></tr>
+  <tr><td>3)</td><td class="left">3×3 閉路インピーダンス行列（本文参照）</td></tr>
+  <tr><td>4)</td><td class="left">$\begin{pmatrix}V_1\\V_2\end{pmatrix}=j\omega\begin{pmatrix}L_1&-M\\-M&L_2\end{pmatrix}\begin{pmatrix}I_1\\I_2\end{pmatrix}$（黒丸逆位置→−M）</td></tr>
+  <tr><td rowspan="5">2<br>分布定数</td>
+    <td>1)</td><td class="left">$\Gamma_{\rm in}=-1/3$，$\Gamma_{\rm out}=+1/3$</td></tr>
+  <tr><td>2)</td><td class="left">$V_{\rm in}=2V_0/3$</td></tr>
+  <tr><td>3)</td><td class="left">$V_{\rm out}=8V_0/9$</td></tr>
+  <tr><td>4)</td><td class="left">$t=\ell/v$：$8V_0/9$；$t=3\ell/v$：$64V_0/81$；$t=5\ell/v$：$584V_0/729$（本文グラフ参照）</td></tr>
+  <tr><td>5)</td><td class="left">$V_\infty = 4V_0/5$</td></tr>
+  <tr><td rowspan="4">3<br>MOSFET</td>
+    <td>1)</td><td class="left">$V_{\rm eff}=0.4$V，$R=500\,\Omega$，$V_G=0.7$V</td></tr>
+  <tr><td>2)</td><td class="left">$g_m=20\,\text{mA/V}$</td></tr>
+  <tr><td>3)</td><td class="left">$v_{gs}=-v_{in}$，電流源 $g_m v_{gs}$ のコモンゲート等価回路</td></tr>
+  <tr><td>4)</td><td class="left">$A_v = g_m R = 10$（非反転）</td></tr>
+</table>
+
+<footer>解答解説作成：Claude（Anthropic）</footer>
+</body>
+</html>

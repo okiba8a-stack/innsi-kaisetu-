@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>H19年度 午前 電気回路 解答解説</title>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: "Yu Gothic","游ゴシック",sans-serif; font-size:13pt; line-height:1.8; color:#1a1a2e; background:#f4f7fb; padding:40px; }
+    h1 { font-size:20pt; color:#0d2b5e; border-bottom:3px solid #0d2b5e; padding-bottom:10px; margin-bottom:8px; }
+    .subtitle { color:#666; font-size:11pt; margin-bottom:36px; }
+    h2 { font-size:15pt; color:#0d2b5e; margin:36px 0 16px 0; padding:8px 16px; background:#e8f0fb; border-left:5px solid #1e5fa8; border-radius:4px; }
+    h3 { font-size:13pt; color:#1e5fa8; margin:24px 0 10px 0; }
+    h4 { font-size:12pt; color:#0d2b5e; margin:18px 0 8px 0; }
+    .answer-box { background:#fff; border:2px solid #1e5fa8; border-radius:8px; padding:18px 24px; margin:16px 0; }
+    .step { background:#f8faff; border-left:4px solid #5b9cf6; padding:10px 18px; margin:12px 0; border-radius:0 6px 6px 0; }
+    .result { background:#fffbe6; border:1px solid #f0c040; border-radius:6px; padding:10px 18px; margin:12px 0; font-weight:bold; }
+    .note { background:#f0f8ff; border:1px solid #b0d4f8; border-radius:6px; padding:10px 18px; margin:12px 0; font-size:11.5pt; color:#333; }
+    table { border-collapse:collapse; margin:12px 0; width:100%; }
+    th,td { border:1px solid #c5d8f5; padding:8px 14px; text-align:center; }
+    th { background:#e8f0fb; color:#0d2b5e; font-weight:bold; }
+    footer { margin-top:60px; color:#aaa; font-size:10pt; text-align:center; }
+    .back-link { display:inline-block; margin-bottom:24px; color:#1e5fa8; text-decoration:none; font-size:11pt; }
+    .formula-block { text-align:center; margin:16px 0; }
+  </style>
+</head>
+<body>
+
+<a class="back-link" href="index.html">← 解答解説まとめへ戻る</a>
+<h1>H19年度 午前 電気回路 解答解説</h1>
+<p class="subtitle">平成18年8月17日実施 ／ 専門科目：電気回路（午前）</p>
+
+<!-- ============================== 大問1 ============================== -->
+<h2>大問1：変圧器の解析</h2>
+<p>一次インダクタンス \(L_1\)、二次インダクタンス \(L_2\)、相互インダクタンス \(M\)（\(L_1L_2 \neq M^2\)）。磁気飽和・巻線抵抗無視。</p>
+
+<div class="answer-box">
+<h3>問1-1) 二次開放時の二次電圧 \(V_2\)</h3>
+<div class="step">
+二次開放 → \(I_2=0\)。一次方程式：\(V_1 = j\omega L_1 I_1\) → \(I_1 = V_1/(j\omega L_1)\)<br>
+二次誘起起電力：\(V_2 = j\omega M I_1 = j\omega M \cdot V_1/(j\omega L_1)\)
+</div>
+<div class="result">
+\[V_2 = \frac{M}{L_1} V_1\]
+（変圧比は巻数比ではなく \(M/L_1\) で表される）
+</div>
+
+<h3>問1-2) 二次にコンデンサ \(C\) 接続時の共振周波数（すべて）</h3>
+<div class="step">
+連立方程式（フェーザー）：
+\[V_1 = j\omega L_1 I_1 - j\omega M I_2 \quad (1)\]
+\[0 = -j\omega M I_1 + \left(j\omega L_2 + \frac{1}{j\omega C}\right) I_2 \quad (2)\]
+(2)より：\(I_2 = j\omega M I_1 / \left(j\omega L_2 + \frac{1}{j\omega C}\right)\)<br>
+入力インピーダンスを求めると（\(\Delta = L_1L_2 - M^2\)）：
+\[Z_{in} = j\omega\,\frac{L_1 - \omega^2 C\Delta}{1 - \omega^2 L_2 C}\]
+</div>
+<div class="result">
+<b>直列共振</b>（\(Z_{in}=0\)）：\(L_1 - \omega^2 C\Delta = 0\)
+\[\omega_s = \sqrt{\frac{L_1}{C(L_1L_2-M^2)}}\]
+<br>
+<b>並列共振</b>（\(Z_{in}\to\infty\)）：\(1 - \omega^2 L_2 C = 0\)
+\[\omega_p = \frac{1}{\sqrt{L_2 C}}\]
+</div>
+<div class="note">
+\(L_1L_2 > M^2\) の場合、\(\Delta = L_1L_2-M^2 > 0\)。\(\omega_s\) と \(\omega_p\) の大小関係：<br>
+\(\omega_s^2/\omega_p^2 = L_1L_2/\Delta = L_1L_2/(L_1L_2-M^2) > 1\) → \(\omega_s > \omega_p\)
+</div>
+
+<h3>問1-3) 二次に抵抗 \(R\) 接続時の平均消費電力・力率・最大電力</h3>
+<div class="step">
+二次側テブナン等価（一次短絡時）：
+\[V_{oc} = \frac{M}{L_1}V, \qquad Z_{th} = j\omega\frac{\Delta}{L_1} \quad (\text{純虚数！})\]
+一次から見た入力インピーダンス（反射インピーダンス利用）：
+\[Z_{in} = j\omega L_1 + \frac{(\omega M)^2}{R + j\omega L_2} = \underbrace{\frac{\omega^2 M^2 R}{R^2+\omega^2L_2^2}}_{\text{Re}} + j\omega\underbrace{\left[L_1 - \frac{\omega^2 M^2 L_2}{R^2+\omega^2L_2^2}\right]}_{\text{Im}/\omega}\]
+</div>
+<div class="result">
+平均消費電力：
+\[P = \frac{1}{2}\cdot\frac{|V|^2\,\mathrm{Re}(Z_{in})}{|Z_{in}|^2} = \frac{\omega^2 M^2 R\,|V|^2}{2\left[(\omega^2M^2R)^2/(R^2+\omega^2L_2^2)^2 + \text{...}\right]|Z_{in}|^2/(R^2+...)}\]
+（簡潔に書くと）
+\[P = \frac{|V|^2\,\omega^2 M^2 R}{2\bigl[(R^2+\omega^2L_2^2)\,|Z_{in}|^2/(R^2+\omega^2L_2^2)\bigr]}\]
+<br>
+力率：\(\cos\phi = \mathrm{Re}(Z_{in})/|Z_{in}|\)<br><br>
+<b>最大消費電力条件：</b><br>
+二次側テブナン \(Z_{th}=j\omega\Delta/L_1\)（純虚数）なので最大電力条件 \(R = |Z_{th}|\)：
+\[R_{opt} = \frac{\omega\Delta}{L_1} = \frac{\omega(L_1L_2-M^2)}{L_1}\]
+最大平均電力：
+\[P_{max} = \frac{|V_{oc}|^2}{4R_{opt}} = \frac{M^2V^2}{4\omega L_1(L_1L_2-M^2)}\]
+</div>
+</div>
+
+<!-- ============================== 大問2 ============================== -->
+<h2>大問2：ブリッジ回路と全域通過条件</h2>
+<p>図2.1：\(L\)–\(R_1\) アーム（上：\(L\)、下：\(R_1\)）と \(C\)–\(R_2\) アーム（上：\(C\)、下：\(R_2\)）からなるブリッジ回路。\(V_0\) は両アームの中点間電圧。</p>
+
+<div class="answer-box">
+<div class="step">
+各中点電位：
+\[V_A = V\cdot\frac{R_1}{R_1+j\omega L}, \qquad V_B = V\cdot\frac{j\omega C R_2}{1+j\omega C R_2}\]
+\[V_0 = V_A - V_B = V\cdot\frac{R_1+\omega^2 LCR_2}{(R_1+j\omega L)(1+j\omega CR_2)}\]
+</div>
+
+<h4>問2-1) \(\omega=0\) のとき</h4>
+<div class="step">
+\(\omega\to 0\)：\(L\to\) 短絡、\(C\to\) 開放 → \(V_A\to V,\ V_B\to 0\)
+</div>
+<div class="result">\(V_0 = V\)（電源電圧と等振幅・同位相）</div>
+
+<h4>問2-2) \(\omega\to\infty\) のとき</h4>
+<div class="step">
+\(\omega\to\infty\)：\(L\to\) 開放、\(C\to\) 短絡 → \(V_A\to 0,\ V_B\to V\)
+</div>
+<div class="result">\(|V_0| = V\)（振幅は同じ、位相は \(-180°\) 反転）</div>
+
+<h4>問2-3) \(|V_0|\) が \(\omega\) に依らず一定となる条件</h4>
+<div class="step">
+\[|V_0|^2 = V^2\,\frac{(R_1+\omega^2LCR_2)^2}{(R_1^2+\omega^2L^2)(1+\omega^2C^2R_2^2)}\]
+これが \(\omega\) に依らず一定 → 分子と分母が同比：<br><br>
+分子 \(= R_1^2 + 2\omega^2R_1LCR_2 + \omega^4L^2C^2R_2^2\)<br>
+分母 \(= R_1^2 + \omega^2(R_1^2C^2R_2^2+L^2) + \omega^4L^2C^2R_2^2\)<br><br>
+\(\omega^2\) の係数を一致させる：
+\[2R_1LCR_2 = R_1^2C^2R_2^2 + L^2 \Rightarrow (CR_1R_2-L)^2 = 0\]
+</div>
+<div class="result">
+\[\boxed{R_1 R_2 = \frac{L}{C}}\]
+このとき \(|V_0| = V\)（全域通過：位相のみ変化する全域通過フィルタ）
+</div>
+</div>
+
+<!-- ============================== 大問3 ============================== -->
+<h2>大問3：RC 並列回路とフーリエ解析</h2>
+
+<div class="answer-box">
+<h3>問3-1) 正弦波電圧 \(v(t)=V\sin\omega t\) に対する \(i(t)\)（図3.1）</h3>
+<div class="step">
+\[i_R = \frac{v}{R} = \frac{V}{R}\sin\omega t, \qquad i_C = C\frac{dv}{dt} = CV\omega\cos\omega t\]
+\[i(t) = i_R + i_C = \frac{V}{R}\sin\omega t + V\omega C\cos\omega t\]
+</div>
+<div class="result">
+\[i(t) = V\sqrt{\frac{1}{R^2}+\omega^2C^2}\,\sin(\omega t + \phi), \qquad \phi = \arctan(\omega CR)\]
+</div>
+
+<h3>問3-2) 2周波数電源の場合（図3.2）と重ね合わせの理</h3>
+<div class="step">
+<b>重ね合わせの理（線形性原理）：</b><br>
+線形回路では、複数の独立電源が同時に存在する場合の応答は、各電源が単独に存在する場合の応答の和に等しい。<br><br>
+\(v_1(t)=V_1\sin\omega_1 t\) の単独応答：\(i_1(t) = V_1\sqrt{1/R^2+\omega_1^2C^2}\sin(\omega_1 t+\phi_1)\)
+\(v_2(t)=V_2\sin\omega_2 t\) の単独応答：\(i_2(t) = V_2\sqrt{1/R^2+\omega_2^2C^2}\sin(\omega_2 t+\phi_2)\)
+</div>
+<div class="result">
+\[i(t) = i_1(t)+i_2(t), \qquad \phi_k = \arctan(\omega_k CR)\]
+</div>
+
+<h3>問3-3) 三角波 \(f(t)\) のフーリエ級数（周期 \(T\)、振幅 \(T/4\)）（図3.3）</h3>
+<div class="step">
+基本角周波数 \(\omega_0 = 2\pi/T\)。奇関数の三角波（\(f(0)=0\), \(f(T/4)=T/4\)）：
+\[f(t) = \frac{8}{\pi^2}\cdot\frac{T}{4}\sum_{n=1,3,5,...}\frac{(-1)^{(n-1)/2}}{n^2}\sin(n\omega_0 t) = \frac{2T}{\pi^2}\sum_{n=1,3,5,...}\frac{(-1)^{(n-1)/2}}{n^2}\sin\!\left(\frac{2\pi n t}{T}\right)\]
+</div>
+<div class="result">
+\[f(t) = \frac{2T}{\pi^2}\!\left[\sin\frac{2\pi t}{T} - \frac{1}{9}\sin\frac{6\pi t}{T} + \frac{1}{25}\sin\frac{10\pi t}{T} - \cdots\right]\]
+</div>
+
+<h3>問3-4) 三角波電圧を RC 並列回路に印加（図3.4、定常状態）</h3>
+<div class="step">
+図3.4の三角波：周期 \(T=\pi/\omega\)（基本角周波数 \(\omega_0=2\omega\)）、振幅 \(A=\pi/(2\omega)\)。<br><br>
+フーリエ展開（問3-3と同形）：
+\[v(t) = \frac{2\cdot\pi/(2\omega)}{\pi^2/\pi}\cdot\frac{2T}{\pi^2}\cdots = \frac{4}{\pi\omega}\!\left[\sin 2\omega t - \frac{\sin 6\omega t}{9} + \frac{\sin 10\omega t}{25} - \cdots\right]\]
+<br>
+各調波成分 \(V_n\sin(n\omega_0 t)\)（\(n\)=1,3,5,...; \(n\omega_0=2n\omega\)）に対して：
+</div>
+<div class="result">
+\[i(t) = \sum_{n=1,3,5,...} V_n\sqrt{\frac{1}{R^2}+(2n\omega)^2C^2}\;\sin(2n\omega t + \phi_n)\]
+ただし \(V_n = \dfrac{4(-1)^{(n-1)/2}}{n\pi\omega}\)、\(\phi_n = \arctan(2n\omega CR)\)<br><br>
+または直接微分法：\(i(t) = v(t)/R + C\,dv/dt\)（\(dv/dt\) は方形波）で計算可。
+</div>
+</div>
+
+<!-- ============================== 大問4 ============================== -->
+<h2>大問4：RLC 回路とラプラス変換</h2>
+
+<div class="answer-box">
+<h3>問4-1) 図4.1の直列 RLC 回路（\(t=0\) でスイッチ投入、初期値 0）</h3>
+<h4>a) 微分方程式</h4>
+<div class="step">
+\(v_0(t)\)：コンデンサ電圧、\(i = C\,dv_0/dt\)：
+\[E = Ri + L\frac{di}{dt} + v_0 \Longrightarrow LC\frac{d^2v_0}{dt^2} + RC\frac{dv_0}{dt} + v_0 = E\]
+</div>
+
+<h4>b) \(V_0(s)\) をラプラス変換で求める</h4>
+<div class="step">
+初期値ゼロで変換：
+\[LCs^2V_0(s) + RCsV_0(s) + V_0(s) = \frac{E}{s}\]
+</div>
+<div class="result">
+\[V_0(s) = \frac{E/LC}{s(s^2 + \frac{R}{L}s + \frac{1}{LC})} = \frac{E\omega_0^2}{s(s^2+2\alpha s+\omega_0^2)}\]
+ただし \(\omega_0^2 = 1/(LC),\ 2\alpha = R/L\)
+</div>
+
+<h4>c) \(L=50\text{ H},\ C=10^{-2}\text{ F},\ R=150\,\Omega\) のとき \(v_0(t)\)</h4>
+<div class="step">
+\[\omega_0^2 = \frac{1}{50\times10^{-2}} = 2,\quad \frac{R}{L} = \frac{150}{50} = 3\]
+特性方程式：\(s^2+3s+2=(s+1)(s+2)=0\) → \(s=-1,\,-2\)（過減衰）<br><br>
+\[V_0(s) = \frac{2E}{s(s+1)(s+2)} = E\left(\frac{1}{s} - \frac{2}{s+1} + \frac{1}{s+2}\right)\]
+（部分分数展開：\(A=2E/2=E,\ B=2E/((-1)\cdot 1)=-2E,\ C=2E/(2\cdot 1)=E\)）
+</div>
+<div class="result">
+\[v_0(t) = E\bigl(1 - 2e^{-t} + e^{-2t}\bigr)\,U(t)\]
+過減衰応答（振動なし）。\(v_0(0)=0,\ v_0'(0)=0,\ v_0(\infty)=E\)。単調増加。
+</div>
+
+<h4>d) \(v_0(t)\) の概形</h4>
+<div class="note">
+\(v_0'(t) = E(2e^{-t}-2e^{-2t}) = 2E(e^{-t}-e^{-2t}) \geq 0\) for \(t>0\)：単調増加。<br>
+\(t=0\) では \(v_0=0\)（初期値）、\(t\to\infty\) では \(v_0\to E\)（定常値）。<br>
+最大傾きは \(t\)→ 小で生じ、徐々に傾きが \(0\) に近づく S 字形（凸型）。
+</div>
+
+<h3>問4-2) 図4.2の矩形パルスのラプラス変換</h3>
+<div class="step">
+\(v_i(t) = E\,U(t) - E\,U(t-\tau)\)（0 から \(\tau\) まで高さ \(E\) のパルス）
+</div>
+<div class="result">
+\[V_i(s) = \frac{E}{s}(1 - e^{-\tau s})\]
+</div>
+
+<h3>問4-3) パルス入力に対する \(v_0(t)\)（図4.3、同じ \(R,L,C\) 値）</h3>
+<div class="step">
+伝達関数：\(H(s) = \dfrac{1/LC}{s^2+(R/L)s+1/LC} = \dfrac{2}{(s+1)(s+2)}\)<br><br>
+\(V_0(s) = H(s)\cdot V_i(s) = \dfrac{2E}{(s+1)(s+2)}\cdot\dfrac{1-e^{-\tau s}}{s}\)<br><br>
+ステップ応答 \(g(t) = E(1-2e^{-t}+e^{-2t})U(t)\)（問4-1c の結果）を利用し、<br>
+遅延定理（\(e^{-\tau s}\) → \(t-\tau\) の遅延）：
+</div>
+<div class="result">
+\[v_0(t) = g(t) - g(t-\tau)\]
+\[= E\bigl[(1-2e^{-t}+e^{-2t})U(t) - (1-2e^{-(t-\tau)}+e^{-2(t-\tau)})U(t-\tau)\bigr]\]
+</div>
+</div>
+
+<!-- ============================== まとめ ============================== -->
+<h2>解答まとめ</h2>
+<table>
+  <tr><th>問</th><th>主な結果</th></tr>
+  <tr><td>1-1</td><td>\(V_2 = (M/L_1)V_1\)</td></tr>
+  <tr><td>1-2</td><td>並列共振 \(\omega_p=1/\sqrt{L_2C}\)、直列共振 \(\omega_s=\sqrt{L_1/(C\Delta)}\)（\(\Delta=L_1L_2-M^2\)）</td></tr>
+  <tr><td>1-3</td><td>\(R_{opt}=\omega\Delta/L_1\)、\(P_{max}=M^2V^2/(4\omega L_1\Delta)\)</td></tr>
+  <tr><td>2-1</td><td>\(\omega=0\): \(V_0=V\)</td></tr>
+  <tr><td>2-2</td><td>\(\omega\to\infty\): \(|V_0|=V\)（位相 \(-180°\)）</td></tr>
+  <tr><td>2-3</td><td>条件：\(R_1R_2 = L/C\)（全域通過フィルタ）</td></tr>
+  <tr><td>3-1</td><td>\(i(t)=V\sqrt{1/R^2+\omega^2C^2}\sin(\omega t+\arctan\omega CR)\)</td></tr>
+  <tr><td>3-3</td><td>\(f(t)=\frac{2T}{\pi^2}\sum_{n\text{ odd}}\frac{(-1)^{(n-1)/2}}{n^2}\sin\frac{2\pi nt}{T}\)</td></tr>
+  <tr><td>4-1</td><td>\(v_0(t)=E(1-2e^{-t}+e^{-2t})U(t)\)（過減衰）</td></tr>
+  <tr><td>4-2</td><td>\(V_i(s)=(E/s)(1-e^{-\tau s})\)</td></tr>
+  <tr><td>4-3</td><td>\(v_0(t)=g(t)-g(t-\tau)\)（ステップ応答の差）</td></tr>
+</table>
+
+<footer>解答解説作成：Claude（Anthropic） ／ H19年度（平成18年8月17日実施）午前 電気回路</footer>
+</body>
+</html>

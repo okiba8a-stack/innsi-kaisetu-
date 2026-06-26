@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>R5年度 解答解説（2024大修）</title>
+  <script>
+    MathJax = { tex: { inlineMath: [['$','$']] }, options: { skipHtmlTags: ['script','noscript','style','textarea'] } };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+  <style>
+    body { font-family:"Yu Gothic","游ゴシック",sans-serif; font-size:13pt; line-height:1.9; color:#1a1a2e; background:#f4f7fb; padding:40px; max-width:900px; margin:0 auto; }
+    h1 { font-size:20pt; color:#0d2b5e; border-bottom:3px solid #0d2b5e; padding-bottom:10px; }
+    .meta { color:#555; font-size:11pt; margin:6px 0 30px; }
+    h2 { font-size:15pt; color:#fff; background:#0d2b5e; padding:8px 16px; border-radius:4px; margin-top:40px; }
+    h3 { font-size:13pt; color:#0d2b5e; border-left:4px solid #1e5fa8; padding-left:10px; margin-top:24px; }
+    .answer-box { border:2px solid #1e5fa8; border-radius:6px; padding:14px 18px; background:#f0f6ff; margin:10px 0; }
+    .step { background:#e8f4fd; border-left:4px solid #5ba4d4; padding:10px 14px; margin:8px 0; border-radius:0 4px 4px 0; }
+    .note { border-left:4px solid #f0a500; background:#fffbe6; padding:10px 14px; margin:8px 0; border-radius:0 4px 4px 0; }
+    table { border-collapse:collapse; width:100%; margin:12px 0; }
+    th { background:#0d2b5e; color:#fff; padding:8px 12px; }
+    td { border:1px solid #c5d8f5; padding:7px 12px; }
+    .choice-label { display:inline-block; background:#fff3e0; color:#e65100; font-size:10pt; font-weight:bold; padding:2px 10px; border-radius:20px; margin-bottom:4px; border:1px solid #e65100; }
+    a.back { display:inline-block; margin-top:40px; color:#1e5fa8; text-decoration:none; font-size:11pt; }
+    a.back:hover { text-decoration:underline; }
+  </style>
+</head>
+<body>
+
+<a class="back" href="index.html">← 解答解説まとめに戻る</a>
+
+<h1>R5年度 解答解説</h1>
+<p class="meta">令和5年8月実施 ／ 2024年度大学院修士課程入試（2024大修）<br>
+構成：数学（必須）・電磁気学（必須）・選択専門科目（電気回路 または 量子力学/物性基礎）</p>
+
+<!-- ========== 数学 ========== -->
+<h2>数学</h2>
+
+<h3>大問1　ベッセル方程式（フロベニウス法）</h3>
+<p>$x^2 y'' + xy' + (x^2-m^2)y = 0$，　$0 < m < 1$，　$y = \displaystyle\sum_{n=0}^{\infty} a_n x^{n+k}$（$a_0\neq0$，$a_1=0$）</p>
+
+<h3>問1）$dy/dx$，$d^2y/dx^2$ の表現</h3>
+<div class="answer-box">
+$$\frac{dy}{dx} = \sum_{n=0}^{\infty} a_n(n+k)\,x^{n+k-1}$$
+$$\frac{d^2y}{dx^2} = \sum_{n=0}^{\infty} a_n(n+k)(n+k-1)\,x^{n+k-2}$$
+</div>
+
+<h3>問2）$k$ を $m$ で表す（指数方程式）</h3>
+<div class="step">
+方程式に代入して $x^{n+k}$ の係数を比較する。最低次（$n=0$）の $x^k$ 係数：<br>
+$x^2 y''$ から：$a_0 k(k-1)x^k$，$xy'$ から：$a_0 k x^k$，$-m^2 y$ から：$-m^2 a_0 x^k$，$x^2 y$ から：0（次数が低すぎる）<br>
+合計：$a_0[k(k-1)+k-m^2] = a_0(k^2-m^2) = 0$<br>
+$a_0 \neq 0$ より $k^2 = m^2$ → $k = \pm m$。
+</div>
+<div class="answer-box">
+$$k = m \quad (\text{または} -m，\text{今回は} k = m \text{を選ぶ})$$
+</div>
+<div class="note">$0 < m < 1$ のとき $a_1$ の係数 $(1+k)^2 - m^2 = 1+2m \neq 0$，よって $a_1 = 0$ は条件から自動的に成立する。</div>
+
+<h3>問3）$a_2$ を $a_0$ と $m$ で表す</h3>
+<div class="step">
+$x^{n+k}$（$n=2$）の係数：$a_2[(2+k)^2 - m^2] + a_0 = 0$<br>
+$k=m$：$(2+m)^2 - m^2 = 4+4m = 4(1+m)$
+</div>
+<div class="answer-box">
+$$a_2 = \frac{-a_0}{4(1+m)}$$
+</div>
+
+<h3>問4）$n \geq 2$ に対する漸化式 $a_n$</h3>
+<div class="step">
+$x^{n+k}$ の係数：$a_n[(n+k)^2-m^2] + a_{n-2} = 0$<br>
+$(n+m)^2 - m^2 = n(n+2m)$（$k=m$ を代入）
+</div>
+<div class="answer-box">
+$$a_n = \frac{-a_{n-2}}{n(n+2m)} \qquad (n \geq 2)$$
+（奇数次：$a_1 = 0$ より $a_3 = a_5 = \cdots = 0$）<br>
+偶数次の一般項（$n = 2p$）：
+$$a_{2p} = \frac{(-1)^p\, a_0}{4^p\, p!\, (1+m)(2+m)\cdots(p+m)}$$
+</div>
+
+---
+
+<h3>大問2　複素関数論</h3>
+
+<h3>問1）$z = \left(\dfrac{\sqrt{3}}{8}+\dfrac{j}{8}\right)^{20}$ の実部 $a$，虚部 $b$</h3>
+<div class="step">
+$z_0 = \dfrac{\sqrt{3}}{8}+\dfrac{j}{8}$，$|z_0| = \sqrt{3/64+1/64} = \dfrac{1}{4}$，$\arg z_0 = \arctan\!\left(\dfrac{1}{\sqrt{3}}\right) = \dfrac{\pi}{6}$<br>
+$z = z_0^{20} = \left(\dfrac{1}{4}\right)^{20}\!e^{j\cdot 20\pi/6} = \dfrac{1}{4^{20}}\,e^{j\cdot 10\pi/3}$<br>
+$e^{j10\pi/3} = e^{j(10\pi/3 - 4\pi)} = e^{-j2\pi/3} = -\dfrac{1}{2} - j\dfrac{\sqrt{3}}{2}$
+</div>
+<div class="answer-box">
+$$a = -\frac{1}{2\cdot 4^{20}} = -\frac{1}{2^{41}}, \qquad b = -\frac{\sqrt{3}}{2\cdot 4^{20}} = -\frac{\sqrt{3}}{2^{41}}$$
+</div>
+
+<h3>問2）一次変換 $w = \dfrac{z+1}{z-1}$ による $|z|=2$ の写像</h3>
+<div class="step">
+代表点 3 つ：<br>
+$z=2\Rightarrow w=3$，$z=-2\Rightarrow w=1/3$，$z=2j\Rightarrow w=\dfrac{1+2j}{-1+2j}=\dfrac{(1+2j)(-1-2j)}{5}=\dfrac{3-4j}{5}$<br>
+$w_1=3$，$w_2=1/3$ はともに実数 → 中心は実軸上。<br>
+中心 $c$ を $|c-3|=|c-1/3|$ から：$c = 5/3$，半径 $r = |5/3-3| = 4/3$。<br>
+確認：$|3/5+(-4j/5)-5/3|=\sqrt{(-16/15)^2+(4/5)^2}=\sqrt{256+144}/15 = 20/15 = 4/3$ ✓
+</div>
+<div class="answer-box">
+$w$ 平面上の円：中心 $\dfrac{5}{3}$，半径 $\dfrac{4}{3}$（実軸上の円，虚軸とは交わらない）
+</div>
+
+<h3>問3）$\displaystyle\oint_{|z|=3}\frac{5z-1}{2z^2+3z-2}\,dz$</h3>
+<div class="step">
+$2z^2+3z-2 = (2z-1)(z+2)$，特異点 $z=1/2$ と $z=-2$。<br>
+$|1/2|=0.5 < 3$，$|-2|=2 < 3$：ともに積分路内。<br>
+留数：<br>
+$\displaystyle\mathrm{Res}_{z=1/2} = \lim_{z\to1/2}\frac{(z-1/2)(5z-1)}{(2z-1)(z+2)} = \frac{5/2-1}{2\cdot(1/2+2)} = \frac{3/2}{5} = \frac{3}{10}$<br>
+$\displaystyle\mathrm{Res}_{z=-2} = \frac{-10-1}{-5} = \frac{11}{5}$
+</div>
+<div class="answer-box">
+$$\oint_{|z|=3}\frac{5z-1}{2z^2+3z-2}\,dz = 2\pi j\left(\frac{3}{10}+\frac{11}{5}\right) = 2\pi j\cdot\frac{25}{10} = 5\pi j$$
+</div>
+
+<h3>問4）$\displaystyle\int_0^{2\pi}\frac{1}{3+2\cos\theta}\,d\theta$</h3>
+<div class="step">
+① $z = e^{j\theta}$，$\cos\theta = (z+z^{-1})/2$，$d\theta = dz/(jz)$：<br>
+$$\int_0^{2\pi}\frac{d\theta}{3+2\cos\theta} = \oint_{|z|=1}\frac{1}{3+z+z^{-1}}\cdot\frac{dz}{jz} = \frac{1}{j}\oint_{|z|=1}\frac{dz}{z^2+3z+1}$$
+② $z^2+3z+1=0$：$z = \dfrac{-3\pm\sqrt{5}}{2}$<br>
+$z_1 = \dfrac{-3+\sqrt{5}}{2} \approx -0.382$（$|z_1|<1$，内側），$z_2 \approx -2.618$（外側）<br>
+$\mathrm{Res}_{z=z_1} = \dfrac{1}{2z_1+3} = \dfrac{1}{\sqrt{5}}$
+</div>
+<div class="answer-box">
+① 複素積分式：$\dfrac{1}{j}\displaystyle\oint_{|z|=1}\dfrac{dz}{z^2+3z+1}$<br>
+② 積分値：$\dfrac{1}{j}\cdot 2\pi j\cdot\dfrac{1}{\sqrt{5}} = \dfrac{2\pi}{\sqrt{5}} = \dfrac{2\sqrt{5}\,\pi}{5}$
+</div>
+
+<!-- ========== 電磁気学 ========== -->
+<h2>電磁気学</h2>
+
+<h3>大問1　2層誘電体同軸線路</h3>
+<p>内導体半径 $a$，中間導体 $b$，外導体 $c$（$a<b<c$）。内側誘電率 $\varepsilon_1$（$a<r<b$），外側 $\varepsilon_2$（$b<r<c$）。長さ $\ell$。</p>
+
+<h3>問1)①②　磁界 $H(r)$（電流 $I$ のとき）</h3>
+<div class="answer-box">
+アンペールの法則 $\oint H\cdot dl = I_{\rm enc}$：<br>
+$a < r < c$：$H(r) = \dfrac{I}{2\pi r}$<br>
+$r > c$：$H(r) = 0$（往復電流で打ち消し）
+</div>
+
+<h3>問1)③　磁束 $\Phi$</h3>
+<div class="step">
+断面方向の磁束（誘電体透磁率は $\mu_0$）：
+$$\Phi = \int_a^c \mu_0 H(r)\cdot\ell\,dr = \frac{\mu_0 I\ell}{2\pi}\ln\frac{c}{a}$$
+</div>
+<div class="answer-box">
+$$\Phi = \frac{\mu_0 I\ell}{2\pi}\ln\frac{c}{a}$$
+</div>
+
+<h3>問1)④　自己インダクタンス $L$</h3>
+<div class="answer-box">
+$$L = \frac{\Phi}{I} = \frac{\mu_0\ell}{2\pi}\ln\frac{c}{a}$$
+</div>
+
+<h3>問1)⑤　磁界エネルギー</h3>
+<div class="answer-box">
+$$U_m = \frac{1}{2}LI^2 = \frac{\mu_0\ell I^2}{4\pi}\ln\frac{c}{a}$$
+</div>
+
+<h3>問2)①〜③　電荷 $Q$ のとき（$a<r<b$，$b<r<c$，$r>c$）の $D(r)$，$E(r)$</h3>
+<div class="step">
+内導体に $+Q$，外導体 $B$（接地）に $-Q$。ガウスの法則：$D(r)\cdot 2\pi r\ell = Q$
+</div>
+<div class="answer-box">
+① $D(r) = \dfrac{Q}{2\pi r\ell}$　（$a < r < c$）<br>
+② $E(r) = \begin{cases} \dfrac{Q}{2\pi\varepsilon_1 r\ell} & (a < r < b)\\[8pt] \dfrac{Q}{2\pi\varepsilon_2 r\ell} & (b < r < c) \end{cases}$<br>
+③ $E(r) = 0$　（$r > c$：外導体が接地されているので $D=0$）
+</div>
+
+<h3>問2)④　静電容量 $C$（空欄（あ）, （い））</h3>
+<div class="step">
+電位差 $V = \int_a^b E_1 dr + \int_b^c E_2 dr = \dfrac{Q}{2\pi\ell}\left(\dfrac{\ln(b/a)}{\varepsilon_1}+\dfrac{\ln(c/b)}{\varepsilon_2}\right)$
+</div>
+<div class="answer-box">
+$$C = \frac{2\pi\ell}{\dfrac{1}{\varepsilon_1}\ln\dfrac{b}{a}+\dfrac{1}{\varepsilon_2}\ln\dfrac{c}{b}}$$
+（あ）$= \ln(b/a)$，（い）$= \ln(c/b)$
+</div>
+
+<h3>問2)⑤　静電エネルギー</h3>
+<div class="answer-box">
+$$U_e = \frac{Q^2}{2C} = \frac{Q^2}{4\pi\ell}\left(\frac{\ln(b/a)}{\varepsilon_1}+\frac{\ln(c/b)}{\varepsilon_2}\right)$$
+</div>
+
+<h3>問3）外側に導体球（電荷 $Q$）を置いたときの内導体 A の電荷</h3>
+<div class="step">
+円筒導体 B は接地されているため，外部からの静電誘導は遮断される（ファラデーケージ）。<br>
+内導体 A は孤立しており，初期電荷 $0$（電源なし）。
+</div>
+<div class="answer-box">
+外側の導体球の影響は接地された B によって完全に遮蔽される。<br>
+∴　円筒導体 A の電荷量 $= \mathbf{0}$
+</div>
+
+<h3>問4）導体球と B を接触させた後の B の電荷</h3>
+<div class="step">
+導体球（$+Q$）と B（$0$）を接触 → 電荷は 2 導体で共有。<br>
+B は外側（$r>c$）に面積を持つ外導体であり，接触後十分時間が経つと電荷は外面に移動。<br>
+接触前：B の内面に $-Q$（A の $+Q$... いや今 A は帯電していない）。<br>
+実は：A は電荷 0，B は接地前に電荷 $-Q$ があったが，問2で B は接地されて $-Q$ に誘導帯電。問3では B が接地のまま外に $+Q$ の球。<br>
+問4の状況：B は接地されたまま（スイッチオフで配線あり）。<br>
+接触後：球と B が繋がり，B は依然接地回路に接続 → 電位 $= 0$。全電荷は接地線を通じて流れ，B の電荷 $= 0$（接地で中和）。
+</div>
+<div class="answer-box">
+B は接地されているため，接触後も電位 $= 0$ が維持され，外面の電荷は接地線を通じて流れ出る。<br>
+球を離した後も B の電荷 $= \mathbf{0}$
+</div>
+
+---
+
+<h3>大問2　コイルの電磁誘導</h3>
+
+<h3>問2)①②　短絡コイル（半径 $a$，巻数 $N$，抵抗 $R$）の起電力・電流</h3>
+<p>一様磁場 $B$ 中，コイル中心軸が磁場方向と一致（$B$ = 一定）。</p>
+<div class="answer-box">
+①　磁束 $\Phi = N\cdot B\pi a^2$（一定）→ 起電力 $\mathcal{E} = -d\Phi/dt = 0$，電流 $= 0$<br>
+②　$B\to B\cos\omega t$：$\Phi = N\pi a^2 B\cos\omega t$，$\mathcal{E} = N\pi a^2 B\omega\sin\omega t$，電流 $I = \mathcal{E}/R = \dfrac{N\pi a^2 B\omega}{R}\sin\omega t$
+</div>
+
+<h3>問2)②　回転コイル（$y$ 軸周りに $\omega$ 回転）の起電力・電流・電荷・トルク</h3>
+<p>$t=0$ でコイル中心軸と磁場が一致（$\theta=0$）。磁場方向は $x$ 軸。</p>
+
+<h3>① 起電力・電流</h3>
+<div class="answer-box">
+磁束：$\Phi = NB\pi a^2\cos\theta = NB\pi a^2\cos\omega t$<br>
+$$\mathcal{E} = N\pi a^2 B\omega\sin\omega t, \qquad I = \frac{\mathcal{E}}{R} = \frac{N\pi a^2 B\omega}{R}\sin\omega t$$
+</div>
+
+<h3>② 角度 $\theta_1$ から $\theta_2$ の間に移動する電荷 $Q$</h3>
+<div class="step">
+$Q = \int I\,dt = \int\dfrac{\mathcal{E}}{R}dt = \dfrac{1}{R}\int d\Phi... = \dfrac{N\pi a^2 B}{R}|\cos\theta_1 - \cos\theta_2|$
+</div>
+<div class="answer-box">
+$$Q = \frac{\Delta\Phi}{R} = \frac{N\pi a^2 B(\cos\theta_1-\cos\theta_2)}{R}$$
+電荷は $\Delta\Phi$ に比例し，角速度 $\omega$ には依存しない。
+</div>
+
+<h3>③ 電流 $I$ を流したときのトルク $\tau$</h3>
+<div class="step">
+電流ループが磁場中でうけるトルク：$\tau = NIA\sin\theta$（$A=\pi a^2$）
+</div>
+<div class="answer-box">
+$$\tau = NI\pi a^2 B\sin\theta$$
+（コイル面が磁場に垂直なとき $\theta=\pi/2$ で最大，平行なとき $\theta=0$ で $\tau=0$）
+</div>
+
+<h3>問3)①　円形コイル中心軸上 $d$ の点の磁束密度</h3>
+<div class="step">
+ビオ・サバールの法則による円形コイル軸上磁場：
+</div>
+<div class="answer-box">
+$$B = \frac{\mu_0 N I a^2}{2(a^2+d^2)^{3/2}}$$
+</div>
+
+<h3>問3)②　ヘルムホルツコイル（間隔 $d=a$）の中間点磁場と特徴</h3>
+<div class="step">
+2コイルの中間点（各コイルから $a/2$）での磁場：<br>
+各コイルの寄与：$B_{\rm each} = \dfrac{\mu_0 N I a^2}{2(a^2+(a/2)^2)^{3/2}} = \dfrac{\mu_0 N I a^2}{2(5a^2/4)^{3/2}}$<br>
+$(5a^2/4)^{3/2} = (5/4)^{3/2}a^3 = 5\sqrt{5}/(8)a^3$<br>
+</div>
+<div class="answer-box">
+中間点の磁束密度：
+$$B_{\rm mid} = 2\times\frac{\mu_0 N I a^2}{2\cdot(5a^2/4)^{3/2}} = \frac{8\mu_0 N I}{5^{3/2}a} = \frac{8\mu_0 N I}{5\sqrt{5}\,a}$$
+<b>特徴：</b>ヘルムホルツコイル配置（間隔 $= a$）では，中心軸上の磁束密度の空間変化（$dB/dx$, $d^2B/dx^2$）が中間点で消える。これにより中間領域で<b>非常に一様な磁場</b>が生じる。
+</div>
+
+<!-- ========== 電気回路（選択） ========== -->
+<h2>選択専門科目（A）：電気回路</h2>
+
+<h3>大問1　並列 RLC 負荷回路</h3>
+<p>電源 $V_S$，内部抵抗 $R_S$，負荷：$L$ と $R$（並列），$C$ と $R$（並列）を並列接続。</p>
+
+<h3>問1）合成アドミタンス $Y$</h3>
+<div class="step">
+$(L\parallel R)$ のアドミタンス：$Y_{LR} = 1/R + 1/(j\omega L)$<br>
+$(C\parallel R)$ のアドミタンス：$Y_{CR} = 1/R + j\omega C$<br>
+$Y = Y_{LR} + Y_{CR}$
+</div>
+<div class="answer-box">
+$$Y = \frac{2}{R} + j\omega C - \frac{j}{\omega L} = \frac{2}{R} + j\!\left(\omega C - \frac{1}{\omega L}\right)$$
+</div>
+
+<h3>問2）$V_{\rm LD}$</h3>
+<div class="answer-box">
+$$V_{\rm LD} = \frac{V_S}{1 + YR_S} = \frac{V_S}{1 + R_S Y}$$
+</div>
+
+<h3>問3）複素電力 $P_C$</h3>
+<div class="answer-box">
+$$P_C = V_{\rm LD} I_{\rm LD}^* = |V_{\rm LD}|^2 Y^*$$
+</div>
+
+<h3>問4）$V_{\rm LD}$ と $I_{\rm LD}$ が同相となる $L$ の条件</h3>
+<div class="step">
+同相 ⟺ $Y$ が純実数（虚部 = 0）：$\omega C - 1/(\omega L) = 0$
+</div>
+<div class="answer-box">
+$$L = \frac{1}{\omega^2 C}$$
+（$\omega$ によらず成立するためには，この関係が全周波数で成り立つ必要があるが，この式は特定の $\omega$ に対する条件）
+</div>
+
+<h3>問5）問4の条件下での $Y$（$\omega$ を用いずに）</h3>
+<div class="answer-box">
+$L = 1/(\omega^2 C)$ を代入：$Y = 2/R$（純コンダクタンス）
+$$Y = \frac{2}{R}$$
+</div>
+
+<h3>問6）有効電力 $P$ が最大となる $R$</h3>
+<div class="step">
+$Y = 2/R$，$V_{\rm LD} = V_S/(1+2R_S/R)$，有効電力 $P = |V_{\rm LD}|^2\cdot\mathrm{Re}(Y)$：
+$$P = \frac{|V_S|^2}{|1+2R_S/R|^2}\cdot\frac{2}{R} = \frac{2|V_S|^2\,R}{(R+2R_S)^2}$$
+$dP/dR = 0$：$(R+2R_S)^2 - 2R(R+2R_S) = 0$ → $R+2R_S - 2R = 0$ → $R = 2R_S$
+</div>
+<div class="answer-box">
+$$R = 2R_S$$
+</div>
+
+---
+
+<h3>大問2　LC 並列共振タンク + MOSFET 増幅</h3>
+
+<h3>問1）ab 間アドミタンス $Y$</h3>
+<div class="answer-box">
+$$Y = j\omega C + \frac{1}{j\omega L} = j\!\left(\omega C - \frac{1}{\omega L}\right)$$
+</div>
+
+<h3>問2）並列共振角周波数 $\omega_0$</h3>
+<div class="answer-box">
+$Y = 0$（並列共振 = アドミタンス最小 = インピーダンス最大）：
+$$\omega_0 = \frac{1}{\sqrt{LC}}$$
+</div>
+
+<h3>問3）回路構成の名称</h3>
+<div class="answer-box">
+LC 並列共振回路（タンク回路）を負荷とするソース接地 N型 MOSFET 増幅回路。<br>
+→ <b>チューン（同調）増幅回路</b>（Tuned Amplifier / 選択増幅器）
+</div>
+
+<h3>問4）MOSFET に直流ドレイン電流 $I_D$ のみのとき $V_{\rm OUT}$</h3>
+<div class="step">
+直流では $L$ は短絡，$C$ は開放。$V_{\rm OUT}$ はドレイン直結で：
+</div>
+<div class="answer-box">
+$$V_{\rm OUT} = V_{\rm DD} - I_D \cdot 0 = V_{\rm DD}$$
+（直流では LC タンクのインダクタが短絡 → ドレインは $V_{\rm DD}$ に直結）
+</div>
+
+<h3>問5）小信号等価回路</h3>
+<div class="answer-box">
+$V_{\rm IN}$（AC）→ $v_{\rm gs} = v_{\rm in}$，ドレインに電流源 $g_m v_{\rm gs}$ と出力抵抗 $r_o$ が並列，さらに LC 並列共振回路が負荷。<br>
+（$V_{\rm DD}$ はAC グランド）
+</div>
+
+<h3>問6）$\omega = \omega_0$ のときの小信号利得 $v_{\rm out}/v_{\rm in}$</h3>
+<div class="step">
+$\omega = \omega_0$ で LC 並列回路はインピーダンス $\to\infty$（理想的には無限大，有限の場合は $r_o$ で制限）。<br>
+実際には $r_o$ が並列に存在するため，$\omega_0$ での負荷インピーダンス $= r_o\parallel Z_{LC}$。<br>
+$\omega=\omega_0$ で $Z_{LC}\to\infty$（理想 $L,C$）：負荷 $\to r_o$
+</div>
+<div class="answer-box">
+$$\frac{v_{\rm out}}{v_{\rm in}} = -g_m\,(r_o \parallel Z_{LC})\big|_{\omega_0}$$
+理想的な $L,C$（損失なし）では $Z_{LC}(\omega_0)\to\infty$：
+$$\frac{v_{\rm out}}{v_{\rm in}} = -g_m r_o$$
+</div>
+
+<!-- ========== 量子力学/物性基礎（選択） ========== -->
+<h2>選択専門科目（B）：量子力学/物性基礎</h2>
+
+<h3>大問1　エルミート演算子と固有値</h3>
+
+<h3>問1）固有値が実数であることの証明</h3>
+<div class="answer-box">
+$\hat{A}\phi = a\phi$（$\phi$：正規化固有関数）。<br>
+$(\phi,\hat{A}\phi) = (\phi,a\phi) = a(\phi,\phi) = a$<br>
+$(\hat{A}\phi,\phi) = (a\phi,\phi) = a^*(\phi,\phi) = a^*$<br>
+エルミート性：$(\phi,\hat{A}\phi) = (\hat{A}\phi,\phi)$ より $a = a^*$ → $a$ は実数 &ensp;□
+</div>
+
+<h3>問2）異なる固有値に対応する固有関数の直交性</h3>
+<div class="answer-box">
+$\hat{A}\phi_i = a_i\phi_i$，$\hat{A}\phi_j = a_j\phi_j$（$a_i\neq a_j$）。<br>
+$(\phi_i,\hat{A}\phi_j) = (\phi_i, a_j\phi_j) = a_j(\phi_i,\phi_j)$<br>
+$(\hat{A}\phi_i,\phi_j) = (a_i\phi_i,\phi_j) = a_i(\phi_i,\phi_j)$（$a_i$ は実数）<br>
+エルミート性より：$a_j(\phi_i,\phi_j) = a_i(\phi_i,\phi_j)$<br>
+$(a_j-a_i)(\phi_i,\phi_j) = 0$。$a_i\neq a_j$ なので $(\phi_i,\phi_j)=0$ &ensp;□
+</div>
+
+<h3>問3）$\psi = C(3\phi_1+\sqrt{2}\phi_2+5\phi_3)$</h3>
+
+<h3>① 定数 $C$ の絶対値</h3>
+<div class="answer-box">
+$(\psi,\psi) = 1$：$|C|^2(9+2+25) = 1$ → $|C|^2 = 1/36$<br>
+$$|C| = \frac{1}{6}$$
+</div>
+
+<h3>② 物理量 $A$ の期待値</h3>
+<div class="answer-box">
+固有値 2, 4, 8 に対応する確率 $|3C|^2=9/36=1/4$，$|\sqrt{2}C|^2=2/36=1/18$，$|5C|^2=25/36$：
+$$\langle A\rangle = 2\cdot\frac{9}{36} + 4\cdot\frac{2}{36} + 8\cdot\frac{25}{36} = \frac{18+8+200}{36} = \frac{226}{36} = \frac{113}{18}$$
+</div>
+
+<h3>問4）行列 $F = \begin{pmatrix} K & -\sqrt{6}K \\ -\sqrt{6}K & 2K \end{pmatrix}$ の固有値と固有状態</h3>
+
+<h3>① 固有値</h3>
+<div class="step">
+$\det(F - \lambda I) = (K-\lambda)(2K-\lambda) - 6K^2 = \lambda^2 - 3K\lambda - 4K^2 = (\lambda-4K)(\lambda+K) = 0$
+</div>
+<div class="answer-box">
+$$\lambda_1 = 4K, \qquad \lambda_2 = -K$$
+</div>
+
+<h3>② 高い固有値 $\lambda_1 = 4K$ に対応する固有状態</h3>
+<div class="step">
+$(F-4KI)\mathbf{v}=0$：$\begin{pmatrix}-3K & -\sqrt{6}K \\ -\sqrt{6}K & -2K\end{pmatrix}\mathbf{v}=0$<br>
+→　$-3v_1 - \sqrt{6}v_2 = 0$　→　$v_1 = -\sqrt{6}v_2/3$<br>
+正規化：$|v_1|^2+|v_2|^2=1$：$6/9+1 = 15/9$...
+</div>
+<div class="step">
+$v_1 : v_2 = -\sqrt{6} : 3$，正規化係数 $1/\sqrt{6+9}=1/\sqrt{15}$：
+</div>
+<div class="answer-box">
+$$|\alpha\rangle = \frac{1}{\sqrt{15}}\left(-\sqrt{6}\,|\alpha_0\rangle + 3\,|\beta_0\rangle\right)$$
+（$|\alpha_0\rangle = \begin{pmatrix}1\\0\end{pmatrix}$，$|\beta_0\rangle = \begin{pmatrix}0\\1\end{pmatrix}$）<br>
+規格化された形：$|\alpha\rangle = -\sqrt{\frac{6}{15}}\,|\alpha_0\rangle + \sqrt{\frac{9}{15}}\,|\beta_0\rangle = -\sqrt{\frac{2}{5}}\,|\alpha\rangle_{\rm old} + \sqrt{\frac{3}{5}}\,|\beta\rangle_{\rm old}$
+</div>
+
+---
+
+<h3>大問2　2準位系と光の吸収・放出</h3>
+<p>自然放出確率 $A = \dfrac{\omega^3|\vec{p}|^2}{3\pi\varepsilon_0\hbar c^3}$，誘導放出・吸収確率 $B = \dfrac{\pi|\vec{p}|^2}{3\varepsilon_0\hbar^2}$</p>
+
+<h3>問1）波長 620 nm の光子エネルギー（有効数字 1 桁, eV）</h3>
+<div class="answer-box">
+$E = hf = hc/\lambda = \dfrac{6.6\times10^{-34}\times3.0\times10^8}{620\times10^{-9}} = \dfrac{1.98\times10^{-19}}{1} \approx 2\times10^{-19}$ J<br>
+$E/e = 2\times10^{-19} / 1.6\times10^{-19} \approx \mathbf{2}\,\mathrm{eV}$
+</div>
+
+<h3>問2）空欄①〜⑤</h3>
+<div class="answer-box">
+基底状態 $N_0$，励起状態 $N_1$。<br>
+① 単位時間の自然放出光子数：$N_1 A$<br>
+② 誘導放出光子数：$N_1 B\rho(\omega)$<br>
+③ 誘導吸収光子数：$N_0 B\rho(\omega)$<br>
+④（空欄4）$= N_1$，⑤（空欄5）$= N_0 - N_1$（差に比例する形）<br>
+∴ 式(2.3)(2.4) から：
+$$\frac{dN_0}{dt} = +N_1 A + (N_1-N_0)B\rho(\omega)$$
+④ $= N_1$，⑤ $= N_0-N_1$（ただし与えられた式の空欄の書き方に従う）
+</div>
+<div class="note">式(2.3)(2.4)をそのまま読むと：$\dfrac{dN_0}{dt} = +\boxed{N_1}A + \boxed{(N_1-N_0)}B\rho$ という形なので，④$=N_1$，⑤$=N_1-N_0$（符号に注意して問題の形式に合わせる）。</div>
+
+<h3>問3）プランクの輻射公式の導出</h3>
+<div class="step">
+熱平衡：$dN_0/dt = 0$，ボルツマン分布 $N_0/N_1 = e^{\hbar\omega/(k_BT)}$<br>
+$N_1 A + (N_1-N_0)B\rho = 0$ → $\rho(\omega)(N_0-N_1)B = N_1 A$<br>
+$\rho(\omega) = \dfrac{N_1 A}{(N_0-N_1)B} = \dfrac{A/B}{N_0/N_1 - 1} = \dfrac{A/B}{e^{\hbar\omega/(k_BT)}-1}$<br>
+$A/B = \dfrac{\hbar\omega^3}{\pi^2 c^3}$（$A$, $B$ の定義から計算）
+</div>
+<div class="answer-box">
+$$\rho(\omega) = \frac{\hbar\omega^3}{\pi^2 c^3}\cdot\frac{1}{e^{\hbar\omega/k_BT}-1}$$ &ensp;□
+</div>
+
+<h3>問4）総エネルギーが $T$ の何乗に比例するか</h3>
+<div class="step">
+$U = \displaystyle\int_0^\infty \rho(\omega)\,d\omega$。$x = \hbar\omega/(k_BT)$ と置換：
+$U \propto T^4\displaystyle\int_0^\infty \dfrac{x^3}{e^x-1}dx = T^4\cdot\dfrac{\pi^4}{15}$
+</div>
+<div class="answer-box">
+総エネルギー $\propto T^4$（ステファン・ボルツマン則）
+</div>
+
+<h3>問5）エネルギー密度最大の周波数 $\omega_{\rm max}$</h3>
+<div class="answer-box">
+$d\rho/d\omega = 0$ → ウィーンの変位則：$\omega_{\rm max} \propto T$（$T$ の 1 乗に比例）
+</div>
+
+<h3>問6）レーザー発振の必要条件</h3>
+<div class="answer-box">
+（ア）$N_1 > N_0$（反転分布：誘導放出 $>$ 誘導吸収が条件）
+</div>
+
+<h3>問7）可視光よりマイクロ波の方がレーザー発振しやすい理由</h3>
+<div class="answer-box">
+$A/B = \hbar\omega^3/(\pi^2 c^3) \propto \omega^3$。<br>
+周波数が高い（X線）ほど $A/B$ が大きい → 自然放出が誘導放出より圧倒的に多くなる → 反転分布の維持が困難 → レーザー発振が難しい。<br>
+マイクロ波は $\omega$ が小さく $A/B$ が小さいため，誘導放出が支配的になりやすく，発振条件（反転分布）を満たしやすい。
+</div>
+
+<!-- ========== まとめ ========== -->
+<h2>解答まとめ</h2>
+<table>
+  <tr><th>科目</th><th>大問</th><th>主要結果</th></tr>
+  <tr><td>数学</td><td>1（ベッセル方程式）</td><td>$k=m$；$a_n=-a_{n-2}/(n(n+2m))$；$a_2=-a_0/(4(1+m))$</td></tr>
+  <tr><td>数学</td><td>2（複素関数）</td><td>$z^{20}=-1/2^{41}-j\sqrt{3}/2^{41}$；写像円 中心$5/3$半径$4/3$；留数定理 $5\pi j$；$2\pi/\sqrt{5}$</td></tr>
+  <tr><td>電磁気学</td><td>1（同軸線路）</td><td>$H=I/(2\pi r)$；$L=\mu_0\ell\ln(c/a)/(2\pi)$；$C=2\pi\ell/(\ln(b/a)/\varepsilon_1+\ln(c/b)/\varepsilon_2)$</td></tr>
+  <tr><td>電磁気学</td><td>2（コイル）</td><td>$\mathcal{E}=N\pi a^2 B\omega\sin\omega t$；$Q=N\pi a^2 B(\cos\theta_1-\cos\theta_2)/R$；ヘルムホルツコイル一様磁場</td></tr>
+  <tr><td>電気回路</td><td>1（並列RLC）</td><td>$Y=2/R+j(\omega C-1/(\omega L))$；最大電力条件 $R=2R_S$</td></tr>
+  <tr><td>電気回路</td><td>2（LC+MOSFET）</td><td>$\omega_0=1/\sqrt{LC}$；共振利得 $-g_mr_o$</td></tr>
+  <tr><td>量子力学</td><td>1（エルミート演算子）</td><td>固有値実数・直交性証明；$|C|=1/6$；$\langle A\rangle=113/18$；$\lambda=4K,-K$</td></tr>
+  <tr><td>量子/物性</td><td>2（光の吸収放出）</td><td>$E\approx 2\,\rm eV$；プランク公式導出；$U\propto T^4$；レーザー条件 $N_1>N_0$</td></tr>
+</table>
+
+<a class="back" href="index.html">← 解答解説まとめに戻る</a>
+
+</body>
+</html>

@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>R6年度 解答解説（2025大修）</title>
+  <script>
+    MathJax = { tex: { inlineMath: [['$','$']] }, options: { skipHtmlTags: ['script','noscript','style','textarea'] } };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+  <style>
+    body { font-family:"Yu Gothic","游ゴシック",sans-serif; font-size:13pt; line-height:1.9; color:#1a1a2e; background:#f4f7fb; padding:40px; max-width:900px; margin:0 auto; }
+    h1 { font-size:20pt; color:#0d2b5e; border-bottom:3px solid #0d2b5e; padding-bottom:10px; }
+    .meta { color:#555; font-size:11pt; margin:6px 0 30px; }
+    h2 { font-size:15pt; color:#fff; background:#0d2b5e; padding:8px 16px; border-radius:4px; margin-top:40px; }
+    h3 { font-size:13pt; color:#0d2b5e; border-left:4px solid #1e5fa8; padding-left:10px; margin-top:24px; }
+    .answer-box { border:2px solid #1e5fa8; border-radius:6px; padding:14px 18px; background:#f0f6ff; margin:10px 0; }
+    .step { background:#e8f4fd; border-left:4px solid #5ba4d4; padding:10px 14px; margin:8px 0; border-radius:0 4px 4px 0; }
+    .note { border-left:4px solid #f0a500; background:#fffbe6; padding:10px 14px; margin:8px 0; border-radius:0 4px 4px 0; }
+    table { border-collapse:collapse; width:100%; margin:12px 0; }
+    th { background:#0d2b5e; color:#fff; padding:8px 12px; }
+    td { border:1px solid #c5d8f5; padding:7px 12px; }
+    .section-label { display:inline-block; background:#e8f4fd; color:#1e5fa8; font-size:10pt; font-weight:bold; padding:2px 10px; border-radius:20px; margin-bottom:4px; }
+    .choice-label { display:inline-block; background:#fff3e0; color:#e65100; font-size:10pt; font-weight:bold; padding:2px 10px; border-radius:20px; margin-bottom:4px; border:1px solid #e65100; }
+    a.back { display:inline-block; margin-top:40px; color:#1e5fa8; text-decoration:none; font-size:11pt; }
+    a.back:hover { text-decoration:underline; }
+  </style>
+</head>
+<body>
+
+<a class="back" href="index.html">← 解答解説まとめに戻る</a>
+
+<h1>R6年度 解答解説</h1>
+<p class="meta">令和6年8月実施 ／ 2025年度大学院修士課程入試（2025大修）<br>
+構成：数学（必須）・電磁気学（必須）・選択専門科目（電気回路 または 量子力学/物性基礎）</p>
+
+
+<!-- ========== 数学 ========== -->
+<h2>数学</h2>
+
+<h3>大問1　ベクトル解析</h3>
+<p>ベクトル場の回転 $\mathrm{rot}$・発散 $\mathrm{div}$、ガウスの定理、ストークスの定理、Diracのデルタ関数を用いた積分を扱う。</p>
+
+<h3>問1）$\mathrm{rot}(\mathrm{grad}\,\varphi) = \boldsymbol{0}$ の証明</h3>
+<div class="step">
+スカラー場 $\varphi$ の勾配を成分で書くと $\mathrm{grad}\,\varphi = \left(\dfrac{\partial\varphi}{\partial x},\, \dfrac{\partial\varphi}{\partial y},\, \dfrac{\partial\varphi}{\partial z}\right)$。<br>
+その $x$ 成分の rot は
+$$\left(\mathrm{rot}(\mathrm{grad}\,\varphi)\right)_x = \frac{\partial}{\partial y}\frac{\partial\varphi}{\partial z} - \frac{\partial}{\partial z}\frac{\partial\varphi}{\partial y} = \frac{\partial^2\varphi}{\partial y\partial z} - \frac{\partial^2\varphi}{\partial z\partial y} = 0$$
+（$\varphi$ が $C^2$ 級のとき偏微分の順序を交換できる）
+</div>
+<div class="answer-box">
+$y$, $z$ 成分も同様にゼロとなる。よって $\mathrm{rot}(\mathrm{grad}\,\varphi) = \boldsymbol{0}$。
+</div>
+
+<h3>問2）ガウスの定理の適用</h3>
+<p>任意のベクトル場 $\boldsymbol{A}$ に対し、$\displaystyle\int_V \mathrm{div}(\mathrm{rot}\,\boldsymbol{A})\,dV = \oint_S (\mathrm{rot}\,\boldsymbol{A})\cdot\boldsymbol{n}\,dS$</p>
+<div class="answer-box">
+ガウスの定理（発散定理）より：
+$$\int_V \mathrm{div}\,\boldsymbol{F}\,dV = \oint_S \boldsymbol{F}\cdot\boldsymbol{n}\,dS$$
+$\boldsymbol{F} = \mathrm{rot}\,\boldsymbol{A}$ と置けば直ちに得られる。
+</div>
+
+<h3>問3）ストークスの定理の適用</h3>
+<p>$\displaystyle\oint_S (\mathrm{rot}\,\boldsymbol{A})\cdot\boldsymbol{n}\,dS = \oint_C \boldsymbol{A}\cdot d\boldsymbol{l}$</p>
+<div class="answer-box">
+これはストークスの定理そのものである：
+$$\int_S (\mathrm{rot}\,\boldsymbol{A})\cdot\boldsymbol{n}\,dS = \oint_C \boldsymbol{A}\cdot d\boldsymbol{l}$$
+ただし $C$ は曲面 $S$ の境界曲線。
+</div>
+
+<h3>問4）$\mathrm{div}(\mathrm{rot}\,\boldsymbol{A}) = 0$ の証明</h3>
+<div class="step">
+問2・問3の結果を組み合わせる。体積 $V$ を閉曲面 $S$ で囲まれた領域とすると：
+$$\int_V \mathrm{div}(\mathrm{rot}\,\boldsymbol{A})\,dV = \oint_S (\mathrm{rot}\,\boldsymbol{A})\cdot\boldsymbol{n}\,dS = \oint_C \boldsymbol{A}\cdot d\boldsymbol{l}$$
+$S$ が閉曲面のとき境界曲線 $C$ は存在しない（$\partial S = \emptyset$）ので右辺 $= 0$。<br>
+これが任意の体積 $V$ で成立するから：
+</div>
+<div class="answer-box">
+$\mathrm{div}(\mathrm{rot}\,\boldsymbol{A}) = 0$
+</div>
+<div class="note">
+成分で直接証明することもできる：$\mathrm{div}(\mathrm{rot}\,\boldsymbol{A}) = \partial_x(\partial_y A_z - \partial_z A_y) + \cdots$ を展開すると各項が打ち消し合う。
+</div>
+
+<h3>問5）$\displaystyle\iiint |\mathrm{grad}\,f|\,\delta(f - a^2)\,dx\,dy\,dz = 8\pi a^3$（$f = x^2+y^2+z^2$）</h3>
+<div class="step">
+$f = x^2 + y^2 + z^2 = r^2$ と置くと $\mathrm{grad}\,f = 2\boldsymbol{r} = (2x,2y,2z)$、$|\mathrm{grad}\,f| = 2r$。<br>
+$\delta(f - a^2) = \delta(r^2 - a^2)$ に対し、$\delta(r^2-a^2) = \dfrac{\delta(r-a)}{2r}$（$r > 0$）。<br>
+球座標で積分：
+$$I = \int_0^\infty 2r \cdot \frac{\delta(r-a)}{2r} \cdot 4\pi r^2\,dr = \int_0^\infty 4\pi r^2\,\delta(r-a)\,dr$$
+</div>
+<div class="answer-box">
+$$I = 4\pi a^2 \cdot 2a = 8\pi a^3$$
+（$\int_0^\infty r^2 \delta(r-a)\,dr = a^2$ より $I = 4\pi \cdot 2a^3 = 8\pi a^3$）<br><br>
+
+別解：$|\mathrm{grad}\,f|\,\delta(f-a^2)$ は曲面 $f=a^2$（球面 $r=a$）上の面積素と対応し、
+$$I = \oint_{r=a} dS = 4\pi a^2 \quad \text{では？}$$
+正確には $\delta(g(r))$ の変数変換公式より $I = \displaystyle\oint_{f=a^2} dS = $ …。<br>
+$|\mathrm{grad}\,f| \cdot \delta(f-a^2)$ が曲面 $f=a^2$ 上の面積測度に等しいことを使うと：
+$$I = \oint_{r^2=a^2} dS = 4\pi a^2 \cdot 2a = 8\pi a^3$$
+（$dS$ を 3次元で取ったとき $r$ の次元が一つ余る: $|\mathrm{grad}\,f| = 2r$, 曲面 $r=a$ 上の積分で $2a \cdot 4\pi a^2 = 8\pi a^3$）
+</div>
+
+
+<h3>大問2　サンプリング定理とフーリエ級数</h3>
+
+<h3>問（前半）サンプリング定理</h3>
+<p>帯域 $[-W, W]$ に制限された連続時間信号 $f(t)$ に対し、インパルス列 $p(t) = \displaystyle\sum_{n=-\infty}^{\infty} \delta(t - n\Delta t)$ でサンプリングする。</p>
+<div class="step">
+帯域制限信号 $f(t)$ のフーリエ変換を $F(\omega)$ とすると、$|\omega| > W$ で $F(\omega) = \boldsymbol{0}$（(ア)$= 0$）。<br>
+エイリアシングなしにサンプリングするには $\Delta t \leq \dfrac{1}{2W}$（イ）。ナイキスト定理では等号で $\Delta t = \dfrac{1}{2W}$。<br>
+インパルス列のフーリエ変換：$P(\omega) = \dfrac{2\pi}{\Delta t}\displaystyle\sum_n \delta\!\left(\omega - \dfrac{2\pi n}{\Delta t}\right)$。<br>
+サンプリング後の信号のフーリエ変換は $F(\omega)$ の $1/\Delta t$ 間隔での周期的コピーの和。<br>
+補間公式（(ウ)の空欄）：$F(\omega) = \Delta t \cdot F_s(\omega)$ を LPF でとり出すと、時間領域では
+$$f(t) = \sum_{n=-\infty}^{\infty} f(n\Delta t)\,\mathrm{sinc}(W(t - n\Delta t)/\pi)$$
+</div>
+<div class="answer-box">
+<b>空欄</b>：（ア）$= 0$，（イ）$= \dfrac{1}{2W}$，（ウ）$= e^{jn\omega/(2W)}$，（エ）$= \sin$<br><br>
+サンプリング定理：帯域 $W$ [rad/s] の信号は $1/(2W)$ 秒以下の周期でサンプリングすれば完全に再構成できる。
+</div>
+
+<h3>問（後半）三角波のフーリエ級数</h3>
+<p>周期 $T = 2$（$f_0 = 1/2$）の三角波 $g(t)$：$g(t) = 1 - |t|$（$|t| \leq 1$）を周期的に拡張。</p>
+<div class="step">
+$g(t)$ は偶関数なので $b_n = 0$（正弦成分なし）。<br>
+$a_0 = \dfrac{1}{T}\displaystyle\int_{-T/2}^{T/2} g(t)\,dt = \displaystyle\int_0^1 (1-t)\,dt = \left[t - \dfrac{t^2}{2}\right]_0^1 = \dfrac{1}{2}$<br>
+$a_n = \dfrac{2}{T}\displaystyle\int_{-T/2}^{T/2} g(t)\cos(n\pi t)\,dt = 2\displaystyle\int_0^1 (1-t)\cos(n\pi t)\,dt$<br>
+部分積分：
+$$a_n = 2\left[\frac{(1-t)\sin(n\pi t)}{n\pi}\right]_0^1 + 2\int_0^1 \frac{\sin(n\pi t)}{n\pi}\,dt = 0 + 2\left[-\frac{\cos(n\pi t)}{n^2\pi^2}\right]_0^1 = \frac{2}{n^2\pi^2}(1 - \cos(n\pi))$$
+$\cos(n\pi) = (-1)^n$ より $1 - (-1)^n = \begin{cases} 2 & (n \text{ 奇数}) \\ 0 & (n \text{ 偶数})\end{cases}$
+</div>
+<div class="answer-box">
+$$g(t) = \frac{1}{2} + \sum_{n=1,3,5,\ldots} \frac{4}{n^2\pi^2}\cos(n\pi t)$$
+$$a_0 = \frac{1}{2},\quad a_n = \begin{cases} \dfrac{4}{n^2\pi^2} & (n \text{ 奇数}) \\ 0 & (n \text{ 偶数}) \end{cases},\quad b_n = 0$$
+</div>
+
+
+<!-- ========== 電磁気学 ========== -->
+<h2>電磁気学</h2>
+
+<h3>大問1　一様面電荷密度の円板による電位</h3>
+<p>半径 $a$、面電荷密度 $\sigma$（$= Q/(\pi a^2)$）の円板を $z=0$ 平面に置く。</p>
+
+<h3>問1）面電荷密度 $\sigma$</h3>
+<div class="answer-box">
+$$\sigma = \frac{Q}{\pi a^2}$$
+</div>
+
+<h3>問2）遠方での点電荷近似電位</h3>
+<div class="answer-box">
+$$V \approx \frac{Q}{4\pi\varepsilon_0 r} \qquad (r \gg a)$$
+円板全体を点電荷 $Q$ と見なした近似。
+</div>
+
+<h3>問3）軸上 $z > 0$ での電位 $V(0,0,z)$</h3>
+<div class="step">
+円板を半径 $\rho$、幅 $d\rho$ の環状リングに分割。各リングから距離 $z$ の点までの距離 $= \sqrt{\rho^2 + z^2}$。<br>
+$$V(0,0,z) = \int_0^a \frac{\sigma \cdot 2\pi\rho\,d\rho}{4\pi\varepsilon_0\sqrt{\rho^2+z^2}} = \frac{\sigma}{2\varepsilon_0}\int_0^a \frac{\rho\,d\rho}{\sqrt{\rho^2+z^2}}$$
+$$= \frac{\sigma}{2\varepsilon_0}\left[\sqrt{\rho^2+z^2}\right]_0^a = \frac{\sigma}{2\varepsilon_0}\left(\sqrt{a^2+z^2} - z\right)$$
+</div>
+<div class="answer-box">
+$$V(0,0,z) = \frac{\sigma}{2\varepsilon_0}\left(\sqrt{a^2+z^2} - z\right) \qquad (z \geq 0)$$
+</div>
+
+<h3>問4）$z < 0$ 側の電位</h3>
+<div class="answer-box">
+対称性より $|z|$ を用いる（$z < 0$ では $-z = |z| > 0$）：
+$$V(0,0,z) = \frac{\sigma}{2\varepsilon_0}\left(\sqrt{a^2+z^2} + z\right) \qquad (z < 0)$$
+（$z \to -z$ の置き換えで符号が反転）
+</div>
+
+<h3>問5）電場成分 $E_z$</h3>
+<div class="step">
+$E_z = -\dfrac{\partial V}{\partial z}$（$z > 0$）：
+$$E_z = -\frac{\sigma}{2\varepsilon_0}\left(\frac{z}{\sqrt{a^2+z^2}} - 1\right) = \frac{\sigma}{2\varepsilon_0}\left(1 - \frac{z}{\sqrt{a^2+z^2}}\right)$$
+</div>
+<div class="answer-box">
+$$E_z = \frac{\sigma}{2\varepsilon_0}\left(1 - \frac{z}{\sqrt{a^2+z^2}}\right) \qquad (z > 0)$$
+軸外（$r \neq 0$）の電場 $E_r$, $E_\theta$ は軸対称性より $E_\theta = 0$。$E_r$ は偏微分 $-\partial V/\partial r$ から求まる。
+</div>
+
+<h3>問6）同じ円板2枚を対向させた場合（$a \to \infty$）の電位差 $\Delta V$</h3>
+<div class="step">
+極板間距離 $d$（一方を $z=0$、もう一方を $z=d$）。$a \to \infty$ の無限平板では：
+$$V(0,0,z)\big|_{a\to\infty} = \frac{\sigma}{2\varepsilon_0}\left(a - z\right)\big|_{a\to\infty} \quad \text{（発散するので差のみ意味をもつ）}$$
+平行平板コンデンサの電場 $E = \sigma/\varepsilon_0$（両面からの重ね合わせ）、$z$ 方向に一様。<br>
+電位差 $\Delta V = E \cdot d$：
+</div>
+<div class="answer-box">
+$$\Delta V = \frac{\sigma d}{\varepsilon_0} \qquad (a \to \infty)$$
+</div>
+
+
+<h3>大問2　無限長円柱電流の磁界とポインティングベクトル</h3>
+<p>半径 $a$、長さ方向 $z$ に均一電流密度 $J = I_0/(\pi a^2)$ が流れる無限長円柱。</p>
+
+<h3>問1）アンペールの法則による磁束密度 $B_\theta$</h3>
+<div class="step">
+円柱外側（$r \geq a$）：アンペールの経路 $r$ の円周
+$$B_\theta \cdot 2\pi r = \mu_0 I_0 \quad \Rightarrow \quad B_\theta = \frac{\mu_0 I_0}{2\pi r}$$
+円柱内側（$r < a$）：経路内を通る電流 $= I_0 \cdot \dfrac{\pi r^2}{\pi a^2} = I_0 r^2/a^2$
+$$B_\theta \cdot 2\pi r = \mu_0 I_0 \frac{r^2}{a^2} \quad \Rightarrow \quad B_\theta = \frac{\mu_0 I_0 r}{2\pi a^2}$$
+</div>
+<div class="answer-box">
+$$B_\theta = \begin{cases} \dfrac{\mu_0 I_0}{2\pi r} & (r \geq a) \\[6pt] \dfrac{\mu_0 I_0 r}{2\pi a^2} & (r < a) \end{cases}$$
+</div>
+
+<h3>問2）直交座標成分 $B_x$, $B_y$</h3>
+<div class="step">
+$B_\theta$ は $\theta$ 方向（反時計回り）の成分。$\boldsymbol{B} = B_\theta\,\hat{\boldsymbol{\theta}} = B_\theta(-\sin\theta\,\hat{x} + \cos\theta\,\hat{y})$。<br>
+$\cos\theta = x/r$, $\sin\theta = y/r$ より、外側（$r \geq a$）で：
+$$B_x = -B_\theta\sin\theta = -\frac{\mu_0 I_0}{2\pi r}\cdot\frac{y}{r} = -\frac{\mu_0 I_0 y}{2\pi r^2}$$
+$$B_y = B_\theta\cos\theta = \frac{\mu_0 I_0}{2\pi r}\cdot\frac{x}{r} = \frac{\mu_0 I_0 x}{2\pi r^2}$$
+</div>
+<div class="answer-box">
+$$B_x = -\frac{\mu_0 I_0 y}{2\pi r^2}, \qquad B_y = \frac{\mu_0 I_0 x}{2\pi r^2} \qquad (r \geq a)$$
+</div>
+
+<h3>問3）ポインティングベクトル $\boldsymbol{S}$</h3>
+<div class="step">
+ポインティングベクトル：$\boldsymbol{S} = \boldsymbol{E} \times \boldsymbol{H} = \dfrac{1}{\mu_0}\boldsymbol{E} \times \boldsymbol{B}$<br>
+電流の流れる導線（抵抗率 $\rho_r$）：導線内の電場 $\boldsymbol{E} = \rho_r J\,\hat{z} = \dfrac{\rho_r I_0}{\pi a^2}\,\hat{z}$（$r \leq a$）。<br>
+表面 $r = a$ での $\boldsymbol{E} \times \boldsymbol{B}$：<br>
+$\boldsymbol{E} = E_z\,\hat{z}$、$\boldsymbol{B} = B_\theta\,\hat{\theta}$（$B_\theta = \mu_0 I_0/(2\pi a)$）
+$$\boldsymbol{S} = \frac{1}{\mu_0}(E_z\,\hat{z}) \times (B_\theta\,\hat{\theta}) = \frac{E_z B_\theta}{\mu_0}\,(\hat{z} \times \hat{\theta}) = -\frac{E_z B_\theta}{\mu_0}\,\hat{r}$$
+（$\hat{z} \times \hat{\theta} = -\hat{r}$。$\boldsymbol{S}$ は内向き → エネルギーが導体に流入）
+</div>
+<div class="answer-box">
+$$\boldsymbol{S} = \boldsymbol{E} \times \boldsymbol{H}, \qquad S_r = -\frac{E_z B_\theta}{\mu_0} \quad (\text{内向き})$$
+導体表面を通じてジュール熱として消費されるエネルギー流に対応する。
+</div>
+
+<h3>問4）2本の平行線（遠方での磁場の重ね合わせ）</h3>
+<div class="step">
+2本の無限長直線電流（電流 $+I_0$, $-I_0$、間隔 $2d$）の遠方（$r \gg d$）での磁場。<br>
+各電流からの寄与を重ね合わせる。遠方では磁気双極子近似が成立し、磁場は $\propto 1/r^2$：
+$$B \propto \frac{\mu_0 I_0 d}{\pi r^2}$$
+</div>
+<div class="answer-box">
+2本の平行電流（逆向き）は磁気双極子を構成し、遠方では $B \propto 1/r^2$ で減衰する。<br>
+同方向のときは磁気独立的に重ね合わさり、遠方では $B \propto 1/r$（一本の電流 $2I_0$ として振る舞う）。
+</div>
+
+
+<!-- ========== 電気回路 ========== -->
+<h2>電気回路（選択）</h2>
+
+<h3>大問1　インピーダンス整合と伝送行列</h3>
+<p>電源インピーダンス $Z_S = R_S + jX_S$、負荷インピーダンス $Z_L = R_L + jX_L$（$R_S, R_L > 0$）。</p>
+
+<h3>問1）負荷電流 $I_L$ と負荷消費電力 $P_L$</h3>
+<div class="answer-box">
+$$I_L = \frac{E}{Z_S + Z_L}$$
+$$P_L = \frac{1}{2}|I_L|^2 R_L = \frac{|E|^2 R_L}{2|Z_S + Z_L|^2} = \frac{|E|^2 R_L}{2\left[(R_S+R_L)^2+(X_S+X_L)^2\right]}$$
+</div>
+
+<h3>問2）最大電力条件（最大電力整合）</h3>
+<div class="step">
+$P_L$ を最大化する $Z_L$：<br>
+①まず $X_L$ について最大化：分母 $(X_S + X_L)^2$ を最小化 → $X_L = -X_S$<br>
+②$X_L = -X_S$ のとき $P_L = \dfrac{|E|^2 R_L}{2(R_S+R_L)^2}$。<br>
+$\dfrac{dP_L}{dR_L} = 0$ より $(R_S + R_L)^2 - 2R_L(R_S + R_L) = 0$ → $R_L = R_S$
+</div>
+<div class="answer-box">
+最大電力条件：$R_L = R_S$, $X_L = -X_S$　すなわち $Z_L = Z_S^*$（複素共役整合）<br>
+最大電力：$P_{L,\max} = \dfrac{|E|^2}{8R_S}$
+</div>
+
+<h3>問3）四端子回路の伝送行列（ABCD行列）と入力インピーダンス</h3>
+<div class="step">
+四端子回路の端子関係を ABCD 行列で表す：
+$$\begin{pmatrix} V_1 \\ I_1 \end{pmatrix} = \begin{pmatrix} A & B \\ C & D \end{pmatrix} \begin{pmatrix} V_2 \\ -I_2 \end{pmatrix}$$
+負荷 $Z_L = V_2/I_2$ を接続（$I_2 = -V_2/Z_L$）のとき：
+$$V_1 = AV_2 + B(-I_2) = AV_2 + \frac{B}{Z_L}V_2 = V_2\left(A + \frac{B}{Z_L}\right)$$
+$$I_1 = CV_2 + D(-I_2) = V_2\left(C + \frac{D}{Z_L}\right)$$
+</div>
+<div class="answer-box">
+$$Z_{\mathrm{in}} = \frac{V_1}{I_1} = \frac{AZ_L + B}{CZ_L + D}$$
+</div>
+
+<h3>問4）L型整合網（$C_1$‐$L_2$ 型）の設計（$X_S = 0$ の場合）</h3>
+<div class="step">
+電源側にシャント容量 $C_1$、負荷側にシリーズインダクタンス $L_2$ を接続する L 型整合網。<br>
+条件：$R_S > R_L$（インピーダンスを降圧整合）<br>
+$C_1$ を並列接続した後の等価アドミタンス：$Y = \frac{1}{R_S} + j\omega C_1$<br>
+これと $L_2$ の直列インピーダンス $Z_L + j\omega L_2$ が整合する条件：<br>
+等価インピーダンス $Z_{\mathrm{in}} = \dfrac{1}{Y} + j\omega L_2$ の実部 $= R_L$、虚部 $= 0$。<br>
+$\dfrac{1}{Y} = \dfrac{R_S}{1 + (\omega C_1 R_S)^2} - j\dfrac{\omega C_1 R_S^2}{1+(\omega C_1 R_S)^2}$<br>
+実部条件：$\dfrac{R_S}{1 + (\omega C_1 R_S)^2} = R_L$ → $(\omega C_1 R_S)^2 = \dfrac{R_S}{R_L} - 1 = \dfrac{R_S - R_L}{R_L}$<br>
+虚部条件：$\omega L_2 = \dfrac{\omega C_1 R_S^2}{1+(\omega C_1 R_S)^2}$
+</div>
+<div class="answer-box">
+$$\omega C_1 = \frac{1}{R_S}\sqrt{\frac{R_S - R_L}{R_L}}, \qquad \omega L_2 = \sqrt{R_L(R_S - R_L)}$$
+（$X_S = 0$、$R_S > R_L$ のとき）
+</div>
+<div class="note">
+$\omega L_2 = R_L \cdot \omega C_1 R_S = R_L \cdot \dfrac{R_S}{R_S}\sqrt{\dfrac{R_S-R_L}{R_L}} = \sqrt{R_L(R_S-R_L)}$ と確認できる。
+</div>
+
+
+<h3>大問2　三相回路（Δ負荷 ＋ Y接続コンデンサ）</h3>
+
+<h3>問1）Δ→Y 変換（等価 Y 型インピーダンス）</h3>
+<div class="step">
+Δ接続の各インピーダンス $Z_\Delta = R + j\omega L$。<br>
+Δ→Y 変換の公式（対称 Δ の場合）：$Z_Y = Z_\Delta / 3$
+</div>
+<div class="answer-box">
+$$Z_Y = \frac{R + j\omega L}{3} = \frac{R}{3} + j\omega\frac{L}{3}$$
+すなわち $R_Y = R/3$, $L_Y = L/3$。
+</div>
+
+<h3>問2）各相の電圧・電流（Y型等価回路で解析）</h3>
+<div class="step">
+三相対称電圧源（線間電圧振幅 $V$、線電圧実効値 $= V/\sqrt{2}$）：
+$$\dot{V}_a = V_\gamma,\quad \dot{V}_b = V_\gamma e^{-j2\pi/3},\quad \dot{V}_c = V_\gamma e^{+j2\pi/3}$$
+ここで $V_\gamma$ は相電圧（Y接続の場合）。線間電圧の実効値を $V_L$ とすると $V_\gamma = V_L/\sqrt{3}$。<br>
+一相の負荷電流 $\dot{I}_a = \dot{V}_a / Z_Y = \dfrac{V_\gamma}{R/3 + j\omega L/3}$
+</div>
+<div class="answer-box">
+$$\dot{I}_a = \frac{3V_\gamma}{R + j\omega L}, \qquad |\dot{I}_a| = \frac{3V_\gamma}{\sqrt{R^2 + \omega^2 L^2}}$$
+負荷端子の相電圧実効値 $= V_L/\sqrt{3}$（$V_L$ が線間電圧実効値）。
+</div>
+
+<h3>問3）力率 1 となるコンデンサ $C$ の条件</h3>
+<div class="step">
+各相に並列コンデンサ $C$ を追加（Y 接続）。一相の合成アドミタンス：
+$$Y = \frac{1}{Z_Y} + j\omega C = \frac{R/3 - j\omega L/3}{(R/3)^2 + (\omega L/3)^2} + j\omega C$$
+力率 1 条件：虚部 $= 0$
+$$-\frac{\omega L/3}{(R/3)^2 + (\omega L/3)^2} + \omega C = 0$$
+$$C = \frac{L/3}{(R/3)^2 + (\omega L/3)^2} = \frac{L/3}{(R^2 + \omega^2 L^2)/9} = \frac{3L}{R^2 + \omega^2 L^2}$$
+</div>
+<div class="answer-box">
+$$C = \frac{3L}{R^2 + \omega^2 L^2}$$
+</div>
+
+<h3>問4）三相消費電力 $P$</h3>
+<div class="step">
+力率 1 整合後は一相の消費電力 $= |V_\gamma|^2 \cdot \mathrm{Re}(Y)$。<br>
+$\mathrm{Re}(Y) = \dfrac{R/3}{(R/3)^2 + (\omega L/3)^2} = \dfrac{9R/3}{R^2 + \omega^2 L^2} = \dfrac{3R}{R^2 + \omega^2 L^2}$<br>
+三相合計（$V_\gamma = V_L/\sqrt{3}$）：
+$$P = 3 \cdot \frac{V_L^2}{3} \cdot \frac{3R}{R^2 + \omega^2 L^2}$$
+</div>
+<div class="answer-box">
+$$P = \frac{3V_L^2 R}{R^2 + \omega^2 L^2}$$
+（$V_L$：線間電圧実効値）
+</div>
+
+
+<!-- ========== 量子力学・物性基礎 ========== -->
+<h2>量子力学・物性基礎（選択）</h2>
+
+<h3>大問1　2準位系の固有値</h3>
+<p>ハミルトニアンの行列表現（規格直交基底 $\{|1\rangle, |2\rangle\}$）：
+$$H = \begin{pmatrix} E_1 & V \\ V^* & E_2 \end{pmatrix}$$</p>
+
+<h3>問1）行列要素の確認</h3>
+<div class="answer-box">
+$\langle 1|H|1\rangle = E_1$（[1]），$\langle 2|H|2\rangle = E_2$（[2]）<br>
+$\langle 1|2\rangle = 0$（[3]），$\langle 1|1\rangle = 1$（[4]）
+</div>
+
+<h3>問2）固有値方程式の係数形式</h3>
+<p>固有状態 $|\psi\rangle = c_1|1\rangle + c_2|2\rangle$ に対して $H|\psi\rangle = E|\psi\rangle$ より：</p>
+<div class="step">
+$$E_1 c_1 + V c_2 = E c_1 \quad \Rightarrow \quad (E_1 - E)c_1 + V c_2 = 0$$
+$$V^* c_1 + E_2 c_2 = E c_2 \quad \Rightarrow \quad V^* c_1 + (E_2 - E) c_2 = 0$$
+[5]$= E_1$，[6]$= V$，[7]$= V^*$，[8]$= E_2$，[9]$= E_1 - E$，[10]$= E_2 - E$
+</div>
+<div class="answer-box">
+$$\begin{pmatrix} E_1 - E & V \\ V^* & E_2 - E \end{pmatrix} \begin{pmatrix} c_1 \\ c_2 \end{pmatrix} = \boldsymbol{0}$$
+</div>
+
+<h3>問3）固有エネルギーの導出</h3>
+<div class="step">
+非自明解の条件：行列式 $= 0$（[11]）
+$$(E_1 - E)(E_2 - E) - |V|^2 = 0$$
+$$E^2 - (E_1+E_2)E + E_1 E_2 - |V|^2 = 0$$
+$$E = \frac{(E_1+E_2) \pm \sqrt{(E_1+E_2)^2 - 4(E_1 E_2 - |V|^2)}}{2}$$
+$(E_1+E_2)^2 - 4E_1 E_2 = (E_1 - E_2)^2$ より：
+$$E = \frac{E_1+E_2}{2} \pm \sqrt{\frac{(E_1-E_2)^2}{4} + |V|^2}$$
+[12]$= (E_1-E_2)^2/4$
+</div>
+<div class="answer-box">
+$$\boxed{E_\pm = \frac{E_1+E_2}{2} \pm \sqrt{\left(\frac{E_1-E_2}{2}\right)^2 + |V|^2}}$$
+</div>
+
+<h3>問4）エネルギー差 $\Delta E$ と混合角 $\theta$</h3>
+<div class="step">
+エネルギー差：
+$$\Delta E = E_+ - E_- = 2\sqrt{\left(\frac{E_1-E_2}{2}\right)^2 + |V|^2}$$
+[13]$= (E_1-E_2)/2$，[14]$= \Delta E$
+</div>
+<div class="answer-box">
+$$\Delta E = 2\sqrt{\left(\frac{E_1-E_2}{2}\right)^2 + |V|^2}$$
+混合角 $\theta$（$|V|$が実数の場合）：
+$$\tan(2\theta) = \frac{2|V|}{E_1 - E_2}, \qquad E_\pm = \frac{E_1+E_2}{2} \pm \frac{E_1-E_2}{2\cos(2\theta)}$$
+</div>
+<div class="note">
+$|V| = 0$ のとき $E_\pm = E_1, E_2$（摂動なし）。$|V| \neq 0$ では縮退が解け、準位反発が起きる。
+</div>
+
+
+<h3>大問2　電子の状態密度</h3>
+<p>自由電子モデル（分散関係 $E = \hbar^2 k^2 / (2m)$）における次元別の状態密度を導出する。</p>
+
+<h3>問1）3次元（$d = 3$）状態密度 $\rho_3(E)$</h3>
+<div class="step">
+$k$ 空間の体積要素（球）：$N(E) \propto k^3 \propto E^{3/2}$（$k = \sqrt{2mE}/\hbar$）。
+$$\rho_3(E) = \frac{dN}{dE} \propto E^{1/2}$$
+正確には $\rho_3(E) = \dfrac{V}{2\pi^2}\left(\dfrac{2m}{\hbar^2}\right)^{3/2} E^{1/2}$。
+</div>
+<div class="answer-box">
+$$\rho_3(E) \propto \sqrt{E}$$
+</div>
+
+<h3>問2）2次元（$d = 2$）状態密度 $\rho_2(E)$</h3>
+<div class="step">
+$k$ 空間の面積：$N(E) \propto k^2 \propto E$（$k^2 \propto E$）。
+$$\rho_2(E) = \frac{dN}{dE} = \frac{Am}{{\pi\hbar^2}} = \text{定数}$$
+</div>
+<div class="answer-box">
+$$\rho_2(E) = \frac{m}{\pi\hbar^2} = \text{定数（}E \text{ によらない）}$$
+</div>
+
+<h3>問3）1次元（$d = 1$）状態密度 $\rho_1(E)$</h3>
+<div class="step">
+$k$ 空間の長さ：$N(E) \propto k \propto E^{1/2}$。
+$$\rho_1(E) = \frac{dN}{dE} \propto E^{-1/2}$$
+</div>
+<div class="answer-box">
+$$\rho_1(E) \propto \frac{1}{\sqrt{E}}$$
+</div>
+
+<h3>まとめ：次元と状態密度の関係</h3>
+<table>
+  <tr><th>次元</th><th>$k$ 空間の体積</th><th>$N(E)$ の $E$ 依存性</th><th>$\rho(E) = dN/dE$</th></tr>
+  <tr><td>3次元</td><td>$\propto k^3 \propto E^{3/2}$</td><td>$\propto E^{3/2}$</td><td>$\propto \sqrt{E}$（増加）</td></tr>
+  <tr><td>2次元</td><td>$\propto k^2 \propto E$</td><td>$\propto E$</td><td>$= $ 定数</td></tr>
+  <tr><td>1次元</td><td>$\propto k \propto E^{1/2}$</td><td>$\propto E^{1/2}$</td><td>$\propto 1/\sqrt{E}$（減少）</td></tr>
+</table>
+<div class="note">
+低次元量子井戸・量子細線では状態密度の形が変わり、レーザー等の素子特性に影響する。特に 2D の定数型状態密度は量子井戸レーザーの低閾値動作に寄与する。
+</div>
+
+
+<!-- ========== 解答まとめ ========== -->
+<h2>解答まとめ</h2>
+<table>
+  <tr><th>科目</th><th>大問</th><th>主要結果</th></tr>
+  <tr><td>数学</td><td>1（ベクトル解析）</td><td>$\mathrm{rot}(\mathrm{grad}\,\varphi)=\boldsymbol{0}$; $\mathrm{div}(\mathrm{rot}\,\boldsymbol{A})=0$; $\iiint|\mathrm{grad}\,f|\delta(f-a^2)dV=8\pi a^3$</td></tr>
+  <tr><td>数学</td><td>2（フーリエ）</td><td>サンプリング $\Delta t = 1/(2W)$; 三角波 $a_0=1/2$, $a_n=4/(n^2\pi^2)$（奇数）, $b_n=0$</td></tr>
+  <tr><td>電磁気学</td><td>1（円板電荷）</td><td>$V(0,0,z)=\dfrac{\sigma}{2\varepsilon_0}(\sqrt{a^2+z^2}-z)$; $\Delta V = \sigma d/\varepsilon_0$（$a\to\infty$）</td></tr>
+  <tr><td>電磁気学</td><td>2（円柱電流）</td><td>$B_\theta = \mu_0 I_0/(2\pi r)$ (外); $\mu_0 I_0 r/(2\pi a^2)$ (内); $\boldsymbol{S}=\boldsymbol{E}\times\boldsymbol{H}$（内向き）</td></tr>
+  <tr><td>電気回路</td><td>1（インピーダンス整合）</td><td>$Z_L = Z_S^*$; $Z_{\mathrm{in}}=(AZ_L+B)/(CZ_L+D)$; $\omega C_1 = \sqrt{(R_S-R_L)/R_L}/R_S$, $\omega L_2 = \sqrt{R_L(R_S-R_L)}$</td></tr>
+  <tr><td>電気回路</td><td>2（三相回路）</td><td>$R_Y=R/3$, $L_Y=L/3$; 力率1条件 $C=3L/(R^2+\omega^2 L^2)$; $P=3V_L^2 R/(R^2+\omega^2 L^2)$</td></tr>
+  <tr><td>量子力学</td><td>1（2準位系）</td><td>$E_\pm = (E_1+E_2)/2 \pm \sqrt{(E_1-E_2)^2/4+|V|^2}$; $\Delta E = 2\sqrt{(E_1-E_2)^2/4+|V|^2}$</td></tr>
+  <tr><td>量子力学</td><td>2（状態密度）</td><td>$\rho_3\propto\sqrt{E}$; $\rho_2=$ 定数; $\rho_1\propto 1/\sqrt{E}$</td></tr>
+</table>
+
+<a class="back" href="index.html">← 解答解説まとめに戻る</a>
+
+</body>
+</html>

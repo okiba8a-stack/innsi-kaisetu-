@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>H20年度 電磁気学（午後）解答解説</title>
+  <script>
+    MathJax = { tex: { inlineMath: [['$','$']], displayMath: [['$$','$$']] } };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: "Yu Gothic", "游ゴシック", sans-serif; font-size: 13pt; line-height: 1.9; color: #1a1a2e; background: #f4f7fb; padding: 40px; }
+    h1 { font-size: 20pt; color: #0d2b5e; border-bottom: 3px solid #0d2b5e; padding-bottom: 10px; margin-bottom: 6px; }
+    .subtitle { color: #666; font-size: 11pt; margin-bottom: 36px; }
+    h2 { font-size: 15pt; color: #0d2b5e; margin: 40px 0 16px; padding: 8px 16px; background: #e8f0fb; border-left: 5px solid #1e5fa8; border-radius: 4px; }
+    h3 { font-size: 13pt; color: #1e5fa8; margin: 28px 0 10px; border-bottom: 1px solid #c5d8f5; padding-bottom: 4px; }
+    .answer-box { background: #fff; border: 1px solid #c5d8f5; border-radius: 8px; padding: 20px 28px; margin: 12px 0 20px; }
+    .step { background: #f0f6ff; border-left: 3px solid #1e5fa8; padding: 10px 18px; margin: 10px 0; border-radius: 0 4px 4px 0; }
+    .result { background: #fff8e1; border: 2px solid #f9a825; border-radius: 6px; padding: 10px 18px; margin: 12px 0; font-weight: bold; }
+    .note { background: #f3f9f3; border-left: 3px solid #4caf50; padding: 8px 16px; margin: 10px 0; font-size: 11.5pt; color: #2e5f2e; }
+    footer { margin-top: 60px; color: #aaa; font-size: 10pt; text-align: center; }
+    a { color: #1e5fa8; }
+  </style>
+</head>
+<body>
+
+<h1>H20年度 電磁気学（午後）解答解説</h1>
+<p class="subtitle">平成19年8月21日実施 ／ 専門科目 電磁気学（電気電子工学・電子物理工学）</p>
+
+<!-- ===== 大問1 ===== -->
+<h2>大問1：円筒コンデンサへの誘電体挿入</h2>
+
+<p style="margin-bottom:12px">内半径 $a$（内導体）、外半径 $b$（外導体）、長さ $L$、空間誘電率 $\varepsilon_0$（真空）の円筒コンデンサ。スイッチ $S$ と直流電源 $V_0$ が接続される。</p>
+
+<h3>問1）初期電荷 $Q_0$（スイッチ閉・誘電体なし）</h3>
+<div class="answer-box">
+  <div class="step">
+    円筒コンデンサの静電容量（真空，長さ $L$）：
+    $$C_0 = \frac{2\pi\varepsilon_0 L}{\ln(b/a)}$$
+  </div>
+  <div class="result">
+    $$Q_0 = C_0 V_0 = \frac{2\pi\varepsilon_0 L V_0}{\ln(b/a)}$$
+  </div>
+</div>
+
+<h3>問2）スイッチ開（電荷 $Q_0$ 固定）・誘電体長さ $x$ 挿入時の電位差 $V$</h3>
+<div class="answer-box">
+  <div class="step">
+    内半径 $a$，外半径 $b$，長さ $x$ の誘電体（比誘電率 $\varepsilon_r$）を挿入。
+    全体を <b>並列コンデンサ</b> 2 個（誘電体あり $\varepsilon_r\varepsilon_0$，長さ $x$ ／ 真空 $\varepsilon_0$，長さ $L-x$）と見なす：
+    $$C(x) = \frac{2\pi\varepsilon_r\varepsilon_0 x}{\ln(b/a)} + \frac{2\pi\varepsilon_0(L-x)}{\ln(b/a)} = \frac{2\pi\varepsilon_0[L+(\varepsilon_r-1)x]}{\ln(b/a)}$$
+    電荷 $Q_0$ が固定されているので $V = Q_0/C(x)$，$Q_0 = C_0V_0$ を代入：
+  </div>
+  <div class="result">
+    $$V = \frac{LV_0}{L + (\varepsilon_r-1)x}$$
+    <br>
+    グラフ：$x=0$ で $V=V_0$，$x=L$ で $V=V_0/\varepsilon_r$（$\varepsilon_r>1$ なので単調減少）。分母が $x$ の一次式なので双曲線的に減少。
+  </div>
+</div>
+
+<h3>問3）スイッチ再接続（$V_0$ 固定）・挿入長 $x$ の電荷 $Q$</h3>
+<div class="answer-box">
+  <div class="step">
+    $V_0$ が固定なので $Q = C(x)\cdot V_0$：
+    $$Q = \frac{2\pi\varepsilon_0 V_0[L+(\varepsilon_r-1)x]}{\ln(b/a)}$$
+    $Q_0 = 2\pi\varepsilon_0 L V_0/\ln(b/a)$ を使って：
+  </div>
+  <div class="result">
+    $$Q = Q_0\!\left[1 + \frac{(\varepsilon_r-1)x}{L}\right] = Q_0\cdot\frac{L+(\varepsilon_r-1)x}{L}$$
+  </div>
+</div>
+
+<h3>問4）挿入長を $x\to x+\Delta x$ にしたときの静電エネルギーの変化</h3>
+<div class="answer-box">
+  <div class="step">
+    $V_0$ 固定のとき，静電エネルギー $U = \frac{1}{2}C(x)V_0^2$：
+    $$\Delta U = \frac{1}{2}V_0^2\Delta C = \frac{1}{2}V_0^2\cdot\frac{2\pi\varepsilon_0(\varepsilon_r-1)\Delta x}{\ln(b/a)}$$
+  </div>
+  <div class="result">
+    $$\Delta U = \frac{\pi\varepsilon_0(\varepsilon_r-1)V_0^2\,\Delta x}{\ln(b/a)} > 0$$
+    （$\varepsilon_r>1$ なのでエネルギーは<b>増加</b>する）
+  </div>
+  <div class="note">
+    電源が $\Delta Q = V_0\Delta C$ の追加電荷を供給し、エネルギー $V_0\Delta Q = 2\Delta U$ を送り出す。このうち半分（$\Delta U$）がコンデンサに蓄えられ，残り半分が誘電体を引き込む仕事をする。
+  </div>
+</div>
+
+<h3>問5）誘電体に働く力の大きさと方向</h3>
+<div class="answer-box">
+  <div class="step">
+    仮想仕事の原理（電圧 $V_0$ 固定）：力 $F$ に対して $F\cdot\Delta x = \Delta U_{cap}$：
+  </div>
+  <div class="result">
+    $$F = \frac{\partial U}{\partial x} = \frac{\pi\varepsilon_0(\varepsilon_r-1)V_0^2}{\ln(b/a)}$$
+    方向：誘電体が<b>コンデンサ内に引き込まれる方向</b>（挿入が進む方向，$x$ 増加方向）
+  </div>
+  <div class="note">
+    誘電体は電界エネルギーが高い領域（コンデンサ内部）に引き込まれる（電気的な吸引力）。$\varepsilon_r>1$ のとき常に内向き。
+  </div>
+</div>
+
+<!-- ===== 大問2 ===== -->
+<h2>大問2：角型鉄心磁気回路（ギャップ付き）</h2>
+
+<p style="margin-bottom:12px">透磁率 $\mu$ の鉄心 C, D（断面積 $S$）。Cに $N$ 巻のコイル（電流 $i$，電圧 $v$）。ギャップ長 $x_0$（D が可動）。C+D の平均磁路長 $\ell_0 = \ell+x_0$，鉄心の平均磁路長 $\ell$（$\ell\gg x_0$）。ギャップの透磁率は $\mu_0$。</p>
+
+<h3>問1）定常電流 $i=I$ のとき：ギャップ内磁界 $H_g$，鉄心内全磁束 $\Phi$</h3>
+<div class="answer-box">
+  <div class="step">
+    磁束は一定（漏れなし）：鉄心でも $B$，ギャップでも $B$（同じ断面積 $S$）。
+    $B = \mu H_{iron} = \mu_0 H_g$ → $H_{iron} = \mu_0 H_g/\mu$。
+    <br>
+    アンペアの法則：$NI = H_{iron}\cdot\ell + H_g\cdot x_0$：
+    $$NI = \frac{\mu_0 H_g}{\mu}\cdot\ell + H_g\cdot x_0 = H_g\left(\frac{\mu_0\ell}{\mu}+x_0\right)$$
+  </div>
+  <div class="result">
+    $$H_g = \frac{NI}{\dfrac{\mu_0\ell}{\mu}+x_0}, \qquad \Phi = \mu_0 H_g S = \frac{\mu_0 NIS}{\dfrac{\mu_0\ell}{\mu}+x_0}$$
+  </div>
+</div>
+
+<h3>問2）巻線との鎖交磁束</h3>
+<div class="answer-box">
+  <div class="result">
+    $$\Psi = N\Phi = \frac{\mu_0 N^2 IS}{\dfrac{\mu_0\ell}{\mu}+x_0}$$
+  </div>
+</div>
+
+<h3>問3）鉄心+ギャップに蓄えられる磁気エネルギー $W_m$（$B$ を使って表す）</h3>
+<div class="answer-box">
+  <div class="step">
+    磁気エネルギー密度 $u = B^2/(2\mu)$（鉄心），$B^2/(2\mu_0)$（ギャップ）：
+    $$W_m = \frac{B^2 S\ell}{2\mu} + \frac{B^2 S x_0}{2\mu_0}$$
+    ここで $B = \mu_0 H_g$，$H_g = NI/(\mu_0\ell/\mu + x_0)$：
+  </div>
+  <div class="result">
+    $$W_m = \frac{B^2 S}{2}\!\left(\frac{\ell}{\mu}+\frac{x_0}{\mu_0}\right) = \frac{B^2 S}{2\mu_0}\!\left(\frac{\mu_0\ell}{\mu}+x_0\right)$$
+  </div>
+</div>
+
+<h3>問4）ギャップ間の両鉄心端面に加わる力（$B$ を使って，方向も）</h3>
+<div class="answer-box">
+  <div class="step">
+    インダクタンス：$L_{coil} = \Psi/I = \frac{\mu_0 N^2 S}{\mu_0\ell/\mu + x_0}$
+
+    電流固定での仮想仕事の原理：$F = \dfrac{\partial W_m}{\partial x_0}\bigg|_I = \dfrac{1}{2}I^2\dfrac{dL_{coil}}{dx_0}$
+
+    $\dfrac{dL_{coil}}{dx_0} = -\dfrac{\mu_0 N^2 S}{(\mu_0\ell/\mu + x_0)^2}$，$\mu_0 NI/B = \mu_0\ell/\mu + x_0$ を代入：
+
+    $$F = -\frac{1}{2}I^2\cdot\frac{\mu_0 N^2 S}{(\mu_0 NI/B)^2} = -\frac{B^2 S}{2\mu_0}$$
+  </div>
+  <div class="result">
+    大きさ：$|F| = \dfrac{B^2 S}{2\mu_0}$
+
+    方向：$F < 0$（$x_0$ が増加する方向と逆）→ ギャップを<b>縮める方向</b>（C と D が互いに引き合う引力）
+  </div>
+  <div class="note">
+    $B^2/(2\mu_0)$ はギャップ内の磁界エネルギー密度（マクスウェルの応力テンソル）。力は磁束を閉じる（磁路を短縮する）方向に働く。
+  </div>
+</div>
+
+<h3>問5）$\mu\to\infty$，$x_0$ 固定，$i$ が時間変化：巻線電圧 $v$</h3>
+<div class="answer-box">
+  <div class="step">
+    $\mu\to\infty$ で $\mu_0\ell/\mu\to 0$ → $L_{coil} = \mu_0 N^2 S/x_0$（定数，$x_0$ 固定）。
+    ファラデーの法則：$v = \dfrac{d\Psi}{dt} = L_{coil}\dfrac{di}{dt}$：
+  </div>
+  <div class="result">
+    $$v = \frac{\mu_0 N^2 S}{x_0}\frac{di}{dt}$$
+  </div>
+</div>
+
+<h3>問6）$\mu\to\infty$，$i$ と $x_0$ がともに時間変化：巻線電圧 $v$</h3>
+<div class="answer-box">
+  <div class="step">
+    鎖交磁束 $\Psi = L_{coil}\cdot i = \dfrac{\mu_0 N^2 S}{x_0}\cdot i$（$\mu\to\infty$）。
+
+    $v = \dfrac{d\Psi}{dt} = \mu_0 N^2 S\dfrac{d}{dt}\!\left(\dfrac{i}{x_0}\right) = \mu_0 N^2 S\!\left(\dfrac{1}{x_0}\dfrac{di}{dt} - \dfrac{i}{x_0^2}\dfrac{dx_0}{dt}\right)$：
+  </div>
+  <div class="result">
+    $$v = \frac{\mu_0 N^2 S}{x_0}\frac{di}{dt} - \frac{\mu_0 N^2 S\,i}{x_0^2}\frac{dx_0}{dt}$$
+    第1項：誘導起電力（$i$ の変化による）／ 第2項：変圧器起電力との類比（$x_0$ の変化 → インダクタンス変化 → 逆起電力）
+  </div>
+  <div class="note">
+    第2項は $i$ がゼロでなく $x_0$ が変化するとき（例：鉄心が振動する）に現れる項で，電動機・発電機の逆起電力に相当する。
+  </div>
+</div>
+
+<footer>
+  解答解説作成：Claude（Anthropic）| <a href="index.html">← 一覧に戻る</a>
+</footer>
+
+</body>
+</html>

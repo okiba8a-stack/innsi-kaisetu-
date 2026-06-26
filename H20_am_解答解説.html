@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>H20年度 午前 電気回路 解答解説</title>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+  <style>
+    * { box-sizing:border-box; margin:0; padding:0; }
+    body { font-family:"Yu Gothic","游ゴシック",sans-serif; font-size:13pt; line-height:1.8; color:#1a1a2e; background:#f4f7fb; padding:40px; }
+    h1 { font-size:20pt; color:#0d2b5e; border-bottom:3px solid #0d2b5e; padding-bottom:10px; margin-bottom:8px; }
+    .subtitle { color:#666; font-size:11pt; margin-bottom:36px; }
+    h2 { font-size:15pt; color:#0d2b5e; margin:36px 0 16px 0; padding:8px 16px; background:#e8f0fb; border-left:5px solid #1e5fa8; border-radius:4px; }
+    h3 { font-size:13pt; color:#1e5fa8; margin:24px 0 10px 0; }
+    h4 { font-size:12pt; color:#0d2b5e; margin:18px 0 8px 0; }
+    .answer-box { background:#fff; border:2px solid #1e5fa8; border-radius:8px; padding:18px 24px; margin:16px 0; }
+    .step { background:#f8faff; border-left:4px solid #5b9cf6; padding:10px 18px; margin:12px 0; border-radius:0 6px 6px 0; }
+    .result { background:#fffbe6; border:1px solid #f0c040; border-radius:6px; padding:10px 18px; margin:12px 0; font-weight:bold; }
+    .note { background:#f0f8ff; border:1px solid #b0d4f8; border-radius:6px; padding:10px 18px; margin:12px 0; font-size:11.5pt; color:#333; }
+    table { border-collapse:collapse; margin:12px 0; width:100%; }
+    th,td { border:1px solid #c5d8f5; padding:8px 14px; text-align:center; }
+    th { background:#e8f0fb; color:#0d2b5e; font-weight:bold; }
+    footer { margin-top:60px; color:#aaa; font-size:10pt; text-align:center; }
+    .back-link { display:inline-block; margin-bottom:24px; color:#1e5fa8; text-decoration:none; font-size:11pt; }
+    .formula-block { text-align:center; margin:16px 0; }
+  </style>
+</head>
+<body>
+
+<a class="back-link" href="index.html">← 解答解説まとめへ戻る</a>
+<h1>H20年度 午前 電気回路 解答解説</h1>
+<p class="subtitle">平成19年8月21日実施 ／ 専門科目：電気回路（午前）</p>
+
+<!-- ============================== 大問1 ============================== -->
+<h2>大問1：重ね合わせ・三相回路</h2>
+
+<div class="answer-box">
+<h3>問1-1) 図1.1：交直混在回路（AC源 + DC源 \(E\)）</h3>
+<p>回路：交流源 \(\sqrt{2}V\sin\omega t\) → \(C\)（直列）→ 節点A。節点Aから \(R_1\)（シャント接地）と \(R_2\)（直列）→ \(E\)（直流源）→ 接地。</p>
+
+<h4>重ね合わせの適用</h4>
+<div class="step">
+<b>DC成分（交流源を短絡、Cは直流遮断）：</b><br>
+\(C\) が直流をブロックするため交流側枝に DC 電流は流れない。<br>
+DC 電流経路：\(E \to R_2 \to R_1 \to\) 接地（交流源短絡路経由）<br>
+\[i_{1,\mathrm{DC}} = \frac{E}{R_1+R_2}\]
+<br>
+<b>AC成分（\(E\) を短絡）：</b><br>
+\(E\) 短絡時の回路：\(\sqrt{2}V\sin\omega t \to C \to R_1 \| R_2\)（\(R_1\) と \(R_2\) が並列）<br>
+並列抵抗 \(R_p = R_1R_2/(R_1+R_2)\)、合成インピーダンス：
+\[Z_{AC} = \frac{1}{j\omega C} + R_p\]
+交流電流全体（C を流れる）：\(I_{AC} = \sqrt{2}V/Z_{AC}\)<br>
+\(R_1\) を流れる交流電流（電流分割）：
+\[i_{1,AC} = I_{AC}\cdot\frac{R_2}{R_1+R_2} = \frac{\sqrt{2}V\,j\omega C\,R_2}{(R_1+R_2)(1+j\omega CR_p)}\]
+振幅：
+\[|i_{1,AC}|_{peak} = \frac{\sqrt{2}V\omega C R_2}{(R_1+R_2)\sqrt{1+\omega^2C^2R_p^2}}\]
+</div>
+
+<div class="result">
+<b>瞬時電流：</b>
+\[i_1(t) = \frac{E}{R_1+R_2} + \frac{\sqrt{2}V\omega CR_2}{(R_1+R_2)\sqrt{1+\omega^2C^2R_p^2}}\sin(\omega t+\theta)\]
+ただし \(R_p = R_1R_2/(R_1+R_2)\)、\(\theta = \arctan\!\left(\dfrac{1}{\omega CR_p}\right)\)<br><br>
+<b>平均消費電力：</b>
+\[P_a = R_1\!\left(\frac{E}{R_1+R_2}\right)^2 + R_1\!\left(\frac{V\omega CR_2}{(R_1+R_2)\sqrt{1+\omega^2C^2R_p^2}}\right)^2\]
+（第1項：直流、第2項：交流 RMS 値の積）
+</div>
+
+<h3>問1-2) 図1.2：不平衡三相 Y-Y 回路</h3>
+<p>Y 接続電源（中性点 O：\(v_a, v_b, v_c\)）に不平衡 Y 接続負荷（中性点 N）：\(a\) 相に \(R\)、\(b\) 相に \(3R\)、\(c\) 相に \(2R\)。中性線なし。</p>
+
+<div class="step">
+<b>ミルマンの定理（中性点変位電圧）：</b>
+\[v_{NO} = \frac{v_a\cdot\frac{1}{R}+v_b\cdot\frac{1}{3R}+v_c\cdot\frac{1}{2R}}{\frac{1}{R}+\frac{1}{3R}+\frac{1}{2R}} = \frac{\dfrac{6v_a+2v_b+3v_c}{6R}}{\dfrac{6+2+3}{6R}} = \frac{6v_a+2v_b+3v_c}{11}\]
+</div>
+
+<div class="result">
+\[v_{NO} = \frac{6v_a+2v_b+3v_c}{11}\]
+</div>
+
+<div class="step">
+各相電流（\(v_{xN} = v_x - v_{NO}\)）：
+\[\begin{align*}
+i_a &= \frac{v_a-v_{NO}}{R} = \frac{5v_a-2v_b-3v_c}{11R}\\[4pt]
+i_b &= \frac{v_b-v_{NO}}{3R} = \frac{-2v_a+3v_b-v_c}{11R}\\[4pt]
+i_c &= \frac{v_c-v_{NO}}{2R} = \frac{-3v_a-v_b+4v_c}{11R}
+\end{align*}\]
+確認：\(i_a+i_b+i_c = [(5-2-3)v_a+(-2+3-1)v_b+(-3-1+4)v_c]/(11R) = 0\ \checkmark\)
+</div>
+<div class="result">
+\[i_a = \frac{5v_a-2v_b-3v_c}{11R},\quad i_b = \frac{-2v_a+3v_b-v_c}{11R},\quad i_c = \frac{-3v_a-v_b+4v_c}{11R}\]
+</div>
+</div>
+
+<!-- ============================== 大問2 ============================== -->
+<h2>大問2：無損失伝送線路の過渡応答</h2>
+<p>長さ \(l\)、単位長さインダクタンス \(L\)、静電容量 \(C\) の無損失線路。受端 \((x=l)\) 開放。送端 \((x=0)\) に内部インピーダンス \(Z_0\)・直流電圧 \(E\) の電源を接続、\(t=0\) でスイッチ投入。</p>
+
+<div class="answer-box">
+<h4>問2-1) 特性インピーダンス</h4>
+<div class="result">\[Z_0 = \sqrt{\frac{L}{C}}\]</div>
+
+<h4>問2-2) 伝播速度</h4>
+<div class="result">\[u = \frac{1}{\sqrt{LC}}\]</div>
+
+<h4>問2-3) \(t=0^+\) における送端の電圧・電流</h4>
+<div class="step">
+\(t=0^+\) の瞬間、線路はインピーダンス \(Z_0\) として見える（入射波のみ）。<br>
+電源 \(E\) と内部インピーダンス \(Z_0\) の直列回路から線路（\(Z_0\)）への電力供給：<br>
+電圧分割 → 線路に入る進行波：
+\[V^+ = \frac{Z_0}{Z_0+Z_0}E = \frac{E}{2}, \qquad I^+ = \frac{V^+}{Z_0} = \frac{E}{2Z_0}\]
+</div>
+<div class="result">
+\[v(0^+,0) = \frac{E}{2}, \qquad i(0^+,0) = \frac{E}{2Z_0}\]
+</div>
+
+<h4>問2-4) 線路全体の電圧・電流の時系列変化（\(T = l/u\) と定義）</h4>
+<div class="step">
+<b>反射係数：</b><br>
+・開放端 \((x=l)\)：\(\Gamma_V = +1\)（電圧）、\(\Gamma_I = -1\)（電流）→ 電圧は同位相で全反射<br>
+・整合送端 \((x=0)\)：\(\Gamma = 0\)（内部インピーダンス \(= Z_0\)）→ 反射なし
+</div>
+
+<table>
+  <tr>
+    <th>時間</th>
+    <th>状態の説明</th>
+    <th>\(v(t,x)\)</th>
+    <th>\(i(t,x)\)</th>
+  </tr>
+  <tr>
+    <td>\(0 \lt t \lt T\)</td>
+    <td>進行波（右向き）が \(x=ut\) まで到達</td>
+    <td>\(x \lt ut\)：\(E/2\)<br>\(x \gt ut\)：\(0\)</td>
+    <td>\(x \lt ut\)：\(E/(2Z_0)\)<br>\(x \gt ut\)：\(0\)</td>
+  </tr>
+  <tr>
+    <td>\(T \lt t \lt 2T\)</td>
+    <td>反射波（左向き）が \(x=l\) から \(x=2l-ut\) まで到達</td>
+    <td>\(x \gt 2l-ut\)：\(E\)<br>\(x \lt 2l-ut\)：\(E/2\)</td>
+    <td>\(x \gt 2l-ut\)：\(0\)<br>\(x \lt 2l-ut\)：\(E/(2Z_0)\)</td>
+  </tr>
+  <tr>
+    <td>\(t \gt 2T\)</td>
+    <td>定常状態（送端で反射なし）</td>
+    <td>全域：\(E\)</td>
+    <td>全域：\(0\)</td>
+  </tr>
+</table>
+<div class="note">
+<b>物理解釈：</b><br>
+・進行波（\(V^+=E/2\)）が速度 \(u\) で右へ伝播 → \(t=T\) に開放端到達<br>
+・開放端で \(\Gamma_V=+1\) → 反射波 \(V^-=+E/2\) が左向きに進む（電流は逆符号）<br>
+・反射波通過後：\(v = E/2 + E/2 = E\)、\(i = E/(2Z_0) - E/(2Z_0) = 0\)<br>
+・\(t=2T\) に送端に到達 → 整合（\(\Gamma=0\)）→ 以後反射なし → 定常：\(v=E\)、\(i=0\)
+</div>
+
+<h4>問2-5) \(x=l/2\) における時間応答</h4>
+<div class="step">
+進行波が \(x=l/2\) に到達：\(t_1 = (l/2)/u = T/2\)<br>
+反射波が \(x=l/2\) に到達：\(t_2 = T + (l/2)/u = 3T/2\)
+</div>
+<div class="result">
+\[v(t,\,l/2) = \begin{cases}0 & 0 \lt t \lt T/2 \\ E/2 & T/2 \lt t \lt 3T/2 \\ E & t \gt 3T/2\end{cases}\]
+\[i(t,\,l/2) = \begin{cases}0 & 0 \lt t \lt T/2 \\ E/(2Z_0) & T/2 \lt t \lt 3T/2 \\ 0 & t \gt 3T/2\end{cases}\]
+</div>
+<div class="note">
+電圧は2段のステップ増加（0→\(E/2\)→\(E\)）、電流は矩形パルス（0→\(E/(2Z_0)\)→0）。
+</div>
+</div>
+
+<!-- ============================== 大問3 ============================== -->
+<h2>大問3：コイルの非理想特性と Q 値</h2>
+
+<div class="answer-box">
+<h3>問3-1) Q 値の導出</h3>
+<h4>(a) 直列等価回路（図3.1a：\(R\) 直列 \(L\)）</h4>
+<div class="step">
+\(Z = R + j\omega L\)
+\[Q = \frac{\mathrm{Im}[Z]}{\mathrm{Re}[Z]} = \frac{\omega L}{R}\quad\checkmark\]
+</div>
+
+<h4>(b) 並列等価回路（図3.1b：\(L\) 並列 \(1/G\)）</h4>
+<div class="step">
+\[Z = \frac{j\omega L \cdot (1/G)}{j\omega L + 1/G} = \frac{j\omega L}{1+j\omega LG}\]
+分子・分母に共役をかけて実部・虚部を分離：
+\[\mathrm{Re}[Z] = \frac{\omega^2 L^2 G}{1+\omega^2L^2G^2},\quad \mathrm{Im}[Z] = \frac{\omega L}{1+\omega^2L^2G^2}\]
+\[Q = \frac{\mathrm{Im}[Z]}{\mathrm{Re}[Z]} = \frac{1}{\omega LG}\quad\checkmark\]
+</div>
+
+<h3>問3-2) 図3.2 の合成インピーダンス \(Z_L\)（\(R+j\omega L\) と \(C\) の並列）</h3>
+<div class="step">
+\[Z_L = (R+j\omega L)\,\|\,\frac{1}{j\omega C} = \frac{(R+j\omega L)/(j\omega C)}{R+j\omega L+1/(j\omega C)}\]
+分子・分母を \(j\omega C\) 倍して整理：
+\[Z_L = \frac{R+j\omega L}{(1-\omega^2LC)+j\omega CR}\]
+分母の共役をかけて：
+</div>
+<div class="result">
+\[\mathrm{Re}[Z_L] = \frac{R}{(1-\omega^2LC)^2+\omega^2C^2R^2}\]
+\[\mathrm{Im}[Z_L] = \frac{\omega(L(1-\omega^2LC)-CR^2)}{(1-\omega^2LC)^2+\omega^2C^2R^2} = \frac{\omega(L-\omega^2L^2C-CR^2)}{D}\]
+（\(D = (1-\omega^2LC)^2+\omega^2C^2R^2\)）
+</div>
+
+<h3>問3-3) 図3.2 の Q 値</h3>
+<div class="result">
+\[Q = \frac{\mathrm{Im}[Z_L]}{\mathrm{Re}[Z_L]} = \frac{\omega(L(1-\omega^2LC)-CR^2)}{R} = \frac{\omega L}{R}(1-\omega^2LC) - \omega CR\]
+</div>
+
+<h3>問3-4) 自己共振周波数 \(\omega_{SR}\) の導出</h3>
+<div class="step">
+\(\mathrm{Im}[Z_L]=0\)（リアクタンス成分がゼロ）の条件：
+\[L(1-\omega^2LC)-CR^2 = 0 \Rightarrow L-\omega^2L^2C = CR^2\]
+\[\omega^2 = \frac{L-CR^2}{L^2C} = \frac{1-CR^2/L}{LC}\]
+</div>
+<div class="result">
+\[\omega_{SR} = \sqrt{\frac{1-CR^2/L}{LC}}\quad\checkmark\quad\text{（式(4)と一致）}\]
+</div>
+
+<h3>問3-5) Q 最大の角周波数 \(\omega_p\)（\(\omega_{SR}\) を用いて）</h3>
+<div class="step">
+\(Q(\omega) \approx (\omega L/R)(1-\omega^2LC)\)（\(L \gg CR^2\) の近似）<br>
+\(\dfrac{dQ}{d(\omega^2)}=0\)：
+\[\frac{d}{d(\omega^2)}\left[\frac{\omega L}{R}(1-\omega^2LC)\right] = 0\]
+\[\frac{L}{2R\sqrt{\omega^2}}(1-3\omega^2LC)=0 \Rightarrow \omega^2 = \frac{1}{3LC} = \frac{\omega_{SR}^2}{3}\]
+</div>
+<div class="result">
+\[\omega_p = \frac{\omega_{SR}}{\sqrt{3}}\]
+</div>
+
+<h3>問3-6) \(\mathrm{Im}[Z_L]/\omega\) の \(\omega\) 依存性（\(L \gg CR^2\)）</h3>
+<div class="step">
+近似（\(L \gg CR^2\)、\(\omega CR \ll 1\)）：
+\[\frac{\mathrm{Im}[Z_L]}{\omega} \approx \frac{L(1-\omega^2LC)}{(1-\omega^2LC)^2} = \frac{L}{1-\omega^2LC}\]
+</div>
+<div class="note">
+・\(\omega\to 0\)：\(L/(1-0) = L\)（静的インダクタンス値に収束）<br>
+・\(\omega\to\omega_{SR}^-\)：\(+\infty\)（発散）<br>
+・\(\omega\gt\omega_{SR}\)：負（容量性）<br>
+・\(\omega\to\infty\)：\(0^-\)<br>
+グラフ：\(\omega_{SR}\) で垂直漸近線、左側で正（\(L\) から増大）、右側で負。
+</div>
+
+<h3>問3-7) \(\mathrm{Im}[Z_L]/\omega\) が表すもの</h3>
+<div class="result">
+\(\mathrm{Im}[Z_L]/\omega\) は<b>等価インダクタンス（実効インダクタンス）</b> \(L_{eff}\) を表す。<br>
+\(Z_L = \mathrm{Re}[Z_L] + j\omega L_{eff}\) と書いたとき \(L_{eff} = \mathrm{Im}[Z_L]/\omega\)。<br>
+周波数によって変化し、\(\omega=\omega_{SR}\) で発散（インダクタ・コンデンサの直列共振的な挙動）、\(\omega\gt\omega_{SR}\) で容量性になる。
+</div>
+</div>
+
+<!-- ============================== まとめ ============================== -->
+<h2>解答まとめ</h2>
+<table>
+  <tr><th>問</th><th>主な結果</th></tr>
+  <tr><td>1-1</td><td>\(i_1=E/(R_1{+}R_2)+\frac{\sqrt{2}V\omega CR_2}{(R_1{+}R_2)\sqrt{1{+}\omega^2C^2R_p^2}}\sin(\omega t{+}\theta)\)；\(P_a=R_1\left[\frac{E^2}{(R_1{+}R_2)^2}+\frac{V^2\omega^2C^2R_2^2}{(R_1{+}R_2)^2(1{+}\omega^2C^2R_p^2)}\right]\)</td></tr>
+  <tr><td>1-2</td><td>\(v_{NO}=(6v_a{+}2v_b{+}3v_c)/11\)；\(i_a=(5v_a{-}2v_b{-}3v_c)/(11R)\)等</td></tr>
+  <tr><td>2-1</td><td>\(Z_0=\sqrt{L/C}\)</td></tr>
+  <tr><td>2-2</td><td>\(u=1/\sqrt{LC}\)</td></tr>
+  <tr><td>2-3</td><td>\(v(0^+,0)=E/2\)、\(i(0^+,0)=E/(2Z_0)\)</td></tr>
+  <tr><td>2-4,5</td><td>進行波→開放端反射（\(\Gamma=+1\)）→整合送端で再反射なし；\(v(t,l/2)\)は0→E/2→Eの2段ステップ</td></tr>
+  <tr><td>3-1ab</td><td>直列：\(Q=\omega L/R\)；並列：\(Q=1/(\omega LG)\)</td></tr>
+  <tr><td>3-4</td><td>\(\omega_{SR}=\sqrt{(1-CR^2/L)/(LC)}\)</td></tr>
+  <tr><td>3-5</td><td>\(\omega_p = \omega_{SR}/\sqrt{3}\)</td></tr>
+  <tr><td>3-7</td><td>\(\mathrm{Im}[Z_L]/\omega\) = 等価インダクタンス \(L_{eff}\)</td></tr>
+</table>
+
+<footer>解答解説作成：Claude（Anthropic） ／ H20年度（平成19年8月21日実施）午前 電気回路</footer>
+</body>
+</html>

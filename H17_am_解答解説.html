@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>H17年度 午前 解答解説</title>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "Yu Gothic", "游ゴシック", sans-serif;
+      font-size: 13pt;
+      line-height: 1.8;
+      color: #1a1a2e;
+      background: #f4f7fb;
+      padding: 40px;
+    }
+    h1 { font-size: 20pt; color: #0d2b5e; border-bottom: 3px solid #0d2b5e; padding-bottom: 10px; margin-bottom: 8px; }
+    .subtitle { color: #666; font-size: 11pt; margin-bottom: 36px; }
+    h2 { font-size: 15pt; color: #0d2b5e; margin: 36px 0 16px 0; padding: 8px 16px; background: #e8f0fb; border-left: 5px solid #1e5fa8; border-radius: 4px; }
+    h3 { font-size: 13pt; color: #1e5fa8; margin: 24px 0 10px 0; }
+    h4 { font-size: 12pt; color: #0d2b5e; margin: 18px 0 8px 0; }
+    .answer-box {
+      background: #fff;
+      border: 2px solid #1e5fa8;
+      border-radius: 8px;
+      padding: 18px 24px;
+      margin: 16px 0;
+    }
+    .step {
+      background: #f8faff;
+      border-left: 4px solid #5b9cf6;
+      padding: 10px 18px;
+      margin: 12px 0;
+      border-radius: 0 6px 6px 0;
+    }
+    .result {
+      background: #fffbe6;
+      border: 1px solid #f0c040;
+      border-radius: 6px;
+      padding: 10px 18px;
+      margin: 12px 0;
+      font-weight: bold;
+    }
+    .note {
+      background: #f0f8ff;
+      border: 1px solid #b0d4f8;
+      border-radius: 6px;
+      padding: 10px 18px;
+      margin: 12px 0;
+      font-size: 11.5pt;
+      color: #333;
+    }
+    table { border-collapse: collapse; margin: 12px 0; width: 100%; }
+    th, td { border: 1px solid #c5d8f5; padding: 8px 14px; text-align: center; }
+    th { background: #e8f0fb; color: #0d2b5e; font-weight: bold; }
+    footer { margin-top: 60px; color: #aaa; font-size: 10pt; text-align: center; }
+    .back-link { display: inline-block; margin-bottom: 24px; color: #1e5fa8; text-decoration: none; font-size: 11pt; }
+    .back-link:hover { text-decoration: underline; }
+    .formula-block { text-align: center; margin: 16px 0; }
+  </style>
+</head>
+<body>
+
+<a class="back-link" href="index.html">← 解答解説まとめへ戻る</a>
+<h1>H17年度 午前 解答解説</h1>
+<p class="subtitle">平成16年8月実施 ／ 専門科目（選択式）— 3題から2題選択</p>
+
+<!-- ============================== 大問I ============================== -->
+<h2>大問I：電気数学</h2>
+
+<h3>問題 I-1：グリーン関数</h3>
+<p>境界値問題</p>
+<div class="formula-block">
+  \[\frac{d^2\varphi}{dx^2} = -f(x), \quad \varphi(0)=\varphi(1)=0\]
+</div>
+<p>のグリーン関数 \(G(x, x')\) を求める。</p>
+
+<div class="answer-box">
+<h4>(1) グリーン関数の導出</h4>
+
+<div class="step">
+<b>方法1：ステップ関数積分法</b><br>
+\(\delta\) 関数ソース \(f(x)=\delta(x-x')\) に対して \(\frac{d^2G}{dx^2}=-\delta(x-x')\) を解く。<br><br>
+各領域で \(G''=0\) なので：
+\[G(x,x') = \begin{cases} A x & (x < x') \\ B(1-x) & (x > x') \end{cases}\]
+（境界条件 \(G(0,x')=0,\ G(1,x')=0\) を満たす形）<br><br>
+<b>接続条件</b>（連続性と微分のジャンプ）：
+\[G(x'^-, x') = G(x'^+, x') \Rightarrow Ax' = B(1-x')\]
+\[\left.\frac{dG}{dx}\right|_{x'^+} - \left.\frac{dG}{dx}\right|_{x'^-} = -1 \Rightarrow -B - A = -1\]
+\[A+B=1, \quad Ax'=B(1-x')\]
+これを解くと \(A=1-x',\ B=x'\)。
+</div>
+
+<div class="result">
+\[G(x,x') = \begin{cases} x(1-x') & (x \leq x') \\ x'(1-x) & (x \geq x') \end{cases}\]
+</div>
+
+<h4>(2) 解の表示</h4>
+<div class="step">
+グリーン関数を用いると、一般解は
+\[\varphi(x) = \int_0^1 G(x,x') f(x')\, dx'\]
+</div>
+
+<div class="note">
+<b>対称性確認：</b> \(G(x,x') = G(x',x)\)（自己共役演算子の性質より自然に成立）
+</div>
+</div>
+
+<h3>問題 I-2：複素関数論</h3>
+<div class="answer-box">
+<h4>(1) コーシー・リーマン方程式</h4>
+<div class="step">
+複素関数 \(w = f(z) = u(x,y) + iv(x,y)\)（\(z=x+iy\)）が正則であるための必要十分条件：
+\[\frac{\partial u}{\partial x} = \frac{\partial v}{\partial y}, \qquad \frac{\partial u}{\partial y} = -\frac{\partial v}{\partial x}\]
+</div>
+
+<h4>(2) 等角写像の性質</h4>
+<div class="step">
+正則関数では、\(u(x,y)=\text{const}\) の等位線と \(v(x,y)=\text{const}\) の等位線は直交する。<br>
+（コーシー・リーマン方程式より、\(u\) の勾配ベクトルと \(v\) の勾配ベクトルが直交する）
+</div>
+
+<h4>(3) \(\log_e z\) の正則性</h4>
+<div class="step">
+\(\log_e z = \ln|z| + i\arg(z)\)<br><br>
+\(z = 0\) では定義不能（特異点）。<br>
+また \(\arg(z)\) は多価関数であるため、一価の正則関数として定めるには <b>分枝切断</b> が必要。<br>
+例えば負の実軸に沿って切断すれば、\(\mathbb{C} \setminus \{x \leq 0\}\) 上で正則。
+</div>
+
+<h4>(4) \(w = \log_e(z-1)\) の写像</h4>
+<div class="step">
+\(w = u + iv = \log_e(z-1)\) とおくと：
+\[z - 1 = e^w = e^u(\cos v + i\sin v)\]
+<b>\(u = c\)（実部一定）の像：</b><br>
+\(|z-1| = e^c\) → 複素平面上で点 \((1, 0)\) を中心とする半径 \(e^c\) の円。<br><br>
+<b>\(v = c\)（虚部一定）の像：</b><br>
+\(z-1\) の偏角一定 → 点 \((1,0)\) から出る半直線。
+</div>
+
+<div class="result">
+実部一定 \(u=c\) の曲線は、\(z\) 平面で点 \(z=1\) を中心とする半径 \(e^c\) の円に写像される。
+</div>
+</div>
+
+<!-- ============================== 大問II ============================== -->
+<h2>大問II：電気回路</h2>
+
+<h3>問題 II-1：ノートン等価回路</h3>
+<div class="answer-box">
+<p>電源 \(V_0\)、電流源 \(I_0\)、インピーダンス \(Z_1, Z_2, Z_3\) からなる回路のノートン等価を求める。</p>
+
+<h4>ノートン電流 \(I_N\)</h4>
+<div class="step">
+端子 a-b を短絡したとき流れる電流。<br>
+短絡時、\(Z_3\) の両端電圧は 0。\(V_0\) と \(I_0\) による重ね合わせ：
+\[I_N = \frac{V_0 - I_0 Z_1}{Z_1 + Z_2}\]
+（\(Z_2\) を流れる電流が \(I_N\) となる）
+</div>
+
+<h4>ノートンインピーダンス \(Z_N\)</h4>
+<div class="step">
+独立電源をゼロにして（\(V_0\) を短絡、\(I_0\) を開放）、端子から見たインピーダンス：
+\[Z_N = Z_3 \parallel (Z_1 + Z_2) = \frac{Z_3(Z_1+Z_2)}{Z_1+Z_2+Z_3}\]
+</div>
+
+<div class="result">
+\(I_N = \dfrac{V_0 - I_0 Z_1}{Z_1 + Z_2}\)，\quad \(Z_N = \dfrac{Z_3(Z_1+Z_2)}{Z_1+Z_2+Z_3}\)
+</div>
+</div>
+
+<h3>問題 II-2：理想変圧器・相互インダクタンス</h3>
+<div class="answer-box">
+<p>一次インダクタンス \(L_1\)、二次インダクタンス \(L_2\)、相互インダクタンス \(M\) の変圧器。</p>
+
+<h4>回路方程式（フェーザー）</h4>
+<div class="step">
+KVL より（巻き方向に注意して \(M\) の符号を設定）：
+\[V_1 = j\omega L_1 I_1 - j\omega M I_2\]
+\[V_2 = j\omega M I_1 - j\omega L_2 I_2\]
+</div>
+
+<div class="note">
+理想変圧器（\(M = k\sqrt{L_1 L_2}\)、結合係数 \(k=1\)）では、これらの式が巻線比 \(n = \sqrt{L_1/L_2}\) との関係 \(V_1/V_2 = n\) に帰着する。
+</div>
+</div>
+
+<h3>問題 II-3：RC 伝達関数とボード線図</h3>
+<div class="answer-box">
+<p>オペアンプ回路（帰還抵抗 \(R_0\)、直列 \(R_3\)、コンデンサ \(C\)）の伝達関数を求める。</p>
+
+<h4>伝達関数の導出</h4>
+<div class="step">
+増幅器の入出力関係から：
+\[H(s) \approx \frac{1}{2} \cdot \frac{1 + sC R_3}{1 + sC\!\left(\dfrac{R_0}{2} + R_3\right)}\]
+</div>
+
+<h4>ボード線図のパラメータ</h4>
+<div class="step">
+<table>
+  <tr><th>項目</th><th>式</th><th>値</th></tr>
+  <tr><td>DC ゲイン</td><td>\(|H(0)| = 1/2\)</td><td>\(-6\) dB</td></tr>
+  <tr><td>零点（ゼロクロス角周波数）</td><td>\(\omega_2 = 1/(CR_3)\)</td><td>\(10^{10}\) rad/s</td></tr>
+  <tr><td>極（カットオフ角周波数）</td><td>\(\omega_1 = 2/(CR_0)\)</td><td>\(10^{8}\) rad/s</td></tr>
+</table>
+<br>
+\(\omega_1 < \omega_2\) なので、\(\omega_1\) 以上で \(+20\) dB/dec、\(\omega_2\) 以上で平坦に戻る位相補償型特性。
+</div>
+
+<div class="result">
+極 \(\omega_1 = 10^8\) rad/s → 零点 \(\omega_2 = 10^{10}\) rad/s の順で折れ点が現れ、高域ゲインは DC と同じ \(-6\) dB に戻る。
+</div>
+</div>
+
+<h3>問題 II-4：VCCS（電圧制御電流源）回路とインピーダンス整合</h3>
+<div class="answer-box">
+<p>相互コンダクタンス \(g\)、インダクタ \(L\)、キャパシタ \(C\) からなる VCCS 回路の入力インピーダンスとインピーダンス整合。</p>
+
+<h4>(1) 入力インピーダンス</h4>
+<div class="step">
+端子から見た並列構成（コンダクタンス \(g\)、キャパシタ \(C\)、インダクタ \(L\) の並列）：
+\[Z_{in}(s) = \frac{1}{g + sC + \dfrac{1}{sL}}\]
+</div>
+
+<h4>(2) インピーダンス整合条件</h4>
+<div class="step">
+信号源インピーダンス \(R_s\) に整合させる（\(Z_{in} = R_s\)）。<br><br>
+共振角周波数 \(\omega_0 = 1/\sqrt{LC}\) において虚部がゼロになり：
+\[Z_{in}(\omega_0) = \frac{1}{g}\]
+整合条件：
+\[g = \frac{1}{R_s}\]
+</div>
+
+<h4>(3) 整合時の電力利得</h4>
+<div class="step">
+負荷 \(R_L\) への電力利得：
+\[G = g R_L = \frac{R_L}{R_s}\]
+</div>
+
+<div class="result">
+\(g = 1/R_s\) のとき共振周波数 \(\omega_0 = 1/\sqrt{LC}\) でインピーダンス整合し、電力利得 \(G = R_L/R_s\)。
+</div>
+</div>
+
+<!-- ============================== 大問III ============================== -->
+<h2>大問III：電磁気学</h2>
+<h3>問題 III-1：誘電体部分挿入コンデンサ</h3>
+<div class="answer-box">
+<p>辺の長さ \(a\) の正方形電極（間隔 \(d\））に、比誘電率 \(\varepsilon_r = 2\)、厚さ \(d/2\) の誘電体スラブを x 方向に長さ \(x\) だけ挿入。電荷 \(Q\) を与える。</p>
+
+<h4>(1) 静電容量 \(C(x)\)</h4>
+<div class="step">
+<b>誘電体が入っている領域（面積 \(ax\)）：</b><br>
+誘電体スラブ（厚さ \(d/2\)、\(\varepsilon_r=2\)）と真空層（厚さ \(d/2\)）が直列：
+\[C_1 = \frac{\varepsilon_0 ax}{d/2 + d/(2\varepsilon_r)} = \frac{\varepsilon_0 ax}{d/2 + d/4} = \frac{4\varepsilon_0 ax}{3d}\]
+
+<b>誘電体が入っていない領域（面積 \(a(a-x)\)）：</b>
+\[C_2 = \frac{\varepsilon_0 a(a-x)}{d}\]
+
+<b>並列接続</b>なので：
+\[C(x) = C_1 + C_2 = \frac{4\varepsilon_0 ax}{3d} + \frac{\varepsilon_0 a(a-x)}{d} = \frac{\varepsilon_0 a^2}{d} + \frac{\varepsilon_0 ax}{3d}\]
+</div>
+
+<div class="result">
+\[C(x) = \frac{\varepsilon_0 a^2}{d} + \frac{\varepsilon_0 ax}{3d} = \frac{\varepsilon_0 a}{3d}(3a + x)\]
+</div>
+
+<h4>(2) 面電荷密度 \(\sigma\)</h4>
+<div class="step">
+電圧 \(V = Q/C(x)\)。<br><br>
+<b>誘電体なし領域の上電極（\(D_2 = \varepsilon_0 E_2\)）：</b>
+\[E_2 = \frac{V}{d}, \quad \sigma_2 = \varepsilon_0 E_2 = \frac{\varepsilon_0 Q}{d C(x)}\]
+
+<b>誘電体あり領域の上電極（電束密度連続 \(D_1\) ）：</b><br>
+各層の電界を \(E_a\)（真空層）、\(E_b\)（誘電体層）として：
+\[\varepsilon_0 E_a = \varepsilon_0 \varepsilon_r E_b \Rightarrow E_a = 2E_b\]
+\[E_a \cdot \frac{d}{2} + E_b \cdot \frac{d}{2} = V \Rightarrow \frac{3d}{4} E_b = V \Rightarrow E_b = \frac{4V}{3d}\]
+\[\sigma_1 = \varepsilon_0 \varepsilon_r E_b = 2\varepsilon_0 \cdot \frac{4V}{3d} = \frac{8\varepsilon_0 V}{3d} = \frac{8\varepsilon_0 Q}{3d C(x)}\]
+</div>
+
+<div class="result">
+\[\sigma_2 = \frac{\varepsilon_0 Q}{d C(x)}, \qquad \sigma_1 = \frac{8\varepsilon_0 Q}{3d C(x)}\]
+（\(\sigma_1 / \sigma_2 = 8/3\)）
+</div>
+
+<h4>(3) 電荷 \(Q\) 一定のもとで \(x = a/2 + b\sin\omega t\) のとき</h4>
+<div class="step">
+\(C(x) = \dfrac{\varepsilon_0 a}{3d}(3a+x)\) を時間微分すると：
+\[\dot{C} = \frac{\varepsilon_0 a}{3d}\dot{x} = \frac{\varepsilon_0 a b\omega}{3d}\cos\omega t\]
+電圧 \(V(t) = Q/C(x(t))\) を展開：<br>
+\(x = a/2\) のとき \(C_0 = C(a/2) = \dfrac{\varepsilon_0 a}{3d}\cdot\dfrac{7a}{2} = \dfrac{7\varepsilon_0 a^2}{6d}\)<br><br>
+\(b \ll a\) として線形近似：
+\[C(x) \approx C_0 + \frac{\varepsilon_0 a}{3d} b\sin\omega t\]
+\[V(t) \approx \frac{Q}{C_0}\left(1 - \frac{\varepsilon_0 ab}{3d C_0}\sin\omega t\right)\]
+振動振幅成分（\(D_\omega\)）のうち \(\omega\) 成分を求めると、\(\sigma_2\) の振動成分は：
+\[D_\omega = \frac{12 Q b}{49 a^3}\]
+（\(C_0 = 7\varepsilon_0 a^2/(6d)\) の値を代入して整理）
+</div>
+</div>
+
+<!-- ============================== まとめ ============================== -->
+<h2>解答まとめ</h2>
+<table>
+  <tr><th>大問</th><th>問題</th><th>主な結果</th></tr>
+  <tr><td>I-1</td><td>グリーン関数</td><td>\(G = x(1-x')\; (x\leq x'),\quad x'(1-x)\; (x\geq x')\)</td></tr>
+  <tr><td>I-2</td><td>複素関数</td><td>C-R 条件、等位線直交、\(\log(z-1)\) → 円族</td></tr>
+  <tr><td>II-1</td><td>ノートン等価</td><td>\(I_N = (V_0-I_0 Z_1)/(Z_1+Z_2)\)，\(Z_N = Z_3 \parallel(Z_1+Z_2)\)</td></tr>
+  <tr><td>II-2</td><td>相互インダクタンス</td><td>\(V_1=j\omega L_1 I_1 - j\omega M I_2\)，\(V_2=j\omega M I_1 - j\omega L_2 I_2\)</td></tr>
+  <tr><td>II-3</td><td>RC 伝達関数</td><td>DC \(-6\) dB，極 \(\omega_1=10^8\)，零 \(\omega_2=10^{10}\) rad/s</td></tr>
+  <tr><td>II-4</td><td>VCCS 整合</td><td>\(g=1/R_s\) で \(\omega_0=1/\sqrt{LC}\) 整合，\(G=R_L/R_s\)</td></tr>
+  <tr><td>III</td><td>部分挿入誘電体 C</td><td>\(C = \varepsilon_0 a(3a+x)/(3d)\)，\(D_\omega = 12Qb/(49a^3)\)</td></tr>
+</table>
+
+<footer>
+  解答解説作成：Claude（Anthropic） ／ H17年度（平成16年8月実施）午前 専門科目
+</footer>
+</body>
+</html>

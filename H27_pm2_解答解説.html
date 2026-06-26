@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>H27年度 専門科目午後2 電磁気学 解答解説</title>
+  <script>
+    MathJax = {
+      tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']], tags: 'ams' },
+      options: { skipHtmlTags: ['script','noscript','style','textarea','pre'] }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: "Yu Gothic","游ゴシック",sans-serif; font-size: 13pt; line-height: 1.9; color: #1a1a2e; background: #f4f7fb; padding: 40px; }
+    h1 { font-size: 19pt; color: #0d2b5e; border-bottom: 3px solid #0d2b5e; padding-bottom: 10px; margin-bottom: 6px; }
+    .meta { color: #666; font-size: 11pt; margin-bottom: 36px; }
+    h2 { font-size: 15pt; color: #0d2b5e; background: #e8f0fb; border-left: 5px solid #1e5fa8; padding: 8px 14px; margin: 40px 0 16px; border-radius: 0 6px 6px 0; }
+    h3 { font-size: 13pt; color: #1e5fa8; border-bottom: 1px solid #c5d8f5; margin: 28px 0 10px; padding-bottom: 4px; }
+    .answer-box { background: #fff; border: 2px solid #1e5fa8; border-radius: 6px; padding: 14px 20px; margin: 12px 0; }
+    .step { background: #eef4ff; border-left: 3px solid #5b8dee; padding: 10px 16px; margin: 10px 0; border-radius: 0 4px 4px 0; }
+    .note { background: #fffbe6; border-left: 4px solid #f0ad00; padding: 10px 16px; margin: 12px 0; border-radius: 0 4px 4px 0; font-size: 11.5pt; }
+    table { border-collapse: collapse; width: 100%; margin: 16px 0; font-size: 11.5pt; }
+    th { background: #0d2b5e; color: #fff; padding: 8px 12px; text-align: center; }
+    td { border: 1px solid #c5d8f5; padding: 8px 12px; text-align: center; }
+    td.left { text-align: left; }
+    tr:nth-child(even) td { background: #f0f6ff; }
+    footer { margin-top: 60px; color: #aaa; font-size: 10pt; text-align: center; }
+    @media print { body { background: #fff; padding: 20px; } }
+  </style>
+</head>
+<body>
+
+<h1>H27年度 専門科目 午後2（電磁気学）解答解説</h1>
+<p class="meta">東京工業大学 大学院修士課程入試（平成26年8月19日実施）</p>
+
+<!-- ===== 大問1 ===== -->
+<h2>大問1　平行平板コンデンサへの誘電体挿入</h2>
+<p>電極板一辺 $a$（面積 $a^2$），間隔 $b$，誘電体板（同寸法，厚さ $b$）を左端から挿入。</p>
+
+<h3>1-a)　誘電体の位置が $x$ のときの静電容量 $C$</h3>
+<div class="step">
+誘電体が占める面積：$a \times x$（容量 $\varepsilon_f \times ax/b$）
+真空が占める面積：$a \times (a-x)$（容量 $\varepsilon_0 \times a(a-x)/b$）
+これらは並列接続：
+</div>
+<div class="answer-box">
+$$\boxed{C = \frac{a}{b}\bigl[\varepsilon_0 a + (\varepsilon_f - \varepsilon_0)x\bigr]}$$
+$x=0$：$C = \varepsilon_0 a^2/b$（真空），$x=a$：$C=\varepsilon_f a^2/b$（全充填）
+</div>
+
+<h3>1-b)　電荷 $+Q, -Q$ を与えたときの誘電体に働く力</h3>
+<div class="step">
+電荷一定（孤立系）での仮想変位法。静電エネルギー $U = Q^2/(2C)$：
+$$F = -\frac{\partial U}{\partial x}\bigg|_{Q=\text{const}} = -\frac{\partial}{\partial x}\!\left(\frac{Q^2}{2C}\right) = \frac{Q^2}{2C^2}\frac{dC}{dx}$$
+
+$\dfrac{dC}{dx} = \dfrac{a(\varepsilon_f-\varepsilon_0)}{b} > 0$（$\varepsilon_f > \varepsilon_0$ より）
+
+$F > 0$ → 誘電体は $+x$ 方向（コンデンサ内部に引き込まれる方向）に引力を受ける。
+</div>
+<div class="answer-box">
+$$\boxed{F = \frac{Q^2 a(\varepsilon_f-\varepsilon_0)}{2b\,C^2} = \frac{Q^2(\varepsilon_f-\varepsilon_0)b}{2a\bigl[\varepsilon_0 a+(\varepsilon_f-\varepsilon_0)x\bigr]^2}}$$
+方向：$+x$ 方向（誘電体がコンデンサ内に引き込まれる）
+</div>
+<div class="note">
+直感：$\varepsilon_f > \varepsilon_0$ なので誘電体を挿入するほど $C$ が増加 → エネルギーが減少（$Q$ 一定） → 自発的に挿入が進む。
+</div>
+
+<h3>2)　誘電率が $\varepsilon(x)=\varepsilon_1+\dfrac{\varepsilon_2-\varepsilon_1}{a}x$ のコンデンサの静電容量</h3>
+<div class="step">
+誘電率が $x$ に依存するため，幅 $dx$ の無限小スライスを並列コンデンサとして積分：
+$$dC = \varepsilon(x)\frac{a\,dx}{b}, \quad C = \int_0^a \frac{a\,\varepsilon(x)}{b}\,dx$$
+
+$$= \frac{a}{b}\int_0^a \left(\varepsilon_1 + \frac{\varepsilon_2-\varepsilon_1}{a}x\right)dx = \frac{a}{b}\left[\varepsilon_1 a + \frac{\varepsilon_2-\varepsilon_1}{a}\cdot\frac{a^2}{2}\right] = \frac{a^2}{b}\cdot\frac{\varepsilon_1+\varepsilon_2}{2}$$
+</div>
+<div class="answer-box">
+$$\boxed{C = \frac{a^2(\varepsilon_1+\varepsilon_2)}{2b}}$$
+（$\varepsilon_1$ と $\varepsilon_2$ の算術平均に対応する容量）
+</div>
+
+<!-- ===== 大問2 ===== -->
+<h2>大問2　平行導体板間の体積電荷分布</h2>
+<p>導体 A（接地，$V=0$）：$x=-d/3$，導体 B（電荷 $=0$）：$x=2d/3$。
+体積電荷：$-d/3<x\le 0$ で $\rho_1=-2\rho_0$，$0\le x<2d/3$ で $\rho_2=\rho_0$。</p>
+
+<h3>問1)　各導体板での電界境界条件（ガウスの法則による説明）</h3>
+<div class="step">
+全電荷を確認：
+$$\rho_1\cdot\frac{d}{3} + \rho_2\cdot\frac{2d}{3} = (-2\rho_0)\cdot\frac{d}{3} + \rho_0\cdot\frac{2d}{3} = 0$$
+全体積電荷は零。ガウスの法則 $\displaystyle\oint_S \varepsilon_0\boldsymbol{E}\cdot d\boldsymbol{A} = Q_{\rm enc}$ を導体板 A から B を囲む閉曲面に適用：
+$$\varepsilon_0 E\!\left(\frac{2d}{3}\right) - \varepsilon_0 E\!\left(-\frac{d}{3}\right) = \frac{\text{全電荷}}{\text{面積}} = 0$$
+
+導体 B の電荷 $=0$ → ガウスの法則より $E(2d/3^-) = \sigma_B/\varepsilon_0 = 0$（表面電荷なし）。
+上式に代入 → $E(-d/3^+) = 0$（導体 A も表面電荷なし，$\sigma_A=0$）。
+</div>
+<div class="answer-box">
+$$x=-\frac{d}{3}:\quad E = 0 \quad \text{（導体 A の表面電荷はゼロ → 電界もゼロ）}$$
+$$x=+\frac{2d}{3}:\quad E = 0 \quad \text{（導体 B の電荷がゼロ → 境界条件 } \varepsilon_0 E = \sigma_B = 0\text{）}$$
+</div>
+
+<h3>問2)　電位分布 $V(x)$，電界分布 $E(x)$，導体 B の電位 $V_B$</h3>
+<div class="step">
+$\varepsilon_0 dE/dx = \rho(x)$ を積分（境界条件 $E(-d/3^+)=0$）：
+
+<b>領域 1（$-d/3 \le x \le 0$）：</b>
+$$E_1(x) = \frac{1}{\varepsilon_0}\int_{-d/3}^{x}\rho_1\,dt = \frac{-2\rho_0}{\varepsilon_0}\left(x+\frac{d}{3}\right)$$
+
+<b>領域 2（$0 \le x \le 2d/3$）：</b>
+連続条件 $E_2(0)=E_1(0)=-2\rho_0 d/(3\varepsilon_0)$ から：
+$$E_2(x) = \frac{\rho_0}{\varepsilon_0}(x-\frac{2d}{3})$$
+検証：$E_2(2d/3)=0$ ✓
+
+電位（$V(-d/3)=0$，$V=-\int E\,dx$）：
+
+<b>領域 1：</b>
+$$V_1(x) = -\int_{-d/3}^{x}E_1\,dx = \frac{\rho_0}{\varepsilon_0}\left(x+\frac{d}{3}\right)^2$$
+
+<b>領域 2（$V_2(0)=V_1(0)=\rho_0 d^2/(9\varepsilon_0)$）：</b>
+$$V_2(x) = \frac{\rho_0 d^2}{9\varepsilon_0} - \frac{\rho_0}{\varepsilon_0}\left(\frac{x^2}{2}-\frac{2d}{3}x\right)$$
+
+導体 B の電位：
+$$V_B = V_2\!\left(\frac{2d}{3}\right) = \frac{\rho_0 d^2}{9\varepsilon_0} - \frac{\rho_0}{\varepsilon_0}\left(\frac{2d^2}{9}-\frac{4d^2}{9}\right) = \frac{\rho_0 d^2}{9\varepsilon_0} + \frac{2\rho_0 d^2}{9\varepsilon_0} = \frac{\rho_0 d^2}{3\varepsilon_0}$$
+</div>
+<div class="answer-box">
+$$E(x) = \begin{cases} \dfrac{-2\rho_0}{\varepsilon_0}\!\left(x+\dfrac{d}{3}\right) & \left(-\dfrac{d}{3}\le x\le 0\right) \\[8pt] \dfrac{\rho_0}{\varepsilon_0}\!\left(x-\dfrac{2d}{3}\right) & \left(0\le x\le\dfrac{2d}{3}\right)\end{cases}$$
+
+$$V(x) = \begin{cases} \dfrac{\rho_0}{\varepsilon_0}\!\left(x+\dfrac{d}{3}\right)^2 & \left(-\dfrac{d}{3}\le x\le 0\right) \\[8pt] \dfrac{\rho_0 d^2}{9\varepsilon_0} - \dfrac{\rho_0}{\varepsilon_0}\!\left(\dfrac{x^2}{2}-\dfrac{2d}{3}x\right) & \left(0\le x\le\dfrac{2d}{3}\right)\end{cases}$$
+
+$$\boxed{V_B = \frac{\rho_0 d^2}{3\varepsilon_0}}$$
+</div>
+
+<h3>問3)　導体板 A の単位面積当たりの電荷密度</h3>
+<div class="answer-box">
+境界条件より $E(-d/3^+)=0$、したがって $\varepsilon_0 E(-d/3^+) = \sigma_A$：
+$$\boxed{\sigma_A = 0}$$
+（両体積電荷の正負が完全に打ち消し合い，導体表面に電荷は誘起されない）
+</div>
+
+<h3>問4)　電荷境界が $x=a$（$-d/3 < a < 2d/3$）のときの条件</h3>
+<div class="step">
+境界条件が成立（$E(-d/3^+)=0$ かつ $E(2d/3^-)=0$）するには，ガウスの法則より全体積電荷が零：
+$$\rho_1 \times\left(a-\left(-\frac{d}{3}\right)\right) + \rho_2 \times\left(\frac{2d}{3}-a\right) = 0$$
+</div>
+<div class="answer-box">
+$$\boxed{\rho_1\!\left(a+\frac{d}{3}\right) + \rho_2\!\left(\frac{2d}{3}-a\right) = 0}$$
+または：$\rho_1(3a+d) + \rho_2(2d-3a) = 0$
+</div>
+
+<!-- ===== 大問3 ===== -->
+<h2>大問3　無限長直線状導線と矩形コイル</h2>
+<p>無限長直線状導線（$y$ 軸上，電流 $I_1$ 上向き）と矩形コイル（$2a \times b$，中心 $x=R$）が $x$-$y$ 平面上にある。$R > a$。</p>
+
+<h3>1-a)　距離 $x$ での磁束密度 $B(x)$</h3>
+<div class="step">
+アンペールの法則（$\oint B\,dl = \mu_0 I_{\rm enc}$）で半径 $x$ の円周：
+$$B(x) \cdot 2\pi x = \mu_0 I_1$$
+</div>
+<div class="answer-box">
+$$\boxed{B(x) = \frac{\mu_0 I_1}{2\pi x}}$$
+（$I_1$ の向きに対して右ねじ方向、コイル面法線 = $-z$ 方向）
+</div>
+
+<h3>1-b)　相互インダクタンス $M$</h3>
+<div class="step">
+コイルは $x = R-a$ から $x = R+a$ にわたり，幅 $dx$ のストリップを積分：
+$$\Phi = \int_{R-a}^{R+a}\! B(x)\cdot b\,dx = \frac{\mu_0 I_1 b}{2\pi}\int_{R-a}^{R+a}\!\frac{dx}{x} = \frac{\mu_0 I_1 b}{2\pi}\ln\frac{R+a}{R-a}$$
+</div>
+<div class="answer-box">
+$$\boxed{M = \frac{\Phi}{I_1} = \frac{\mu_0 b}{2\pi}\ln\frac{R+a}{R-a}}$$
+</div>
+
+<h3>1-c)　導線とコイルの間に働く力 $F$</h3>
+<div class="step">
+電流一定での仮想変位法（または各辺への力の直接計算）：
+$$F = I_1 I_2\frac{dM}{dR}$$
+
+$$\frac{dM}{dR} = \frac{\mu_0 b}{2\pi}\left(\frac{1}{R+a}-\frac{1}{R-a}\right) = \frac{\mu_0 b}{2\pi}\cdot\frac{-2a}{R^2-a^2}$$
+
+$$F = I_1 I_2 \cdot \frac{-\mu_0 ab}{\pi(R^2-a^2)}$$
+
+$I_1 I_2 > 0$ なら $F < 0$（引力，コイルは導線に近づく向き）。
+</div>
+<div class="answer-box">
+$$\boxed{F = \frac{\mu_0 a b I_1 I_2}{\pi(R^2-a^2)}}$$
+向き：図のような電流方向（$I_1 I_2 > 0$）なら<b>引力（導線方向，$-x$ 方向）</b>。
+</div>
+
+<h3>2-a)　コイルを角度 $\theta$ 回転させたときの鎖交磁束 $\Phi(\theta)$</h3>
+<div class="step">
+回転軸：$x=R$ の $y$ 軸に平行な直線。コイルを $\theta$ 回転後：
+- 左辺（もとの $x=R-a$）の導線からの距離：$r_{\rm left} = \sqrt{R^2-2aR\cos\theta+a^2}$
+- 右辺（もとの $x=R+a$）の距離：$r_{\rm right} = \sqrt{R^2+2aR\cos\theta+a^2}$
+
+（余弦定理 $C^2=A^2+B^2-2AB\cos\gamma$ に対応：$A=R$，$B=a$，$\gamma=\theta$ および $\pi-\theta$）
+
+ベクトルポテンシャル法（$A_y = -\mu_0 I_1/(2\pi)\ln r$）による鎖交磁束：
+$$\Phi(\theta) = \oint \boldsymbol{A}\cdot d\boldsymbol{l}$$
+
+導線に平行な辺のみ寄与（上辺・下辺は $A_y$ に直交するので寄与なし）：
+$$\Phi(\theta) = A_y(r_{\rm left})\cdot b - A_y(r_{\rm right})\cdot b = \frac{\mu_0 I_1 b}{2\pi}\ln\frac{r_{\rm right}}{r_{\rm left}}$$
+</div>
+<div class="answer-box">
+$$\boxed{\Phi(\theta) = \frac{\mu_0 I_1 b}{4\pi}\ln\frac{R^2+a^2+2aR\cos\theta}{R^2+a^2-2aR\cos\theta}}$$
+
+確認：$\theta=0$→$\Phi=(\mu_0 I_1 b/2\pi)\ln[(R+a)/(R-a)]$ ✓；$\theta=\pi/2$→$\Phi=0$（コイル面が $B$ と平行）✓
+</div>
+
+<h3>2-b)　角周波数 $\omega$ で回転したときの誘導起電力 $V$</h3>
+<div class="step">
+$\theta = \omega t$ として $V = -d\Phi/dt = -\omega\,d\Phi/d\theta$：
+
+$$\frac{d\Phi}{d\theta} = \frac{\mu_0 I_1 b}{4\pi}\cdot\frac{d}{d\theta}\ln\frac{P}{Q}, \quad P=R^2+a^2+2aR\cos\theta,\quad Q=R^2+a^2-2aR\cos\theta$$
+
+$$= \frac{\mu_0 I_1 b}{4\pi}\left(\frac{-2aR\sin\theta}{P} - \frac{2aR\sin\theta}{Q}\right) = \frac{\mu_0 I_1 b}{4\pi}\cdot(-2aR\sin\theta)\cdot\frac{P+Q}{PQ}$$
+
+$P+Q = 2(R^2+a^2)$，$PQ=(R^2+a^2)^2-4a^2R^2\cos^2\theta$：
+
+$$\frac{d\Phi}{d\theta} = -\frac{\mu_0 I_1 b \cdot 2aR(R^2+a^2)\sin\theta}{\pi\bigl[(R^2+a^2)^2-4a^2R^2\cos^2\theta\bigr]}$$
+</div>
+<div class="answer-box">
+$$\boxed{V = \frac{\mu_0 I_1 b\omega \cdot 2aR(R^2+a^2)\sin(\omega t)}{\pi\bigl[(R^2+a^2)^2-4a^2R^2\cos^2(\omega t)\bigr]}}$$
+
+最大値（$\theta=\pi/2$）：$V_{\max}=\dfrac{2\mu_0 I_1 b\omega aR}{\pi(R^2+a^2)}$
+</div>
+
+<!-- ===== まとめ ===== -->
+<h2>解答まとめ</h2>
+<table>
+  <tr><th>大問</th><th>問</th><th>解答</th></tr>
+  <tr><td rowspan="3">1<br>コンデンサ</td>
+    <td>1-a)</td><td class="left">$C = (a/b)[\varepsilon_0 a+(\varepsilon_f-\varepsilon_0)x]$</td></tr>
+  <tr><td>1-b)</td><td class="left">$F = Q^2(\varepsilon_f-\varepsilon_0)b/\{2a[\varepsilon_0 a+(\varepsilon_f-\varepsilon_0)x]^2\}$ (+x方向，引力)</td></tr>
+  <tr><td>2)</td><td class="left">$C = a^2(\varepsilon_1+\varepsilon_2)/(2b)$</td></tr>
+  <tr><td rowspan="4">2<br>体積電荷</td>
+    <td>1)</td><td class="left">$E(-d/3)=0$，$E(2d/3)=0$（両導体板の表面電荷ゼロ）</td></tr>
+  <tr><td>2)</td><td class="left">$E_1=-2\rho_0(x+d/3)/\varepsilon_0$；$E_2=\rho_0(x-2d/3)/\varepsilon_0$；$V_B=\rho_0 d^2/(3\varepsilon_0)$</td></tr>
+  <tr><td>3)</td><td class="left">$\sigma_A = 0$</td></tr>
+  <tr><td>4)</td><td class="left">$\rho_1(a+d/3)+\rho_2(2d/3-a)=0$</td></tr>
+  <tr><td rowspan="5">3<br>電磁誘導</td>
+    <td>1-a)</td><td class="left">$B(x)=\mu_0 I_1/(2\pi x)$</td></tr>
+  <tr><td>1-b)</td><td class="left">$M=(\mu_0 b/2\pi)\ln[(R+a)/(R-a)]$</td></tr>
+  <tr><td>1-c)</td><td class="left">$F=\mu_0 abI_1I_2/[\pi(R^2-a^2)]$（引力）</td></tr>
+  <tr><td>2-a)</td><td class="left">$\Phi(\theta)=(\mu_0 I_1 b/4\pi)\ln[(R^2+a^2+2aR\cos\theta)/(R^2+a^2-2aR\cos\theta)]$</td></tr>
+  <tr><td>2-b)</td><td class="left">$V=2\mu_0 I_1 b\omega aR(R^2+a^2)\sin(\omega t)/\{\pi[(R^2+a^2)^2-4a^2R^2\cos^2(\omega t)]\}$</td></tr>
+</table>
+
+<footer>解答解説作成：Claude（Anthropic）</footer>
+</body>
+</html>

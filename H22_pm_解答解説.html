@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>H22年度 電磁気学（午後）解答解説</title>
+  <script>
+    MathJax = { tex: { inlineMath: [['$','$']], displayMath: [['$$','$$']] } };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: "Yu Gothic", "游ゴシック", sans-serif; font-size: 13pt; line-height: 1.9; color: #1a1a2e; background: #f4f7fb; padding: 40px; }
+    h1 { font-size: 20pt; color: #0d2b5e; border-bottom: 3px solid #0d2b5e; padding-bottom: 10px; margin-bottom: 6px; }
+    .subtitle { color: #666; font-size: 11pt; margin-bottom: 36px; }
+    h2 { font-size: 15pt; color: #0d2b5e; margin: 40px 0 16px; padding: 8px 16px; background: #e8f0fb; border-left: 5px solid #1e5fa8; border-radius: 4px; }
+    h3 { font-size: 13pt; color: #1e5fa8; margin: 28px 0 10px; border-bottom: 1px solid #c5d8f5; padding-bottom: 4px; }
+    .answer-box { background: #fff; border: 1px solid #c5d8f5; border-radius: 8px; padding: 20px 28px; margin: 12px 0 20px; }
+    .step { background: #f0f6ff; border-left: 3px solid #1e5fa8; padding: 10px 18px; margin: 10px 0; border-radius: 0 4px 4px 0; }
+    .result { background: #fff8e1; border: 2px solid #f9a825; border-radius: 6px; padding: 10px 18px; margin: 12px 0; font-weight: bold; }
+    .note { background: #f3f9f3; border-left: 3px solid #4caf50; padding: 8px 16px; margin: 10px 0; font-size: 11.5pt; color: #2e5f2e; }
+    footer { margin-top: 60px; color: #aaa; font-size: 10pt; text-align: center; }
+    a { color: #1e5fa8; }
+  </style>
+</head>
+<body>
+
+<h1>H22年度 電磁気学（午後）解答解説</h1>
+<p class="subtitle">平成20年8月18日実施 ／ 専門科目 電磁気学（電気電子工学・電子物理工学）</p>
+
+<!-- ===== 大問1 ===== -->
+<h2>大問1：線電荷の電位と電界</h2>
+
+<h3>問1）y=0 面上の電界の絶対値（図1.1：+q at (a,a)）</h3>
+<div class="answer-box">
+  <div class="step">
+    点 $(a,a)$ にある線電荷 $+q$ から $y=0$ 面上の点 $(x,0,z)$ までの距離：
+    $$r = \sqrt{(x-a)^2 + a^2}$$
+    （$z$ 方向には電界がないので $z$ に依存しない）<br>
+    無限長線電荷の電界の大きさ：$E = q/(2\pi\varepsilon_0 r)$
+  </div>
+  <div class="result">
+    $$\boxed{|\boldsymbol{E}(x,0,z)| = \frac{q}{2\pi\varepsilon_0\sqrt{(x-a)^2+a^2}}}$$
+    方向：$(a,a)$ から $(x,0)$ 向きの単位ベクトル $\hat{\boldsymbol{r}} = \dfrac{(x-a,\,-a)}{r}$
+  </div>
+</div>
+
+<h3>問2）y=0 面上の電位（V(0,0,0)=0）</h3>
+<div class="answer-box">
+  <div class="step">
+    線電荷の電位（積分定数 $C$ を含む形）：
+    $$V = -\frac{q}{2\pi\varepsilon_0}\ln r + C$$
+    $y=0$ での $r = \sqrt{(x-a)^2+a^2}$。原点 $(0,0,0)$ では $r_0 = \sqrt{a^2+a^2}=a\sqrt{2}$。<br>
+    条件 $V(0,0,0)=0$ より：
+    $$C = \frac{q}{2\pi\varepsilon_0}\ln(a\sqrt{2})$$
+  </div>
+  <div class="result">
+    $$\boxed{V(x,0,z) = \frac{q}{4\pi\varepsilon_0}\ln\frac{2a^2}{(x-a)^2+a^2}}$$
+  </div>
+</div>
+
+<h3>問3）z=0の xy 面での無限遠の電位</h3>
+<div class="answer-box">
+  <div class="result">
+    $r \to \infty$ のとき $V \sim -\dfrac{q}{2\pi\varepsilon_0}\ln r \to -\infty$
+    $$\boxed{V(\infty,\infty,0) = -\infty}$$
+    単一線電荷の電位はログ発散するため，無限遠では有限値をとれない。
+  </div>
+</div>
+
+<h3>問4）4本の線電荷（図1.2）の y=0 面上の電位</h3>
+<div class="answer-box">
+  <div class="step">
+    4本の線電荷の位置と電荷密度：
+    <ul style="margin:6px 0 6px 20px;">
+      <li>$+q$ at $(a,a)$：$r_1 = \sqrt{(x-a)^2+a^2}$</li>
+      <li>$+q$ at $(-a,-a)$：$r_2 = \sqrt{(x+a)^2+a^2}$</li>
+      <li>$-q$ at $(a,-a)$：$r_3 = \sqrt{(x-a)^2+a^2} = r_1$</li>
+      <li>$-q$ at $(-a,a)$：$r_4 = \sqrt{(x+a)^2+a^2} = r_2$</li>
+    </ul>
+    合計電位（$y=0$ 上で $r_1=r_3$，$r_2=r_4$）：
+    $$V = \frac{q}{2\pi\varepsilon_0}(-\ln r_1 - \ln r_2 + \ln r_3 + \ln r_4) + C = 0 + C$$
+  </div>
+  <div class="result">
+    $$\boxed{V(x,0,z) = 0}$$
+    $y=0$ 平面は 4 本の線電荷に対して等電位面（$V=0$）となっている。
+  </div>
+</div>
+
+<h3>問5）xy 平面上の電気力線（図示）</h3>
+<div class="answer-box">
+  <p>4本の線電荷の配置（$+q$ at $(\pm a, \pm a)$の対角線上，$-q$ at $(a,-a),(−a,a)$）はクアドルポール配置。</p>
+  <ul style="margin:8px 0 8px 20px;">
+    <li>$+q$ at $(a,a)$ および $+q$ at $(-a,-a)$ から電気力線が出る</li>
+    <li>$-q$ at $(a,-a)$ および $-q$ at $(-a,a)$ に電気力線が入る</li>
+    <li>$y=x$ 軸および $y=-x$ 軸が対称軸（等電位面）</li>
+    <li>原点で電界 $= 0$（電気力線の鞍点）</li>
+    <li>$+q$ から出た電気力線はそれぞれ最も近い $-q$ の線電荷に入る（双極子ペアの重ね合わせに相当）</li>
+  </ul>
+  <div class="note">
+    電気力線の大局的パターン：右上 $(a,a)$ の $+q$ から出た線は右下 $(a,-a)$ と左上 $(-a,a)$ の $-q$ に分かれて入る。左下 $(-a,-a)$ の $+q$ から出た線も同様。$y=0$ および $x=0$ 直線は等電位面（$V=0$）で，電気力線はこれらの面と直交して通過する。
+  </div>
+</div>
+
+<h3>問6）z=0 の xy 面での無限遠の電位</h3>
+<div class="answer-box">
+  <div class="step">
+    クアドルポール配置では，大きな距離 $R$ での電位はそれぞれの線電荷 $\ln R$ 項が打ち消し合い，残差は $1/R$ オーダー以下（2次元クアドルポールは $1/R^2$ で減衰）。
+  </div>
+  <div class="result">
+    $$\boxed{V(\infty,\infty,0) = 0}$$
+    4本の総電荷・総双極子モーメントがともに 0 のため，遠方では電位はゼロに収束する。
+  </div>
+</div>
+
+<h3>問7）4本に囲まれた空間内で電界最小の場所</h3>
+<div class="answer-box">
+  <div class="step">
+    原点 $(0,0,z)$ での電界を計算する。4本の線電荷はいずれも原点から距離 $a\sqrt{2}$ 。<br>
+    各電荷からの電界の $xy$ 成分を足し合わせると：
+    <ul style="margin:6px 0 6px 20px;">
+      <li>$+q$ at $(a,a)$：$(-1,-1)/\sqrt{2}$ 方向</li>
+      <li>$+q$ at $(-a,-a)$：$(+1,+1)/\sqrt{2}$ 方向</li>
+      <li>$-q$ at $(a,-a)$：$(+1,-1)/\sqrt{2}$ 方向（負電荷に向かう）</li>
+      <li>$-q$ at $(-a,a)$：$(-1,+1)/\sqrt{2}$ 方向</li>
+    </ul>
+    $x$ 成分の和 $= (-1+1+1-1)/\sqrt{2} = 0$，$y$ 成分の和 $= (-1+1-1+1)/\sqrt{2} = 0$
+  </div>
+  <div class="result">
+    電界は $\boxed{(0,0,z) \text{（任意の }z\text{）}}$ で最小値 $|\boldsymbol{E}| = \boxed{0}$ をとる。
+  </div>
+  <div class="note">これはクアドルポールの中心での電界打ち消し点。原点は電気力線の鞍点（$V=0$ の等電位面の交点）に対応。</div>
+</div>
+
+<h3>問8）y=0 面上の電界と絶対値の最大値</h3>
+<div class="answer-box">
+  <div class="step">
+    $y=0$ 上の点 $(x,0,z)$ での電界 $x$ 成分は，問4 の結果（$V=0$ は $x$ 変化でも一定）より $E_x=0$。$y$ 成分のみ残る。<br>
+    各線電荷からの $y$ 成分を計算：
+    $$E_y = \frac{q}{2\pi\varepsilon_0}\left[\frac{-a}{(x-a)^2+a^2}+\frac{+a}{(x+a)^2+a^2}+\frac{-a}{(x-a)^2+a^2}+\frac{+a}{(x+a)^2+a^2}\right]$$
+    $$= \frac{-qa}{\pi\varepsilon_0}\left[\frac{1}{(x-a)^2+a^2} - \frac{1}{(x+a)^2+a^2}\right]$$
+    積 $((x-a)^2+a^2)((x+a)^2+a^2) = (x^2+2a^2)^2-(2ax)^2 = x^4+4a^4$ を使うと：
+  </div>
+  <div class="result">
+    $$\boldsymbol{E}(x,0,z) = \frac{-4qa^2 x}{\pi\varepsilon_0(x^4+4a^4)}\,\hat{\boldsymbol{y}}$$
+    （$x>0$ で $-\hat{y}$ 方向，$x<0$ で $+\hat{y}$ 方向）
+  </div>
+  <div class="step">
+    最大値：$f(x) = x/(x^4+4a^4)$ を微分してゼロに：
+    $$\frac{d}{dx}\frac{x}{x^4+4a^4} = \frac{4a^4-3x^4}{(x^4+4a^4)^2} = 0 \implies x_{\max} = a\left(\frac{4}{3}\right)^{1/4}$$
+    $x_{\max}^4 = 4a^4/3$ を代入：$x_{\max}^4+4a^4 = 16a^4/3$
+    $$|E|_{\max} = \frac{4qa^2\cdot a(4/3)^{1/4}}{\pi\varepsilon_0\cdot 16a^4/3} = \frac{3^{3/4}\sqrt{2}\,q}{4\pi\varepsilon_0 a}$$
+  </div>
+  <div class="result">
+    $$|E|_{\max} = \frac{3^{3/4}\sqrt{2}}{4\pi\varepsilon_0 a}\,q \approx \frac{0.81\,q}{\pi\varepsilon_0 a}$$
+    位置：$x = \pm a(4/3)^{1/4}$，$y=0$（任意の $z$）
+  </div>
+</div>
+
+<!-- ===== 大問2 ===== -->
+<h2>大問2：マクスウェル方程式と表皮効果</h2>
+
+<h3>問1）アンペアの周回積分の法則</h3>
+<div class="answer-box">
+  <div class="result">
+    積分形：$$\oint_C \boldsymbol{H}\cdot d\boldsymbol{l} = I$$
+    微分形：$$\nabla\times\boldsymbol{H} = \boldsymbol{i}$$
+    （$C$ を右手でとる向き＝電流の正方向）
+  </div>
+  <div class="note">厳密には $\nabla\times\boldsymbol{H} = \boldsymbol{i} + \partial\boldsymbol{D}/\partial t$。本問では変位電流を省略している。</div>
+</div>
+
+<h3>問2）ファラデーの電磁誘導の法則</h3>
+<div class="answer-box">
+  <div class="result">
+    積分形：$$\oint_C \boldsymbol{E}\cdot d\boldsymbol{l} = -\frac{d\Phi}{dt}$$
+    微分形：$$\nabla\times\boldsymbol{E} = -\frac{\partial\boldsymbol{B}}{\partial t}$$
+    （右ねじの関係：$C$ の周回方向と磁束 $\Phi$ の正方向）
+  </div>
+</div>
+
+<h3>問3）無限長円柱導体内外の磁界</h3>
+<div class="answer-box">
+  <div class="step">
+    導体内（$r \le a$）：アンペアの法則で半径 $r$ の円経路を取ると，閉路内電流 $= I\times r^2/a^2$。
+    $$H\cdot 2\pi r = I\frac{r^2}{a^2} \implies H = \frac{Ir}{2\pi a^2}$$
+    導体外（$r > a$）：
+    $$H\cdot 2\pi r = I \implies H = \frac{I}{2\pi r}$$
+  </div>
+  <div class="result">
+    $$H(r) = \begin{cases} \dfrac{Ir}{2\pi a^2} & (r \le a) \\ \dfrac{I}{2\pi r} & (r > a) \end{cases}$$
+    → <b>導体内にも磁界は存在する</b>。点 P における方向：電流方向を右ねじとする円周接線方向（$\hat{\varphi}$ 方向）。
+  </div>
+</div>
+
+<h3>問4）並行線間の信号漏洩（電磁誘導クロストーク）</h3>
+<div class="answer-box">
+  <div class="step">
+    <b>誘導起電力が生じる理由</b>：往復線路 1 の AB（電流 $+\hat{x}$）と CD（電流 $-\hat{x}$）を流れる交流電流が，空間に時間変化する磁束密度 $\boldsymbol{B}$ を作る。この磁束が往復線路 2 のループを通ることで，ファラデーの法則により起電力が誘導される。
+  </div>
+  <div class="step">
+    <b>電圧振幅の導出</b>：座標設定（往復線路 1 の間隔 $a_1$，往復線路 2 の間隔 $a_2$，線路間距離 $d$）。<br>
+    $y=0$ を往復線路 2 の下方ワイヤ，$y=a_2$ を上方ワイヤ，$y=a_2+d$ を線路 1 下方ワイヤ（CD），$y=a_2+d+a_1$ を線路 1 上方ワイヤ（AB）とする。<br>
+    線路 2 のループ面積（幅 $l_2$，高さ $a_2$）を通る磁束：
+    $$\Phi = \mu_0 l_2 \int_0^{a_2}\left[\frac{I}{2\pi(d+a_2-y)} - \frac{I}{2\pi(d+a_1+a_2-y)}\right]dy$$
+    $$= \frac{\mu_0 l_2 I}{2\pi}\left[\ln\frac{d+a_2}{d} - \ln\frac{d+a_1+a_2}{d+a_1}\right]
+    = \frac{\mu_0 l_2 I}{2\pi}\ln\frac{(d+a_1)(d+a_2)}{d(d+a_1+a_2)}$$
+  </div>
+  <div class="result">
+    誘導電圧振幅：
+    $$\boxed{|V| = \omega\frac{\mu_0 l_2}{2\pi}\ln\frac{(d+a_1)(d+a_2)}{d(d+a_1+a_2)}\times I}$$
+    近似（$a_1,a_2 \ll d$）：$|V| \approx \dfrac{\omega\mu_0 l_2 a_1 a_2}{2\pi d^2}\times I$
+  </div>
+  <div class="note">相互インダクタンス $M = \dfrac{\mu_0 l_2}{2\pi}\ln\dfrac{(d+a_1)(d+a_2)}{d(d+a_1+a_2)}$ を用いると $|V|=\omega MI$。</div>
+</div>
+
+<h3>問5-a）表皮効果の定性的説明</h3>
+<div class="answer-box">
+  <p>交流電流が導体表面近くに流れると，その電流の作る磁束が導体内部を貫く。この磁束の時間変化がファラデーの法則によって導体内部に渦電流（誘導電流）を誘起する。この誘導電流は元の電流の変化を妨げる方向（レンツの法則）なので，内部の合成電流が打ち消され，電流は表面近傍のみに流れるようになる。これが表皮効果である。</p>
+</div>
+
+<h3>問5-b）電流密度の方程式導出（$\nabla\times$ 形式）</h3>
+<div class="answer-box">
+  <div class="step">
+    $\boldsymbol{B}=\mu_0\boldsymbol{H}$，$\boldsymbol{i}=\kappa\boldsymbol{E}$ より：<br>
+    問1) $\nabla\times\boldsymbol{H} = \boldsymbol{i}$，問2) $\nabla\times\boldsymbol{E} = -j\omega\boldsymbol{B} = -j\omega\mu_0\boldsymbol{H}$<br>
+    $\nabla\times\boldsymbol{H} = \boldsymbol{i}$ を $\nabla\times$ を取る：
+    $$\nabla\times(\nabla\times\boldsymbol{H}) = \nabla\times\boldsymbol{i} = \kappa\nabla\times\boldsymbol{E} = -j\omega\mu_0\kappa\boldsymbol{H}$$
+    一方，問1) より $\nabla\times(\nabla\times\boldsymbol{H}) = \nabla\times\boldsymbol{i}$，$\boldsymbol{i}=\kappa\boldsymbol{E}$ なので：
+    $$\nabla\times(\nabla\times\boldsymbol{i}) = j\omega\mu_0\kappa\,\boldsymbol{i}$$
+  </div>
+  <div class="result">
+    恒等式 $\nabla\times\nabla\times\boldsymbol{i} = \nabla(\nabla\cdot\boldsymbol{i}) - \nabla^2\boldsymbol{i}$ と $\nabla\cdot\boldsymbol{i}=0$ を用いて：
+    $$\boxed{\nabla^2\boldsymbol{i} = j\omega\mu_0\kappa\,\boldsymbol{i}}$$
+  </div>
+</div>
+
+<h3>問5-c）半無限導体でのスカラー微分方程式</h3>
+<div class="answer-box">
+  <div class="step">
+    $\boldsymbol{i} = (i,0,0)$，$i$ は $x, y$ に依存せず $t$ 依存は $e^{j\omega t}$。<br>
+    $\nabla^2 i = \partial^2 i/\partial z^2$（$x,y$ 依存なし）。
+  </div>
+  <div class="result">
+    $$\boxed{\frac{d^2 i}{dz^2} = j\omega\mu_0\kappa\, i}$$
+  </div>
+</div>
+
+<h3>問5-d）解 $i(z,t)$</h3>
+<div class="answer-box">
+  <div class="step">
+    特性方程式：$k^2 = j\omega\mu_0\kappa$
+    $$k = \sqrt{j\omega\mu_0\kappa} = \frac{1+j}{\delta},\quad \delta = \sqrt{\frac{2}{\omega\mu_0\kappa}}\text{（表皮深さ）}$$
+    $z\to\infty$ で減衰する解のみ取る（$+k$ の指数）：
+  </div>
+  <div class="result">
+    $$\boxed{i(z,t) = i_0\,\exp\!\left(-\frac{z}{\delta}\right)\exp\!\left[j\!\left(\omega t - \frac{z}{\delta}\right)\right]}$$
+    実部：$i(z,t) = i_0\exp(-z/\delta)\cos(\omega t - z/\delta)$
+  </div>
+</div>
+
+<h3>問5-e）定量的説明の追加</h3>
+<div class="answer-box">
+  <p>電流密度は表面（$z=0$）の振幅 $i_0$ から深さ $z$ で $e^{-z/\delta}$ に指数的に減衰する。</p>
+  <div class="result">
+    表皮深さ（スキンデプス）：$\delta = \sqrt{\dfrac{2}{\omega\mu_0\kappa}}$
+  </div>
+  <ul style="margin:8px 0 8px 20px;">
+    <li>$\delta$ は周波数 $\omega$ が高いほど，導電率 $\kappa$ が大きいほど小さい。</li>
+    <li>深さ $\delta$ で振幅が $1/e\approx37\%$ に低下し，実効的に電流は表面から $\delta$ の厚さの層に集中する。</li>
+    <li>例：銅（$\kappa=5.8\times10^7$ S/m）の 50Hz では $\delta\approx9.3$ mm，1 MHz では $\delta\approx66$ μm。</li>
+  </ul>
+</div>
+
+<footer>
+  解答解説作成：Claude（Anthropic） ／ <a href="index.html">← 一覧に戻る</a>
+</footer>
+</body>
+</html>

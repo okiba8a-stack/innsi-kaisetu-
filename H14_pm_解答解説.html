@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>H14年度 専門科目（午後）解答解説</title>
+  <script>
+    MathJax = { tex: { inlineMath: [['$','$']], displayMath: [['$$','$$']] } };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: "Yu Gothic", "游ゴシック", sans-serif; font-size: 13pt; line-height: 1.9; color: #1a1a2e; background: #f4f7fb; padding: 40px; }
+    h1 { font-size: 20pt; color: #0d2b5e; border-bottom: 3px solid #0d2b5e; padding-bottom: 10px; margin-bottom: 6px; }
+    .subtitle { color: #666; font-size: 11pt; margin-bottom: 36px; }
+    h2 { font-size: 15pt; color: #0d2b5e; margin: 40px 0 16px; padding: 8px 16px; background: #e8f0fb; border-left: 5px solid #1e5fa8; border-radius: 4px; }
+    h3 { font-size: 13pt; color: #1e5fa8; margin: 28px 0 10px; border-bottom: 1px solid #c5d8f5; padding-bottom: 4px; }
+    .answer-box { background: #fff; border: 1px solid #c5d8f5; border-radius: 8px; padding: 20px 28px; margin: 12px 0 20px; }
+    .step { background: #f0f6ff; border-left: 3px solid #1e5fa8; padding: 10px 18px; margin: 10px 0; border-radius: 0 4px 4px 0; }
+    .result { background: #fff8e1; border: 2px solid #f9a825; border-radius: 6px; padding: 10px 18px; margin: 12px 0; font-weight: bold; }
+    .note { background: #f3f9f3; border-left: 3px solid #4caf50; padding: 8px 16px; margin: 10px 0; font-size: 11.5pt; color: #2e5f2e; }
+    footer { margin-top: 60px; color: #aaa; font-size: 10pt; text-align: center; }
+    a { color: #1e5fa8; }
+    .select-badge { display: inline-block; background: #1e5fa8; color: #fff; border-radius: 4px; padding: 2px 10px; font-size: 10pt; margin-bottom: 8px; }
+  </style>
+</head>
+<body>
+
+<h1>H14年度 専門科目（午後）解答解説</h1>
+<p class="subtitle">平成13年8月実施 ／ 4科目から1題選択（電力・エネルギー / 波動・通信 / 電気物性 / 電子デバイス・回路システム）</p>
+
+<!-- ===== 問題1：電力・エネルギー ===== -->
+<h2>問題1：電力・エネルギー</h2>
+<span class="select-badge">1題選択</span>
+
+<h3>1）単相二線式配電線路のフェーザ解析</h3>
+<div class="answer-box">
+  <div class="step">
+    <b>a）回路の関係式</b>：$\dot{E}_s = \dot{E}_r + (R+jX)\dot{I}$<br>
+    電圧降下：$\Delta\dot{E} = (R+jX)\dot{I} = RI\cos\phi - XI\sin\phi + j(RI\sin\phi + XI\cos\phi)$<br>
+    フェーザ図：$\dot{E}_r$ を基準（実軸方向）に取り、$\dot{I}$ は $\phi$ だけ遅れる方向に描く。$R\dot{I}$（$\dot{I}$ と同方向）と $jX\dot{I}$（$\dot{I}$ より$90°$進み方向）を加えると $\dot{E}_s$ に到達する。
+  </div>
+  <div class="step">
+    <b>b）電圧降下の大きさ $\Delta E$</b>：$\Delta E = |\dot{E}_s| - |\dot{E}_r|$<br>
+    近似式（$\theta\ll1$のとき）：
+    $$\Delta E \approx RI\cos\phi + XI\sin\phi$$
+    （$\dot{E}_s$ の $\dot{E}_r$ 方向への射影の差）
+  </div>
+  <div class="step">
+    <b>c・d）コンデンサ並列接続</b>：コンデンサ電流 $\dot{I}_c$ は $\dot{E}_r$ より$90°$進みで純容量性。
+    コンデンサ追加後の線路電流 $\dot{I}' = \dot{I} + \dot{I}_c$（ベクトル和）。
+    力率角 $\phi'$ の改善により、$\Delta E' < \Delta E$（電圧降下が減少）。
+    <br><br>
+    <b>目的</b>：電力系統では負荷並列にコンデンサを接続して<b>力率を改善</b>し、線路電流（無効分）を減らして電力損失を低減・受電端電圧の改善・系統の安定度向上を図る（<b>進相コンデンサによる無効電力補償</b>）。
+  </div>
+</div>
+
+<h3>2）三相誘導電動機</h3>
+<div class="answer-box">
+  <div class="step">
+    <b>a）回転磁界</b>：$t=0$ では相 a の起磁力が最大（図1.4の向き）。$t=T/3$ ではb相最大に、$t=2T/3$ ではc相最大に順次回転 → 合成起磁力ベクトルが一定速度で回転（回転磁界）。これが誘導電動機の動作原理。
+  </div>
+  <div class="step">
+    <b>b）同期速度</b>：図1.5の三相電流は周期 $T=20$ms（50Hz）→ $f=50$Hz。2極機（図1.4は2極）の同期速度：
+    $$N_s = \frac{120f}{p} = \frac{120\times50}{2} = 3000 \text{ [rpm]}$$
+  </div>
+  <div class="step">
+    <b>c）負荷時の動作</b>：回転子に誘導電流が流れ、その電流と回転磁界の相互作用でトルクが発生する（アラゴの円板の原理）。回転子速度 $N$ は同期速度 $N_s$ より低い（すべり $s=(N_s-N)/N_s>0$）。
+  </div>
+  <div class="step">
+    <b>d）b相とc相を入替</b>：相順が A-C-B（逆相）になり、回転磁界の回転方向が逆転 → 電動機の回転方向が逆になる。
+  </div>
+</div>
+
+<h3>3）速度サーボ機構</h3>
+<div class="answer-box">
+  <div class="step">
+    <b>a）ブロック線図</b>：<br>
+    入力 $\theta$ → $K_p$ → （比較点：$-K_t\omega$を減算）→ $K_a$ → 電機子回路（$1/(R_a+Ls)$的な）→ トルク $K_m i_a$ → （$1/(Js)$）→ $\omega$<br>
+    フィードバック：$\omega$ → $K_t$ → 比較点
+  </div>
+  <div class="step">
+    <b>b）伝達関数</b>：電機子方程式（定常・低速近似）：電機子電圧 $= K_a K_p\theta - K_t K_a\omega$、電機子電流 $i_a = (K_aK_p\theta - K_aK_t\omega - K_m\omega)/R_a$（定常近似）<br>
+    運動方程式：$J\dot{\omega} = K_m i_a$<br>
+    ラプラス変換・ブロック線図から：
+    $$G(s) = \frac{\omega(s)}{\theta(s)} = \frac{K_pK_aK_m/R_a}{Js + K_mK_t K_a/R_a + K_m^2/R_a}$$
+  </div>
+</div>
+
+<!-- ===== 問題2：波動・通信 ===== -->
+<h2>問題2：波動・通信（電磁波・AM/FM変調）</h2>
+<span class="select-badge">1題選択</span>
+
+<h3>問1-a）アンペアの法則からマクスウェル方程式の導出</h3>
+<div class="answer-box">
+  <div class="step">
+    アンペアの法則（積分形）：閉曲線 $C$ に沿ったHの線積分は，$C$ を境界とする面 $S$ を通る全電流に等しい：
+    $$\oint_C \boldsymbol{H}\cdot d\boldsymbol{l} = \iint_S \left(\boldsymbol{J}_{cond} + \frac{\partial\boldsymbol{D}}{\partial t}\right)\cdot d\boldsymbol{S}$$
+    第2項は<b>変位電流</b>（マクスウェルが追加）で，$\boldsymbol{D} = \varepsilon\boldsymbol{E}$，$\partial\boldsymbol{D}/\partial t \to j\omega\varepsilon\boldsymbol{E}$（正弦定常）。
+    ストークスの定理：$\oint_C \boldsymbol{H}\cdot d\boldsymbol{l} = \iint_S (\nabla\times\boldsymbol{H})\cdot d\boldsymbol{S}$。
+    自由空間（$\boldsymbol{J}_{cond}=0$）では：
+    $$\nabla\times\boldsymbol{H} = j\omega\varepsilon\boldsymbol{E} \qquad\blacksquare$$
+  </div>
+</div>
+
+<h3>問1-b）磁界 $\boldsymbol{H}$ の導出</h3>
+<div class="answer-box">
+  <div class="step">
+    $\boldsymbol{E} = \hat{x}ae^{j\omega t-jkz}$ に式(2) $\nabla\times\boldsymbol{E} = -j\omega\mu\boldsymbol{H}$ を適用：
+    $$\nabla\times\boldsymbol{E} = \hat{y}\frac{\partial E_x}{\partial z} = \hat{y}(-jk)ae^{j\omega t-jkz}$$
+    よって $-j\omega\mu\boldsymbol{H} = -jk\hat{y}ae^{j\omega t-jkz}$：
+  </div>
+  <div class="result">
+    $$\boldsymbol{H} = \frac{k}{\omega\mu}\hat{y}ae^{j\omega t-jkz}$$
+  </div>
+</div>
+
+<h3>問1-c）定数 $k$ の条件（分散関係）</h3>
+<div class="answer-box">
+  <div class="step">
+    求めた $\boldsymbol{H}$ を式(1) に代入：
+    $\nabla\times\boldsymbol{H} = \hat{x}\!\left(-\frac{\partial H_y}{\partial z}\right) = \hat{x}\,jk\cdot\frac{k}{\omega\mu}ae^{j\omega t-jkz}$
+
+    これが $j\omega\varepsilon\boldsymbol{E} = j\omega\varepsilon\hat{x}ae^{j\omega t-jkz}$ に等しい条件：
+    $$\frac{k^2}{\omega\mu} = \omega\varepsilon \implies k^2 = \omega^2\mu\varepsilon$$
+  </div>
+  <div class="result">
+    $$k = \omega\sqrt{\mu\varepsilon}$$
+  </div>
+</div>
+
+<h3>問1-d）位相速度</h3>
+<div class="answer-box">
+  <div class="result">
+    $$v_p = \frac{\omega}{k} = \frac{1}{\sqrt{\mu\varepsilon}}$$
+    真空中：$v_p = 1/\sqrt{\mu_0\varepsilon_0} = c \approx 3\times10^8$ m/s（光速）
+  </div>
+</div>
+
+<h3>問1-e）$z=0$ における $E$, $H$, 進行方向 $\hat{z}$ の関係</h3>
+<div class="answer-box">
+  <div class="step">
+    $\boldsymbol{E} = a\hat{x}$，$\boldsymbol{H} = (a/Z_0)\hat{y}$（$Z_0 = \sqrt{\mu/\varepsilon}$：波動インピーダンス），進行方向 $+\hat{z}$。
+
+    関係：$\hat{x}\times\hat{y} = \hat{z}$（右手系）→ $\boldsymbol{E}\times\boldsymbol{H}$ の方向が進行方向 $+\hat{z}$（ポインティングベクトル）。
+    $E$，$H$，$\hat{z}$ は互いに直交する（横波）。振幅比 $|E|/|H| = Z_0$（波動インピーダンス）。
+  </div>
+</div>
+
+<h3>問1-f）完全導体境界での定在波</h3>
+<div class="answer-box">
+  <div class="step">
+    合成電界（$z<0$）：
+    $$\boldsymbol{E} = \boldsymbol{E}^i + \boldsymbol{E}^r = \hat{x}ae^{-jkz}e^{j\omega t} + (-\hat{x}ae^{jkz})e^{j\omega t} = \hat{x}a(e^{-jkz}-e^{jkz})e^{j\omega t}$$
+    $= -2ja\hat{x}\sin(kz)\,e^{j\omega t}$
+
+    実部（物理的電界）：$E_x = 2a\sin(kz)\sin(\omega t)$
+  </div>
+  <div class="step">
+    包絡線（時間平均を取った振幅）：$|E_x|_{\max} = 2a|\sin(kz)|$
+
+    <b>節</b>（$E=0$）：$kz = -n\pi$ → $z = -n\lambda/2$（$n=0,1,2,...$）　$z=0$（導体面）は節。
+
+    <b>腹</b>（$|E|$最大 $= 2a$）：$kz = -(2n-1)\pi/2$ → $z = -(2n-1)\lambda/4$（$n=1,2,...$）
+    最初の腹は $z = -\lambda/4$。
+  </div>
+  <div class="note">
+    完全導体面（$z=0$）での境界条件：$E_{tan}=0$（電界の接線成分がゼロ）→ 反射波の電界は入射波と逆符号 → 式(5)の $-\hat{x}$ が確認される。定在波の特徴：エネルギーが進行方向に輸送されない（$z$ 方向の時間平均ポインティングベクトル = 0）。
+  </div>
+</div>
+
+<h3>問2-a）AM変調波の電力</h3>
+<div class="answer-box">
+  <div class="step">
+    $e(t) = e_0(1+m\sin\omega_s t)\sin\omega_c t$，$m=2/3$。
+    図2.2より最大振幅 $= 30$V → $e_0(1+m) = e_0(1+2/3) = \frac{5}{3}e_0 = 30$ V → $e_0 = 18$ V。
+
+    <b>尖頭電力</b>（瞬時最大）：$P_{peak} = e_{max}^2/R = 30^2/75 = 12$ W
+
+    <b>平均電力</b>：$P_{ave} = \dfrac{e_0^2}{2R}\!\left(1+\dfrac{m^2}{2}\right) = \dfrac{18^2}{150}\!\left(1+\dfrac{2}{9}\right) = 2.16\times\dfrac{11}{9} \approx 2.64$ W
+
+    <b>搬送波電力</b>：$P_c = e_0^2/(2R) = 324/150 = 2.16$ W
+  </div>
+  <div class="result">
+    $e_0 = 18$ V，$P_{peak} = 12$ W，$P_{ave} \approx 2.64$ W，$P_c = 2.16$ W
+  </div>
+</div>
+
+<h3>問2-b）搬送波成分を除いた電力</h3>
+<div class="answer-box">
+  <div class="step">
+    搬送波除去後：$e'(t) = \dfrac{me_0}{2}[\cos(\omega_c-\omega_s)t - \cos(\omega_c+\omega_s)t]$（側波帯のみ）
+
+    各側波帯の振幅：$me_0/2 = 12/2 = 6$ V。両側波帯の合成最大：$me_0 = 12$ V。
+    $$P'_{peak} = \frac{(me_0)^2}{R} = \frac{144}{75} = 1.92 \text{ W}$$
+    $$P'_{ave} = 2\times\frac{(me_0/2)^2}{2R} = \frac{m^2e_0^2}{4R} = \frac{4/9\times324}{300} = 0.48 \text{ W}$$
+  </div>
+  <div class="result">
+    $P'_{peak} = 1.92$ W，$P'_{ave} = 0.48$ W
+  </div>
+</div>
+
+<h3>問2-c）FM変調の瞬時角周波数</h3>
+<div class="answer-box">
+  <div class="step">
+    $e(t) = e_0\sin(\omega_c t + \beta\sin\omega_s t)$，$\beta = Kv_0/\omega_s$：
+    $$\omega_{inst}(t) = \frac{d}{dt}(\omega_c t + \beta\sin\omega_s t) = \omega_c + \beta\omega_s\cos\omega_s t$$
+  </div>
+  <div class="result">
+    $$\omega_{inst}(t) = \omega_c + Kv_0\cos\omega_s t$$
+    （$\beta\omega_s = (Kv_0/\omega_s)\cdot\omega_s = Kv_0$，$v_s(t)=v_0\cos\omega_s t$ の係数が最大周波数偏移）
+  </div>
+</div>
+
+<h3>問2-d）搬送波成分がゼロになる $v_0$</h3>
+<div class="answer-box">
+  <div class="step">
+    $e(t) = e_0\sum_{n=-\infty}^\infty J_n(\beta)\sin[(\omega_c+n\omega_s)t]$ の搬送波成分は $J_0(\beta)\sin(\omega_c t)$。
+    $J_0(\beta)=0$ の最小値：図2.4より $\beta=2.40$（最初），$\beta=5.52$（次）。
+
+    問題より $v_0=0.8$Vで初めて消えた → $\beta = Kv_0/\omega_s = 2.40$ → $K/\omega_s = 3.0$ V$^{-1}$。
+
+    再び消えるのは $\beta = 5.52$ → $v_0 = 5.52\omega_s/K = 5.52/3.0 = 1.84$ V
+  </div>
+  <div class="result">
+    再び搬送波成分が消えるのは $v_0 = 1.84$ V
+  </div>
+</div>
+
+<!-- ===== 問題3：電気物性 ===== -->
+<h2>問題3：電気物性（半導体・誘電体）</h2>
+<span class="select-badge">1題選択</span>
+
+<h3>1）半導体の電流と移動度</h3>
+<div class="answer-box">
+  <div class="step">
+    <b>(3.1) 電子ドリフト電流密度</b>：$J_n = qn\mu E$（$q$：電子電荷，$n$：電子濃度，$\mu$：移動度，$E$：電界）
+
+    <b>(3.2) 電子拡散電流密度</b>：$J_d = qD_n\dfrac{dn}{dx}$（$D_n$：拡散係数，濃度勾配駆動）
+
+    <b>(3.4) アインシュタインの関係</b>：$D_n/\mu = kT/q$（$k$：ボルツマン定数，$T$：絶対温度）
+
+    導出：熱平衡で全電流ゼロ → $J_n + J_d = 0$ → $qn\mu E + qD_n(dn/dx) = 0$。
+    熱平衡の電界（フェルミエネルギー一様）と電子濃度の勾配の関係 $(n \propto e^{(E_F-E_i)/kT})$ を使うと $D_n/\mu = kT/q$。
+  </div>
+  <div class="step">
+    <b>b）移動度の温度依存性</b>：2種類の散乱機構：
+    <ul>
+      <li><b>格子（フォノン）散乱</b>：高温では格子振動が活発で散乱増大 → 移動度 $\mu\propto T^{-3/2}$ で低下</li>
+      <li><b>イオン化不純物散乱</b>：低温でキャリアの速度が遅くなりクーロン散乱の影響増大 → 移動度 $\mu\propto T^{3/2}$ で低下</li>
+    </ul>
+    図3.1：高温では格子散乱支配（右下がり），低温では不純物散乱支配（左下がり）。不純物濃度が高いほど不純物散乱による低下が大きい。
+  </div>
+</div>
+
+<h3>2）誘電体の誘電分極</h3>
+<div class="answer-box">
+  <div class="step">
+    <b>a-i）局所電界 $E_l \ne E$</b>：誘電体中の原子は周囲の双極子からの電界（ローレンツ補正）を受けるため，外部電界Eとは異なる内部電界を感じる（ローレンツの局所電界）。
+
+    <b>a-ii）分極率と比誘電率</b>：$\mu = \alpha E_l$，$P = N\mu = N\alpha E_l$，$E_l = E + P/(3\varepsilon_0)$：
+    $$P = N\alpha\left(E + \frac{P}{3\varepsilon_0}\right)$$
+    $P = (\varepsilon_r-1)\varepsilon_0 E$（比誘電率の定義）を代入して整理すると：
+    $$\frac{N\alpha}{3\varepsilon_0} = \frac{\varepsilon_r - 1}{\varepsilon_r + 2}$$
+    （クラウジウス–モソッティの関係）
+  </div>
+  <div class="step">
+    <b>b-i）復元力 $F = -kx$</b>：電子が$x$だけ変位したとき，$x$内部の正電荷量（球の部分）= $Q(x/r)^3$（体積比）。
+    電子に働くクーロン力：$F = \frac{Q\cdot(-Q)(x/r)^3}{4\pi\varepsilon_0 x^2} = -\frac{Q^2}{4\pi\varepsilon_0 r^3}x$
+    $$k = \frac{Q^2}{4\pi\varepsilon_0 r^3}$$
+
+    <b>b-ii）変位 $x$</b>：$E_l(-Q) = -kx$ より $x = Q E_l/k = 4\pi\varepsilon_0 r^3 E_l/Q$
+
+    <b>b-iii）双極子モーメントと分極率</b>：$\mu = Qx = 4\pi\varepsilon_0 r^3 E_l$ → $\alpha = 4\pi\varepsilon_0 r^3$
+
+    <b>b-iv）運動方程式</b>：$m\ddot{x} = -kx + QE_l$ （速度比例制動なし）
+
+    <b>b-v）分極Pの方程式</b>：$P = NQx$，$E_l = E + P/(3\varepsilon_0)$：
+    $m\ddot{P} + kP/(NQ^2)\cdot NQ^2 = NQ^2 E_l = NQ^2(E + P/(3\varepsilon_0))$
+    整理（$\omega_0^2 = k/m$）：$\ddot{P} + (\omega_0^2 - NQ^2/(3m\varepsilon_0))P = NQ^2 E/m$
+
+    <b>b-vi）共振周波数</b>：$\ddot{P} = -\omega^2 P$（正弦定常）の条件：
+    $\omega_0^2 = NQ^2/(3m\varepsilon_0) + \omega_0'^2$ → 実際の共振は $\omega_0^2 - NQ^2/(3m\varepsilon_0)$
+
+    <b>b-vii）制動項の要因</b>：電子と格子の衝突（フォノン散乱），電子間散乱，放射減衰（誘電損失）など。
+  </div>
+</div>
+
+<!-- ===== 問題4：電子デバイス ===== -->
+<h2>問題4：電子デバイス・回路システム（npnトランジスタ）</h2>
+<span class="select-badge">1題選択</span>
+
+<h3>1）npnトランジスタの特性</h3>
+<div class="answer-box">
+  <div class="step">
+    <b>a）$\alpha_0$ と $\beta$</b>：$I_E = I_B + I_C$，$I_C = \alpha_0 I_E$，$\beta = I_C/I_B$。
+    $I_C = \alpha_0(I_B+I_C)$ → $\beta = \alpha_0/(1-\alpha_0)$，$\alpha_0 = \beta/(\beta+1)$
+
+    <b>b）エミッタ抵抗 $r_e$</b>：$I_E = I_S[\exp(qV_{BE}/kT)-1] \approx I_S\exp(qV_{BE}/kT)$ より
+    $r_e = dV_{BE}/dI_E \approx kT/(qI_E) = 26\text{mV}/I_E[A]$（室温300Kで）。
+    150K では $kT/q = 0.013$V → $r_e$ は室温の半分。
+
+    <b>c）npnトランジスタのバンド図</b>（定性）：E-B間：$n^+$側（エミッタ）の伝導帯が低く，空乏層を挟んでB（p型）の価電子帯が高い。B-C間：逆バイアスで空乏層が広い。フェルミ準位は各領域で一定（熱平衡では）。
+
+    <b>d）エミッタ$n$形濃度を上げると$\beta$増大</b>：$\beta \approx I_C/I_B \propto$ エミッタ効率（多数キャリア比）。エミッタ濃度 $\uparrow$ → エミッタからベースへの電子注入量 $\uparrow$ → $I_C\uparrow$，$I_B$ 変わらず → $\beta\uparrow$。
+
+    <b>e）パンチスルー</b>：$V_{CE}$ が大きいとB-C接合の空乏層がE-B接合空乏層に到達し，ベース全体が空乏化 → ベースでの電流制御不可。対策：コレクタ濃度を下げて空乏層をコレクタ側に広げ，ベースへの進入を抑える。
+  </div>
+</div>
+
+<h3>2）増幅回路の設計（数値計算）</h3>
+<div class="answer-box">
+  <div class="step">
+    <b>a）直流動作点</b>（$V_{CC}=V_{EE}=1.5$V，$V_{Bias}=0.80$V，$R_L=4.0$kΩ，$R_{E1}=1.0$kΩ，$V_{B'E}=0.70$V）：
+    $V_{B1} = V_{Bias} = 0.80$V，$V_{E1} = V_{B1} - V_{B'E} = 0.10$V
+    $I_E = V_{E1}/R_{E1} = 0.10/1000 = 0.10$ mA（$\approx I_C$，$\beta=99\gg1$なので）
+    $V_{C1} = V_{CC} - I_C R_L \approx 1.5 - 0.10\times10^{-3}\times4000 = 1.1$V
+    $r_e = 26\text{mV}/0.10\text{mA} = 260$ Ω
+
+    <b>b）電圧利得</b>（交流）：$A_v = -\beta R_L/(r_b + r_e(\beta+1)) \approx -R_L/r_e = -4000/260 \approx -15$（エミッタ接地，$R_{E1}$ の交流成分は$C_1$でバイパス）
+
+    <b>c・d・e）差動増幅</b>：差動利得 $A_d = A_v$，$R_{E2}$ で設定。同相利得 $A_c$ は非常に小さい（CMRR大）。温度変化への耐性：差動接続では両側のトランジスタが同じ温度特性を持つため変動がキャンセル。
+  </div>
+</div>
+
+<footer>
+  解答解説作成：Claude（Anthropic）| <a href="index.html">← 一覧に戻る</a>
+</footer>
+
+</body>
+</html>

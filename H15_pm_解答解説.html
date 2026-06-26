@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>H15年度 専門科目午後 解答解説</title>
+  <script>
+    MathJax = { tex: { inlineMath: [['$','$']], displayMath: [['$$','$$']] } };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: "Yu Gothic", "游ゴシック", sans-serif; font-size: 13pt; line-height: 1.9; color: #1a1a2e; background: #f4f7fb; padding: 40px; }
+    h1 { font-size: 20pt; color: #0d2b5e; border-bottom: 3px solid #0d2b5e; padding-bottom: 10px; margin-bottom: 6px; }
+    .subtitle { color: #666; font-size: 11pt; margin-bottom: 36px; }
+    h2 { font-size: 15pt; color: #0d2b5e; margin: 40px 0 16px; padding: 8px 16px; background: #e8f0fb; border-left: 5px solid #1e5fa8; border-radius: 4px; }
+    h3 { font-size: 13pt; color: #1e5fa8; margin: 28px 0 10px; border-bottom: 1px solid #c5d8f5; padding-bottom: 4px; }
+    .answer-box { background: #fff; border: 1px solid #c5d8f5; border-radius: 8px; padding: 20px 28px; margin: 12px 0 20px; }
+    .step { background: #f0f6ff; border-left: 3px solid #1e5fa8; padding: 10px 18px; margin: 10px 0; border-radius: 0 4px 4px 0; }
+    .result { background: #fff8e1; border: 2px solid #f9a825; border-radius: 6px; padding: 10px 18px; margin: 12px 0; font-weight: bold; }
+    .note { background: #f3f9f3; border-left: 3px solid #4caf50; padding: 8px 16px; margin: 10px 0; font-size: 11.5pt; color: #2e5f2e; }
+    footer { margin-top: 60px; color: #aaa; font-size: 10pt; text-align: center; }
+    a { color: #1e5fa8; }
+    table { border-collapse: collapse; margin: 12px 0; }
+    th, td { border: 1px solid #c5d8f5; padding: 6px 14px; text-align: center; }
+    th { background: #e8f0fb; color: #0d2b5e; }
+  </style>
+</head>
+<body>
+
+<h1>H15年度 専門科目（午後）解答解説</h1>
+<p class="subtitle">平成14年8月実施 ／ 電気電子工学・電子物理工学（4択から1題選択）</p>
+
+<!-- ===== 問題1 ===== -->
+<h2>問題1：電力・エネルギー</h2>
+
+<h3>設問1-a）基準値の表現</h3>
+<div class="answer-box">
+  <div class="step">
+    インピーダンス基準値（相電圧 $E_B$、1相容量 $S_B$ を用いる）：
+    $$Z_B = \frac{E_B^2}{S_B}$$
+    電流基準値（線間電圧 $V_B$、三相容量 $S_B'$ を用いる）：
+    $$I_B = \frac{S_B'}{\sqrt{3}\,V_B}$$
+  </div>
+  <div class="note">
+    三相系では $S_B' = 3S_B$。線間電圧 $V_B = \sqrt{3}E_B$。これを使うと $Z_B = V_B^2/S_B'$ とも書ける。
+  </div>
+</div>
+
+<h3>設問1-b）単位法電流（基準：66 kV, 100 MVA）</h3>
+<div class="answer-box">
+  <div class="step">
+    複素電力（潮流）：$\dot{S} = 40 + j5$ [MVA]（遅れ無効電力は正）<br>
+    基準で正規化：$\dot{S}_{\rm pu} = (40+j5)/100 = 0.40 + j0.05$ [pu]<br>
+    電圧：$\dot{V}_{\rm pu} = 65/66 = 0.9848$ [pu]（位相角 $0°$ を参照）
+  </div>
+  <div class="step">
+    電流 $\dot{I} = \dot{S}^*/\dot{V}^*$：
+    $$\dot{I}_{\rm pu} = \frac{0.40 - j0.05}{0.9848} = 0.406 - j0.0508 \text{ [pu]}$$
+  </div>
+  <div class="result">
+    $$|\dot{I}_{\rm pu}| = \frac{\sqrt{0.40^2+0.05^2}}{0.9848} \approx \boxed{0.41 \text{ [pu]}}$$
+    位相角 $\approx -7.1°$（遅れ）
+  </div>
+</div>
+
+<h3>設問1-c）系統全体の％インピーダンス（基準：1000 MVA）</h3>
+<div class="answer-box">
+  <div class="step">
+    基準容量変換：$Z_{\rm new} = Z_{\rm old} \times (S_{\rm base,new}/S_{\rm base,old})$
+    <table style="margin-top:10px">
+      <tr><th>機器</th><th>元の容量</th><th>元の%Z</th><th>1000 MVA 基準への換算</th></tr>
+      <tr><td>発電機</td><td>400 MVA</td><td>j18 %</td><td>j18 × (1000/400) = j45 %</td></tr>
+      <tr><td>変圧器-1</td><td>500 MVA</td><td>j20 %</td><td>j20 × (1000/500) = j40 %</td></tr>
+      <tr><td>送電線</td><td>500 MVA</td><td>(2+j21) %</td><td>(2+j21)×(1000/500) = 4+j42 %</td></tr>
+      <tr><td>変圧器-2</td><td>400 MVA</td><td>j15 %</td><td>j15 × (1000/400) = j37.5 %</td></tr>
+    </table>
+  </div>
+  <div class="result">
+    $$Z_{\rm total} = (4 + j42 + j40 + j45 + j37.5)\% = \boxed{(4 + j164.5)\%}$$
+  </div>
+</div>
+
+<h3>設問1-d）変圧器-1 二次側三相地絡故障電流</h3>
+<div class="answer-box">
+  <div class="step">
+    地絡点（T1二次側）から見た電源側の合計インピーダンス（発電機 + T1）：
+    $$Z = j45 + j40 = j85\% = j0.85 \text{ [pu]}$$
+    発電機は定格電圧で運転 → $E = 1.0$ [pu]
+  </div>
+  <div class="result">
+    地絡電流：
+    $$I = \frac{E}{Z} = \frac{1.0}{j0.85} \approx \boxed{1.176 \text{ [pu]}}$$
+  </div>
+  <div class="step">
+    実際の電流値への換算（基準：1000 MVA）：<br>
+    T1 一次側（15 kV）の基準電流：$I_{B1} = \dfrac{1000 \times 10^6}{\sqrt{3}\times 15\times 10^3} \approx 38{,}490$ [A]<br>
+    T1 二次側（275 kV）の基準電流：$I_{B2} = \dfrac{1000 \times 10^6}{\sqrt{3}\times 275\times 10^3} \approx 2{,}099$ [A]
+  </div>
+  <div class="result">
+    $$I_1 = 1.176 \times 38{,}490 \approx \boxed{4.5 \times 10^4 \text{ [A]}}$$
+    $$I_2 = 1.176 \times 2{,}099 \approx \boxed{2.5 \times 10^3 \text{ [A]}}$$
+  </div>
+  <div class="note">
+    パーユニット法では変圧比は吸収されるため、一次・二次の pu 電流は等しい（1.176 pu）。実電流は各電圧レベルの基準電流で換算する。
+  </div>
+</div>
+
+<h3>設問1-e）地絡故障波及防止の機器・システム</h3>
+<div class="answer-box">
+  <ul style="margin-left:20px;">
+    <li><b>保護継電器</b>：過電流継電器（OCR）、距離継電器、差動継電器などで故障を検出</li>
+    <li><b>遮断器（CB）</b>：継電器の動作信号を受けて故障区間を高速遮断（数十ms）</li>
+    <li><b>自動再閉路装置</b>：一時的な故障の場合に遮断後に系統を自動復帰</li>
+    <li><b>系統安定化装置（PSS）</b>：動揺抑制・安定度維持</li>
+  </ul>
+</div>
+
+<h3>設問1-f）2ノード系統の電力方程式</h3>
+<div class="answer-box">
+  <div class="step">
+    アドミタンス $\dot{Y} = G + jB$、電圧 $\dot{E}_1 = V_1 e^{j\theta_1}$, $\dot{E}_2 = V_2 e^{j\theta_2}$、$\delta = \theta_1 - \theta_2$。<br>
+    電流：$\dot{I}_1 = \dot{Y}(\dot{E}_1 - \dot{E}_2)$<br>
+    複素電力：$\dot{S}_1 = P_1 + jQ_1 = \dot{E}_1 \dot{I}_1^*$
+    $$= (G-jB)(V_1^2 - V_1 V_2 e^{-j\delta})$$
+  </div>
+  <div class="result">
+    ノード1（送電端）：
+    $$P_1 = G V_1^2 - V_1 V_2(G\cos\delta + B\sin\delta)$$
+    $$Q_1 = -B V_1^2 - V_1 V_2(G\sin\delta - B\cos\delta)$$
+    ノード2（受電端）：$\dot{S}_2 = \dot{E}_2(-\dot{I}_1)^*$
+    $$P_2 = G V_2^2 - V_1 V_2(G\cos\delta - B\sin\delta)$$
+    $$Q_2 = -B V_2^2 + V_1 V_2(G\sin\delta + B\cos\delta)$$
+  </div>
+  <div class="note">
+    $G=0$（純リアクタンス線路）のとき：$P = V_1 V_2 B\sin\delta$（電力 ∝ $\sin\delta$）が得られる。
+  </div>
+</div>
+
+<h3>設問2-a）同期電動機の定格回転数とトルク</h3>
+<div class="answer-box">
+  <div class="step">
+    4極（極対数 $p=2$）、50 Hz：
+    $$n_s = \frac{60f}{p} = \frac{60\times50}{2} = \boxed{1500 \text{ [rpm]}}$$
+    $$T = \frac{P}{\omega_s} = \frac{10000}{2\pi\times1500/60} = \frac{10000}{157.1} \approx \boxed{63.7 \text{ [N·m]}}$$
+  </div>
+</div>
+
+<h3>設問2-b）力率1のフェーザ図と無負荷誘導起電力</h3>
+<div class="answer-box">
+  <div class="step">
+    相電圧（Y接続）：$V_a = 200/\sqrt{3} = 115.5$ V。力率1 → 電機子電流 $I_a$ は $V_a$ と同位相。
+    $$I_a = \frac{P}{3V_a} = \frac{10000}{3\times115.5} = 28.87 \text{ [A]}$$
+    誘導起電力（電動機では $\dot{E}_a = \dot{V}_a - jX\dot{I}_a$）：
+    $$\dot{E}_a = 115.5 - j \times 3 \times 28.87 = 115.5 - j86.6 \text{ [V]}$$
+  </div>
+  <div class="result">
+    $$|\dot{E}_a| = \sqrt{115.5^2 + 86.6^2} \approx \boxed{144 \text{ [V]（相電圧）}}$$
+    フェーザ図：$V_a$（実軸）→ $jXI_a$（上向き）→ $E_a$（右下方向）
+  </div>
+</div>
+
+<h3>設問2-c）界磁電流増加時の挙動</h3>
+<div class="answer-box">
+  <p>力率1の状態から界磁電流を増加させると：</p>
+  <ul style="margin:8px 0 8px 20px;">
+    <li><b>無負荷誘導起電力 $E_a$</b>：界磁電流 $I_f$ に比例して増加</li>
+    <li><b>電機子電流 $I_a$</b>：増加し、位相は進み（進相）になる</li>
+  </ul>
+  <div class="note">
+    過励磁の同期電動機は電力系統に対して進相電流を供給→コンデンサと等価に機能し、力率改善・電圧支持に利用される。
+  </div>
+</div>
+
+<h3>設問2-d）脱調直前の電源電圧</h3>
+<div class="answer-box">
+  <div class="step">
+    $E_a = 200$ V（相）一定。定格負荷 $P = 10$ kW。電源電圧を $V_a$ として低下させる。<br>
+    脱調（プルアウト）は負荷角 $\delta = 90°$ のとき（最大出力点）：
+    $$P_{\max} = \frac{3V_a E_a}{X}$$
+    定格出力と等しくなる条件：
+    $$\frac{3\times V_a \times 200}{3} = 10000$$
+    $$200 V_a = 10000 \implies V_a = 50 \text{ [V]}（相電圧）$$
+  </div>
+  <div class="result">
+    線間電圧 $= 50\sqrt{3} \approx \boxed{86.6 \text{ [V]}}$
+  </div>
+</div>
+
+<h3>設問3-a）チョッパ回路の電流変化率</h3>
+<div class="answer-box">
+  <div class="result">
+    SW オン（$D$ が逆バイアス）：
+    $$\frac{di_L}{dt} = \frac{E - V_O}{L}$$
+    SW オフ（$D$ が導通）：
+    $$\frac{di_L}{dt} = -\frac{V_O}{L}$$
+  </div>
+</div>
+
+<h3>設問3-b）$V_O = E/4$ のときの $T_{on}/T_{off}$</h3>
+<div class="answer-box">
+  <div class="step">
+    定常状態ではインダクタの平均電圧 = 0：
+    $$(E-V_O) T_{on} = V_O T_{off}$$
+    $$\left(E - \frac{E}{4}\right) T_{on} = \frac{E}{4} T_{off}$$
+    $$\frac{3E}{4} T_{on} = \frac{E}{4} T_{off}$$
+  </div>
+  <div class="result">
+    $$\frac{T_{on}}{T_{off}} = \frac{1}{3}$$
+    デューティ比 $D = T_{on}/(T_{on}+T_{off}) = 1/4$，$V_O = D\cdot E = E/4$ と一致。
+  </div>
+</div>
+
+<h3>設問3-c）ダイオードDの役割</h3>
+<div class="answer-box">
+  <p><b>役割</b>：SW オフ時にインダクタに蓄えられたエネルギーによる電流の還流路（フリーホイール）を提供する。</p>
+  <p style="margin-top:8px"><b>D がない場合</b>：SW オフ時に電流の流路が断たれ、インダクタに過大なサージ電圧が発生してスイッチ素子を破壊する恐れがある。また、出力電流が不連続となり制御が困難になる。</p>
+</div>
+
+<!-- ===== 問題2 ===== -->
+<h2>問題2：波動・通信</h2>
+
+<h3>設問1-a）1周期の放射エネルギー $\delta h$</h3>
+<div class="answer-box">
+  <div class="step">
+    振動：$y = a\sin(2\pi ft)$，加速度：$\ddot{y} = -a(2\pi f)^2\sin(2\pi ft)$<br>
+    加速度の2乗の時間平均：$\langle b^2 \rangle = \dfrac{a^2(2\pi f)^4}{2}$<br>
+    平均放射パワー：$\overline{W} = \dfrac{d q^2 \langle b^2 \rangle}{c^3}$<br>
+    1周期 $T = 1/f$：
+  </div>
+  <div class="result">
+    $$\delta h = \overline{W} \cdot \frac{1}{f} = \frac{d q^2 a^2 (2\pi f)^4}{2 c^3 f} = \frac{8\pi^4 d q^2 a^2 f^3}{c^3}$$
+  </div>
+</div>
+
+<h3>設問1-b）$\delta h / h_0$ の計算</h3>
+<div class="answer-box">
+  <div class="step">
+    力学的エネルギー（振幅 $a$，角周波数 $\omega = 2\pi f$）：
+    $$h_0 = \frac{1}{2}m(a\omega)^2 = \frac{1}{2}m(2\pi fa)^2 = 2\pi^2 m f^2 a^2$$
+    $$\frac{\delta h}{h_0} = \frac{8\pi^4 dq^2 a^2 f^3/c^3}{2\pi^2 m f^2 a^2} = \frac{4\pi^2 dq^2 f}{m c^3}$$
+  </div>
+  <div class="step">
+    数値代入（$\pi\approx3$）：
+    $$\frac{\delta h}{h_0} = \frac{4\times9\times6\times10^9\times(10^{-4})^2\times10^7}{10^{-5}\times(3\times10^8)^3}
+    = \frac{4\times9\times6\times10^9\times10^{-8}\times10^7}{10^{-5}\times2.7\times10^{25}}$$
+    $$= \frac{216\times10^8}{2.7\times10^{20}} \approx 8\times10^{-11}$$
+  </div>
+  <div class="result">
+    $$\frac{\delta h}{h_0} \approx \boxed{10^{-10}}$$
+  </div>
+</div>
+
+<h3>設問1-c）エネルギーが $e^{-1}$ 倍になる時間 $\Delta t$</h3>
+<div class="answer-box">
+  <div class="step">
+    エネルギー減衰率 $\gamma = f \cdot \dfrac{\delta h}{h_0} = \dfrac{4\pi^2 dq^2 f^2}{mc^3}$<br>
+    （1秒間に $f$ 回の振動があり，各振動で $\delta h/h_0$ のエネルギーを失う）<br>
+    $h = h_0 e^{-\gamma t}$ より，$h = e^{-1}h_0$ のとき $\gamma \Delta t = 1$：
+    $$\Delta t = \frac{1}{\gamma} = \frac{mc^3}{4\pi^2 dq^2 f^2}$$
+  </div>
+  <div class="step">
+    数値代入：
+    $$\Delta t = \frac{10^{-5}\times(3\times10^8)^3}{4\times9\times6\times10^9\times(10^{-4})^2\times(10^7)^2}
+    = \frac{10^{-5}\times2.7\times10^{25}}{216\times10^9\times10^{-8}\times10^{14}}
+    = \frac{2.7\times10^{20}}{2.16\times10^{16}} \approx 10^4 \text{ s}$$
+  </div>
+  <div class="result">
+    $$\Delta t \approx \boxed{10^4 \text{ [s]}}$$
+  </div>
+</div>
+
+<h3>設問1-d）M に働くクーロン力</h3>
+<div class="answer-box">
+  <div class="step">
+    C$(0,\ell)$ からの力（斥力，下向き）＋ D$(0,-\ell)$ からの力（斥力，上向き）：
+    $$F = \frac{qq_0}{4\pi\varepsilon_0}\left[\frac{1}{(y+\ell)^2} - \frac{1}{(\ell-y)^2}\right]$$
+    $y \ll \ell$ で展開：$\dfrac{1}{(\ell\pm y)^2} \approx \dfrac{1}{\ell^2}\left(1 \mp \dfrac{2y}{\ell}\right)$
+  </div>
+  <div class="result">
+    $$F \approx \frac{qq_0}{4\pi\varepsilon_0}\cdot\frac{-4y}{\ell^3} = -\frac{qq_0 y}{\pi\varepsilon_0 \ell^3}$$
+    （$q, q_0$ 同符号のとき復元力方向，$y>0$ で $F<0$）
+  </div>
+</div>
+
+<h3>設問1-e）運動方程式</h3>
+<div class="answer-box">
+  <div class="result">
+    $$m\ddot{y} = -ky - \frac{qq_0}{\pi\varepsilon_0\ell^3}y = -\left(k + \frac{qq_0}{\pi\varepsilon_0\ell^3}\right)y$$
+  </div>
+</div>
+
+<h3>設問1-f）周波数変化 $\delta f$ と $q_0$ の計算</h3>
+<div class="answer-box">
+  <div class="step">
+    新しい角周波数：$\omega'^2 = (k + qq_0/(\pi\varepsilon_0\ell^3))/m$，元の $\omega^2 = k/m = (2\pi f)^2$<br>
+    $$f' = f\sqrt{1+\frac{qq_0}{\pi\varepsilon_0\ell^3 k}} \approx f\left(1+\frac{qq_0}{2\pi\varepsilon_0\ell^3 k}\right)$$
+    $$\delta f = f' - f = \frac{f qq_0}{2\pi\varepsilon_0\ell^3 k} = \frac{qq_0}{2\pi\varepsilon_0\ell^3 m(2\pi f)^2} \cdot f = \frac{qq_0}{8\pi^3\varepsilon_0 m f^2 \ell^3} \cdot f$$
+  </div>
+  <div class="step">
+    $q_0$ を求める：$q_0 = \dfrac{\delta f}{f}\cdot\dfrac{8\pi^3\varepsilon_0 m f^2 \ell^3}{q}$<br>
+    $= 10^{-3}\times\dfrac{8\times27\times9\times10^{-12}\times10^{-5}\times(10^7)^2\times(10^{-2})^3}{10^{-4}}$<br>
+    $= 10^{-3}\times\dfrac{216\times9\times10^{-12-5+14-6}}{10^{-4}}$
+    $= 10^{-3}\times1944\times10^{-5} = 1944\times10^{-8} \approx 2\times10^{-5}$ C
+  </div>
+  <div class="result">
+    $$q_0 \approx \boxed{2\times10^{-5} \text{ [C]}}$$
+  </div>
+</div>
+
+<h3>設問2-a）最適受信フィルタ出力</h3>
+<div class="answer-box">
+  <div class="result">
+    フィルタのインパルス応答を $h(t)$ とすると：
+    $$y_s(t) = s(t)*h(t) = \int_{-\infty}^{\infty} s(\tau)h(t-\tau)\,d\tau$$
+    $$y_n(t) = n(t)*h(t) = \int_{-\infty}^{\infty} n(\tau)h(t-\tau)\,d\tau$$
+  </div>
+</div>
+
+<h3>設問2-b）最適フィルタ $h(t)=s(t_0-t)$ での SNR</h3>
+<div class="answer-box">
+  <div class="step">
+    $h(t) = s(t_0-t)$ を代入，$t=t_0$：
+    $$y_s(t_0) = \int_0^{t_0}s(\tau)h(t_0-\tau)\,d\tau = \int_0^{t_0}s(\tau)s(\tau)\,d\tau = E$$
+    分母の積分：$\int_0^{t_0}h^2(t_0-\tau)\,d\tau = \int_0^{t_0}s^2(\tau)\,d\tau = E$
+  </div>
+  <div class="result">
+    $$\mathrm{SNR} = \frac{E^2}{\frac{1}{2}N_0 E} = \boxed{\frac{2E}{N_0}}$$
+  </div>
+</div>
+
+<h3>設問2-c）矩形パルスの場合の出力波形</h3>
+<div class="answer-box">
+  <p>$s(t) = A$（$0\le t\le t_0$），$h(t) = s(t_0-t) = A$（$0\le t\le t_0$）のとき，出力は三角波：</p>
+  <ul style="margin:8px 0 8px 20px;">
+    <li>$0\le t\le t_0$：$y_s(t) = A^2 t$（線形増加）</li>
+    <li>$t_0\le t\le 2t_0$：$y_s(t) = A^2(2t_0-t)$（線形減少）</li>
+    <li>$t=t_0$ でピーク $y_s(t_0) = A^2 t_0$</li>
+  </ul>
+  <div class="note">出力は $t=0$ で 0 から立ち上がり，$t=t_0$ でピーク，$t=2t_0$ で 0 に戻る三角形状。</div>
+</div>
+
+<h3>設問2-d）SNR最大サンプル時刻</h3>
+<div class="answer-box">
+  <div class="result">$t = t_0$（三角波の頂点，フィルタ出力が最大）でSNRも最大。</div>
+</div>
+
+<h3>設問2-e）シンボル間干渉を生じない条件</h3>
+<div class="answer-box">
+  <div class="result"><b>ナイキスト（ISI）条件</b>（Nyquist ISI criterion）：$s(t)*h(t)$ が $t = nT$（$n\ne0$）でゼロになること。</div>
+</div>
+
+<h3>設問2-f）ナイキスト条件を満たす $s(t)*h(t)$ の例</h3>
+<div class="answer-box">
+  <p>代表例：<b>raised cosine（ロールオフフィルタ）</b>の出力波形。</p>
+  <ul style="margin:8px 0 8px 20px;">
+    <li>$t=0$ でピーク（$=1$）</li>
+    <li>$t = \pm T, \pm 2T, \ldots$ ですべてゼロ</li>
+    <li>$\mathrm{sinc}(t/T)$ 形状（あるいはその変形）</li>
+  </ul>
+</div>
+
+<h3>設問2-g）Cauchy-Schwarz 不等式による最適フィルタの証明</h3>
+<div class="answer-box">
+  <div class="step">
+    SNR 最大化は $y_s^2(t_0) / \left[\frac{1}{2}N_0\int h^2(t_0-\tau)\,d\tau\right]$ の最大化に等しい。<br>
+    分子を Cauchy-Schwarz 不等式で評価（$g_1(\tau)=s(\tau)$，$g_2(\tau)=h(t_0-\tau)$）：
+    $$y_s^2(t_0) = \left(\int s(\tau)h(t_0-\tau)\,d\tau\right)^2 \le \int s^2(\tau)\,d\tau \cdot \int h^2(t_0-\tau)\,d\tau = E\cdot\int h^2\,d\tau$$
+  </div>
+  <div class="step">
+    したがって：
+    $$\mathrm{SNR} \le \frac{E\cdot\int h^2\,d\tau}{\frac{1}{2}N_0\int h^2\,d\tau} = \frac{2E}{N_0}$$
+    等号成立条件：$g_1(\tau) \propto g_2(\tau)$，すなわち $s(\tau) \propto h(t_0-\tau)$。
+  </div>
+  <div class="result">
+    最適フィルタ：$h(t) = s(t_0-t)$（時間反転シフト＝整合フィルタ）でSNR $= 2E/N_0$ 達成。
+  </div>
+</div>
+
+<!-- ===== 問題3 ===== -->
+<h2>問題3：電気物性</h2>
+
+<h3>設問1-a）電子移動度と平均自由行程</h3>
+<div class="answer-box">
+  <div class="step">
+    マシーセンの法則：$\dfrac{1}{\mu} = \dfrac{1}{\mu_{\rm ph}} + \dfrac{1}{\mu_{\rm imp}} = \dfrac{1}{1000} + \dfrac{1}{500} = \dfrac{3}{1000}$
+    $$\mu = \frac{1000}{3} \approx 333 \text{ cm}^2/\text{Vs}$$
+    緩和時間：$\tau = \dfrac{\mu m^*}{e} = \dfrac{333\times10^{-4}\times0.25\times9.1\times10^{-31}}{1.6\times10^{-19}} \approx 4.7\times10^{-13}$ s
+  </div>
+  <div class="result">
+    平均自由行程：$\lambda = v_{\rm th}\tau = 10^7\times10^{-2}\times4.7\times10^{-13} \approx \boxed{47 \text{ nm}}$
+  </div>
+</div>
+
+<h3>設問1-b）有効質量</h3>
+<div class="answer-box">
+  <p><b>i）</b>自由電子：$E = p^2/(2m_0)$</p>
+  <p><b>ii）</b>$E = 5p^2/m_0 = p^2/(2m^*)$ と比較 → $m^* = m_0/10$</p>
+  <p><b>iii）</b>一般的な表現（有効質量の定義）：</p>
+  <div class="result">
+    $$m^* = \hbar^2\left(\frac{d^2E}{dp^2}\right)^{-1}$$
+  </div>
+</div>
+
+<h3>設問1-c）P ドープ Si（$N_D = 10^{17}$ cm$^{-3}$）</h3>
+<div class="answer-box">
+  <p><b>i）</b> P はドナー → <b>n形</b>。多数キャリア濃度 $n = 10^{17}$ cm$^{-3}$</p>
+  <p><b>ii）</b>フェルミ準位（$N_c = 10^{19}$ cm$^{-3}$，$kT = 25$ meV，$\log e = 0.43$）：</p>
+  <div class="step">
+    $n = N_c\exp\!\left(-\dfrac{E_c-E_F}{kT}\right)$ より
+    $$E_c - E_F = kT\ln\frac{N_c}{N_D} = 25\times\frac{\log(10^{19}/10^{17})}{0.43} = 25\times\frac{2}{0.43} \approx 116 \text{ meV}$$
+  </div>
+  <div class="result">$E_F$ は $E_c$ より 116 meV 下（禁制帯上部）</div>
+  <p style="margin-top:12px"><b>iii）</b>B（アクセプタ）を $5\times10^{17}$ cm$^{-3}$ まで増加：</p>
+  <ul style="margin:6px 0 6px 20px;">
+    <li>B = 0 ～ $10^{17}$ cm$^{-3}$：補償により実効ドナー減少，$E_F$ が $E_c$ から禁制帯中央に向かって低下</li>
+    <li>B $= 10^{17}$ cm$^{-3}$：完全補償，真性半導体的，$E_F$ ≒ 禁制帯中央</li>
+    <li>B $> 10^{17}$ cm$^{-3}$：p形に転換，$E_F$ が $E_v$ 側に移動</li>
+  </ul>
+</div>
+
+<h3>設問2-a）全分子が $x$ 方向に整列（電界なし/あり）</h3>
+<div class="answer-box">
+  <p><b>i）</b>分極：$P_x = Nm$（単位体積あたり $N$ 個×双極子モーメント $m$）</p>
+  <p><b>ii）</b>電界 $E$ を加えても，分子は既に完全に整列しているので $P_x = Nm$（変化なし）</p>
+</div>
+
+<h3>設問2-b）無秩序配向の場合</h3>
+<div class="answer-box">
+  <p><b>i）</b>角度 $\theta$ の分子の $x$ 成分：$m_x = m\cos\theta$</p>
+  <p><b>ii）</b>三次元等方的ランダム配向の立体角比：</p>
+  <div class="result">
+    $$\text{割合} = \frac{\int_0^{\theta_A}2\pi\sin\theta\,d\theta}{4\pi} = \frac{1-\cos\theta_A}{2}$$
+  </div>
+  <p><b>iii）</b>等方配向では $\langle\cos\theta\rangle=0$ → $P_x = 0$</p>
+</div>
+
+<h3>設問2-c）電界印加・ボルツマン分布</h3>
+<div class="answer-box">
+  <p><b>i）</b>$\theta = \pi/2$ を基準とするポテンシャルエネルギー：$W(\theta) = -mE\cos\theta$</p>
+  <p><b>ii）</b>双極子モーメント $x$ 成分の平均値（$f(\theta) = A\exp(mE\cos\theta/kT)$）：</p>
+  <div class="result">
+    $$\langle m\cos\theta\rangle = \frac{\int_0^\pi m\cos\theta\cdot f(\theta)\sin\theta\,d\theta}{\int_0^\pi f(\theta)\sin\theta\,d\theta}$$
+  </div>
+  <p><b>iii）</b>$W(\theta) \ll kT$ の近似（$f(\theta)\approx A(1+mE\cos\theta/kT)$）：</p>
+  <div class="step">
+    分子 $= m\int_0^\pi\cos\theta\sin\theta\,d\theta + \frac{m^2E}{kT}\int_0^\pi\cos^2\theta\sin\theta\,d\theta = 0 + \frac{m^2E}{kT}\cdot\frac{2}{3} = \frac{2m^2E}{3kT}$<br>
+    分母 $= \int_0^\pi\sin\theta\,d\theta = 2$
+  </div>
+  <div class="result">
+    $$P_x = N\langle m\cos\theta\rangle = \frac{Nm^2 E}{3kT} \quad \text{（ランジュバン分極：Curie則）}$$
+  </div>
+  <p>分子の状態：熱揺らぎが支配的（$kT \gg mE$）で，ほぼランダム配向。</p>
+  <p><b>iv）</b>$P_x \propto N$（あ：<b>比例する</b>）…単純な式では。</p>
+  <p style="margin-top:6px">実際には $N$ が増大するにつれて隣接分子間の電場（局所場補正）が無視できなくなり，外部電場だけでなく分極による場も各分子に作用する。これにより局所場が増強され，有効電場が外部電場より大きくなる（クラウジウス－モソッティ補正）。十分大きい $N$ では正のフィードバックが生じ，自発分極（強誘電相転移）が起こりうる。→ <b>比例しなくなる</b>。</p>
+</div>
+
+<!-- ===== 問題4 ===== -->
+<h2>問題4：電子デバイス・回路システム</h2>
+
+<h3>設問1-a）同期式カウンタの特徴</h3>
+<div class="answer-box">
+  <p><b>同期式カウンタ</b>：全フリップフロップが共通クロックで同時にトリガされる回路。</p>
+  <p style="margin-top:8px"><b>非同期式との比較：</b></p>
+  <table>
+    <tr><th>項目</th><th>同期式</th><th>非同期式（リップルカウンタ）</th></tr>
+    <tr><td>クロック</td><td>全FF共通</td><td>前段の出力を次段のCLKに使用</td></tr>
+    <tr><td>速度</td><td>高速（並列遷移）</td><td>低速（段数分の遅延が累積）</td></tr>
+    <tr><td>グリッチ</td><td>少ない</td><td>多い（過渡的な誤り状態が生じる）</td></tr>
+    <tr><td>回路規模</td><td>組合せ論理が必要で大きい</td><td>小さい</td></tr>
+  </table>
+</div>
+
+<h3>設問1-b）A1, A2 の論理式と NOR 実装</h3>
+<div class="answer-box">
+  <div class="step">
+    真理値表から次状態論理式を導出する：
+    <ul style="margin:8px 0 8px 20px;">
+      <li>$E=0$：保持（$D_1 = Q_1$，$D_0 = Q_0$）</li>
+      <li>$E=1, U=1$（アップ）：$00\to01\to10\to11\to00$</li>
+      <li>$E=1, U=0$（ダウン）：$00\to11\to10\to01\to00$</li>
+    </ul>
+    整理すると：
+    $$D_0 = \bar{E}\cdot Q_0 + E\cdot\bar{Q_0} = E \oplus Q_0$$
+    $$D_1 = \bar{E}\cdot Q_1 + E\cdot U\cdot(Q_0\oplus Q_1) + E\cdot\bar{U}\cdot(\bar{Q_0}\oplus Q_1)$$
+  </div>
+  <div class="step">
+    <b>A1（D0 の XOR 実装）</b>：$D_0 = E\oplus Q_0$<br>
+    NOR のみでの XOR 実現（XOR = 4 NAND = 4 NOR + 変換）：<br>
+    $A = \overline{E+Q_0}$（NOR），$B = \overline{E+A} = \overline{E+\overline{E+Q_0}}$，$C = \overline{Q_0+A}$，$D_0 = \overline{B+C}$<br>
+    <small>（4個の 2入力 NOR で XOR が構成可能）</small>
+  </div>
+  <div class="note">
+    XOR を NOR 4 つで構成：$E\oplus Q_0 = \overline{\overline{E+\overline{E+Q_0}}+\overline{Q_0+\overline{E+Q_0}}}$
+  </div>
+</div>
+
+<h3>設問1-c）A3 の CMOS NOR + インバータ回路</h3>
+<div class="answer-box">
+  <p>3入力 NOR（入力 $a, b, c$）の CMOS 構成：</p>
+  <ul style="margin:8px 0 8px 20px;">
+    <li><b>pMOS（プルアップ）</b>：$a, b, c$ を各ゲートとする pMOS 3個を<b>直列</b>接続（$V_{DD}$ ～出力）</li>
+    <li><b>nMOS（プルダウン）</b>：$a, b, c$ を各ゲートとする nMOS 3個を<b>並列</b>接続（出力～GND）</li>
+    <li>出力後にインバータ接続（pMOS 1個 + nMOS 1個）</li>
+  </ul>
+  <div class="note">CMOS NOR では pMOS が直列・nMOS が並列（NAND と逆）。入力数が増えると pMOS の直列接続数が増え，動作速度が低下する。</div>
+</div>
+
+<h3>設問1-d）A1 部分の伝搬遅延（Q0 の遷移）</h3>
+<div class="answer-box">
+  <div class="step">
+    A1 で $D_0 = E\oplus Q_0$ を NOR 4個で実装した場合のクリティカルパス：<br>
+    NOR 1段目 → NOR 2段目 → NOR 3段目 → NOR 4段目 = 4段<br>
+    各 NOR の遅延 = 5 ns
+  </div>
+  <div class="result">
+    伝搬遅延 $= 4\times5 = \boxed{20 \text{ [ns]}}$
+  </div>
+  <div class="note">XOR を NOR 4段（直列最大 4段）で実装した場合。インバータのみで閉じる経路は 5 ns 短縮可能な場合もあるが，NOR とインバータが同じ 5 ns なら同様。</div>
+</div>
+
+<h3>設問2-a）MOS ダイオードの C-V 特性</h3>
+<div class="answer-box">
+  <p><b>i）</b> $V<0$ で $C$ が高い（蓄積），$V>V_T$ で $C$ が低い（反転） → 半導体は <b>p形</b>（正バイアスで空乏・反転が生じる）</p>
+  <p><b>ii）</b>点 T（閾値電圧 $V_T$）のバンド図：</p>
+  <ul style="margin:8px 0 8px 20px;">
+    <li>Si/SiO₂ 界面で強反転（$E_i$ が $E_F$ を下回る）</li>
+    <li>バンド曲がり量 $= 2\phi_F$（$\phi_F = (kT/e)\ln(N_A/n_i)$）</li>
+    <li>バイアス $V_T$ は金属側 Fermi 準位と SiO₂ 内の電位降下＋空乏層電位降下の合計として現れる</li>
+  </ul>
+  <p><b>iii）</b>領域Ⅰ（蓄積，$V\ll0$）：正孔が酸化膜直下に蓄積 → 半導体が導体的，容量 $= C_{ox}$（一定）。<br>
+  領域Ⅱ（強反転，$V\gg V_T$，高周波）：少数キャリア（電子）が高周波に追従できず，空乏層幅が最大値 $W_{d,\max}$ に固定 → $C = C_{ox}$ と $C_{dep,\min}$ の直列（一定）。</p>
+  <p><b>iv）</b>不純物濃度 $N_A$ 増大 → $W_{d,\max} = \sqrt{4\varepsilon_s\phi_F/(eN_A)}$ が減少 → $C_{dep,\min}$ 増大 → $C_{\min}$ が上昇。また $V_T$ が増大する。</p>
+  <p><b>v）</b>低周波 → 反転層電荷（少数キャリア）が交流に追従可能 → 強反転領域でも $C = C_{ox}$（最大値）に戻る。領域Ⅱの $C$ が立ち上がる形に変化。</p>
+</div>
+
+<h3>設問2-b）MOS トランジスタの電流特性</h3>
+<div class="answer-box">
+  <div class="step">
+    図4.6より（端子1=ソース接地，端子2=ゲート，端子3=ドレイン，端子4=バルク）：<br>
+    $V_T \approx 1$ V（$V_{DS}=1$ mV で $V_{GS}=1$ V からオン）<br>
+    線形領域（$V_{DS} \ll V_{GS}-V_T$）：$I_3 = \mu_nC_{ox}(W/L)(V_{GS}-V_T)V_{DS}$<br>
+    $4\,\mu\text{A} = k'(5-1)\times10^{-3}$ → $k' = \mu_nC_{ox}(W/L) = 1$ mA/V²
+  </div>
+  <p><b>i）</b>端子4開放，端子1=0V，端子2 = +2V または +3V 固定，端子3電圧 $V_3$ を-3V～+3V：</p>
+  <div class="step">
+    $V_{GS}=V_2$，$V_{DS}=V_3$。飽和電圧 $V_{DS,sat} = V_{GS}-V_T$。<br>
+    <b>$V_2=+2$ V</b>：$V_{DS,sat}=1$ V。$0\le V_3\le1$ V：線形 $I_3=k'(1)V_3-k'V_3^2/2$；$V_3>1$ V：飽和 $I_3=k'/2=0.5$ mA。$V_3<0$：逆方向（ソース・ドレイン入替），同様に動作。<br>
+    <b>$V_2=+3$ V</b>：$V_{DS,sat}=2$ V。$0\le V_3\le2$ V：線形；$V_3>2$ V：飽和 $I_3=2$ mA。
+  </div>
+  <p><b>ii）</b>端子4に負電圧 → バックゲートバイアス効果（ボディ効果）→ $V_T$ 増大 → $I_3$-$V_2$ 特性が右（高電圧側）にシフトし，飽和電流が減少する。</p>
+</div>
+
+<footer>
+  解答解説作成：Claude（Anthropic） ／ <a href="index.html">← 一覧に戻る</a>
+</footer>
+</body>
+</html>

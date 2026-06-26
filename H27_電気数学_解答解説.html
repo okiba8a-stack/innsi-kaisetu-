@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>電気数学 解答解説（H26年度・東工大大学院）</title>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "Yu Gothic", "游ゴシック", sans-serif;
+      font-size: 13pt;
+      line-height: 1.9;
+      color: #1a1a2e;
+      background: #ffffff;
+      padding: 30px 50px;
+      max-width: 920px;
+      margin: 0 auto;
+    }
+    h1 {
+      font-size: 18pt;
+      color: #0d2b5e;
+      border-bottom: 3px solid #0d2b5e;
+      padding-bottom: 8px;
+      margin: 30px 0 20px 0;
+      text-align: center;
+    }
+    h2 {
+      font-size: 15pt;
+      color: #ffffff;
+      background: #0d2b5e;
+      padding: 6px 16px;
+      margin: 32px 0 14px 0;
+      border-radius: 4px;
+    }
+    h3 {
+      font-size: 13pt;
+      color: #0d2b5e;
+      border-left: 5px solid #1e5fa8;
+      padding-left: 10px;
+      margin: 22px 0 10px 0;
+    }
+    h4 {
+      font-size: 12pt;
+      color: #1e5fa8;
+      margin: 16px 0 6px 0;
+    }
+    p { margin: 8px 0; }
+    .meta {
+      text-align: center;
+      color: #555;
+      font-size: 11pt;
+      margin-bottom: 10px;
+    }
+    .answer-box {
+      background: #eef4ff;
+      border: 2px solid #1e5fa8;
+      border-radius: 6px;
+      padding: 12px 20px;
+      margin: 12px 0;
+    }
+    .note {
+      background: #fff8e1;
+      border-left: 4px solid #f5a623;
+      padding: 10px 16px;
+      margin: 12px 0;
+      border-radius: 0 4px 4px 0;
+      font-size: 12pt;
+    }
+    .step {
+      background: #f5f9ff;
+      border: 1px solid #c5d8f5;
+      border-radius: 6px;
+      padding: 10px 16px;
+      margin: 10px 0;
+    }
+    .complex-plane {
+      display: flex;
+      justify-content: center;
+      margin: 16px 0;
+    }
+    svg text { font-family: "Yu Gothic", sans-serif; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 14px 0;
+      font-size: 12pt;
+    }
+    th {
+      background: #0d2b5e;
+      color: #fff;
+      padding: 8px 12px;
+      text-align: left;
+    }
+    td {
+      padding: 7px 12px;
+      border: 1px solid #c5d8f5;
+    }
+    tr:nth-child(even) td { background: #f0f5ff; }
+    @media print {
+      body { padding: 15px 25px; max-width: 100%; }
+      h2 { page-break-after: avoid; }
+      .answer-box, .note, .step { page-break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+
+<h1>電気数学　解答解説</h1>
+<p class="meta">東京工業大学 大学院修士課程入試問題（平成26年8月19日実施）<br>
+専門科目 電気電子工学・電子物理工学（午前）</p>
+
+<!-- ======================================== -->
+<h2>大問1：複素数・複素積分</h2>
+
+<h3>1-1）\(z^4 - \left(\dfrac{\sqrt{3}}{4} - \dfrac{1}{4}j\right) = 0\) の解</h3>
+
+<div class="step">
+<p><strong>STEP 1：右辺を極形式に変換する</strong></p>
+<p>\(z^4 = \dfrac{\sqrt{3}}{4} - \dfrac{1}{4}j\) の絶対値と偏角を求める。</p>
+$$|z^4| = \sqrt{\left(\frac{\sqrt{3}}{4}\right)^2 + \left(\frac{1}{4}\right)^2} = \sqrt{\frac{3}{16} + \frac{1}{16}} = \sqrt{\frac{4}{16}} = \frac{1}{2}$$
+<p>実部 \(> 0\)、虚部 \(< 0\) より第4象限：</p>
+$$\arg(z^4) = -\arctan\!\left(\frac{1/4}{\sqrt{3}/4}\right) = -\arctan\!\left(\frac{1}{\sqrt{3}}\right) = -\frac{\pi}{6}$$
+<p>\(0 \le \theta < 2\pi\) の範囲で表すと：\(\arg(z^4) = 2\pi - \dfrac{\pi}{6} = \dfrac{11\pi}{6}\)</p>
+$$z^4 = \frac{1}{2}\,e^{\,j\cdot\frac{11\pi}{6}}$$
+</div>
+
+<div class="step">
+<p><strong>STEP 2：4乗根を求める</strong></p>
+<p>\(|z| = \left(\dfrac{1}{2}\right)^{1/4} = 2^{-1/4}\)、偏角は \(\dfrac{1}{4}\left(\dfrac{11\pi}{6} + 2\pi k\right)\)（\(k = 0,1,2,3\)）</p>
+</div>
+
+<div class="answer-box">
+<p><strong>4つの解（すべて \(|z| = 2^{-1/4}\)）：</strong></p>
+$$z_0 = 2^{-1/4}\,e^{\,j\cdot\frac{11\pi}{24}}, \quad \theta_0 = \frac{11\pi}{24}$$
+$$z_1 = 2^{-1/4}\,e^{\,j\cdot\frac{23\pi}{24}}, \quad \theta_1 = \frac{23\pi}{24}$$
+$$z_2 = 2^{-1/4}\,e^{\,j\cdot\frac{35\pi}{24}}, \quad \theta_2 = \frac{35\pi}{24}$$
+$$z_3 = 2^{-1/4}\,e^{\,j\cdot\frac{47\pi}{24}}, \quad \theta_3 = \frac{47\pi}{24}$$
+<p>（隣り合う解は \(\pi/2 = 90°\) ずつ離れている）</p>
+</div>
+
+<p><strong>複素平面上の図示：</strong></p>
+<div class="complex-plane">
+<svg width="340" height="340" viewBox="-170 -170 340 340">
+  <!-- axes -->
+  <line x1="-155" y1="0" x2="155" y2="0" stroke="#aaa" stroke-width="1.2"/>
+  <line x1="0" y1="-155" x2="0" y2="155" stroke="#aaa" stroke-width="1.2"/>
+  <text x="158" y="5" font-size="13" fill="#666">Re</text>
+  <text x="5" y="-155" font-size="13" fill="#666">Im</text>
+  <!-- unit circle-ish (r = 2^{-1/4} ≈ 0.841, scaled to 100px radius ≈ 84px) -->
+  <circle cx="0" cy="0" r="84" fill="none" stroke="#c5d8f5" stroke-width="1" stroke-dasharray="4,3"/>
+  <!-- z0: θ = 11π/24 = 82.5° -->
+  <circle cx="-11" cy="-84" r="5" fill="#1e5fa8"/>
+  <text x="-28" y="-90" font-size="12" fill="#0d2b5e">\(z_0\)</text>
+  <text x="30" y="-88" font-size="11" fill="#1e5fa8">82.5°</text>
+  <!-- z1: θ = 23π/24 = 172.5° -->
+  <circle cx="-83" cy="-11" r="5" fill="#1e5fa8"/>
+  <text x="-108" y="-14" font-size="12" fill="#0d2b5e">\(z_1\)</text>
+  <text x="-150" y="-22" font-size="11" fill="#1e5fa8">172.5°</text>
+  <!-- z2: θ = 35π/24 = 262.5° -->
+  <circle cx="11" cy="84" r="5" fill="#1e5fa8"/>
+  <text x="14" y="100" font-size="12" fill="#0d2b5e">\(z_2\)</text>
+  <text x="-70" y="108" font-size="11" fill="#1e5fa8">262.5°</text>
+  <!-- z3: θ = 47π/24 = 352.5° -->
+  <circle cx="83" cy="11" r="5" fill="#1e5fa8"/>
+  <text x="88" y="8" font-size="12" fill="#0d2b5e">\(z_3\)</text>
+  <text x="70" y="26" font-size="11" fill="#1e5fa8">352.5°</text>
+  <!-- radius label -->
+  <text x="28" y="-46" font-size="11" fill="#888">\(r=2^{-1/4}\)</text>
+  <line x1="0" y1="0" x2="-11" y2="-84" stroke="#1e5fa8" stroke-width="0.8" stroke-dasharray="3,2"/>
+</svg>
+</div>
+
+<div class="note">
+各解は \(2^{-1/4}\) を半径とする円上に <strong>90° 間隔</strong>で並ぶ。最初の偏角が \(11\pi/24 = 82.5°\) なのは、\(z^4\) の偏角 \(11\pi/6\) を 4 で割ったため。
+</div>
+
+<!-- ---------------------------------------- -->
+<h3>1-2）複素積分</h3>
+
+<p>被積分関数の特異点は \(z = 5\)（実軸上）。</p>
+
+<h4>（ア）\(\displaystyle\int_C \frac{1}{z-5}\,dz\)、\(C\colon |z|=3\)</h4>
+
+<div class="step">
+特異点 \(z=5\) は \(|z|=3\) の外側（\(|5|=5>3\)）にある。<br>
+コーシーの定理より、正則関数の閉曲線積分は 0。
+</div>
+<div class="answer-box">
+$$\boxed{\int_C \frac{1}{z-5}\,dz = 0}$$
+</div>
+
+<h4>（イ）\(\displaystyle\int_C \frac{1}{z-5}\,dz\)、\(C\colon |z|=6\)</h4>
+
+<div class="step">
+特異点 \(z=5\) は \(|z|=6\) の内側（\(|5|=5<6\)）にある。<br>
+留数定理を適用：\(\mathrm{Res}\!\left[\dfrac{1}{z-5},\;z=5\right] = 1\)
+</div>
+<div class="answer-box">
+$$\boxed{\int_C \frac{1}{z-5}\,dz = 2\pi j}$$
+</div>
+
+<h4>（ウ）\(\displaystyle\int_C \frac{1}{(z-5)^2}\,dz\)、\(C\colon |z|=6\)</h4>
+
+<div class="step">
+特異点 \(z=5\)（2 位の極）は \(|z|=6\) の内側にある。<br>
+コーシーの積分公式（高階版）：
+$$\int_C \frac{f(z)}{(z-a)^{n+1}}\,dz = \frac{2\pi j}{n!}\,f^{(n)}(a)$$
+ここで \(f(z)=1\)、\(a=5\)、\(n=1\)：
+$$\int_C \frac{1}{(z-5)^2}\,dz = \frac{2\pi j}{1!}\cdot f'(5) = 2\pi j \cdot 0 = 0$$
+<p>あるいは留数：\(\mathrm{Res}\!\left[\dfrac{1}{(z-5)^2},\;z=5\right] = \lim_{z\to 5}\dfrac{d}{dz}\!\left[(z-5)^2\cdot\dfrac{1}{(z-5)^2}\right] = \dfrac{d}{dz}[1] = 0\)</p>
+</div>
+<div class="answer-box">
+$$\boxed{\int_C \frac{1}{(z-5)^2}\,dz = 0}$$
+</div>
+
+<div class="note">
+<strong>判定の手順まとめ：</strong>①特異点の位置を確認 → ②積分路の内側か外側か判定 → ③コーシーの定理 or 留数定理を適用
+</div>
+
+<!-- ======================================== -->
+<h2>大問2：デルタ関数列のフーリエ解析とサンプリング定理</h2>
+
+<h3>2-1）\(\delta_T(t)\) のフーリエ級数展開</h3>
+
+<p>\(\delta_T(t) = \displaystyle\sum_{n=-\infty}^{\infty}\delta(t-nT_s)\) は周期 \(T_s\) の周期関数。</p>
+
+<div class="step">
+<p><strong>フーリエ級数の係数を計算する</strong></p>
+<p>フーリエ係数（インデックスを \(m\) とする）：</p>
+$$c_m = \frac{1}{T_s}\int_{-T_s/2}^{T_s/2}\delta_T(t)\,e^{-j\frac{2\pi m}{T_s}t}\,dt$$
+<p>一周期 \([-T_s/2,\,T_s/2]\) に含まれるデルタ関数は \(\delta(t)\) のみ：</p>
+$$c_m = \frac{1}{T_s}\int_{-T_s/2}^{T_s/2}\delta(t)\,e^{-j\frac{2\pi m}{T_s}t}\,dt = \frac{1}{T_s}\cdot e^{0} = \frac{1}{T_s}$$
+<p>すべての \(m\) に対して \(c_m\) が同じ値 \(1/T_s\)。</p>
+</div>
+
+<div class="answer-box">
+<p>フーリエ係数 \(c_m = 1/T_s\) を代入：</p>
+$$\boxed{\delta_T(t) = \frac{1}{T_s}\sum_{n=-\infty}^{\infty}\exp\!\left(j\frac{2\pi n}{T_s}t\right)}$$
+</div>
+
+<div class="note">
+デルタ関数列のフーリエ係数がすべて等しい（\(1/T_s\) で一定）ことが重要。これはデルタ関数のサンプリング性質 \(\int f(t)\delta(t-t_0)\,dt = f(t_0)\) から直接導かれる。
+</div>
+
+<h3>2-2）サンプリング関数 \(f_s(t)\) のフーリエ変換</h3>
+
+<p>\(f_s(t) = \displaystyle\sum_{n=-\infty}^{\infty}T_s\,f(t)\,\delta(t-nT_s)\) のフーリエ変換を求める。</p>
+
+<div class="step">
+<p><strong>STEP 1：問 1) の結果を使って \(f_s(t)\) を書き換える</strong></p>
+$$f_s(t) = T_s\,f(t)\cdot\delta_T(t) = T_s\,f(t)\cdot\frac{1}{T_s}\sum_n e^{\,j\frac{2\pi n}{T_s}t} = f(t)\sum_n e^{\,j\frac{2\pi n}{T_s}t}$$
+</div>
+
+<div class="step">
+<p><strong>STEP 2：フーリエ変換を計算する</strong></p>
+$$F_s(\omega) = \int_{-\infty}^{\infty}f_s(t)\,e^{-j\omega t}\,dt = \int_{-\infty}^{\infty}f(t)\sum_n e^{\,j\frac{2\pi n}{T_s}t}\cdot e^{-j\omega t}\,dt$$
+$$= \sum_{n=-\infty}^{\infty}\int_{-\infty}^{\infty}f(t)\,e^{-j\!\left(\omega - \frac{2\pi n}{T_s}\right)t}\,dt = \sum_{n=-\infty}^{\infty}F\!\left(\omega - \frac{2\pi n}{T_s}\right)$$
+</div>
+
+<div class="answer-box">
+$$\boxed{F_s(\omega) = \sum_{n=-\infty}^{\infty}F\!\left(\omega - n\omega_s\right)}$$
+<p>ただし \(\omega_s = \dfrac{2\pi}{T_s}\)（サンプリング角周波数）</p>
+</div>
+
+<div class="note">
+<strong>物理的意味（サンプリング定理）：</strong><br>
+サンプリング後のスペクトルは、元のスペクトル \(F(\omega)\) がサンプリング周波数 \(\omega_s\) ごとに<strong>繰り返し並ぶ</strong>形になる。元信号の最大周波数を \(\omega_{\max}\) とすると、\(\omega_s > 2\omega_{\max}\)（ナイキスト条件）を満たせば、スペクトルの重なり（エイリアシング）が生じず元信号を復元できる。
+</div>
+
+<!-- ======================================== -->
+<h2>大問3：拡散方程式（偏微分方程式）</h2>
+
+<p>対象方程式：</p>
+$$\frac{\partial^2 u}{\partial x^2} = \frac{1}{D}\frac{\partial u}{\partial t} \qquad (D\text{：正定数})\tag{1}$$
+
+<h3>3-1）変数分離による常微分方程式の導出</h3>
+
+<div class="step">
+<p>\(u(x,t) = X(x)T(t)\) を式(1) に代入：</p>
+$$X''(x)\,T(t) = \frac{1}{D}\,X(x)\,T'(t)$$
+<p>両辺を \(X(x)T(t)\) で割る：</p>
+$$\frac{X''(x)}{X(x)} = \frac{1}{D}\cdot\frac{T'(t)}{T(t)}$$
+<p>左辺は \(x\) のみ、右辺は \(t\) のみの関数 → 両辺とも定数 \(\lambda\) に等しい。</p>
+</div>
+
+<div class="answer-box">
+<p>2つの常微分方程式：</p>
+$$X'' - \lambda X = 0 \qquad \cdots (X\text{方程式})$$
+$$T' - D\lambda T = 0 \qquad \cdots (T\text{方程式})$$
+</div>
+
+<h3>3-2）周期解の仮定による一般解</h3>
+
+<div class="step">
+<p><strong>λ の符号の考察</strong></p>
+<ul>
+  <li>\(\lambda > 0\) → \(X(x)\) が指数関数的に発散（周期解でない）→ 棄却</li>
+  <li>\(\lambda = 0\) → \(X(x) = ax+b\)（非自明な周期解なし）→ 棄却</li>
+  <li>\(\lambda = -k^2 < 0\) → \(X(x)\) が三角関数（周期解）→ <strong>採用</strong></li>
+</ul>
+<p>\(\lambda = -k^2\)（\(k > 0\)）とおくと：</p>
+$$X'' + k^2 X = 0 \;\Rightarrow\; X(x) = A\cos kx + B\sin kx$$
+$$T' + Dk^2 T = 0 \;\Rightarrow\; T(t) = C\,e^{-Dk^2 t}$$
+</div>
+
+<div class="answer-box">
+<p>重ね合わせにより一般解：</p>
+$$\boxed{u(x,t) = \sum_k \bigl[A_k\cos kx + B_k\sin kx\bigr]\,e^{-Dk^2 t}}$$
+<p>（任意定数 \(A_k,\,B_k\)、\(k\) は境界条件で決まる）</p>
+</div>
+
+<h3>3-3）境界条件・初期条件を満たす解</h3>
+
+<div class="step">
+<p><strong>境界条件 \(u(0,t) = 0\) より：</strong></p>
+$$X(0) = 0 \;\Rightarrow\; A_k\cos 0 + B_k\sin 0 = A_k = 0$$
+<p>よって \(X(x) = B_k\sin kx\)</p>
+
+<p><strong>境界条件 \(u(L,t) = 0\) より：</strong></p>
+$$B_k\sin(kL) = 0 \;\Rightarrow\; kL = n\pi \;\Rightarrow\; k_n = \frac{n\pi}{L} \quad (n = 1,2,3,\ldots)$$
+</div>
+
+<div class="step">
+<p><strong>固有関数展開：</strong></p>
+$$u(x,t) = \sum_{n=1}^{\infty}B_n\sin\!\left(\frac{n\pi x}{L}\right)e^{-D\left(\frac{n\pi}{L}\right)^2\!t}$$
+
+<p><strong>初期条件 \(u(x,0) = f(x)\) より：</strong></p>
+$$f(x) = \sum_{n=1}^{\infty}B_n\sin\!\left(\frac{n\pi x}{L}\right)$$
+<p>フーリエ正弦級数の直交性を使い、両辺に \(\sin\!\left(\dfrac{m\pi x}{L}\right)\) をかけて \([0,L]\) で積分：</p>
+$$\int_0^L f(x)\sin\!\left(\frac{m\pi x}{L}\right)dx = B_m\int_0^L\sin^2\!\left(\frac{m\pi x}{L}\right)dx = B_m\cdot\frac{L}{2}$$
+$$\therefore\; B_n = \frac{2}{L}\int_0^L f(x)\sin\!\left(\frac{n\pi x}{L}\right)dx$$
+</div>
+
+<div class="answer-box">
+$$\boxed{u(x,t) = \sum_{n=1}^{\infty}B_n\sin\!\left(\frac{n\pi x}{L}\right)\exp\!\left[-D\!\left(\frac{n\pi}{L}\right)^{\!2}\!t\right]}$$
+$$\text{ただし}\quad B_n = \frac{2}{L}\int_0^L f(x)\sin\!\left(\frac{n\pi x}{L}\right)dx$$
+</div>
+
+<div class="note">
+<strong>物理的意味：</strong>各モードは固有角周波数 \(k_n = n\pi/L\) を持ち、時定数 \(\tau_n = L^2/(D n^2\pi^2)\) で減衰する拡散（熱伝導）解。高次モードほど速く減衰し、長時間後は基本モード（\(n=1\)）が支配的になる。
+</div>
+
+<!-- ======================================== -->
+<h2>解答まとめ</h2>
+
+<table>
+  <tr><th>問</th><th>キーポイント</th><th>答え</th></tr>
+  <tr><td>1-1</td><td>4乗根＝極形式変換 + 偏角 \(+\pi/2\) ずつ</td><td>\(z_k = 2^{-1/4}e^{j(11\pi/24 + k\pi/2)}\)，\(k=0,1,2,3\)</td></tr>
+  <tr><td>1-2(ア)</td><td>特異点 \(z=5\) が積分路外</td><td>\(0\)</td></tr>
+  <tr><td>1-2(イ)</td><td>特異点 \(z=5\) が積分路内・留数 \(=1\)</td><td>\(2\pi j\)</td></tr>
+  <tr><td>1-2(ウ)</td><td>2位の極・留数 \(=0\)</td><td>\(0\)</td></tr>
+  <tr><td>2-1</td><td>フーリエ係数 \(c_m = 1/T_s\)（全モード同値）</td><td>\(\delta_T(t) = \dfrac{1}{T_s}\sum_n\exp\!\left(j\dfrac{2\pi n}{T_s}t\right)\)</td></tr>
+  <tr><td>2-2</td><td>問1) の結果を代入しフーリエ変換</td><td>\(F_s(\omega) = \sum_n F(\omega - n\omega_s)\)</td></tr>
+  <tr><td>3-1</td><td>変数分離 → 分離定数 \(\lambda\)</td><td>\(X''-\lambda X=0\)，\(T'-D\lambda T=0\)</td></tr>
+  <tr><td>3-2</td><td>周期解 → \(\lambda = -k^2\)</td><td>\(u = \sum[A_k\cos kx + B_k\sin kx]e^{-Dk^2 t}\)</td></tr>
+  <tr><td>3-3</td><td>BC → sin展開，IC → フーリエ正弦係数</td><td>\(u = \sum B_n\sin\!\left(\frac{n\pi x}{L}\right)e^{-D(n\pi/L)^2 t}\)</td></tr>
+</table>
+
+<p style="margin-top:30px; color:#888; font-size:10pt; text-align:center;">
+  作成：Claude（Anthropic）/ 2026年6月24日
+</p>
+
+</body>
+</html>

@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>電気数学 解答解説（H25年度・東工大大学院）</title>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "Yu Gothic", "游ゴシック", sans-serif;
+      font-size: 13pt;
+      line-height: 1.9;
+      color: #1a1a2e;
+      background: #ffffff;
+      padding: 30px 50px;
+      max-width: 920px;
+      margin: 0 auto;
+    }
+    h1 {
+      font-size: 18pt;
+      color: #0d2b5e;
+      border-bottom: 3px solid #0d2b5e;
+      padding-bottom: 8px;
+      margin: 30px 0 20px 0;
+      text-align: center;
+    }
+    h2 {
+      font-size: 15pt;
+      color: #ffffff;
+      background: #0d2b5e;
+      padding: 6px 16px;
+      margin: 32px 0 14px 0;
+      border-radius: 4px;
+    }
+    h3 {
+      font-size: 13pt;
+      color: #0d2b5e;
+      border-left: 5px solid #1e5fa8;
+      padding-left: 10px;
+      margin: 22px 0 10px 0;
+    }
+    h4 { font-size: 12pt; color: #1e5fa8; margin: 16px 0 6px 0; }
+    p { margin: 8px 0; }
+    .meta { text-align: center; color: #555; font-size: 11pt; margin-bottom: 10px; }
+    .answer-box {
+      background: #eef4ff;
+      border: 2px solid #1e5fa8;
+      border-radius: 6px;
+      padding: 12px 20px;
+      margin: 12px 0;
+    }
+    .note {
+      background: #fff8e1;
+      border-left: 4px solid #f5a623;
+      padding: 10px 16px;
+      margin: 12px 0;
+      border-radius: 0 4px 4px 0;
+      font-size: 12pt;
+    }
+    .step {
+      background: #f5f9ff;
+      border: 1px solid #c5d8f5;
+      border-radius: 6px;
+      padding: 10px 16px;
+      margin: 10px 0;
+    }
+    .fig { display: flex; justify-content: center; margin: 16px 0; }
+    svg text { font-family: "Yu Gothic", sans-serif; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 14px 0;
+      font-size: 12pt;
+    }
+    th { background: #0d2b5e; color: #fff; padding: 8px 12px; text-align: left; }
+    td { padding: 7px 12px; border: 1px solid #c5d8f5; }
+    tr:nth-child(even) td { background: #f0f5ff; }
+    @media print {
+      body { padding: 15px 25px; max-width: 100%; }
+      h2 { page-break-after: avoid; }
+      .answer-box, .note, .step { page-break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+
+<h1>電気数学　解答解説</h1>
+<p class="meta">東京工業大学 大学院修士課程入試問題（平成24年8月22日実施）<br>
+専門科目 電気電子工学・電子物理工学（午前）　9:30〜11:00</p>
+
+<!-- ================================================ -->
+<h2>大問1：フーリエ解析</h2>
+
+<h3>1-1）方形波 \(v_1(t)\) のフーリエ級数展開</h3>
+
+<p><strong>問題：</strong>図のように周期 \(2\pi\)、振幅 \(E\) の方形波
+\[v_1(t)=\begin{cases}E & (0 < t < \pi)\\ -E & (-\pi < t < 0)\end{cases}\]
+のフーリエ級数展開を求めよ。</p>
+
+<div class="fig">
+<svg width="400" height="160" viewBox="-200 -80 400 160">
+  <line x1="-190" y1="0" x2="190" y2="0" stroke="#aaa" stroke-width="1.2"/>
+  <line x1="0" y1="-70" x2="0" y2="70" stroke="#aaa" stroke-width="1.2"/>
+  <text x="192" y="4" font-size="12" fill="#666">t</text>
+  <text x="4" y="-64" font-size="12" fill="#666">v₁</text>
+  <!-- waveform -->
+  <polyline points="-190,50 -100,50 -100,-50 0,-50 0,50 100,50 100,-50 190,-50"
+            fill="none" stroke="#1e5fa8" stroke-width="2"/>
+  <!-- labels -->
+  <text x="-108" y="14" font-size="11" fill="#444">−π</text>
+  <text x="-4" y="14" font-size="11" fill="#444">0</text>
+  <text x="96" y="14" font-size="11" fill="#444">π</text>
+  <text x="6" y="-52" font-size="11" fill="#0d2b5e">E</text>
+  <text x="6" y="56" font-size="11" fill="#0d2b5e">−E</text>
+</svg>
+</div>
+
+<div class="step">
+<p><strong>STEP 1：対称性の確認</strong></p>
+<p>\(v_1(t)\) は奇関数（\(v_1(-t) = -v_1(t)\)）なので、フーリエ係数 \(a_0 = 0,\; a_n = 0\)。</p>
+</div>
+
+<div class="step">
+<p><strong>STEP 2：\(b_n\) の計算</strong></p>
+$$b_n = \frac{1}{\pi}\int_{-\pi}^{\pi}v_1(t)\sin(nt)\,dt = \frac{2}{\pi}\int_0^{\pi}E\sin(nt)\,dt$$
+$$= \frac{2E}{\pi}\!\left[-\frac{\cos(nt)}{n}\right]_0^{\pi} = \frac{2E}{n\pi}\bigl[1 - \cos(n\pi)\bigr] = \frac{2E}{n\pi}\bigl[1-(-1)^n\bigr]$$
+<ul>
+  <li>\(n\) が偶数：\(b_n = 0\)</li>
+  <li>\(n\) が奇数：\(b_n = \dfrac{4E}{n\pi}\)</li>
+</ul>
+</div>
+
+<div class="answer-box">
+$$\boxed{v_1(t) = \frac{4E}{\pi}\sum_{n=1,3,5,\ldots}\frac{\sin(nt)}{n}
+= \frac{4E}{\pi}\!\left(\sin t + \frac{\sin 3t}{3} + \frac{\sin 5t}{5} + \cdots\right)}$$
+</div>
+
+<div class="note">奇数次の sin 成分のみからなる（偶数次はゼロ）。これは方形波の半波対称性 \(v_1(t+\pi) = -v_1(t)\) による。</div>
+
+<!-- ---------------------------------------- -->
+<h3>1-2）フィルタ通過後の出力波形</h3>
+
+<p><strong>問題：</strong>\(v_1(t)\) を「周期が \(\pi/2\) より長い正弦波成分のみを通過させる回路」に通した定常出力を求めよ。</p>
+
+<div class="step">
+<p><strong>STEP 1：通過条件の変換</strong></p>
+<p>周期 \(T > \pi/2 \;\Rightarrow\; \dfrac{2\pi}{\omega} > \dfrac{\pi}{2} \;\Rightarrow\; \omega < 4\)</p>
+</div>
+
+<div class="step">
+<p><strong>STEP 2：各高調波を確認</strong></p>
+<table>
+  <tr><th>次数 n</th><th>角周波数 ω = n</th><th>通過？</th></tr>
+  <tr><td>1</td><td>1 &lt; 4</td><td>✓ 通過</td></tr>
+  <tr><td>3</td><td>3 &lt; 4</td><td>✓ 通過</td></tr>
+  <tr><td>5</td><td>5 ≥ 4</td><td>✗ 遮断</td></tr>
+  <tr><td>7以上</td><td>7, 9, … &gt; 4</td><td>✗ 遮断</td></tr>
+</table>
+</div>
+
+<div class="answer-box">
+$$\boxed{v_{\rm out}(t) = \frac{4E}{\pi}\!\left(\sin t + \frac{\sin 3t}{3}\right)}$$
+<p>振幅が異なる基本波と第3高調波の重ね合わせ（台形波に近い波形）。</p>
+</div>
+
+<!-- ---------------------------------------- -->
+<h3>1-3）修正方形波 \(v_2(t)\) のフーリエ級数展開</h3>
+
+<p><strong>問題：</strong>図のように周期 \(2\pi\)、振幅 \(E\) で、\(0 < \alpha < \pi/2\) のとき
+\[v_2(t)=\begin{cases}E & (\alpha < t < \pi-\alpha)\\ -E & (-\pi+\alpha < t < -\alpha)\\ 0 & (\text{その他})\end{cases}\]
+のフーリエ級数展開を求めよ。</p>
+
+<div class="fig">
+<svg width="440" height="160" viewBox="-220 -80 440 160">
+  <line x1="-210" y1="0" x2="210" y2="0" stroke="#aaa" stroke-width="1.2"/>
+  <line x1="0" y1="-70" x2="0" y2="70" stroke="#aaa" stroke-width="1.2"/>
+  <text x="212" y="4" font-size="12" fill="#666">t</text>
+  <!-- waveform (α≈π/6 for illustration) -->
+  <!-- positive pulse: α to π-α (approx 30 to 150 degrees → 30 to 150 scaled) -->
+  <polyline points="-210,50 -145,50 -145,0 -115,0 -115,-50 -35,-50 -35,0 35,0 35,50 115,50 115,0 145,0 145,-50 210,-50"
+            fill="none" stroke="#1e5fa8" stroke-width="2"/>
+  <!-- tick marks and labels -->
+  <line x1="-145" y1="-5" x2="-145" y2="5" stroke="#888" stroke-width="1"/>
+  <line x1="-115" y1="-5" x2="-115" y2="5" stroke="#888" stroke-width="1"/>
+  <line x1="-35" y1="-5" x2="-35" y2="5" stroke="#888" stroke-width="1"/>
+  <line x1="35" y1="-5" x2="35" y2="5" stroke="#888" stroke-width="1"/>
+  <line x1="115" y1="-5" x2="115" y2="5" stroke="#888" stroke-width="1"/>
+  <line x1="145" y1="-5" x2="145" y2="5" stroke="#888" stroke-width="1"/>
+  <text x="-155" y="18" font-size="10" fill="#444">−π+α</text>
+  <text x="-122" y="18" font-size="10" fill="#444">−α</text>
+  <text x="28" y="18" font-size="10" fill="#444">α</text>
+  <text x="105" y="18" font-size="10" fill="#444">π−α</text>
+  <text x="6" y="-52" font-size="11" fill="#0d2b5e">E</text>
+  <text x="6" y="58" font-size="11" fill="#0d2b5e">−E</text>
+</svg>
+</div>
+
+<div class="step">
+<p><strong>STEP 1：対称性の確認</strong></p>
+<p>\(v_2(t)\) も奇関数 → \(a_0 = a_n = 0\)</p>
+</div>
+
+<div class="step">
+<p><strong>STEP 2：\(b_n\) の計算</strong></p>
+$$b_n = \frac{2}{\pi}\int_0^{\pi}v_2(t)\sin(nt)\,dt = \frac{2}{\pi}\int_{\alpha}^{\pi-\alpha}E\sin(nt)\,dt$$
+$$= \frac{2E}{\pi}\!\left[-\frac{\cos(nt)}{n}\right]_{\alpha}^{\pi-\alpha}
+= \frac{2E}{n\pi}\bigl[\cos(n\alpha) - \cos(n(\pi-\alpha))\bigr]$$
+<p>ここで \(\cos(n(\pi-\alpha)) = \cos(n\pi)\cos(n\alpha) = (-1)^n\cos(n\alpha)\)（\(\sin(n\pi)=0\)）なので：</p>
+$$b_n = \frac{2E\cos(n\alpha)}{n\pi}\bigl[1 - (-1)^n\bigr]$$
+<ul>
+  <li>\(n\) 偶数：\(b_n = 0\)</li>
+  <li>\(n\) 奇数：\(b_n = \dfrac{4E\cos(n\alpha)}{n\pi}\)</li>
+</ul>
+</div>
+
+<div class="answer-box">
+$$\boxed{v_2(t) = \frac{4E}{\pi}\sum_{n=1,3,5,\ldots}\frac{\cos(n\alpha)}{n}\sin(nt)
+= \frac{4E}{\pi}\!\left(\cos\alpha\,\sin t + \frac{\cos 3\alpha}{3}\sin 3t + \cdots\right)}$$
+</div>
+
+<div class="note">
+\(\alpha = 0\) とすると \(\cos(n\alpha) = 1\) となり、問1-1の \(v_1(t)\) のフーリエ級数に一致することを確認できる。
+</div>
+
+<!-- ---------------------------------------- -->
+<h3>1-4）基本波成分のみとなる \(\alpha\) の決定</h3>
+
+<p><strong>問題：</strong>\(v_2(t)\) を同じフィルタ（周期 \(>\pi/2\)、すなわち \(\omega < 4\) を通過）に通したとき、出力が周期 \(2\pi\) の基本波成分のみとなる \(\alpha\) を求め、出力波形を図示せよ。</p>
+
+<div class="step">
+<p><strong>STEP 1：フィルタ通過後の式</strong></p>
+<p>\(v_2(t)\) のうち \(\omega < 4\) を通過するのは \(n=1\)（\(\omega=1\)）と \(n=3\)（\(\omega=3\)）：</p>
+$$v_{\rm out}(t) = \frac{4E}{\pi}\!\left(\cos\alpha\,\sin t + \frac{\cos 3\alpha}{3}\sin 3t\right)$$
+</div>
+
+<div class="step">
+<p><strong>STEP 2：\(n=3\) 成分をゼロにする条件</strong></p>
+$$\frac{\cos 3\alpha}{3} = 0 \;\Rightarrow\; \cos 3\alpha = 0$$
+$$3\alpha = \frac{\pi}{2} \quad \left(0 < \alpha < \frac{\pi}{2} \text{ より } 0 < 3\alpha < \frac{3\pi}{2}\text{、最小解を取る}\right)$$
+$$\therefore\; \alpha = \frac{\pi}{6}$$
+</div>
+
+<div class="answer-box">
+$$\boxed{\alpha = \frac{\pi}{6}}$$
+<p>このとき出力：</p>
+$$v_{\rm out}(t) = \frac{4E}{\pi}\cos\frac{\pi}{6}\cdot\sin t = \frac{4E}{\pi}\cdot\frac{\sqrt{3}}{2}\cdot\sin t = \frac{2\sqrt{3}\,E}{\pi}\sin t$$
+</div>
+
+<p><strong>出力波形：</strong></p>
+<div class="fig">
+<svg width="400" height="160" viewBox="-200 -80 400 160">
+  <line x1="-190" y1="0" x2="190" y2="0" stroke="#aaa" stroke-width="1.2"/>
+  <line x1="0" y1="-70" x2="0" y2="70" stroke="#aaa" stroke-width="1.2"/>
+  <text x="192" y="4" font-size="12" fill="#666">t</text>
+  <!-- sine wave: A sin(t), A = 2√3E/π ≈ 1.10E, scaled to ~55px -->
+  <path d="M -190,0
+    C -170,-55 -130,-55 -100,0
+    C -70,55 -30,55 0,0
+    C 30,-55 70,-55 100,0
+    C 130,55 170,55 190,0"
+    fill="none" stroke="#1e5fa8" stroke-width="2"/>
+  <text x="6" y="-58" font-size="10" fill="#0d2b5e">2√3E/π</text>
+  <text x="-115" y="14" font-size="10" fill="#444">−π</text>
+  <text x="96" y="14" font-size="10" fill="#444">π</text>
+</svg>
+</div>
+
+<div class="note">
+振幅 \(\dfrac{2\sqrt{3}\,E}{\pi} \approx 1.10\,\dfrac{E}{\pi/2} \approx 0.55\,E\)（元の振幅 \(E\) より小さい）の純正弦波。
+</div>
+
+<!-- ================================================ -->
+<h2>大問2：確率・通信路</h2>
+
+<p>地点 X → Y → Z の通信路（図2.1）で、X が「1」を送る確率を \(p_0\)、「0」を送る確率を \(1-p_0\)、X→Y の誤り確率を \(p_1\)、Y→Z の誤り確率を \(p_2\) とする。</p>
+
+<h3>2-1）地点 Y で「1」を受け取る確率</h3>
+
+<div class="step">
+<p>全確率の法則で場合分け：</p>
+<table>
+  <tr><th>X が送る値</th><th>確率</th><th>Y が「1」を受け取る確率</th><th>寄与</th></tr>
+  <tr><td>「1」</td><td>\(p_0\)</td><td>\(1-p_1\)（誤りなし）</td><td>\(p_0(1-p_1)\)</td></tr>
+  <tr><td>「0」</td><td>\(1-p_0\)</td><td>\(p_1\)（誤りあり）</td><td>\((1-p_0)p_1\)</td></tr>
+</table>
+</div>
+
+<div class="answer-box">
+$$P(Y=1) = p_0(1-p_1) + (1-p_0)p_1$$
+$$\boxed{= p_0(1-2p_1) + p_1}$$
+</div>
+
+<!-- ---------------------------------------- -->
+<h3>2-2）Z で「1」を受け取ったとき Y の受信が「1」であった確率</h3>
+
+<p>ベイズの定理を使う：
+\(P(Y{=}1 \mid Z{=}1) = \dfrac{P(Z{=}1 \mid Y{=}1)\,P(Y{=}1)}{P(Z{=}1)}\)</p>
+
+<div class="step">
+<p><strong>各条件付き確率：</strong></p>
+<ul>
+  <li>\(P(Z{=}1 \mid Y{=}1) = 1-p_2\)　（Y→Z で誤りなし）</li>
+  <li>\(P(Z{=}1 \mid Y{=}0) = p_2\)　（Y→Z で誤りあり）</li>
+</ul>
+<p><strong>周辺確率 \(P(Z{=}1)\)：</strong></p>
+<p>\(q \equiv P(Y{=}1) = p_0(1-2p_1)+p_1\) とおくと、</p>
+$$P(Z{=}1) = (1-p_2)\,q + p_2\,(1-q) = q(1-2p_2) + p_2$$
+</div>
+
+<div class="answer-box">
+$$\boxed{P(Y{=}1 \mid Z{=}1) = \frac{(1-p_2)\,q}{q(1-2p_2)+p_2}}$$
+$$\text{ただし } q = p_0(1-2p_1)+p_1$$
+</div>
+
+<div class="note">
+<strong>ベイズの定理の手順まとめ：</strong>①事前確率 \(P(Y)\) を求める → ②尤度 \(P(Z|Y)\) を設定 → ③周辺確率 \(P(Z)\) を全確率の法則で計算 → ④ベイズ公式に代入。
+</div>
+
+<!-- ---------------------------------------- -->
+<h3>2-3）白色雑音が加わるときの確率密度分布 \(p(y)\)</h3>
+
+<p>X から「1」を連続送信。Y の受信器では受信信号強度 \(y\) = 送信信号 + 白色雑音 となる。</p>
+
+<div class="step">
+<p><strong>白色雑音の性質：</strong></p>
+<ul>
+  <li>タイミング・強度がランダム → 各サンプルは独立</li>
+  <li>中心極限定理より、十分な量の信号を受信すると振幅分布は<strong>正規（ガウス）分布</strong>に収束する</li>
+</ul>
+<p>送信信号「1」（固定値）+ ガウス雑音 \(n \sim \mathcal{N}(0,\,\sigma^2)\) より：</p>
+$$y = 1 + n \;\sim\; \mathcal{N}(1,\,\sigma^2)$$
+</div>
+
+<div class="answer-box">
+$$\boxed{p(y) = \frac{1}{\sqrt{2\pi\sigma^2}}\exp\!\left(-\frac{(y-1)^2}{2\sigma^2}\right)}$$
+<p>平均 1、分散 \(\sigma^2\) のガウス分布（\(\sigma^2\) は雑音の電力）。</p>
+</div>
+
+<div class="fig">
+<svg width="360" height="160" viewBox="-180 -80 360 160">
+  <line x1="-170" y1="50" x2="170" y2="50" stroke="#aaa" stroke-width="1.2"/>
+  <line x1="-170" y1="-70" x2="-170" y2="60" stroke="#aaa" stroke-width="1.2"/>
+  <text x="172" y="54" font-size="12" fill="#666">y</text>
+  <text x="-164" y="-66" font-size="11" fill="#666">p(y)</text>
+  <!-- Gaussian curve centered at x=20 (represents y=1) -->
+  <path d="M -150,50 C -120,49 -80,48 -50,45 C -30,43 -10,35 10,10
+           C 20,-30 30,-55 40,-60 C 50,-55 60,-30 70,10
+           C 90,35 110,43 130,45 C 160,48 170,49 170,50"
+    fill="rgba(30,95,168,0.12)" stroke="#1e5fa8" stroke-width="2"/>
+  <!-- center marker -->
+  <line x1="40" y1="50" x2="40" y2="-60" stroke="#1e5fa8" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="35" y="66" font-size="11" fill="#0d2b5e">1</text>
+  <text x="42" y="-62" font-size="10" fill="#0d2b5e">最大値</text>
+</svg>
+</div>
+
+<div class="note">
+<strong>物理的意味：</strong>送信信号値（ここでは 1）を中心としたガウス分布。SNR が高い（\(\sigma\) が小さい）ほど分布が鋭く、判定誤り率が低い。実際の通信システム設計ではこの分布から誤り確率（BER）が計算される。
+</div>
+
+<!-- ================================================ -->
+<h2>大問3：微分方程式・複素関数</h2>
+
+<h3>3-1(ア）斉次微分方程式の基本解</h3>
+
+<p>
+$$\frac{d^2y}{dx^2} - 5\frac{dy}{dx} + 6y = 0 \tag{3.1}$$
+</p>
+
+<div class="step">
+<p><strong>特性方程式：</strong></p>
+$$\lambda^2 - 5\lambda + 6 = 0 \;\Rightarrow\; (\lambda-2)(\lambda-3) = 0$$
+$$\lambda = 2,\quad \lambda = 3$$
+<p>（相異なる実数根）</p>
+</div>
+
+<div class="answer-box">
+$$\boxed{y_1 = e^{2x},\quad y_2 = e^{3x}}$$
+<p>一般解：\(y = C_1 e^{2x} + C_2 e^{3x}\)（\(C_1, C_2\) は任意定数）</p>
+</div>
+
+<!-- ---------------------------------------- -->
+<h3>3-1(イ）非斉次微分方程式の一般解</h3>
+
+<p>
+$$\frac{d^2f}{dx^2} - 5\frac{df}{dx} + 6f = e^{2x} \tag{3.2}$$
+</p>
+
+<div class="step">
+<p><strong>STEP 1：斉次解（3.1の一般解）</strong></p>
+$$f_h = C_1 e^{2x} + C_2 e^{3x}$$
+</div>
+
+<div class="step">
+<p><strong>STEP 2：特殊解を未定係数法で求める</strong></p>
+<p>右辺 \(e^{2x}\) に対応する特解候補は \(Ae^{2x}\) だが、\(\lambda=2\) は特性方程式の根なので、\(x\) をかけて修正：</p>
+$$f_p = Axe^{2x}$$
+<p>微分する：</p>
+$$f_p' = Ae^{2x} + 2Axe^{2x} = A(1+2x)e^{2x}$$
+$$f_p'' = 2A(1+2x)e^{2x} + 2Ae^{2x} = A(4+4x)e^{2x}$$
+
+<p>方程式に代入：</p>
+$$A(4+4x)e^{2x} - 5A(1+2x)e^{2x} + 6Axe^{2x} = e^{2x}$$
+$$A\bigl[(4+4x) - 5(1+2x) + 6x\bigr]e^{2x} = e^{2x}$$
+$$A\bigl[4+4x-5-10x+6x\bigr]e^{2x} = e^{2x}$$
+$$A\bigl[-1 + 0\cdot x\bigr]e^{2x} = e^{2x}$$
+$$-A = 1 \;\Rightarrow\; A = -1$$
+</div>
+
+<div class="answer-box">
+<p>特殊解：\(f_p = -xe^{2x}\)</p>
+<p>一般解（斉次解 + 特殊解）：</p>
+$$\boxed{f(x) = C_1 e^{2x} + C_2 e^{3x} - xe^{2x}}$$
+</div>
+
+<div class="note">
+<strong>なぜ \(Axe^{2x}\) とするか：</strong>右辺 \(e^{2x}\) の指数 2 が特性方程式の根（1 重）のため、通常の \(Ae^{2x}\) を代入すると斉次解と線形従属になりゼロになる。\(x\) を 1 回かけることで独立な特解が得られる。
+</div>
+
+<!-- ---------------------------------------- -->
+<h3>3-2）複素関数の極と留数</h3>
+
+<p>
+$$f(z) = \frac{z}{z^2-7z+12} \tag{3.3}$$
+</p>
+
+<div class="step">
+<p><strong>STEP 1：分母を因数分解して極を求める</strong></p>
+$$z^2 - 7z + 12 = (z-3)(z-4) = 0$$
+$$\therefore \text{極：} z = 3 \text{（1位の極）},\quad z = 4 \text{（1位の極）}$$
+</div>
+
+<div class="step">
+<p><strong>STEP 2：各極での留数を計算</strong></p>
+<p>1位の極での留数公式：\(\mathrm{Res}[f, z_0] = \lim_{z \to z_0}(z-z_0)\,f(z)\)</p>
+
+<p><strong>極 \(z=3\) での留数：</strong></p>
+$$\mathrm{Res}[f, 3] = \lim_{z \to 3}(z-3)\cdot\frac{z}{(z-3)(z-4)} = \frac{3}{3-4} = \frac{3}{-1} = -3$$
+
+<p><strong>極 \(z=4\) での留数：</strong></p>
+$$\mathrm{Res}[f, 4] = \lim_{z \to 4}(z-4)\cdot\frac{z}{(z-3)(z-4)} = \frac{4}{4-3} = \frac{4}{1} = 4$$
+</div>
+
+<div class="answer-box">
+<table>
+  <tr><th>極</th><th>位数</th><th>留数</th></tr>
+  <tr><td>\(z = 3\)</td><td>1位</td><td>\(-3\)</td></tr>
+  <tr><td>\(z = 4\)</td><td>1位</td><td>\(4\)</td></tr>
+</table>
+</div>
+
+<div class="note">
+<strong>確認（部分分数展開）：</strong>
+\(\dfrac{z}{(z-3)(z-4)} = \dfrac{A}{z-3}+\dfrac{B}{z-4}\) とすると、
+\(A = \mathrm{Res}[f,3] = -3\)、\(B = \mathrm{Res}[f,4] = 4\) より
+\(f(z) = \dfrac{-3}{z-3}+\dfrac{4}{z-4}\)。
+\(z \to \infty\) で \(f \to 0\) ✓
+</div>
+
+<!-- ================================================ -->
+<h2>解答まとめ</h2>
+
+<table>
+  <tr><th>問</th><th>キーポイント</th><th>答え</th></tr>
+  <tr><td>1-1</td><td>奇関数の方形波 → 奇数次 sin のみ</td><td>\(\frac{4E}{\pi}\sum_{n\text{:奇数}}\frac{\sin nt}{n}\)</td></tr>
+  <tr><td>1-2</td><td>\(\omega < 4\) を通過 → n=1, 3 のみ</td><td>\(\frac{4E}{\pi}\!\left(\sin t + \frac{\sin 3t}{3}\right)\)</td></tr>
+  <tr><td>1-3</td><td>\(b_n = \frac{4E\cos(n\alpha)}{n\pi}\)（n 奇数）</td><td>\(\frac{4E}{\pi}\sum_{n\text{:奇数}}\frac{\cos(n\alpha)}{n}\sin nt\)</td></tr>
+  <tr><td>1-4</td><td>\(\cos 3\alpha = 0\) → \(\alpha = \pi/6\)</td><td>\(\alpha=\pi/6\)、出力 \(\frac{2\sqrt{3}E}{\pi}\sin t\)</td></tr>
+  <tr><td>2-1</td><td>全確率の法則</td><td>\(p_0(1-2p_1)+p_1\)</td></tr>
+  <tr><td>2-2</td><td>ベイズの定理</td><td>\(\frac{(1-p_2)q}{q(1-2p_2)+p_2}\)（\(q=P(Y{=}1)\)）</td></tr>
+  <tr><td>2-3</td><td>白色雑音 + 中心極限定理 → ガウス分布</td><td>\(\mathcal{N}(1,\sigma^2)\)</td></tr>
+  <tr><td>3-1(ア)</td><td>特性方程式 \(\lambda^2-5\lambda+6=0\)</td><td>\(y_1=e^{2x},\; y_2=e^{3x}\)</td></tr>
+  <tr><td>3-1(イ)</td><td>\(\lambda=2\) が重根 → 特解は \(Axe^{2x}\)</td><td>\(C_1e^{2x}+C_2e^{3x}-xe^{2x}\)</td></tr>
+  <tr><td>3-2</td><td>分母因数分解 → 1位の極 × 2</td><td>極 \(z=3\)（留数 \(-3\)）、極 \(z=4\)（留数 \(4\)）</td></tr>
+</table>
+
+<p style="margin-top:30px; color:#888; font-size:10pt; text-align:center;">
+  作成：Claude（Anthropic）/ 2026年6月25日
+</p>
+
+</body>
+</html>

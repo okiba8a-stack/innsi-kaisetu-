@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>H25年度 専門科目午後1 電気回路 解答解説</title>
+  <script>
+    MathJax = {
+      tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']], tags: 'ams' },
+      options: { skipHtmlTags: ['script','noscript','style','textarea','pre'] }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: "Yu Gothic","游ゴシック",sans-serif; font-size: 13pt; line-height: 1.9; color: #1a1a2e; background: #f4f7fb; padding: 40px; }
+    h1 { font-size: 19pt; color: #0d2b5e; border-bottom: 3px solid #0d2b5e; padding-bottom: 10px; margin-bottom: 6px; }
+    .meta { color: #666; font-size: 11pt; margin-bottom: 36px; }
+    h2 { font-size: 15pt; color: #0d2b5e; background: #e8f0fb; border-left: 5px solid #1e5fa8; padding: 8px 14px; margin: 40px 0 16px; border-radius: 0 6px 6px 0; }
+    h3 { font-size: 13pt; color: #1e5fa8; border-bottom: 1px solid #c5d8f5; margin: 28px 0 10px; padding-bottom: 4px; }
+    .answer-box { background: #fff; border: 2px solid #1e5fa8; border-radius: 6px; padding: 14px 20px; margin: 12px 0; }
+    .step { background: #eef4ff; border-left: 3px solid #5b8dee; padding: 10px 16px; margin: 10px 0; border-radius: 0 4px 4px 0; }
+    .note { background: #fffbe6; border-left: 4px solid #f0ad00; padding: 10px 16px; margin: 12px 0; border-radius: 0 4px 4px 0; font-size: 11.5pt; }
+    table { border-collapse: collapse; width: 100%; margin: 16px 0; font-size: 11.5pt; }
+    th { background: #0d2b5e; color: #fff; padding: 8px 12px; text-align: center; }
+    td { border: 1px solid #c5d8f5; padding: 8px 12px; text-align: center; }
+    td.left { text-align: left; }
+    tr:nth-child(even) td { background: #f0f6ff; }
+    footer { margin-top: 60px; color: #aaa; font-size: 10pt; text-align: center; }
+    @media print { body { background: #fff; padding: 20px; } }
+  </style>
+</head>
+<body>
+
+<h1>H25年度 専門科目 午後1（電気回路）解答解説</h1>
+<p class="meta">東京工業大学 大学院修士課程入試（平成24年8月22日実施）</p>
+
+<!-- ========== 大問1 ========== -->
+<h2>大問1　アドミタンス解析・並列共振回路</h2>
+
+<h3>問1)　RL 直列回路（図1.1）の合成アドミタンス</h3>
+<div class="step">
+インピーダンス $Z = R + j\omega L$
+</div>
+<div class="answer-box">
+$$\boxed{Y = \frac{1}{R+j\omega L} = \frac{R-j\omega L}{R^2+\omega^2 L^2}}$$
+実部：$G = \dfrac{R}{R^2+\omega^2 L^2}$，虚部：$B = \dfrac{-\omega L}{R^2+\omega^2 L^2}$
+</div>
+
+<h3>問2)　アドミタンス軌跡（複素平面上）</h3>
+<div class="step">
+$G = \dfrac{R}{R^2+\omega^2 L^2}$，$B = \dfrac{-\omega L}{R^2+\omega^2 L^2}$ から $\omega$ を消去する。
+
+$B/G = -\omega L/R \;\Rightarrow\; \omega = -RB/(GL)$（$B&lt;0$ のとき $\omega&gt;0$）
+
+$G^2+B^2 = \dfrac{R^2+\omega^2 L^2}{(R^2+\omega^2 L^2)^2} = \dfrac{1}{R^2+\omega^2 L^2} = \dfrac{G}{R}$
+
+$(G - \tfrac{1}{2R})^2 + B^2 = \left(\tfrac{1}{2R}\right)^2$
+</div>
+<div class="answer-box">
+<strong>半径 $\dfrac{1}{2R}$，中心 $\left(\dfrac{1}{2R},\,0\right)$ の円。</strong><br>
+$\omega=0$ では $Y=1/R$（実軸上）、$\omega\to\infty$ では $Y\to 0$ なので、<strong>実軸下半分（$B\le 0$）の半円軌跡</strong>を描く。
+</div>
+
+<h3>問3)　図1.2：$I_1$, $I_2$ と「$\omega$ によらず $I$ と $V$ が同位相」になる条件</h3>
+<div class="step">
+電源電圧（実効値 $V_e$，角周波数 $\omega$）に対し：
+$$I_1 = \frac{V_e}{R+j\omega L}, \quad I_2 = \frac{V_e}{R+\frac{1}{j\omega C}}$$
+合成アドミタンス $Y = Y_1 + Y_2$ の虚部が 0 のとき $I$ と $V$ が同位相。
+
+$\text{Im}(Y_1) = \dfrac{-\omega L}{R^2+\omega^2 L^2}$，$\text{Im}(Y_2) = \dfrac{\omega C}{1+\omega^2 R^2 C^2}$
+
+$\text{Im}(Y) = 0$ の条件：
+$$\frac{-\omega L}{R^2+\omega^2 L^2} + \frac{\omega C}{1+\omega^2 R^2 C^2} = 0$$
+$\omega \neq 0$ で除し整理（$L-CR^2 = $ 共通因子で括る）：
+$$L(1+\omega^2 R^2 C^2) = C(R^2+\omega^2 L^2)$$
+$$(L-CR^2) - \omega^2 CL(L-CR^2) = 0$$
+$$(L-CR^2)(1-\omega^2 CL) = 0$$
+
+すべての $\omega$ で成立するには $(L-CR^2)=0$ かつ $(1-\omega^2 CL)=0$ の両方、または恒等的に $=0$：
+$L = CR^2$ のとき $(L-CR^2)=0$ → 括弧全体が $0 \times (\cdots) = 0$  ∀$\omega$ ✓
+</div>
+<div class="answer-box">
+$$I_1 = \frac{V_e}{R+j\omega L}, \quad I_2 = \frac{j\omega C \cdot V_e}{1+j\omega RC}$$
+同位相条件：$\boxed{L = CR^2}$（$\omega$ によらず成立）
+</div>
+
+<h3>問4)　条件 $L=CR^2$ のとき電流 $I$ の実効値</h3>
+<div class="step">
+$L=CR^2$ のとき $Y_1 = \dfrac{1}{R(1+j\omega CR)} = \dfrac{1}{R}\cdot\dfrac{1}{1+j\omega CR}$，$Y_2 = \dfrac{j\omega C}{1+j\omega RC}$
+
+$$Y = Y_1 + Y_2 = \frac{1/R + j\omega C}{1+j\omega CR} = \frac{(1/R)(1+j\omega CR)}{1+j\omega CR} = \frac{1}{R}$$
+</div>
+<div class="answer-box">
+$$\boxed{I = \frac{V_e}{R}}$$
+$Y = 1/R$（実数・$\omega$ 非依存）なので、電流は純抵抗 $R$ と同等。実効値 $I = V_e/R$。
+</div>
+
+<!-- ========== 大問2 ========== -->
+<h2>大問2　RL 回路の過渡応答（図2.1・2.2）</h2>
+
+<h3>問1)　図2.1：$t=0$ でスイッチ $S_1$ 投入後の微分方程式</h3>
+<div class="answer-box">
+$$\boxed{L\frac{di}{dt} + Ri = E}$$
+（KVL：$E = Ri + L\dfrac{di}{dt}$）
+</div>
+
+<h3>問2)　$i(0)=0$ の初期条件で解く（ラプラス変換を利用）</h3>
+<div class="step">
+ラプラス変換（$i(0)=0$）：$(Ls+R)I(s) = E/s$
+$$I(s) = \frac{E}{s(Ls+R)} = \frac{E/R}{s} - \frac{E/R}{s+R/L}$$
+</div>
+<div class="answer-box">
+$$\boxed{i(t) = \frac{E}{R}\left(1-e^{-\frac{R}{L}t}\right), \quad t \ge 0}$$
+時定数 $\tau = L/R$。$t\to\infty$ で $i\to E/R$。
+</div>
+
+<h3>問3)　$t=0$ から $t=T$ の間の仕事・電力量</h3>
+<div class="step">
+電源がする仕事（$W_E$）：
+$$W_E = \int_0^T E\,i(t)\,dt = \frac{E^2}{R}\int_0^T\!\left(1-e^{-\frac{R}{L}t}\right)dt = \frac{E^2}{R}\!\left[T - \frac{L}{R}\left(1-e^{-\frac{RT}{L}}\right)\right]$$
+
+抵抗で消費される電力量（$W_R$）：
+$$W_R = \int_0^T Ri^2\,dt = \frac{E^2}{R}\!\left[T - \frac{3L}{2R} + \frac{2L}{R}e^{-\frac{RT}{L}} - \frac{L}{2R}e^{-\frac{2RT}{L}}\right]$$
+
+検算：$W_E - W_R = \dfrac{1}{2}Li(T)^2 = \dfrac{L}{2}\!\left(\dfrac{E}{R}\right)^2\!\left(1-e^{-\frac{RT}{L}}\right)^2$（インダクタンスへの蓄積エネルギー）✓
+</div>
+<div class="answer-box">
+$$\boxed{W_E = \frac{E^2}{R}\!\left[T - \frac{L}{R}\!\left(1-e^{-\frac{RT}{L}}\right)\right]}$$
+$$\boxed{W_R = \frac{E^2}{R}\!\left[T - \frac{3L}{2R} + \frac{2L}{R}e^{-\frac{RT}{L}} - \frac{L}{2R}e^{-\frac{2RT}{L}}\right]}$$
+</div>
+
+<h3>問4)　図2.2：$S_2$ 投入後の独立な回路方程式 2 つ</h3>
+<p>
+図2.2 は $E$ ー $S_2$ ー $R_1$ （直列）の後に $R_2$ と $L$ が並列接続。$i_1(t)$ は $L$ に流れる電流、$i_2(t)$ は $R_2$ に流れる電流。
+</p>
+<div class="step">
+$R_2$ と $L$ の端子電圧が等しい：$L\dfrac{di_1}{dt} = R_2\,i_2$ ⋯(1)
+
+KVL（外ループ）：$E = R_1(i_1+i_2) + R_2\,i_2$  ⋯(2)
+</div>
+<div class="answer-box">
+$$\text{(1)}: L\frac{di_1}{dt} = R_2\,i_2$$
+$$\text{(2)}: E = R_1\,i_1 + (R_1+R_2)\,i_2$$
+</div>
+
+<h3>問5)　$i_1(0)=0$，$i_2(0^-)=0$ の初期条件で解く</h3>
+<div class="step">
+(2) から $i_2 = (E-R_1 i_1)/(R_1+R_2)$ を(1)に代入：
+$$L\frac{di_1}{dt} = \frac{R_2(E-R_1 i_1)}{R_1+R_2}$$
+ラプラス変換（$i_1(0)=0$）：$\;L\cdot s I_1 = \dfrac{R_2(E/s - R_1 I_1)}{R_1+R_2}$
+
+$$I_1(s) = \frac{R_2 E}{L(R_1+R_2)} \cdot \frac{1}{s(s+\alpha)}, \quad \alpha = \frac{R_1 R_2}{L(R_1+R_2)}$$
+
+部分分数展開：$\dfrac{1}{s(s+\alpha)} = \dfrac{1}{\alpha}\!\left(\dfrac{1}{s}-\dfrac{1}{s+\alpha}\right)$ を使うと：
+
+$$i_1(t) = \frac{E}{R_1}\left(1-e^{-\alpha t}\right)$$
+
+$i_2(t)$ は (2) から：
+$$i_2(t) = \frac{E - R_1 i_1}{R_1+R_2} = \frac{E\,e^{-\alpha t}}{R_1+R_2}$$
+</div>
+<div class="answer-box">
+$$\alpha = \frac{R_1 R_2}{L(R_1+R_2)} \quad\left(\text{時定数 }\tau = \frac{L(R_1+R_2)}{R_1 R_2}\right)$$
+$$\boxed{i_1(t) = \frac{E}{R_1}\left(1-e^{-\alpha t}\right), \quad i_2(t) = \frac{E}{R_1+R_2}e^{-\alpha t}, \quad t \ge 0}$$
+初期値：$i_1(0)=0$, $i_2(0^+) = E/(R_1+R_2)$（$R_2$ は抵抗なので瞬時変化可）<br>
+定常値：$i_1(\infty)=E/R_1$, $i_2(\infty)=0$（インダクタ短絡・$R_2$ 開放に相当）
+</div>
+
+<h3>問6)　$i_1(t)$, $i_2(t)$ のグラフの概形</h3>
+<div class="note">
+<strong>$i_1(t)$</strong>：$t=0$ で 0 から始まり、時定数 $\tau$ で漸近的に $E/R_1$ へ増加（指数的立ち上がり）。<br>
+<strong>$i_2(t)$</strong>：$t=0^+$ で $E/(R_1+R_2)$ から始まり、時定数 $\tau$ で 0 へ指数的減衰。<br>
+（$R_1+R_2&gt;R_1$ なので $i_2(0^+) &lt; i_1(\infty)$）
+</div>
+
+<h3>問7)　$S_2$ 閉成後十分時間が経過したときの等価回路</h3>
+<div class="answer-box">
+十分時間経過後：$i_1(\infty)=E/R_1$（$L$ を電流 $E/R_1$ が流れる）、$i_2(\infty)=0$（$R_2$ に電流なし）。<br>
+インダクタ $L$ は DC 短絡のため $R_2$ と並列でも事実上 $R_2$ は不活性。<br>
+<strong>等価回路：点線内は電流 $E/R_1$ を流す短絡路（インダクタ $L$）のみ。</strong><br>
+（$R_2$ は両端電圧 0 で開路等価）
+</div>
+
+<!-- ========== 大問3 ========== -->
+<h2>大問3　MOSFET 増幅器（小信号解析）</h2>
+
+<p>MOSFET 小信号等価回路：電圧制御電流源 $g_m v_{gs}$（ドレインからソースへ流れる）。コンダクタンス $G_1$ は VDD 側の負荷、$G_2$ は直列素子、$G_3$ はグラウンド側負荷。</p>
+
+<h3>問1)　小信号等価回路</h3>
+<div class="note">
+<strong>接続の確認（図3.1）：</strong>
+<ul>
+  <li>VDD → $G_1$ → ドレイン（小信号では VDD = AC グラウンド）</li>
+  <li>ドレイン → $G_2$ → 出力ノード $v_{out}$</li>
+  <li>$v_{out}$ → $G_3$ → グラウンド</li>
+  <li>ゲート：$v_{in}$（ソース = GND なので $v_{gs}=v_{in}$）</li>
+  <li>MOSFET：ドレイン・ソース間に $g_m v_{gs}$ の電流源（ドレインから流出方向）</li>
+</ul>
+小信号等価回路：$G_1$ を AC-GND とドレイン間に接続、$G_2$ をドレインと $v_{out}$ の間に接続、$G_3$ を $v_{out}$-GND 間に接続し、$g_m v_{in}$ の電流源をドレイン-GND 間に接続。
+</div>
+
+<h3>問2)　電圧利得 $A_v = v_{out}/v_{in}$</h3>
+<div class="step">
+ノード $v_d$（ドレイン）の KCL：
+$$G_1(0-v_d) + G_2(v_{out}-v_d) - g_m v_{in} = 0 \quad\cdots(A)$$
+ノード $v_{out}$ の KCL：
+$$G_2(v_d-v_{out}) - G_3 v_{out} = 0 \;\Rightarrow\; v_d = \frac{G_2+G_3}{G_2}v_{out} \quad\cdots(B)$$
+(B) を (A) に代入して整理：
+$$-\frac{(G_1+G_2)(G_2+G_3)}{G_2}v_{out} + G_2 v_{out} = g_m v_{in}$$
+$$-\frac{G_1(G_2+G_3)+G_2 G_3}{G_2}v_{out} = g_m v_{in}$$
+</div>
+<div class="answer-box">
+$$\boxed{A_v = \frac{v_{out}}{v_{in}} = \frac{-g_m G_2}{G_1 G_2 + G_1 G_3 + G_2 G_3}}$$
+（負：反転増幅）
+</div>
+
+<!-- ========== 大問4 ========== -->
+<h2>大問4　MOSFET 増幅器の周波数特性</h2>
+
+<p>図4.1：VDD → $R_2$ → ドレイン（出力 $v_{out}$）、ソース → $R_1$ → GND（ソース接地抵抗）、ゲート：$v_{in}$。MOSFET 小信号等価回路：$g_m v_{gs}$ + $C_{gs}$（ゲート-ソース間容量）。</p>
+
+<h3>問1)　小信号等価回路</h3>
+<div class="note">
+<strong>構成：</strong>
+<ul>
+  <li>$R_2$：VDD（AC-GND）とドレイン（= $v_{out}$）を接続</li>
+  <li>$R_1$：ソースノード $v_s$ と GND を接続</li>
+  <li>$C_{gs}$：ゲート（$v_{in}$）とソース（$v_s$）の間</li>
+  <li>$g_m v_{gs}$：ドレイン-GND 間電流源（ドレインから流出）</li>
+  <li>$v_{gs} = v_{in} - v_s$</li>
+</ul>
+</div>
+
+<h3>問2)　伝達関数 $G(j\omega) = v_{out}/v_{in}$</h3>
+<div class="step">
+ソースノード $v_s$ の KCL（$C_{gs}$ の電流がソースに流入）：
+$$g_m v_{gs} + j\omega C_{gs}v_{gs} = \frac{v_s}{R_1}$$
+$$(g_m + j\omega C_{gs})(v_{in}-v_s) = \frac{v_s}{R_1}$$
+$$v_{gs} = \frac{v_{in}-v_s}{1} = \frac{v_{in}/R_1}{1/R_1 + g_m + j\omega C_{gs}} = \frac{v_{in}}{1+g_m R_1 + j\omega C_{gs}R_1}$$
+
+ドレイン KCL（$R_2$ と電流源）：
+$$\frac{v_{out}-0}{R_2} + g_m v_{gs} = 0 \;\Rightarrow\; v_{out} = -g_m R_2\,v_{gs}$$
+</div>
+<div class="answer-box">
+$$\boxed{G(j\omega) = \frac{v_{out}}{v_{in}} = \frac{-g_m R_2}{1+g_m R_1 + j\omega C_{gs}R_1} = \frac{A_0}{1+j\omega/\omega_0}}$$
+ここで：
+$$A_0 = -\frac{g_m R_2}{1+g_m R_1}, \quad \omega_0 = \frac{1+g_m R_1}{C_{gs}R_1}$$
+</div>
+
+<h3>問3)　低域利得 $A_0$</h3>
+<div class="answer-box">
+$$\boxed{A_0 = G(j0) = -\frac{g_m R_2}{1+g_m R_1}}$$
+</div>
+
+<h3>問4)　遮断角周波数 $\omega_0$</h3>
+<div class="step">
+$|G(j\omega_0)| = |A_0|/\sqrt{2}$ となる $\omega_0$：
+$$|1+j\omega_0/\omega_0| = \sqrt{2} \;\Rightarrow\; \omega_0 = \frac{1+g_m R_1}{C_{gs}R_1}$$
+</div>
+<div class="answer-box">
+$$\boxed{\omega_0 = \frac{1+g_m R_1}{C_{gs}R_1}}$$
+</div>
+
+<h3>問5)　ボーデ線図（骨格）</h3>
+<div class="note">
+<strong>利得特性（骨格 Bode 線図）：</strong>
+<ul>
+  <li>$\omega \ll \omega_0$：$|G| = |A_0| = g_m R_2/(1+g_m R_1)$（定数、水平）</li>
+  <li>$\omega = \omega_0$：$|G| = |A_0|/\sqrt{2}$（$-3\,\text{dB}$ 点）</li>
+  <li>$\omega \gg \omega_0$：$-20\,\text{dB/decade}$ で減衰（折れ線近似：$\omega_0$ の点で折れる）</li>
+</ul>
+<strong>位相特性：</strong> $\angle G(j\omega) = 180° - \arctan(\omega/\omega_0)$（$A_0&lt;0$ による反転で $180°$ のオフセット）
+<ul>
+  <li>$\omega \to 0$：位相 $= 180°$</li>
+  <li>$\omega = \omega_0$：位相 $= 180° - 45° = 135°$</li>
+  <li>$\omega \to \infty$：位相 $= 90°$</li>
+</ul>
+</div>
+
+<!-- ========== まとめ表 ========== -->
+<h2>解答まとめ</h2>
+<table>
+  <tr><th>大問</th><th>問</th><th>解答</th></tr>
+  <tr><td rowspan="4">1<br>アドミタンス</td>
+    <td>1)</td><td class="left">$Y=(R-j\omega L)/(R^2+\omega^2 L^2)$</td></tr>
+  <tr><td>2)</td><td class="left">中心 $(1/(2R),0)$・半径 $1/(2R)$ の下半円</td></tr>
+  <tr><td>3)</td><td class="left">$I_1=V_e/(R+j\omega L)$，$I_2=j\omega C V_e/(1+j\omega RC)$；条件 $L=CR^2$</td></tr>
+  <tr><td>4)</td><td class="left">$I = V_e/R$（$\omega$ 依存なし）</td></tr>
+  <tr><td rowspan="7">2<br>過渡応答</td>
+    <td>1)</td><td class="left">$L\,di/dt + Ri = E$</td></tr>
+  <tr><td>2)</td><td class="left">$i(t)=(E/R)(1-e^{-Rt/L})$</td></tr>
+  <tr><td>3)</td><td class="left">$W_E=(E^2/R)[T-(L/R)(1-e^{-RT/L})]$，$W_R = W_E - \tfrac{1}{2}Li(T)^2$</td></tr>
+  <tr><td>4)</td><td class="left">$L\,di_1/dt = R_2 i_2$；$E = R_1 i_1 + (R_1+R_2)i_2$</td></tr>
+  <tr><td>5)</td><td class="left">$i_1=(E/R_1)(1-e^{-\alpha t})$，$i_2=(E/(R_1+R_2))e^{-\alpha t}$，$\alpha=R_1R_2/[L(R_1+R_2)]$</td></tr>
+  <tr><td>6)</td><td class="left">$i_1$：0 から $E/R_1$ へ漸近；$i_2$：$E/(R_1+R_2)$ から 0 へ指数減衰</td></tr>
+  <tr><td>7)</td><td class="left">点線内：$L$（電流 $E/R_1$ 通過）のみ。$R_2$ は無効</td></tr>
+  <tr><td rowspan="2">3<br>MOSFET<br>小信号</td>
+    <td>1)</td><td class="left">$g_m v_{in}$ 電流源 + $G_1$(AC-GND—Drain) + $G_2$(Drain—$v_{out}$) + $G_3$($v_{out}$—GND)</td></tr>
+  <tr><td>2)</td><td class="left">$A_v = -g_m G_2/(G_1 G_2+G_1 G_3+G_2 G_3)$</td></tr>
+  <tr><td rowspan="5">4<br>周波数<br>特性</td>
+    <td>1)</td><td class="left">$g_m v_{gs}$（Drain-GND）+ $C_{gs}$（Gate-Source）+ $R_1$（Source-GND）+ $R_2$（Drain-AC GND）</td></tr>
+  <tr><td>2)</td><td class="left">$G(j\omega) = -g_m R_2/(1+g_m R_1+j\omega C_{gs}R_1)$</td></tr>
+  <tr><td>3)</td><td class="left">$A_0 = -g_m R_2/(1+g_m R_1)$</td></tr>
+  <tr><td>4)</td><td class="left">$\omega_0 = (1+g_m R_1)/(C_{gs}R_1)$</td></tr>
+  <tr><td>5)</td><td class="left">利得：$\omega_0$ で折れる $-20\,\text{dB/dec}$；位相：$180°\to135°\to90°$（$\omega_0$ で $135°$）</td></tr>
+</table>
+
+<footer>解答解説作成：Claude（Anthropic）</footer>
+</body>
+</html>

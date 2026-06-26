@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>H24年度 専門科目午後 電磁気学 解答解説</title>
+  <script>
+    MathJax = {
+      tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']], tags: 'ams' },
+      options: { skipHtmlTags: ['script','noscript','style','textarea','pre'] }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "Yu Gothic", "游ゴシック", sans-serif;
+      font-size: 13pt;
+      line-height: 1.9;
+      color: #1a1a2e;
+      background: #f4f7fb;
+      padding: 40px;
+    }
+    h1 { font-size: 19pt; color: #0d2b5e; border-bottom: 3px solid #0d2b5e; padding-bottom: 10px; margin-bottom: 6px; }
+    .meta { color: #666; font-size: 11pt; margin-bottom: 36px; }
+    h2 { font-size: 15pt; color: #0d2b5e; background: #e8f0fb; border-left: 5px solid #1e5fa8; padding: 8px 14px; margin: 40px 0 16px; border-radius: 0 6px 6px 0; }
+    h3 { font-size: 13pt; color: #1e5fa8; border-bottom: 1px solid #c5d8f5; margin: 28px 0 10px; padding-bottom: 4px; }
+    .answer-box { background: #fff; border: 2px solid #1e5fa8; border-radius: 6px; padding: 14px 20px; margin: 12px 0; }
+    .answer-box strong { color: #0d2b5e; }
+    .step { background: #eef4ff; border-left: 3px solid #5b8dee; padding: 10px 16px; margin: 10px 0; border-radius: 0 4px 4px 0; }
+    .note { background: #fffbe6; border-left: 4px solid #f0ad00; padding: 10px 16px; margin: 12px 0; border-radius: 0 4px 4px 0; font-size: 11.5pt; }
+    table { border-collapse: collapse; width: 100%; margin: 16px 0; font-size: 11.5pt; }
+    th { background: #0d2b5e; color: #fff; padding: 8px 12px; text-align: center; }
+    td { border: 1px solid #c5d8f5; padding: 8px 12px; text-align: center; }
+    tr:nth-child(even) td { background: #f0f6ff; }
+    td.left { text-align: left; }
+    footer { margin-top: 60px; color: #aaa; font-size: 10pt; text-align: center; }
+    @media print { body { background: #fff; padding: 20px; } .answer-box { border: 1px solid #1e5fa8; } }
+  </style>
+</head>
+<body>
+
+<h1>H24年度 専門科目 午後（電磁気学）解答解説</h1>
+<p class="meta">東京工業大学 大学院修士課程入試（平成23年8月17日実施）</p>
+
+<!-- ===== 大問1 ===== -->
+<h2>大問1　電気映像法（点電荷と接地導体球）</h2>
+
+<p>
+原点 O から距離 $d$ の点 P に点電荷 $q$、直線 OP 上で O から距離 $f$（$f&lt;d$）の点 P' に点電荷 $-kq$（$0&lt;k&lt;1$）が置かれている。誘電率 $\varepsilon_0$。
+</p>
+
+<h3>問1)　点 Q の電位 V</h3>
+<div class="answer-box">
+$$\boxed{V = \frac{q}{4\pi\varepsilon_0}\!\left(\frac{1}{r_1} - \frac{k}{r_2}\right)}$$
+ここで $r_1 > r_2$ は点 Q から P, P' までの距離。
+</div>
+
+<h3>問2)　$V=0$ の点 Q が球面上にあることの証明・球の半径と中心</h3>
+<div class="step">
+$V=0$ 条件：$\dfrac{1}{r_1} = \dfrac{k}{r_2} \Rightarrow r_2 = k\,r_1$<br><br>
+座標系: P を $(0,0,d)$、P' を $(0,0,f)$、Q を $(x,y,z)$ に設定。
+$$r_1^2 = x^2+y^2+(z-d)^2, \quad r_2^2 = x^2+y^2+(z-f)^2$$
+条件 $r_2^2 = k^2 r_1^2$ を代入：
+$$x^2+y^2+(z-f)^2 = k^2\bigl[x^2+y^2+(z-d)^2\bigr]$$
+$$(1-k^2)(x^2+y^2+z^2) - 2(f-k^2d)z + f^2-k^2d^2 = 0$$
+$(1-k^2)$ で除し、$z$ について平方完成（$z_0 = \dfrac{f-k^2d}{1-k^2}$）：
+$$x^2+y^2+(z-z_0)^2 = z_0^2 - \frac{f^2-k^2d^2}{1-k^2}$$
+右辺の分子を整理：
+$$(f-k^2d)^2 - (f^2-k^2d^2)(1-k^2) = k^2(d-f)^2$$
+</div>
+<div class="answer-box">
+$V=0$ の点全体は球面をなす。<br>
+$$\textbf{中心}: \left(0,\,0,\,\frac{f-k^2d}{1-k^2}\right) \quad \textbf{半径}: R = \frac{k(d-f)}{1-k^2}$$
+</div>
+
+<h3>問3)　接地導体球に対する $k$，$f$（映像電荷の決定）</h3>
+<div class="step">
+導体球の中心 O' を座標原点に取る（O' = O の設定）。球の半径 $a$、中心 O' は座標原点。<br>
+問2の結果で、$V=0$ の球の中心が O' に一致し半径が $a$ になる条件：<br>
+・中心 $z_0 = \dfrac{f-k^2d}{1-k^2} = 0 \;\Rightarrow\; f = k^2 d$<br>
+・半径 $R = \dfrac{k(d-f)}{1-k^2} = a$<br>
+$f = k^2d$ を代入：
+$$\frac{k(d-k^2d)}{1-k^2} = \frac{kd(1-k^2)}{1-k^2} = kd = a$$
+</div>
+<div class="answer-box">
+$$\boxed{k = \frac{a}{d}, \quad f = \frac{a^2}{d}}$$
+映像電荷 $-kq = -\dfrac{a}{d}q$ が O' から $\dfrac{a^2}{d}$ の位置（球内部）に置かれる。
+</div>
+
+<h3>問4)　導体球表面の面電荷密度の最大値・最小値とその位置</h3>
+<div class="step">
+O'P 軸と球面の交点を基準に角度 $\theta$ を定義（$\theta=0$：P 側、$\theta=\pi$：P の反対側）。<br>
+球表面上の点と P との距離: $r_1 = \sqrt{a^2+d^2-2ad\cos\theta}$<br><br>
+面電荷密度（法線方向の電界から $\sigma = \varepsilon_0 E_n$）：
+$$\sigma(\theta) = -\frac{q(d^2-a^2)}{4\pi a\,(a^2+d^2-2ad\cos\theta)^{3/2}}$$
+$d&gt;a$ のとき $\sigma &lt; 0$（負の誘導電荷）。$|\sigma|$ は分母が最小のとき最大。
+<ul>
+  <li>$\theta=0$（P に最も近い点）: $(a^2+d^2-2ad)^{3/2} = (d-a)^3$</li>
+  <li>$\theta=\pi$（P から最も遠い点）: $(a^2+d^2+2ad)^{3/2} = (d+a)^3$</li>
+</ul>
+</div>
+<div class="answer-box">
+<strong>最大（最も負の方向に大きい）</strong>：P に最も近い点（$\theta=0$）
+$$\sigma_{\max} = -\frac{q(d+a)}{4\pi a(d-a)^2}$$
+<strong>最小（絶対値が最小）</strong>：P から最も遠い点（$\theta=\pi$）
+$$\sigma_{\min} = -\frac{q(d-a)}{4\pi a(d+a)^2}$$
+</div>
+
+<h3>問5)　導体球表面の全電荷</h3>
+<div class="step">
+全電荷 = 映像電荷の総和（ガウスの法則で確認可）。球を囲む閉曲面上の法線電界を積分すると映像電荷に等しくなる。
+</div>
+<div class="answer-box">
+$$\boxed{Q_{\text{total}} = -kq = -\frac{a}{d}\,q}$$
+（全電荷は映像電荷 $-kq$ に等しい）
+</div>
+
+<h3>問6)　電気力線の概略</h3>
+<div class="note">
+<strong>スケッチの要点：</strong>
+<ul>
+  <li>点電荷 $q$（P）から出た電気力線が全て導体球表面に終端する（接地により電位=0）</li>
+  <li>球に近い側（P 側）に電気力線が密集し、面電荷密度が大きい</li>
+  <li>遠い側（$\theta=\pi$）は電気力線が疎で面電荷密度が小さい</li>
+  <li>球の外部では、$q$（P）と映像電荷 $-kq$（P' 内部）が作る電場のパターンに見える</li>
+  <li>球表面は等電位（$V=0$）なので電気力線は球面に垂直に終端する</li>
+</ul>
+</div>
+
+<h3>問7)　点電荷 $q$ が導体球から受ける力</h3>
+<div class="step">
+映像電荷 $-kq = -(a/d)q$ が点 P' に存在するとして、点電荷 $q$ が受ける力はクーロン力：
+$$F = \frac{1}{4\pi\varepsilon_0}\frac{q\cdot(-kq)}{(d-f)^2}$$
+$k = a/d$, $f = a^2/d$ を代入：
+$$d - f = d - \frac{a^2}{d} = \frac{d^2-a^2}{d}$$
+$$F = -\frac{1}{4\pi\varepsilon_0}\frac{(a/d)\,q^2}{\left(\dfrac{d^2-a^2}{d}\right)^2} = -\frac{1}{4\pi\varepsilon_0}\frac{(a/d)\,q^2\cdot d^2}{(d^2-a^2)^2}$$
+</div>
+<div class="answer-box">
+$$\boxed{F = -\frac{1}{4\pi\varepsilon_0}\frac{adq^2}{(d^2-a^2)^2}}$$
+負号は球に向かう引力（吸引力）。
+</div>
+
+<h3>問8)　$q$ が速度 $v$ で接近するときの接地導線の電流</h3>
+<div class="step">
+O' から $q$ までの距離を $x = d - vt$（$t=0$ で $x=d$、$t$ とともに減少）とする。<br>
+球面上の全誘導電荷：
+$$Q(x) = -\frac{a}{x}\,q$$
+$x$ が減少すると $|Q|$ が増大（より多くの負電荷が球に誘導される）。
+接地導線を流れる電流（球への電荷流入量の時間微分）：
+$$i = \frac{dQ}{dt} = -aq\,\frac{d}{dt}\!\left(\frac{1}{x}\right) = -aq\cdot\frac{-1}{x^2}\frac{dx}{dt} = \frac{aq}{x^2}\cdot(-v) = -\frac{aqv}{x^2}$$
+</div>
+<div class="answer-box">
+$$\boxed{i = -\frac{aqv}{(d-vt)^2}}$$
+電流の向きは球から接地点へ（従来の電流は接地線を通って外部に流れる）。大きさ $= \dfrac{aqv}{(d-vt)^2}$（$q$ が近づくほど電流が増大）。
+</div>
+
+<!-- ===== 大問2 ===== -->
+<h2>大問2　電流の基礎理論</h2>
+
+<p>電子の電荷量 $-e$、質量 $m$、単位体積あたり $N$ 個の電子。</p>
+
+<h3>問1)　コンデンサへの三角波電圧印加時の電流</h3>
+<div class="step">
+コンデンサでは<strong>変位電流</strong>が流れる。導体部分では伝導電流が流れるが、コンデンサの極板間では電場の時間変化 $\partial \boldsymbol{D}/\partial t$ による変位電流密度が生じる。これはアンペール・マクスウェルの方程式 $\nabla\times\boldsymbol{H} = \boldsymbol{J} + \partial\boldsymbol{D}/\partial t$ の後半項に対応する。<br><br>
+コンデンサの電流: $i(t) = C\,\dfrac{dV}{dt}$<br>
+三角波電圧は一定の傾きを交互に繰り返すので、$dV/dt = \pm\text{const}$。
+</div>
+<div class="answer-box">
+<strong>コンデンサでは変位電流が発生する。</strong><br>
+電流 $i(t)$：三角波の正の傾き区間では $+I_0$、負の傾き区間では $-I_0$ の<strong>方形波（矩形波）</strong>となる。<br>
+（$I_0 = C \times |\text{三角波の傾き}|$）
+</div>
+
+<h3>問2)　オームの法則の導出（穴埋め）</h3>
+<div class="step">
+電界 $\boldsymbol{E}$ による電子への力：$\boldsymbol{f} = -e\boldsymbol{E}$<br>
+速度比例抵抗力（比例係数 $k$）込みの運動方程式：
+$$m\frac{d\boldsymbol{v}}{dt} = -e\boldsymbol{E} - k\boldsymbol{v}$$
+定常状態（$d\boldsymbol{v}/dt = 0$）：$-e\boldsymbol{E} - k\boldsymbol{v} = 0 \Rightarrow \boldsymbol{v} = -\dfrac{e}{k}\boldsymbol{E}$<br>
+電流密度（電子は $-e$ の電荷）：$\boldsymbol{J} = N(-e)\boldsymbol{v} = N(-e)\!\left(-\dfrac{e}{k}\boldsymbol{E}\right) = \dfrac{Ne^2}{k}\boldsymbol{E}$
+</div>
+<div class="answer-box">
+<table>
+  <tr><th>解答欄</th><th>答</th></tr>
+  <tr><td>(a) 電子に働く力 $\boldsymbol{f}$</td><td class="left">$\boldsymbol{f} = -e\boldsymbol{E}$</td></tr>
+  <tr><td>(b) 運動方程式右辺</td><td class="left">$-e\boldsymbol{E} - k\boldsymbol{v}$</td></tr>
+  <tr><td>(c) 定常速度</td><td class="left">$\boldsymbol{v} = -\dfrac{e}{k}\boldsymbol{E}$</td></tr>
+  <tr><td>(d) 電流密度の式</td><td class="left">$\boldsymbol{J} = N(-e)\boldsymbol{v}$</td></tr>
+  <tr><td>(e) 導電率 $\sigma$</td><td class="left">$\sigma = \dfrac{Ne^2}{k}$</td></tr>
+</table>
+</div>
+
+<h3>問3)　ホール効果の係数 $a$</h3>
+<div class="step">
+$y$ 方向に電流 $J_y$、$x$ 方向に磁束密度 $B_x$。電子は $-y$ 方向に漂流（速度 $v_y &lt; 0$）。
+$$\boldsymbol{J} = N(-e)\boldsymbol{v} \;\Rightarrow\; v_y = -\frac{J_y}{Ne}$$
+電子へのローレンツ力（$z$ 成分）：
+$$F_z = (-e)(\boldsymbol{v}\times\boldsymbol{B})_z = (-e)(v_y\hat{y}\times B_x\hat{x})_z = (-e)\cdot v_y B_x(\hat{y}\times\hat{x})_z$$
+$\hat{y}\times\hat{x} = -\hat{z}$ より：
+$$F_z = (-e)\cdot v_y B_x\cdot(-1) = e\,v_y B_x = e\cdot\!\left(-\frac{J_y}{Ne}\right)\!B_x = -\frac{J_yB_x}{N}$$
+電子が $-z$ 方向に集積 → $-z$ 側に負電荷、$+z$ 側に正電荷 → $E_z &lt; 0$。<br>
+平衡条件（電子への正味の力 $= 0$）：
+$$(-e)E_z + F_z = 0 \;\Rightarrow\; -eE_z - \frac{J_yB_x}{N} = 0 \;\Rightarrow\; E_z = -\frac{J_yB_x}{Ne}$$
+</div>
+<div class="answer-box">
+$$\boxed{a = -\frac{1}{Ne}}$$
+（負号は電子キャリアの符号を反映。ホール係数 $R_H = -1/(Ne)$）
+</div>
+
+<h3>問4)　衝突なし（超伝導的）の電流方程式と $\dfrac{d}{dt}\!\left(\nabla\times\boldsymbol{J} + \dfrac{Ne^2}{m}\boldsymbol{B}\right)$</h3>
+<div class="step">
+衝突なし $(k=0)$：
+$$m\frac{d\boldsymbol{v}}{dt} = -e\boldsymbol{E}$$
+$\boldsymbol{J} = N(-e)\boldsymbol{v}$ より $\boldsymbol{v} = -\boldsymbol{J}/(Ne)$：
+$$m\frac{d}{dt}\!\left(-\frac{\boldsymbol{J}}{Ne}\right) = -e\boldsymbol{E} \;\Rightarrow\; \frac{d\boldsymbol{J}}{dt} = \frac{Ne^2}{m}\boldsymbol{E} \quad\cdots\text{(①)}$$
+次に $\nabla\times\boldsymbol{J}+\dfrac{Ne^2}{m}\boldsymbol{B}$ の時間微分：
+$$\frac{d}{dt}\!\left(\nabla\times\boldsymbol{J}\right) = \nabla\times\frac{d\boldsymbol{J}}{dt} = \nabla\times\!\left(\frac{Ne^2}{m}\boldsymbol{E}\right) = \frac{Ne^2}{m}\nabla\times\boldsymbol{E}$$
+ファラデーの法則: $\nabla\times\boldsymbol{E} = -\dfrac{\partial\boldsymbol{B}}{\partial t}$ を使うと：
+$$\frac{d}{dt}\!\left(\nabla\times\boldsymbol{J}\right) = -\frac{Ne^2}{m}\frac{\partial\boldsymbol{B}}{\partial t}$$
+一方：
+$$\frac{d}{dt}\!\left(\frac{Ne^2}{m}\boldsymbol{B}\right) = \frac{Ne^2}{m}\frac{\partial\boldsymbol{B}}{\partial t}$$
+</div>
+<div class="answer-box">
+①の証明：
+$$\boxed{\frac{d\boldsymbol{J}}{dt} = \frac{Ne^2}{m}\boldsymbol{E}}$$
+時間微分：
+$$\boxed{\frac{d}{dt}\!\left(\nabla\times\boldsymbol{J} + \frac{Ne^2}{m}\boldsymbol{B}\right) = -\frac{Ne^2}{m}\frac{\partial\boldsymbol{B}}{\partial t} + \frac{Ne^2}{m}\frac{\partial\boldsymbol{B}}{\partial t} = \boldsymbol{0}}$$
+（この量は時間的に保存される　→　ロンドン方程式の出発点）
+</div>
+
+<h3>問5)　侵入長 $\lambda$ の導出</h3>
+<div class="step">
+ロンドンの第二方程式：$\nabla\times\boldsymbol{J} + \dfrac{Ne^2}{m}\boldsymbol{B} = \boldsymbol{0}$<br><br>
+アンペール則（変位電流無視、$\boldsymbol{B}=\mu\boldsymbol{H}$）：
+$$\nabla\times\boldsymbol{H} = \boldsymbol{J} \;\Rightarrow\; \nabla\times\boldsymbol{B} = \mu\boldsymbol{J}$$
+両辺の $\nabla\times$ を取る：
+$$\nabla\times(\nabla\times\boldsymbol{B}) = \mu\,\nabla\times\boldsymbol{J} = \mu\cdot\!\left(-\frac{Ne^2}{m}\boldsymbol{B}\right) = -\frac{\mu Ne^2}{m}\boldsymbol{B}$$
+ベクトル公式 $\nabla\times(\nabla\times\boldsymbol{B}) = \nabla(\nabla\cdot\boldsymbol{B}) - \nabla^2\boldsymbol{B} = -\nabla^2\boldsymbol{B}$（$\nabla\cdot\boldsymbol{B}=0$）を使うと：
+$$-\nabla^2\boldsymbol{B} = -\frac{\mu Ne^2}{m}\boldsymbol{B} \;\Rightarrow\; \nabla^2\boldsymbol{B} = \frac{\mu Ne^2}{m}\boldsymbol{B} = \frac{\boldsymbol{B}}{\lambda^2}$$
+1次元問題（$x \ge 0$）：$\dfrac{d^2B}{dx^2} = \dfrac{B}{\lambda^2}$<br>
+解 $B(x) = B_0 e^{-x/\lambda}$（$x\to\infty$ で有限の解）と一致する。
+</div>
+<div class="answer-box">
+$$\boxed{\lambda = \sqrt{\frac{m}{\mu N e^2}}}$$
+（$\mu = \mu_0$ のとき $\lambda = \sqrt{m/(\mu_0 Ne^2)}$）<br>
+これは<strong>ロンドン侵入長</strong>（London penetration depth）と呼ばれ、超伝導体内部への磁場の侵入深さを表す。<br>
+例：$N \approx 10^{28}\,\text{m}^{-3}$ では $\lambda \sim 50$〜$500\,\text{nm}$ 程度。
+</div>
+
+<!-- ===== 解答まとめ ===== -->
+<h2>解答まとめ</h2>
+<table>
+  <tr><th>大問</th><th>問</th><th>解答</th></tr>
+  <tr><td rowspan="8">1<br>電気<br>映像法</td>
+    <td>1)</td><td class="left">$V = \dfrac{q}{4\pi\varepsilon_0}\!\left(\dfrac{1}{r_1}-\dfrac{k}{r_2}\right)$</td></tr>
+  <tr><td>2)</td><td class="left">中心 $(0,0,(f-k^2d)/(1-k^2))$、半径 $R=k(d-f)/(1-k^2)$ の球面</td></tr>
+  <tr><td>3)</td><td class="left">$k=a/d$、$f=a^2/d$</td></tr>
+  <tr><td>4)</td><td class="left">最大 $|\sigma|=-q(d+a)/[4\pi a(d-a)^2]$ at $\theta=0$（P 最近点）；最小 $|\sigma|=-q(d-a)/[4\pi a(d+a)^2]$ at $\theta=\pi$</td></tr>
+  <tr><td>5)</td><td class="left">$Q_\text{total}=-aq/d$</td></tr>
+  <tr><td>6)</td><td class="left">$q$ から球面へ収束する電気力線（近側が密）のスケッチ</td></tr>
+  <tr><td>7)</td><td class="left">$F=-adq^2/[4\pi\varepsilon_0(d^2-a^2)^2]$（引力）</td></tr>
+  <tr><td>8)</td><td class="left">$i=-aqv/(d-vt)^2$（大きさ：$aqv/(d-vt)^2$）</td></tr>
+  <tr><td rowspan="5">2<br>電流<br>理論</td>
+    <td>1)</td><td class="left">変位電流；$i(t)$ は方形波</td></tr>
+  <tr><td>2)</td><td class="left">(a) $-e\boldsymbol{E}$、(b) $-e\boldsymbol{E}-k\boldsymbol{v}$、(c) $-\dfrac{e}{k}\boldsymbol{E}$、(d) $N(-e)\boldsymbol{v}$、(e) $Ne^2/k$</td></tr>
+  <tr><td>3)</td><td class="left">$a = -1/(Ne)$（ホール係数）</td></tr>
+  <tr><td>4)</td><td class="left">$d\boldsymbol{J}/dt = (Ne^2/m)\boldsymbol{E}$；$d/dt(\nabla\times\boldsymbol{J}+(Ne^2/m)\boldsymbol{B}) = \boldsymbol{0}$</td></tr>
+  <tr><td>5)</td><td class="left">$\lambda=\sqrt{m/(\mu Ne^2)}$（ロンドン侵入長）</td></tr>
+</table>
+
+<footer>解答解説作成：Claude（Anthropic）</footer>
+</body>
+</html>

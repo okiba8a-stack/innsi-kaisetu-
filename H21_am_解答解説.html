@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>H21年度 午前 電気回路 解答解説</title>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+  <style>
+    * { box-sizing:border-box; margin:0; padding:0; }
+    body { font-family:"Yu Gothic","游ゴシック",sans-serif; font-size:13pt; line-height:1.8; color:#1a1a2e; background:#f4f7fb; padding:40px; }
+    h1 { font-size:20pt; color:#0d2b5e; border-bottom:3px solid #0d2b5e; padding-bottom:10px; margin-bottom:8px; }
+    .subtitle { color:#666; font-size:11pt; margin-bottom:36px; }
+    h2 { font-size:15pt; color:#0d2b5e; margin:36px 0 16px 0; padding:8px 16px; background:#e8f0fb; border-left:5px solid #1e5fa8; border-radius:4px; }
+    h3 { font-size:13pt; color:#1e5fa8; margin:24px 0 10px 0; }
+    h4 { font-size:12pt; color:#0d2b5e; margin:18px 0 8px 0; }
+    .answer-box { background:#fff; border:2px solid #1e5fa8; border-radius:8px; padding:18px 24px; margin:16px 0; }
+    .step { background:#f8faff; border-left:4px solid #5b9cf6; padding:10px 18px; margin:12px 0; border-radius:0 6px 6px 0; }
+    .result { background:#fffbe6; border:1px solid #f0c040; border-radius:6px; padding:10px 18px; margin:12px 0; font-weight:bold; }
+    .note { background:#f0f8ff; border:1px solid #b0d4f8; border-radius:6px; padding:10px 18px; margin:12px 0; font-size:11.5pt; color:#333; }
+    table { border-collapse:collapse; margin:12px 0; width:100%; }
+    th,td { border:1px solid #c5d8f5; padding:8px 14px; text-align:center; }
+    th { background:#e8f0fb; color:#0d2b5e; font-weight:bold; }
+    footer { margin-top:60px; color:#aaa; font-size:10pt; text-align:center; }
+    .back-link { display:inline-block; margin-bottom:24px; color:#1e5fa8; text-decoration:none; font-size:11pt; }
+    .formula-block { text-align:center; margin:16px 0; }
+  </style>
+</head>
+<body>
+
+<a class="back-link" href="index.html">← 解答解説まとめへ戻る</a>
+<h1>H21年度 午前 電気回路 解答解説</h1>
+<p class="subtitle">平成20年8月19日実施 ／ 専門科目：電気回路（午前）</p>
+
+<!-- ============================== 大問1 ============================== -->
+<h2>大問1：最大電力伝送・F行列・整合回路</h2>
+
+<div class="answer-box">
+<h3>問1-1) ノートン → テブナン変換</h3>
+<div class="step">
+電流源 \(I_S\)・コンダクタンス \(G_S\) のノートン等価回路を テブナン等価に変換。
+</div>
+<div class="result">
+\[R_S = \frac{1}{G_S}, \qquad V_S = \frac{I_S}{G_S}\]
+</div>
+
+<h3>問1-2) 最大電力伝送（\(Z_L\) を最適化）</h3>
+<div class="step">
+テブナン等価（\(V_S,\,R_S\) は純抵抗）において、負荷 \(Z_L\) で消費される電力：
+\[P = \frac{1}{2}\frac{|V_S|^2\,\mathrm{Re}(Z_L)}{|R_S+Z_L|^2}\]
+\(Z_L=R_S^*=R_S\)（純抵抗）のとき最大（共役整合）。
+</div>
+<div class="result">
+\[Z_L = R_S = \frac{1}{G_S}, \qquad P_{\max} = \frac{V_S^2}{4R_S} = \frac{I_S^2}{4G_S}\]
+（\(V_S\) は振幅の場合 \(\frac{V_S^2}{8R_S}\)）
+</div>
+
+<h3>問1-3) 整合回路の F 行列（図1.3：シャント \(Z_1\) → 直列 \(Z_2\)）</h3>
+<div class="step">
+シャント \(Z_1\) の F 行列：\(\begin{bmatrix}1&0\\1/Z_1&1\end{bmatrix}\)<br>
+直列 \(Z_2\) の F 行列：\(\begin{bmatrix}1&Z_2\\0&1\end{bmatrix}\)<br>
+カスケード（シャント先・直列後）：
+\[F = \begin{bmatrix}1&0\\1/Z_1&1\end{bmatrix}\begin{bmatrix}1&Z_2\\0&1\end{bmatrix} = \begin{bmatrix}1&Z_2\\1/Z_1&1+Z_2/Z_1\end{bmatrix}\]
+</div>
+<div class="result">
+\[\begin{bmatrix}A&B\\C&D\end{bmatrix} = \begin{bmatrix}1&Z_2\\1/Z_1&1+Z_2/Z_1\end{bmatrix}\]
+</div>
+
+<h3>問1-4) F 行列 \([A,B;C,D]\) による \(Z_{in}\) と \(Z_{out}\)</h3>
+<div class="step">
+F 行列の定義 \(V_1=AV_2+BI_2,\ I_1=CV_2+DI_2\) と、負荷 \(R_L\) 条件 \(V_2=R_LI_2\)：
+\[Z_{in} = \frac{V_1}{I_1} = \frac{AR_L+B}{CR_L+D}\]
+出力インピーダンス（\(V_S=0\) で短絡）：\(V_1=-R_SI_1\)，\(V_2/(-I_2)\)：
+\[Z_{out} = \frac{B+DR_S}{A+CR_S}\]
+</div>
+<div class="result">
+\[Z_{in} = \frac{AR_L+B}{CR_L+D}, \qquad Z_{out} = \frac{B+DR_S}{A+CR_S}\]
+</div>
+
+<h3>問1-5) \(P_{out}/P_{\max}\) 最大化の条件と \(Z_1,Z_2\)</h3>
+<div class="step">
+無損失（純リアクタンス）整合回路 \(Z_1=jX_1,\,Z_2=jX_2\) で \(P_{out}/P_{\max}=1\) にするには：<br>
+・電源側整合：\(Z_{in}=R_S\)（入力端に最大電力が入る）<br>
+・負荷側整合：\(Z_{out}=R_L\)（\(R_L\) に最大電力が出る）<br><br>
+\(Z_{in}=jX_1(R_L+jX_2)/(R_L+j(X_1+X_2))=R_S\) が実数になる条件：<br>
+分子の虚部 \(=0\)：\(X_2^2+X_1X_2+R_L^2=0\)<br>
+実部条件：\(X_1^2R_L/(R_L^2+(X_1+X_2)^2)=R_S\)<br><br>
+連立解（\(R_S>R_L\)）：
+\[X_2^2 = R_L(R_S-R_L), \qquad X_1 = -\frac{R_SR_L}{X_2}\]
+</div>
+<div class="result">
+\[Z_2 = \pm j\sqrt{R_L(R_S-R_L)}, \qquad Z_1 = \mp j\,R_S\!\sqrt{\frac{R_L}{R_S-R_L}}\]
+（\(Z_1,Z_2\) は符号が逆の純虚数：一方がインダクタ、他方がキャパシタ）<br>
+このとき \(P_{out}/P_{\max}=1\)（無損失整合ネットワークで全電力が \(R_L\) に供給される）
+</div>
+</div>
+
+<!-- ============================== 大問2 ============================== -->
+<h2>大問2：直列 RLC 共振回路</h2>
+<p>実効値 \(V\)・角周波数 \(\omega\) の交流電源、抵抗 \(R\)、インダクタンス \(L\)、可変キャパシタンス \(C\) の直列接続（\(\omega L > R\)）。</p>
+
+<div class="answer-box">
+<h3>問2-1) 共振時のキャパシタンス \(C_0\)</h3>
+<div class="step">
+共振条件 \(\mathrm{Im}(Z)=0\)：\(\omega L = 1/(\omega C_0)\)
+</div>
+<div class="result">\[C_0 = \frac{1}{\omega^2 L}\]</div>
+
+<h3>問2-2) 共振時の電流 \(I_0\)</h3>
+<div class="step">
+共振時 \(Z=R\)（純抵抗最小）。
+</div>
+<div class="result">\[I_0 = \frac{V}{R}\]</div>
+
+<h3>問2-3) \(|I/I_0|=1/\sqrt{2}\) となる \(C_1,C_2\)</h3>
+<div class="step">
+\(|Z|=\sqrt{2}R\)の条件：\(R^2+(ωL-1/(\omega C))^2=2R^2\)<br>
+\[ωL - \frac{1}{\omega C} = \pm R \quad \Rightarrow \quad C = \frac{1}{\omega(\omega L \mp R)}\]
+\(C_2 > C_1\) より（\(\omega L - R < \omega L + R\)）：
+</div>
+<div class="result">
+\[C_1 = \frac{1}{\omega(\omega L + R)}, \qquad C_2 = \frac{1}{\omega(\omega L - R)}\]
+（\(C_1 < C_0 < C_2\)）
+</div>
+
+<h3>問2-4) コイルの Q 値（\(C_0,C_1,C_2\) のみ使用）</h3>
+<div class="step">
+\(Q = \omega L/R\)。\(C_0=1/(\omega^2L)\) より \(\omega L = 1/(\omega C_0)\)。<br>
+\(C_2 - C_1 = \dfrac{2R}{\omega(\omega^2L^2-R^2)} \approx \dfrac{2R}{\omega^3L^2} = 2R\omega C_0^2\)（\(\omega L \gg R\)）<br>
+→ \(R \approx (C_2-C_1)/(2\omega C_0^2)\)、\(Q = 1/(\omega RC_0) = 2C_0/(C_2-C_1)\)
+</div>
+<div class="result">
+\[Q = \frac{2C_0}{C_2 - C_1}\]
+（\(\omega L \gg R\) の近似。厳密には \(Q=(Q^2-1)/Q\) 形を含む）
+</div>
+</div>
+
+<!-- ============================== 大問3 ============================== -->
+<h2>大問3：RL 並列回路の交流特性</h2>
+<p>図3.1：\(R\) と \(L\) の並列回路。振幅 100 V・周波数 50 Hz の交流電圧を印加 → 振幅 10 A の電流（図3.2）。</p>
+
+<div class="answer-box">
+<h3>問3-1) 合成インピーダンス</h3>
+<div class="result">
+\[Z = R \parallel j\omega L = \frac{j\omega RL}{R + j\omega L}\]
+\[|Z| = \frac{\omega RL}{\sqrt{R^2+\omega^2L^2}}, \qquad \angle Z = \arctan\frac{R}{\omega L}\]
+</div>
+
+<h3>問3-2) 位相関係（図3.2より）</h3>
+<div class="step">
+図3.2：電流ゼロクロス（上昇方向）が \(t_0 = 1/600\) s。<br>
+電圧 \(V=100\sin(\omega t)\)（\(\omega=2\pi\times50=100\pi\) rad/s）のゼロクロス \(t=0\) より遅れている。<br>
+時間差 \(1/600\) s → 位相差 \(= \omega\times(1/600) = 100\pi/600 = \pi/6\) rad<br>
+並列 RL は電流がアドミタンス \(Y=1/R - j/(\omega L)\) に比例 → 電流は電圧より位相が遅れる。
+</div>
+<div class="result">
+（ア）\(\dfrac{\pi}{6}\) rad ／ （イ）b. 遅れている
+</div>
+
+<h3>問3-3) R の値</h3>
+<div class="step">
+\(|Z| = |V|/|I| = 100/10 = 10\ \Omega\)<br>
+\(\angle Z = \pi/6\)（電流が電圧より \(\pi/6\) 遅れる）：\(\dfrac{R}{\omega L} = \tan(\pi/6) = \dfrac{1}{\sqrt{3}}\) → \(R = \dfrac{\omega L}{\sqrt{3}}\)<br>
+\(|Z| = \dfrac{\omega RL}{\sqrt{R^2+\omega^2L^2}} = \dfrac{\omega L}{\sqrt{3}\cdot\sqrt{1/3+1}} = \dfrac{\omega L}{\sqrt{3}\cdot\frac{2}{\sqrt{3}}} = \dfrac{\omega L}{2} = 10\)<br>
+→ \(\omega L = 20\ \Omega\)（\(L = 20/(100\pi) = 1/(5\pi)\) H）
+</div>
+<div class="result">
+\[R = \frac{\omega L}{\sqrt{3}} = \frac{20}{\sqrt{3}} = \frac{20\sqrt{3}}{3}\ \Omega \approx 11.5\ \Omega\]
+</div>
+
+<h3>問3-4) 実効電力と無効電力の絶対値</h3>
+<div class="step">
+\(V_{rms}=100/\sqrt{2}\) V、\(I_{rms}=10/\sqrt{2}\) A、皮相電力 \(|S|=V_{rms}\times I_{rms}=500\) VA<br>
+\(\cos(\pi/6)=\sqrt{3}/2,\quad \sin(\pi/6)=1/2\)
+</div>
+<div class="result">
+実効電力（有効電力）：\(P = 500\cos(\pi/6) = 250\sqrt{3} \approx 433\) W<br>
+無効電力：\(|Q| = 500\sin(\pi/6) = 250\) var
+</div>
+</div>
+
+<!-- ============================== まとめ ============================== -->
+<h2>解答まとめ</h2>
+<table>
+  <tr><th>問</th><th>主な結果</th></tr>
+  <tr><td>1-1</td><td>\(R_S=1/G_S\)、\(V_S=I_S/G_S\)</td></tr>
+  <tr><td>1-2</td><td>\(Z_L=R_S\)、\(P_{\max}=V_S^2/(4R_S)\)</td></tr>
+  <tr><td>1-3</td><td>F行列：\([A,B;C,D]=[1,Z_2;1/Z_1,1+Z_2/Z_1]\)</td></tr>
+  <tr><td>1-4</td><td>\(Z_{in}=(AR_L+B)/(CR_L+D)\)、\(Z_{out}=(B+DR_S)/(A+CR_S)\)</td></tr>
+  <tr><td>1-5</td><td>\(Z_2=\pm j\sqrt{R_L(R_S-R_L)}\)、\(Z_1=\mp jR_S\sqrt{R_L/(R_S-R_L)}\)</td></tr>
+  <tr><td>2-1</td><td>\(C_0=1/(\omega^2L)\)</td></tr>
+  <tr><td>2-2</td><td>\(I_0=V/R\)</td></tr>
+  <tr><td>2-3</td><td>\(C_1=1/(\omega(\omega L+R))\)、\(C_2=1/(\omega(\omega L-R))\)</td></tr>
+  <tr><td>2-4</td><td>\(Q\approx 2C_0/(C_2-C_1)\)</td></tr>
+  <tr><td>3-1</td><td>\(Z=j\omega RL/(R+j\omega L)\)</td></tr>
+  <tr><td>3-2</td><td>位相遅れ \(\pi/6\) rad（遅れている）</td></tr>
+  <tr><td>3-3</td><td>\(R=20\sqrt{3}/3\ \Omega\)</td></tr>
+  <tr><td>3-4</td><td>\(P=250\sqrt{3}\) W、\(|Q|=250\) var</td></tr>
+</table>
+
+<footer>解答解説作成：Claude（Anthropic） ／ H21年度（平成20年8月19日実施）午前 電気回路</footer>
+</body>
+</html>

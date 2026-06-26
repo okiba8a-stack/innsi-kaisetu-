@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>R3年度 専門科目 総合 解答解説</title>
+  <script>
+    MathJax = {
+      tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']], tags: 'ams' },
+      options: { skipHtmlTags: ['script','noscript','style','textarea','pre'] }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: "Yu Gothic","游ゴシック",sans-serif; font-size: 13pt; line-height: 1.9; color: #1a1a2e; background: #f4f7fb; padding: 40px; }
+    h1 { font-size: 19pt; color: #0d2b5e; border-bottom: 3px solid #0d2b5e; padding-bottom: 10px; margin-bottom: 6px; }
+    .meta { color: #666; font-size: 11pt; margin-bottom: 36px; }
+    h2 { font-size: 15pt; color: #0d2b5e; background: #e8f0fb; border-left: 5px solid #1e5fa8; padding: 8px 14px; margin: 40px 0 16px; border-radius: 0 6px 6px 0; }
+    h3 { font-size: 13pt; color: #1e5fa8; border-bottom: 1px solid #c5d8f5; margin: 28px 0 10px; padding-bottom: 4px; }
+    .answer-box { background: #fff; border: 2px solid #1e5fa8; border-radius: 6px; padding: 14px 20px; margin: 12px 0; }
+    .step { background: #eef4ff; border-left: 3px solid #5b8dee; padding: 10px 16px; margin: 10px 0; border-radius: 0 4px 4px 0; }
+    .note { background: #fffbe6; border-left: 4px solid #f0ad00; padding: 10px 16px; margin: 12px 0; border-radius: 0 4px 4px 0; font-size: 11.5pt; }
+    table { border-collapse: collapse; width: 100%; margin: 16px 0; font-size: 11.5pt; }
+    th { background: #0d2b5e; color: #fff; padding: 8px 12px; text-align: center; }
+    td { border: 1px solid #c5d8f5; padding: 8px 12px; text-align: center; }
+    td.left { text-align: left; }
+    tr:nth-child(even) td { background: #f0f6ff; }
+    footer { margin-top: 60px; color: #aaa; font-size: 10pt; text-align: center; }
+    @media print { body { background: #fff; padding: 20px; } }
+  </style>
+</head>
+<body>
+
+<h1>R3年度 専門科目（総合）解答解説</h1>
+<p class="meta">東京工業大学 大学院修士課程入試（令和3年8月実施・2022大修） ／ 数学・電磁気学・電気回路・量子力学/物性基礎</p>
+
+<!-- ============================================================ -->
+<h2>【数学】大問1　フーリエ変換と微分方程式</h2>
+<p>$F(\omega)=\displaystyle\int_{-\infty}^\infty f(t)e^{-j\omega t}dt$（$f(t)$：絶対積分可能，2階微分可能）</p>
+
+<h3>1-a)　$g(t)=f''(t)$ のフーリエ変換</h3>
+<div class="step">
+微分定理を2回適用：$\text{FT}[f'(t)]=j\omega F(\omega)$ より
+</div>
+<div class="answer-box">$$G(\omega)=\text{FT}[f''(t)]=(j\omega)^2 F(\omega)=-\omega^2 F(\omega)$$</div>
+
+<h3>1-b)　$g(t)=t^2 f(t)$ のフーリエ変換</h3>
+<div class="step">
+周波数微分定理：$\dfrac{dF}{d\omega}=\displaystyle\int(-jt)f(t)e^{-j\omega t}dt$ → $\text{FT}[tf(t)]=j\dfrac{dF}{d\omega}$<br>
+繰り返し：$\text{FT}[t^2 f(t)]=j\dfrac{d}{d\omega}\left[j\dfrac{dF}{d\omega}\right]=(j)^2\dfrac{d^2F}{d\omega^2}$
+</div>
+<div class="answer-box">$$G(\omega)=\text{FT}[t^2 f(t)]=-\frac{d^2 F}{d\omega^2}$$</div>
+
+<h3>2)　$f''(t)-t^2 f(t)=af(t)$ の解 $f(t)$ の $F(\omega)$ が満たす ODE</h3>
+<div class="step">
+両辺 FT：$-\omega^2 F(\omega)-\left(-\dfrac{d^2 F}{d\omega^2}\right)=aF(\omega)$
+$$\frac{d^2 F}{d\omega^2}-\omega^2 F=aF \quad\Rightarrow\quad \frac{d^2 F}{d\omega^2}=(a+\omega^2)F$$
+</div>
+<div class="answer-box">
+$$\frac{d^2 F}{d\omega^2}-\omega^2 F(\omega)=aF(\omega)$$
+（$\omega$ についても $f(t)$ と同じ形の ODE $\Rightarrow$ FT が固有関数に対応）
+</div>
+
+<h3>3-a)　$f(t)=H_n(t)e^{-t^2/2}$ が満たす ODE（$H_n$ のODE）</h3>
+<div class="step">
+$\psi=H_n e^{-t^2/2}$，$\psi''=\bigl(H_n''-2tH_n'+t^2H_n-H_n\bigr)e^{-t^2/2}$<br>
+これを ODE に代入：$\psi''-t^2\psi=-(2n+1)\psi$ より<br>
+$H_n''-2tH_n'+t^2H_n-H_n-t^2H_n=-(2n+1)H_n$
+</div>
+<div class="answer-box">
+$$H_n''-2tH_n'+2nH_n=0 \quad\text{（エルミート微分方程式）}$$
+</div>
+
+<h3>3-b)　$H_n$ の漸化式</h3>
+<div class="step">
+$H_n(t)=(-1)^n e^{t^2}\dfrac{d^n}{dt^n}(e^{-t^2})$ から $H_{n+1}$ を計算：
+$$H_{n+1}=2tH_n-H_n'$$
+また ODE から $H_n'=2nH_{n-1}$ が導かれるので：
+$$H_{n+2}=2tH_{n+1}-2(n+1)H_n$$
+</div>
+<div class="answer-box">
+$$H_{n+2}(t)=2t\,H_{n+1}(t)-2(n+1)H_n(t) \quad\text{（3項漸化式）}$$
+</div>
+
+<!-- ============================================================ -->
+<h2>【数学】大問2　微分方程式</h2>
+
+<h3>2-1a)　$\dfrac{dy}{dx}+y=e^{-x}$（一階線形）</h3>
+<div class="step">
+積分因子 $e^x$：$\dfrac{d}{dx}(ye^x)=e^x\cdot e^{-x}=1$ → $ye^x=x+C$
+</div>
+<div class="answer-box">$$y=(x+C)e^{-x}$$</div>
+
+<h3>2-1b)　$y''-2y'-8y=0$（定係数2階）</h3>
+<div class="step">
+特性方程式：$r^2-2r-8=(r-4)(r+2)=0$ → $r=4,\,-2$
+</div>
+<div class="answer-box">$$y=C_1 e^{4x}+C_2 e^{-2x}$$</div>
+
+<h3>2-2a)　$y''-2y'-8y=e^{-x}$（$\alpha=1$）</h3>
+<div class="step">
+$e^{-x}$ は斉次解でない → 特解 $y_p=Ae^{-x}$：<br>
+$A-2A(-1)-8A=A(1+2-8)=A(-5)=1$ → $A=-1/5$
+</div>
+<div class="answer-box">$$y=C_1 e^{4x}+C_2 e^{-2x}-\frac{1}{5}e^{-x}$$</div>
+
+<h3>2-2b)　$y''-2y'-8y=e^{-2x}$（$\alpha=2$，重解注意）</h3>
+<div class="step">
+$e^{-2x}$ は斉次解（$r=-2$）→ 特解 $y_p=Axe^{-2x}$：<br>
+$y_p'=A(1-2x)e^{-2x}$，$y_p''=A(4x-4)e^{-2x}$<br>
+代入：$A(4x-4)-2A(1-2x)-8Ax=(4Ax-4A-2A+4Ax-8Ax)=-6A=1$ → $A=-1/6$
+</div>
+<div class="answer-box">$$y=C_1 e^{4x}+C_2 e^{-2x}-\frac{x}{6}e^{-2x}$$</div>
+
+<!-- ============================================================ -->
+<h2>【電磁気学】大問1　同軸コンデンサ（内外半径 $a, b$，長さ $l$）</h2>
+
+<h3>1-a)　電界強度 $E$（$a<d<b$，単位長あたり電荷 $q$）</h3>
+<div class="step">
+ガウスの法則（半径 $d$，長さ $l$ の円筒面）：$2\pi dl\,\varepsilon_0 E=ql$
+</div>
+<div class="answer-box">$$E=\frac{q}{2\pi\varepsilon_0 d}$$（方向：径方向）</div>
+
+<h3>1-b)　電位 $V$（外側を基準）</h3>
+<div class="step">
+$V=\int_d^b E\,dr=\frac{q}{2\pi\varepsilon_0}\ln\frac{b}{d}$（$d=a$ で最大）<br>
+印加電圧 $V_0$：$V_0=\dfrac{q}{2\pi\varepsilon_0}\ln\dfrac{b}{a}$ → $q=\dfrac{2\pi\varepsilon_0 V_0}{\ln(b/a)}$<br>
+$E=\dfrac{V_0}{d\ln(b/a)}$
+</div>
+<div class="answer-box">$$E=\frac{V_0}{d\ln(b/a)}$$</div>
+
+<h3>1-c)　単位長あたりキャパシタンス</h3>
+<div class="answer-box">$$\frac{C}{l}=\frac{2\pi\varepsilon_0}{\ln(b/a)}$$</div>
+
+<h3>1-d)　誘電率 $\varepsilon(d)$ が変化して $E$ が $d$ によらず一定になる条件</h3>
+<div class="step">
+$D=\varepsilon(d)E=q/(2\pi d)$（ガウスの法則）。$E$ が一定なら $D\propto1/d$ → $\varepsilon(d)\propto1/d$：
+</div>
+<div class="answer-box">$$\varepsilon(d)=\frac{k}{d}\quad(k=\text{定数}) \quad\text{（誘電率が距離に反比例する）}$$</div>
+
+<h3>2-e)　3同軸 A-B-C（A・C 接地，B に電荷）の単位長あたりキャパシタンス</h3>
+<div class="step">
+A-B 間：$C_{AB}=2\pi\varepsilon_0/\ln(b/a)$，B-C 間：$C_{BC}=2\pi\varepsilon_0/\ln(c/b)$。<br>
+A と C が接続（並列）→ 合成容量：$C_{tot}=C_{AB}+C_{BC}$
+</div>
+<div class="answer-box">
+$$\frac{C_{tot}}{l}=2\pi\varepsilon_0\!\left(\frac{1}{\ln(b/a)}+\frac{1}{\ln(c/b)}\right)=\frac{2\pi\varepsilon_0\ln(c/a)}{\ln(b/a)\ln(c/b)}$$
+</div>
+
+<h3>2-f)　B に単位長あたり $+q$ のとき，A・C に誘起される電荷</h3>
+<div class="step">
+A・C は同電位（接地，接続）。電荷は容量の比で分配：$q_A:q_C=C_{AB}:C_{BC}$。<br>
+$q_A+q_C=-q$（全体中性）：
+</div>
+<div class="answer-box">
+$$q_A=-\frac{q\ln(c/b)}{\ln(c/a)},\qquad q_C=-\frac{q\ln(b/a)}{\ln(c/a)}$$
+</div>
+
+<!-- ============================================================ -->
+<h2>【電磁気学】大問2　平行平板線路（幅 $a$，板間距離 $b$，$a\gg b$）</h2>
+
+<h3>1)　DC 電流源（$+I$ 上，$-I$ 下）</h3>
+<h3>1-a)　板間磁束密度</h3>
+<div class="step">
+表面電流密度 $K=I/a$。無限平行板ではアンペールの法則より内側のみ $B=\mu_0 K$：
+</div>
+<div class="answer-box">$$B=\frac{\mu_0 I}{a}\quad(\text{板間，$z$ 方向})\qquad B=0\quad(\text{外側})$$</div>
+
+<h3>1-b)　単位長あたりインダクタンス</h3>
+<div class="step">
+$\Phi=Bb\cdot1=\mu_0 Ib/a$，$L/l=\Phi/I$：
+</div>
+<div class="answer-box">$$\frac{L}{l}=\frac{\mu_0 b}{a}$$</div>
+
+<h3>2)　DC 電圧源（表面電荷 $\pm\sigma$）</h3>
+<h3>2-c)　板間電界</h3>
+<div class="answer-box">$$E=\frac{\sigma}{\varepsilon_0}\quad(\text{$y$ 方向})$$</div>
+
+<h3>2-d)　単位長あたりキャパシタンス</h3>
+<div class="answer-box">$$\frac{C}{l}=\frac{\varepsilon_0 a}{b}$$</div>
+
+<h3>3)　AC 電流源（進行波 $I_0\cos(\omega t-kx)$）</h3>
+<h3>3-e)　磁束密度 $B(x,t)$</h3>
+<div class="answer-box">$$B(x,t)=\frac{\mu_0 I_0}{a}\cos(\omega t-kx)$$</div>
+
+<h3>3-f)　表面電荷密度 $\sigma(x,t)$（電流連続の式）</h3>
+<div class="step">
+表面電荷連続：$\dfrac{\partial\sigma}{\partial t}=-\dfrac{\partial K_x}{\partial x}$，$K_x=I_0\cos(\omega t-kx)/a$：
+$$\frac{\partial K_x}{\partial x}=\frac{I_0 k}{a}\sin(\omega t-kx)\quad\Rightarrow\quad\sigma=\frac{I_0 k}{a\omega}\cos(\omega t-kx)$$
+</div>
+<div class="answer-box">$$\sigma(x,t)=\frac{I_0 k}{a\omega}\cos(\omega t-kx)$$</div>
+
+<h3>3-g)　板間電界 $E(x,t)$</h3>
+<div class="answer-box">$$E(x,t)=\frac{\sigma}{\varepsilon_0}=\frac{I_0 k}{a\omega\varepsilon_0}\cos(\omega t-kx)$$</div>
+
+<h3>3-h)　ファラデーの法則から波数条件と位相速度</h3>
+<div class="step">
+$\partial B/\partial t=-\partial E/\partial x$（電磁誘導の法則，微分形）：<br>
+左辺：$-\mu_0 I_0\omega/a\sin(\omega t-kx)$<br>
+右辺：$-I_0k^2/(a\omega\varepsilon_0)\sin(\omega t-kx)$<br>
+等置：$\mu_0\omega=k^2/(\omega\varepsilon_0)$ → $k^2=\mu_0\varepsilon_0\omega^2$
+</div>
+<div class="answer-box">
+$$k=\omega\sqrt{\mu_0\varepsilon_0},\qquad v_p=\frac{\omega}{k}=\frac{1}{\sqrt{\mu_0\varepsilon_0}}=c$$
+</div>
+
+<!-- ============================================================ -->
+<h2>【電気回路】大問1　RLC 直列回路（$V_{in}$：$L$-$C$ 直列，$R$ 並列）</h2>
+<p>回路：$V_{in}$ → $L$ → $C$（直列），$R$ は $C$ と並列（$V_{out}=V_R$）</p>
+
+<h3>1)　伝達関数 $H(\omega)=V_{out}/V_{in}$</h3>
+<div class="step">
+$$H(\omega)=\frac{R}{j\omega L+\dfrac{1}{j\omega C}+R}=\frac{R}{R+j\!\left(\omega L-\dfrac{1}{\omega C}\right)}$$
+テンプレート形式（分母 $\boxed{\text{ア}}+j\boxed{\text{イ}}+\dfrac{1}{j\boxed{\text{ウ}}}$）：
+$\text{ア}=R$，$j\text{イ}=j\omega L$（イ $=\omega L$），$1/j\text{ウ}=1/(j\omega C)$（ウ $=\omega C$）
+</div>
+<div class="answer-box">$$H(\omega)=\frac{R}{R+j(\omega L-1/(\omega C))}$$</div>
+
+<h3>2)　$|H(\omega)|$ が最大となる $\omega_0$</h3>
+<div class="step">
+$|H|^2=R^2/[R^2+(\omega L-1/(\omega C))^2]$ → 分母最小（= $R^2$）のとき最大：$\omega L=1/(\omega C)$
+</div>
+<div class="answer-box">$$\omega_0=\frac{1}{\sqrt{LC}}$$（共振角周波数）</div>
+
+<h3>3)　$\omega=\omega_0$ での利得</h3>
+<div class="answer-box">$$|H(\omega_0)|=1 \quad(\text{ゲイン }0\,\text{dB})$$</div>
+
+<h3>4)　フィルタの種類</h3>
+<div class="note">
+バンドパスフィルタ（帯域通過フィルタ）：$\omega_0$ 付近の周波数を通過，それ以外を減衰。
+</div>
+
+<h3>5)　ラプラス伝達関数 $H(s)$</h3>
+<div class="step">
+$s=j\omega$ と置換：$H(s)=\dfrac{R}{sL+1/(sC)+R}=\dfrac{sRC}{s^2LC+sRC+1}$
+</div>
+<div class="answer-box">
+$$H(s)=\frac{(R/L)s}{s^2+(R/L)s+1/(LC)}$$
+</div>
+
+<h3>6)　ポール（極）の位置</h3>
+<div class="step">
+$s^2+(R/L)s+1/(LC)=0$，$s=-R/(2L)\pm\sqrt{(R/(2L))^2-1/(LC)}$<br>
+2つの負実数極条件：$(R/(2L))^2>1/(LC)$ → $R>2\sqrt{L/C}$
+</div>
+<div class="answer-box">
+$$s_{1,2}=-\frac{R}{2L}\pm\sqrt{\left(\frac{R}{2L}\right)^2-\frac{1}{LC}}$$
+</div>
+
+<h3>7)　2つの負実極 $-\alpha_1, -\alpha_2$（$\alpha_1>\alpha_2$）のときの単位ステップ応答</h3>
+<div class="step">
+$V_{in}(s)=1/s$，$V_{out}(s)=H(s)/s=\dfrac{R/L}{(s+\alpha_1)(s+\alpha_2)}$<br>
+ヴィエタ：$\alpha_1+\alpha_2=R/L$，$\alpha_1\alpha_2=1/(LC)$<br>
+部分分数：$V_{out}=\dfrac{R/L}{\alpha_1-\alpha_2}\!\left(\dfrac{1}{s+\alpha_2}-\dfrac{1}{s+\alpha_1}\right)$（$\alpha_1>\alpha_2$）
+</div>
+<div class="answer-box">
+$$v_{out}(t)=\frac{\alpha_1+\alpha_2}{\alpha_1-\alpha_2}\bigl(e^{-\alpha_2 t}-e^{-\alpha_1 t}\bigr),\quad t\geq0$$
+</div>
+
+<!-- ============================================================ -->
+<h2>【電気回路】大問2　LC 並列回路への多周波電圧印加</h2>
+<p>$e_1(t)=100\sqrt{2}\sin(500t)+\dfrac{100\sqrt{2}}{3}\sin(1500t)$，$L=10\,\text{mH}$，$C=300\,\mu\text{F}$</p>
+
+<h3>1)　500 rad/s 成分：L に流れる電流の実効値</h3>
+<div class="step">
+実効値 $V_1=100\,\text{V}$，$Z_L=j\omega L=j\times500\times0.01=j5\,\Omega$：$I_L=100/5=20\,\text{A}$
+</div>
+<div class="answer-box">$$I_{L1}=20\,\text{A}$$</div>
+
+<h3>2)　500 rad/s 成分：C に流れる電流の実効値</h3>
+<div class="step">
+$Z_C=1/(j\omega C)=1/(j\times0.15)=-j(20/3)\,\Omega$，$|Z_C|=20/3\,\Omega$：$I_C=100/(20/3)=15\,\text{A}$
+</div>
+<div class="answer-box">$$I_{C1}=15\,\text{A}$$</div>
+
+<h3>3)　500 rad/s 成分：電源電流の実効値 $I_1$</h3>
+<div class="step">
+フェーザ加算（$L$ と $C$ は逆位相）：$\tilde{I}=-j20+j15=-j5\,\text{A}$
+</div>
+<div class="answer-box">$$I_1=5\,\text{A}$$</div>
+
+<h3>4)　1500 rad/s 成分：電源電流の実効値 $I_3$</h3>
+<div class="step">
+$V_3=100/3\,\text{V}$，$Z_L(1500)=j15\,\Omega$，$Z_C(1500)=-j(20/9)\,\Omega$<br>
+$\tilde{I}=-j(100/3)/15+j(100/3)\times(9/20)=-j(20/9)+j15=j(115/9)\,\text{A}$
+</div>
+<div class="answer-box">$$I_3=\frac{115}{9}\approx12.8\,\text{A}\approx13\,\text{A}$$</div>
+
+<h3>5)　$i(t)=\sqrt{2}I_1\sin(\omega t)+\sqrt{2}I_3\sin(3\omega t)$ の実効値 $I_{rms}$</h3>
+<div class="step">
+異周波成分はクロスタームが時間平均 $=0$：
+$$I_{rms}^2=I_1^2+I_3^2$$
+</div>
+<div class="answer-box">$$I_{rms}=\sqrt{I_1^2+I_3^2}$$</div>
+
+<h3>6)　電源電流の実効値（数値）</h3>
+<div class="answer-box">
+$$I_{rms}=\sqrt{5^2+(115/9)^2}=\frac{\sqrt{15250}}{9}=\frac{5\sqrt{610}}{9}\approx13.7\approx14\,\text{A}$$
+</div>
+
+<h3>7)　3相 Y 接続・500 rad/s 線間電圧実効値</h3>
+<div class="step">
+各相電圧実効値 $=100\,\text{V}$（平衡3相）：
+</div>
+<div class="answer-box">$$V_{line}=\sqrt{3}\times100=100\sqrt{3}\approx173\,\text{V}$$</div>
+
+<h3>8)　3相 Y 接続・線電流 $U$ の実効値</h3>
+<div class="step">
+3次高調波（1500 rad/s）：3相いずれも同位相（零相成分）→ 3線式では流れない（帰線なし）。<br>
+基本波（500 rad/s）は平衡 → 線電流 = 相電流 $= I_1 = 5\,\text{A}$
+</div>
+<div class="answer-box">
+$$I_U=5\,\text{A}$$（3次高調波は3線 Y 接続で線電流に現れない）
+</div>
+
+<!-- ============================================================ -->
+<h2>【量子力学/物性基礎】大問1　1次元ポテンシャル井戸</h2>
+<p>$V(x)=V_0\;(x<0,\;x>L)$，$0\;(0\leq x\leq L)$。質量 $m$，エネルギー固有値 $E$，$\hbar=h/(2\pi)$。</p>
+
+<h3>1)　$V_0\to\infty$（無限ポテンシャル井戸）</h3>
+
+<p><strong>a) 空欄①②③</strong></p>
+<div class="step">
+$0\leq x\leq L$：$\psi=A\sin(kx)+B\cos(kx)$<br>
+$\psi(0)=0$ → $B=0$；$\psi(L)=0$ → $\sin(kL)=0$ → $kL=n\pi$（$n=1,2,3,\ldots$）
+</div>
+<div class="answer-box">
+①　$k = \dfrac{n\pi}{L}$（$n$：正の整数）<br><br>
+②　$\psi(x) = \sqrt{\dfrac{2}{L}}\sin\!\left(\dfrac{n\pi x}{L}\right)$（規格化済み）<br><br>
+③　$E = \dfrac{\hbar^2 k^2}{2m} = \dfrac{n^2\pi^2\hbar^2}{2mL^2}$
+</div>
+
+<p><strong>b) 空欄④：$\Delta V(x)=\delta V$（$0\leq x\leq d$）による固有値変化（$n=1$）</strong></p>
+<div class="step">
+1次摂動：$\Delta E \approx \dfrac{2\delta V}{L}\displaystyle\int_0^d\sin^2\!\!\left(\frac{\pi x}{L}\right)dx$<br>
+$\displaystyle\int_0^d\sin^2\!\!\left(\frac{\pi x}{L}\right)dx = \frac{d}{2}-\frac{L}{4\pi}\sin\!\left(\frac{2\pi d}{L}\right)$
+</div>
+<div class="answer-box">
+$$\text{④}\quad\Delta E \approx \frac{\delta V}{L}\left[d - \frac{L}{2\pi}\sin\!\left(\frac{2\pi d}{L}\right)\right]$$
+</div>
+
+<p><strong>c) 空欄⑤〜⑦：$\Delta V(x)=\delta V\!\left(\dfrac{2x}{L}-1\right)$</strong></p>
+<div class="step">
+$\Delta E \approx \dfrac{2\delta V}{L}\displaystyle\int_0^L\sin^2\!\!\left(\frac{\pi x}{L}\right)\!\left(\frac{2x}{L}-1\right)dx$<br>
+$u=x/L-1/2$ と置換：$\sin^2=\cos^2(\pi u)$，$(2x/L-1)=2u$（奇関数）<br>
+被積分関数は奇関数 → 対称区間 $[-1/2,1/2]$ の積分 $=0$
+</div>
+<div class="answer-box">
+⑤　$\Delta E = 0$（1次摂動補正なし）<br><br>
+$n=1$ の確率密度 $(2/L)\sin^2(\pi x/L)$ の最大 → ⑥：<b>ア 井戸の中心 $x=L/2$</b><br><br>
+⑦ 理由：$\sin^2(\pi x/L)$ は $x=L/2$ で最大（$\pi x/L=\pi/2$）。摂動 $\delta V(2x/L-1)$ は $x=L/2$ に対して反対称なので，確率密度の最大位置（波動関数のピーク）は変化しない。
+</div>
+
+<h3>2)　$V_0$ 有限の場合：空欄⑧⑨</h3>
+<div class="step">
+$V_0$ 有限のとき波動関数は障壁（$x<0$）に染み出す：$\psi(x<0)=Ce^{\kappa x}$（$\kappa=\sqrt{2m(V_0-E)}/\hbar$）<br>
+$V_0\to\infty$：$\kappa\to\infty$ → 染み出し消滅 → $|\psi(0)|^2\to0$<br>
+$V_0$ 小（最小束縛エネルギー付近）：染み出し大 → $|\psi(0)|^2>0$
+</div>
+<div class="answer-box">
+⑧ グラフ：$|\psi(0)|^2$ は $V_0$ の増加に伴い単調に減少し，$V_0\to\infty$ で 0 に収束。<br><br>
+⑨ 理由：$V_0$ が大きくなるほど障壁が高くなり，波動関数の障壁への染み出しが小さくなる。$x=0$ は井戸の端であり，$V_0\to\infty$（無限井戸）の極限では境界条件 $\psi(0)=0$ が厳密に成立し $|\psi(0)|^2\to0$ となる。
+</div>
+
+<!-- ============================================================ -->
+<h2>【量子力学/物性基礎】大問2　半導体中の電気伝導（空間電荷制限電流）</h2>
+<p>半導体（誘電率 $\varepsilon$）中を電子が電極A（$x=0$）から電極B（$x=L$）へドリフト。$V(0)=0$，$V(L)=V_0$（$V_0>0$）。</p>
+
+<h3>1)　空欄①〜⑤</h3>
+<div class="step">
+<b>①</b>　電流密度 $J$：電荷密度 $\rho(x)$，速度 $v(x)$ の積<br>
+<b>②</b>　ガウスの法則：$dE(x)/dx = \rho(x)/\varepsilon$<br>
+<b>③</b>　$v(x)=-\mu E(x)$（$\mu>0$）のような伝導 → <b>ドリフト伝導</b><br>
+<b>④</b>　$\mu$ → <b>移動度</b><br>
+<b>⑤</b>　$\rho=\varepsilon\,dE/dx=\varepsilon\,d(-v/\mu)/dx=-\varepsilon/\mu\cdot dv/dx$<br>
+$J=\rho v=-(\varepsilon/\mu)\,v\,dv/dx$ より
+</div>
+<div class="answer-box">
+$$J = \underbrace{\rho(x)\,v(x)}_{①}, \quad \frac{dE}{dx} = \underbrace{\frac{\rho(x)}{\varepsilon}}_{②}$$
+③：ドリフト伝導，④：移動度，⑤（(2.4)の係数）$=-\varepsilon/\mu$
+$$J = -\frac{\varepsilon}{\mu}\,v(x)\frac{dv(x)}{dx}$$
+</div>
+
+<h3>2a)　$v(x)$ の導出</h3>
+<div class="step">
+定常状態：$J=$ 定数。$v\,dv/dx = -\mu J/\varepsilon$（右辺 $>0$：$J<0$ なので）<br>
+積分：$v^2/2 = -(\mu J/\varepsilon)x + C$，$v(0)=0$ → $C=0$
+</div>
+<div class="answer-box">
+$$v(x) = \sqrt{-\frac{2\mu J}{\varepsilon}\,x} = \sqrt{\frac{2\mu|J|}{\varepsilon}\,x} \quad (v\geq0)$$
+</div>
+
+<h3>2b)　電界 $E(x)$ と電位 $V(x)$ の導出</h3>
+<div class="step">
+$E(x)=-v(x)/\mu=-\sqrt{-2Jx/(\mu\varepsilon)}$（$<0$：$-x$ 方向）<br>
+$V(x)=-\displaystyle\int_0^x E\,dx'=\sqrt{-\frac{2J}{\mu\varepsilon}}\cdot\frac{2}{3}x^{3/2}$
+</div>
+<div class="answer-box">
+$$E(x) = -\sqrt{-\frac{2Jx}{\mu\varepsilon}}, \qquad V(x) = \frac{2}{3}\sqrt{-\frac{2J}{\mu\varepsilon}}\,x^{3/2}$$
+</div>
+
+<h3>2c)　電流密度 $J$ を $V_0$ で表す</h3>
+<div class="step">
+$V(L)=V_0$：$\dfrac{2}{3}\sqrt{-2J/(\mu\varepsilon)}\cdot L^{3/2}=V_0$ → $\sqrt{-2J/(\mu\varepsilon)}=\dfrac{3V_0}{2L^{3/2}}$<br>
+$-2J/(\mu\varepsilon) = 9V_0^2/(4L^3)$ → $|J|=9\mu\varepsilon V_0^2/(8L^3)$
+</div>
+<div class="answer-box">
+$$|J| = \frac{9\mu\varepsilon V_0^2}{8L^3}$$
+</div>
+<div class="note">
+Mott-Gurney 則（空間電荷制限電流）：$|J|\propto V_0^2/L^3$。ドリフト輸送で空間電荷が形成される半導体ダイオードの特性。
+</div>
+
+<!-- ============================================================ -->
+<h2>解答まとめ</h2>
+<table>
+  <tr><th>分野</th><th>大問</th><th>キーワード</th><th>結果</th></tr>
+  <tr><td>数学</td><td>1</td><td>FT・エルミート多項式</td><td class="left">$G(\omega)=-d^2F/d\omega^2$，$H_{n+2}=2tH_{n+1}-2(n+1)H_n$</td></tr>
+  <tr><td>数学</td><td>2</td><td>ODE（非斉次）</td><td class="left">$\alpha=1$: $y=C_1e^{4x}+C_2e^{-2x}-e^{-x}/5$</td></tr>
+  <tr><td>電磁気学</td><td>1</td><td>同軸・3層コンデンサ</td><td class="left">$q_A=-q\ln(c/b)/\ln(c/a)$</td></tr>
+  <tr><td>電磁気学</td><td>2</td><td>平行平板線路・TEM波</td><td class="left">$k=\omega\sqrt{\mu_0\varepsilon_0}$，$v_p=c$</td></tr>
+  <tr><td>電気回路</td><td>1</td><td>RLC バンドパス</td><td class="left">$\omega_0=1/\sqrt{LC}$，ステップ応答 $\propto e^{-\alpha_2t}-e^{-\alpha_1t}$</td></tr>
+  <tr><td>電気回路</td><td>2</td><td>多周波・3相</td><td class="left">$I_1=5\,\text{A}$，$I_3\approx13\,\text{A}$，線電流 $U=5\,\text{A}$</td></tr>
+  <tr><td>量子力学</td><td>1</td><td>有限ポテンシャル井戸</td><td class="left">$k=n\pi/L$，$E=n^2\pi^2\hbar^2/(2mL^2)$；$\Delta E=0$（線形摂動）</td></tr>
+  <tr><td>物性基礎</td><td>2</td><td>空間電荷制限電流</td><td class="left">$v(x)=\sqrt{2\mu|J|x/\varepsilon}$，$|J|=9\mu\varepsilon V_0^2/(8L^3)$</td></tr>
+</table>
+
+<footer>東京科学大学（東京工業大学）大学院入試 R3年度（2022大修）専門科目 解答解説</footer>
+</body>
+</html>

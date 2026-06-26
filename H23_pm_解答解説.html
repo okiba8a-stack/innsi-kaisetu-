@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>H23年度 専門科目午後 電磁気学 解答解説</title>
+  <script>
+    MathJax = {
+      tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']], tags: 'ams' },
+      options: { skipHtmlTags: ['script','noscript','style','textarea','pre'] }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "Yu Gothic", "游ゴシック", sans-serif;
+      font-size: 13pt;
+      line-height: 1.9;
+      color: #1a1a2e;
+      background: #f4f7fb;
+      padding: 40px;
+    }
+    h1 {
+      font-size: 19pt;
+      color: #0d2b5e;
+      border-bottom: 3px solid #0d2b5e;
+      padding-bottom: 10px;
+      margin-bottom: 6px;
+    }
+    .meta { color: #666; font-size: 11pt; margin-bottom: 36px; }
+    h2 {
+      font-size: 15pt;
+      color: #0d2b5e;
+      background: #e8f0fb;
+      border-left: 5px solid #1e5fa8;
+      padding: 8px 14px;
+      margin: 40px 0 16px;
+      border-radius: 0 6px 6px 0;
+    }
+    h3 {
+      font-size: 13pt;
+      color: #1e5fa8;
+      border-bottom: 1px solid #c5d8f5;
+      margin: 28px 0 10px;
+      padding-bottom: 4px;
+    }
+    .answer-box {
+      background: #fff;
+      border: 2px solid #1e5fa8;
+      border-radius: 6px;
+      padding: 14px 20px;
+      margin: 12px 0;
+    }
+    .answer-box strong { color: #0d2b5e; }
+    .step {
+      background: #eef4ff;
+      border-left: 3px solid #5b8dee;
+      padding: 10px 16px;
+      margin: 10px 0;
+      border-radius: 0 4px 4px 0;
+    }
+    .note {
+      background: #fffbe6;
+      border-left: 4px solid #f0ad00;
+      padding: 10px 16px;
+      margin: 12px 0;
+      border-radius: 0 4px 4px 0;
+      font-size: 11.5pt;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 16px 0;
+      font-size: 11.5pt;
+    }
+    th { background: #0d2b5e; color: #fff; padding: 8px 12px; text-align: center; }
+    td { border: 1px solid #c5d8f5; padding: 8px 12px; text-align: center; }
+    tr:nth-child(even) td { background: #f0f6ff; }
+    footer { margin-top: 60px; color: #aaa; font-size: 10pt; text-align: center; }
+    @media print {
+      body { background: #fff; padding: 20px; }
+      .answer-box { border: 1px solid #1e5fa8; }
+    }
+  </style>
+</head>
+<body>
+
+<h1>H23年度 専門科目 午後（電磁気学）解答解説</h1>
+<p class="meta">東京工業大学 大学院修士課程入試（平成22年8月17日実施）</p>
+
+<!-- ========== 大問1 ========== -->
+<h2>大問1　回転式可変コンデンサ</h2>
+
+<p>2枚の同形電極板を向かい合わせた可変コンデンサを考える。各電極は
+<strong>中心から半径 $a$ の円板</strong>に、<strong>半径 $a$〜$5a$・中心角 $\pi/2$ の扇形</strong>
+を付加した形状（同一中心軸）を持つ。電極間距離は $d=a$、誘電率は $\varepsilon_0$ とする。
+一方の電極を角度 $\theta$ だけ回転させたときの静電容量 $C(\theta)$ を求める。</p>
+
+<h3>問(1)　$\theta=0$ における静電容量 $C_0$</h3>
+<div class="step">
+各電極の面積を分割して計算する。
+<ul>
+  <li>中心円板（半径 $a$）: $S_1 = \pi a^2$</li>
+  <li>環状扇形（半径 $a$〜$5a$、角度 $\pi/2$）: $S_2 = \dfrac{\pi/2}{2}\bigl[(5a)^2 - a^2\bigr] = \dfrac{\pi}{4}\cdot 24a^2 = 6\pi a^2$</li>
+</ul>
+全面積 $S = S_1 + S_2 = 7\pi a^2$
+</div>
+<div class="answer-box">
+$$\boxed{C_0 = \frac{\varepsilon_0 \cdot 7\pi a^2}{a} = 7\pi\varepsilon_0 a}$$
+</div>
+
+<h3>問(2)　静電容量 $C(\theta)$（$0 \le \theta \le \pi/2$）</h3>
+<div class="step">
+角度 $\theta$ 回転させると：
+<ul>
+  <li>中心円板は常に重なる: 重なり面積 $= \pi a^2$（不変）</li>
+  <li>扇形部分の重なり角度: $\pi/2 - \theta$<br>
+  重なり面積 $= \dfrac{\pi/2-\theta}{2}\cdot 24a^2 = 12a^2\!\left(\dfrac{\pi}{2}-\theta\right)$</li>
+</ul>
+全重なり面積 $= \pi a^2 + 12a^2\!\left(\dfrac{\pi}{2}-\theta\right) = a^2(7\pi - 12\theta)$
+</div>
+<div class="answer-box">
+$$\boxed{C(\theta) = \varepsilon_0 a\,(7\pi - 12\theta)} \quad (0 \le \theta \le \tfrac{\pi}{2})$$
+扇形が完全にずれた後（$\pi/2 \le \theta \le 3\pi/2$）は、中心円板のみ重なるため：
+$$C_{\min} = \pi\varepsilon_0 a$$
+</div>
+<div class="note">
+$C(\theta)$ は $\theta$ に対して線形に減少する。最大値 $C_{\max}=C_0=7\pi\varepsilon_0 a$、最小値 $C_{\min}=\pi\varepsilon_0 a$。
+比率 $C_{\max}/C_{\min} = 7$。
+</div>
+
+<h3>問(3)　電荷 $Q$ 一定のときのトルク $\tau$</h3>
+<div class="step">
+電荷 $Q$ を固定した条件でのエネルギーは $U = \dfrac{Q^2}{2C(\theta)}$。<br>
+仮想仕事の原理より：
+$$\tau = -\left(\frac{\partial U}{\partial \theta}\right)_Q = -\frac{Q^2}{2}\cdot\frac{d}{d\theta}\!\left(\frac{1}{C}\right) = \frac{Q^2}{2C^2}\frac{dC}{d\theta}$$
+$0 < \theta < \pi/2$ では $\dfrac{dC}{d\theta} = -12\varepsilon_0 a$ なので：
+</div>
+<div class="answer-box">
+$$\boxed{\tau = \frac{Q^2}{2C^2}\cdot(-12\varepsilon_0 a) = -\frac{6Q^2\varepsilon_0 a}{C^2}}$$
+負号は $\theta$ が増加する向きに対して電極を引き戻す方向（$\theta$ 減少方向）にトルクが働くことを示す。
+</div>
+
+<h3>問(4)　電圧 $V(\theta)$</h3>
+<div class="answer-box">
+電荷 $Q$ が一定のとき：
+$$\boxed{V(\theta) = \frac{Q}{C(\theta)} = \frac{Q}{\varepsilon_0 a\,(7\pi - 12\theta)}}$$
+$\theta$ が増加するにつれて $C$ が減少し、電圧 $V$ が増大する。$\theta=\pi/2$ で $V$ は最大 $Q/(\pi\varepsilon_0 a)$ となる。
+</div>
+
+<h3>問(5)　$\theta = 0$ から $\theta = \pi$ まで回転するときのエネルギー変化</h3>
+<div class="step">
+$\theta=0$: $C_0 = 7\pi\varepsilon_0 a$、$\quad U_0 = \dfrac{Q^2}{2\cdot 7\pi\varepsilon_0 a} = \dfrac{Q^2}{14\pi\varepsilon_0 a}$<br><br>
+$\theta=\pi$: $C(\pi) = C_{\min} = \pi\varepsilon_0 a$（扇形は $\pi > \pi/2$ なので重ならない）、$\quad U_\pi = \dfrac{Q^2}{2\pi\varepsilon_0 a}$<br><br>
+差：
+$$\Delta U = U_\pi - U_0 = \frac{Q^2}{2\pi\varepsilon_0 a} - \frac{Q^2}{14\pi\varepsilon_0 a} = \frac{Q^2}{\pi\varepsilon_0 a}\!\left(\frac{1}{2}-\frac{1}{14}\right) = \frac{Q^2}{\pi\varepsilon_0 a}\cdot\frac{6}{14}$$
+</div>
+<div class="answer-box">
+$$\boxed{\Delta U = \frac{3Q^2}{7\pi\varepsilon_0 a}}$$
+エネルギーが増加する（回転させるために外力が仕事をする必要がある）。
+</div>
+
+<h3>問(6)〜(8)　チャージポンプ回路</h3>
+<p>
+以下の回路を考える：コンデンサ $C(\theta)$ の下側電極は電圧源 $V_1$ に接続、
+上側電極（ノードP）はダイオード $D_1$（アノードをGND、カソードをPに接続）で初期充電され、
+$D_2$（カソードをP、アノードを $-V_2$ に接続）とスイッチ $S$ を通じて $V_2$ 源に接続される。
+</p>
+
+<h3>問(6)　$\theta$ 増加時のノードP電圧 $V_p(\theta)$</h3>
+<div class="step">
+初期状態（$\theta=0$, S開放, $D_1$ が導通）：
+$$V_p = 0,\quad Q = C_0 V_1 = 7\pi\varepsilon_0 a \cdot V_1$$
+S を開放して $\theta$ を増加させると、電荷 $Q=C_0 V_1$ が保存される。<br>
+下側電極は $V_1$ に保たれたままなので：
+$$V_p = V_1 - \frac{Q}{C(\theta)} = V_1 - \frac{C_0 V_1}{C(\theta)} = V_1\!\left(1 - \frac{C_0}{C(\theta)}\right)$$
+</div>
+<div class="answer-box">
+$$\boxed{V_p(\theta) = V_1\!\left(1 - \frac{C_0}{C(\theta)}\right)} \quad (0 \le \theta \le \tfrac{\pi}{2})$$
+$\theta = 0$ で $V_p = 0$、$\theta$ 増加とともに $V_p$ は負になる。
+</div>
+
+<h3>問(7)　$V_p$ の最小値と $D_2$ が導通する条件</h3>
+<div class="step">
+$\theta = \pi/2$ で $C = C_{\min} = \pi\varepsilon_0 a$：
+$$V_{p,\min} = V_1\!\left(1 - \frac{7\pi\varepsilon_0 a}{\pi\varepsilon_0 a}\right) = V_1(1-7) = -6V_1$$
+</div>
+<div class="answer-box">
+$$\boxed{V_{p,\min} = -6V_1}$$
+$D_2$ が導通する条件（$|V_{p,\min}| > V_2$）：
+$$\boxed{6V_1 > V_2}$$
+</div>
+
+<h3>問(8)　$V_2$ 源への移動電荷量</h3>
+<div class="step">
+$\theta = \pi/2$ でスイッチ $S$ を閉じると、$D_2$ が導通して電荷が $V_2$ 源に移動する。<br>
+平衡状態では $V_p = -V_2$ となる（$D_2$ の順方向降下電圧を無視）。<br><br>
+移動後の容量はまだ $C_{\min} = \pi\varepsilon_0 a$（$\theta$ 固定）。<br>
+移動後のコンデンサ電荷：
+$$Q_f = C_{\min}(V_1 - V_{p,f}) = \pi\varepsilon_0 a\,(V_1 + V_2)$$
+移動電荷量：
+$$\Delta Q = Q - Q_f = 7\pi\varepsilon_0 a\cdot V_1 - \pi\varepsilon_0 a(V_1+V_2) = \pi\varepsilon_0 a\,(6V_1 - V_2)$$
+</div>
+<div class="answer-box">
+$$\boxed{\Delta Q = \pi\varepsilon_0 a\,(6V_1 - V_2)}$$
+$V_2$ 源に供給されるエネルギー：$W = \Delta Q \cdot V_2 = \pi\varepsilon_0 a\,V_2(6V_1-V_2)$
+</div>
+<div class="note">
+これはチャージポンプの原理：機械的な回転エネルギーを電気エネルギーに変換し、低電圧源 $V_1$ から高電圧 $6V_1$ で $V_2$ 源を充電する。最大効率の出力は $V_2 = 3V_1$（インピーダンス整合的な最大電力条件）。
+</div>
+
+<!-- ========== 大問2 ========== -->
+<h2>大問2　半円弧電流の磁界と電磁誘導</h2>
+
+<p>
+$xy$ 平面上の半径 $a$ の半円弧（$y \ge 0$）と、$x$ 軸上の 2 本の半無限直線電流（$x \le -a$ と $x \ge a$）が接続されてD字形の電流ループを形成し、電流 $I$ が流れている（半円の向きは $x$ 軸正方向から半円に沿って $x$ 軸負方向へ流れる方向とする）。
+</p>
+
+<h3>問(1)　直線電流が原点に作る磁界</h3>
+<div class="step">
+$x$ 軸上の電流素子 $I\,dl = I\,dx\,\hat{x}$、原点への変位ベクトルは $\vec{r} = -x\hat{x}$（$\hat{r} = -\hat{x}$）。<br>
+ビオ・サバールの法則：
+$$d\vec{B} = \frac{\mu_0 I}{4\pi}\frac{d\vec{l}\times\hat{r}}{r^2} = \frac{\mu_0 I}{4\pi}\frac{dx\,\hat{x}\times(-\hat{x})}{r^2} = 0$$
+電流素子と変位ベクトルが平行なため外積はゼロ。
+</div>
+<div class="answer-box">
+<strong>原点での直線電流の寄与：$\vec{B}=0$</strong>
+</div>
+
+<h3>問(2)　原点での全磁束密度 $\vec{B}_0$（半円弧の寄与）</h3>
+<div class="step">
+半円弧を $\vec{r}' = (a\cos\varphi,\, a\sin\varphi,\, 0)$（$0 \le \varphi \le \pi$）で parametrize。<br>
+電流素子: $d\vec{l} = a(-\sin\varphi,\, \cos\varphi,\, 0)\,d\varphi$<br>
+原点への変位: $\vec{r} = -\vec{r}' = (-a\cos\varphi,\,-a\sin\varphi,\,0)$、$|\vec{r}| = a$<br><br>
+$$d\vec{l}\times\hat{r} = a\,d\varphi\,(-\sin\varphi,\cos\varphi,0)\times(-\cos\varphi,-\sin\varphi,0)$$
+$$= a\,d\varphi\left[\begin{vmatrix}\hat{y}&\hat{z}\\\cos\varphi&0\end{vmatrix}\hat{x} - \cdots\right] = a\,d\varphi\,(0,0,\sin^2\varphi+\cos^2\varphi) = a\,d\varphi\,\hat{z}$$
+よって：
+$$\vec{B}_0 = \frac{\mu_0 I}{4\pi}\int_0^\pi \frac{a\,d\varphi}{a^2}\hat{z} = \frac{\mu_0 I}{4\pi a}\cdot\pi\,\hat{z}$$
+</div>
+<div class="answer-box">
+$$\boxed{\vec{B}_0 = \frac{\mu_0 I}{4a}\,\hat{z}}$$
+（全円の $\mu_0 I/(2a)$ の半分）
+</div>
+
+<h3>問(3)　$y$ 軸まわりに回転するコイルの起電力 $e_1$</h3>
+<div class="step">
+面積 $S$ の平面コイルが $y$ 軸まわりに角速度 $\omega$ で回転（初期位置: コイル面が $xz$ 平面）。<br>
+角度 $\theta = \omega t$ として磁束：
+$$\Phi = B_0 S \cos\theta = \frac{\mu_0 I S}{4a}\cos(\omega t)$$
+誘導起電力：
+$$e_1 = -\frac{d\Phi}{dt} = \frac{\mu_0 I S \omega}{4a}\sin(\omega t)$$
+</div>
+<div class="answer-box">
+$$\boxed{e_1(t) = \frac{\mu_0 I S \omega}{4a}\sin(\omega t), \quad E_m = \frac{\mu_0 I S \omega}{4a}}$$
+$e_1 = 0$ となるのは $\omega t = 0, \pi, 2\pi, \ldots$（コイル面が $xz$ 平面、磁束が最大となる位置）。
+</div>
+
+<h3>問(4a)　点 $\mathrm{P}(0,0,b)$ での直線電流による磁束密度 $\vec{B}_\ell$</h3>
+<div class="step">
+$x$ 軸上 $x \ge a$ の半無限直線電流（$+x$ 方向）が点 P に作る磁界。<br>
+電流素子: $d\vec{l} = dx\,\hat{x}$、P への変位: $\vec{r} = (0,0,b)-(x,0,0) = (-x,0,b)$、$|\vec{r}|=\sqrt{x^2+b^2}$<br><br>
+$$d\vec{l}\times\vec{r} = dx\,\hat{x}\times(-x,0,b) = dx\,(0\cdot b - 0,\;0\cdot(-x)-b,\;0) = dx\,(0,-b,0)$$
+$$\vec{B}_1 = \frac{\mu_0 I}{4\pi}\int_a^\infty \frac{-b\,\hat{y}}{(x^2+b^2)^{3/2}}dx$$
+積分：$\displaystyle\int_a^\infty \frac{dx}{(x^2+b^2)^{3/2}} = \left[\frac{x}{b^2\sqrt{x^2+b^2}}\right]_a^\infty = \frac{1}{b^2}\!\left(1-\frac{a}{\sqrt{a^2+b^2}}\right)$<br><br>
+$x \le -a$ の半無限直線（$-x$ 方向）も対称的に同じ $-\hat{y}$ 方向の寄与を与える。合計：
+</div>
+<div class="answer-box">
+$$\boxed{\vec{B}_\ell = \frac{\mu_0 I}{2\pi b}\!\left(1-\frac{a}{\sqrt{a^2+b^2}}\right)(-\hat{y})}$$
+（両側の半無限線電流の合計）
+</div>
+
+<h3>問(4b)　点 $\mathrm{P}(0,0,b)$ での半円弧による磁束密度 $\vec{B}_r$</h3>
+<div class="step">
+半円弧のパラメータ表示と同様に計算：<br>
+$\vec{r}' = (a\cos\varphi,a\sin\varphi,0)$、$d\vec{l} = a(-\sin\varphi,\cos\varphi,0)d\varphi$<br>
+P への変位: $\vec{r} = (-a\cos\varphi,-a\sin\varphi,b)$、$|\vec{r}| = \sqrt{a^2+b^2}$<br><br>
+$$d\vec{l}\times\vec{r} = a\,d\varphi\,(-\sin\varphi,\cos\varphi,0)\times(-a\cos\varphi,-a\sin\varphi,b)$$
+$$= a\,d\varphi\,(b\cos\varphi,\; b\sin\varphi,\; a\sin^2\varphi+a\cos^2\varphi)$$
+$$= a\,d\varphi\,(b\cos\varphi,\; b\sin\varphi,\; a)$$
+各成分を $0$ から $\pi$ で積分：
+$$\int_0^\pi\cos\varphi\,d\varphi = 0,\quad \int_0^\pi\sin\varphi\,d\varphi = 2,\quad \int_0^\pi d\varphi = \pi$$
+</div>
+<div class="answer-box">
+$$\vec{B}_r = \frac{\mu_0 I}{4\pi}\cdot\frac{a}{(a^2+b^2)^{3/2}}\cdot(0,\;2ab,\;\pi a^2)\cdot\frac{1}{a}$$
+$$\boxed{\vec{B}_r = \frac{\mu_0 I a}{4\pi(a^2+b^2)^{3/2}}\bigl(0,\;2b,\;\pi a\bigr)}$$
+<ul>
+  <li>$y$ 成分: $B_{r,y} = \dfrac{\mu_0 I ab}{2\pi(a^2+b^2)^{3/2}}$（$+\hat{y}$ 方向）</li>
+  <li>$z$ 成分: $B_{r,z} = \dfrac{\mu_0 I a^2}{4(a^2+b^2)^{3/2}}$（$+\hat{z}$ 方向）</li>
+</ul>
+$b=0$ とすると $B_{r,z} = \mu_0 I/(4a)$ となり問(2)の結果と一致する。
+</div>
+<div class="note">
+$\vec{B}_\ell$ の $y$ 成分（負）と $\vec{B}_r$ の $y$ 成分（正）は部分的に打ち消し合う。これはP点が $x$ 軸の延長上にあるため、直線電流成分が半円の反作用方向に磁界を作るためである。
+</div>
+
+<h3>問(5)　$z$ 方向に移動するコイルの起電力 $e_2(t)$</h3>
+<div class="step">
+コイル（面積 $S$、コイル面が $xy$ 平面と平行）が $z$ 方向に速度 $v$ で移動：$z(t) = vt$。<br>
+コイルを貫く磁束は $z$ 成分のみ（コイル法線 $= \hat{z}$）：
+$$\Phi(t) = B_{r,z}(z=vt)\cdot S = \frac{\mu_0 I a^2 S}{4\bigl(a^2 + v^2t^2\bigr)^{3/2}}$$
+誘導起電力：
+$$e_2 = -\frac{d\Phi}{dt} = -\frac{\mu_0 I a^2 S}{4}\cdot\frac{d}{dt}\bigl(a^2+v^2t^2\bigr)^{-3/2}$$
+$$= -\frac{\mu_0 I a^2 S}{4}\cdot\left(-\frac{3}{2}\right)\bigl(a^2+v^2t^2\bigr)^{-5/2}\cdot 2v^2t$$
+</div>
+<div class="answer-box">
+$$\boxed{e_2(t) = \frac{3\mu_0 I S a^2 v^2 t}{4(a^2+v^2t^2)^{5/2}}}$$
+$t=0$（コイルが半円の中心位置）で $e_2=0$（磁束が最大で変化率ゼロ）。<br>
+$t \to \infty$ で $e_2 \to 0$（コイルが無限遠に離れると磁場は弱まる）。
+</div>
+
+<!-- ========== 解答まとめ ========== -->
+<h2>解答まとめ</h2>
+<table>
+  <tr>
+    <th>大問</th><th>問</th><th>解答</th>
+  </tr>
+  <tr><td rowspan="8">1<br>可変<br>コンデンサ</td>
+    <td>(1)</td><td>$C_0 = 7\pi\varepsilon_0 a$</td></tr>
+  <tr><td>(2)</td><td>$C(\theta) = \varepsilon_0 a(7\pi-12\theta)$（$0\le\theta\le\pi/2$）；$C_{\min}=\pi\varepsilon_0 a$</td></tr>
+  <tr><td>(3)</td><td>$\tau = -6Q^2\varepsilon_0 a/C^2$（$\theta$ 減少方向）</td></tr>
+  <tr><td>(4)</td><td>$V(\theta) = Q/[\varepsilon_0 a(7\pi-12\theta)]$</td></tr>
+  <tr><td>(5)</td><td>$\Delta U = 3Q^2/(7\pi\varepsilon_0 a)$（増加）</td></tr>
+  <tr><td>(6)</td><td>$V_p(\theta) = V_1(1-C_0/C(\theta))$</td></tr>
+  <tr><td>(7)</td><td>$V_{p,\min}=-6V_1$；条件 $6V_1 > V_2$</td></tr>
+  <tr><td>(8)</td><td>$\Delta Q = \pi\varepsilon_0 a(6V_1-V_2)$</td></tr>
+  <tr><td rowspan="6">2<br>半円弧<br>電流</td>
+    <td>(1)</td><td>直線電流の原点への寄与 $= 0$（外積ゼロ）</td></tr>
+  <tr><td>(2)</td><td>$\vec{B}_0 = \mu_0 I/(4a)\,\hat{z}$</td></tr>
+  <tr><td>(3)</td><td>$e_1 = \mu_0 IS\omega/(4a)\cdot\sin\omega t$；$E_m=\mu_0 IS\omega/(4a)$</td></tr>
+  <tr><td>(4a)</td><td>$\vec{B}_\ell = -\mu_0 I/(2\pi b)\cdot(1-a/\!\sqrt{a^2+b^2})\,\hat{y}$</td></tr>
+  <tr><td>(4b)</td><td>$B_{r,y}=\mu_0 Iab/[2\pi(a^2+b^2)^{3/2}]$；$B_{r,z}=\mu_0 Ia^2/[4(a^2+b^2)^{3/2}]$</td></tr>
+  <tr><td>(5)</td><td>$e_2(t) = 3\mu_0 ISa^2v^2t/[4(a^2+v^2t^2)^{5/2}]$</td></tr>
+</table>
+
+<footer>解答解説作成：Claude（Anthropic）</footer>
+</body>
+</html>

@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>H18年度 午前 電気回路 解答解説</title>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "Yu Gothic", "游ゴシック", sans-serif;
+      font-size: 13pt;
+      line-height: 1.8;
+      color: #1a1a2e;
+      background: #f4f7fb;
+      padding: 40px;
+    }
+    h1 { font-size: 20pt; color: #0d2b5e; border-bottom: 3px solid #0d2b5e; padding-bottom: 10px; margin-bottom: 8px; }
+    .subtitle { color: #666; font-size: 11pt; margin-bottom: 36px; }
+    h2 { font-size: 15pt; color: #0d2b5e; margin: 36px 0 16px 0; padding: 8px 16px; background: #e8f0fb; border-left: 5px solid #1e5fa8; border-radius: 4px; }
+    h3 { font-size: 13pt; color: #1e5fa8; margin: 24px 0 10px 0; }
+    h4 { font-size: 12pt; color: #0d2b5e; margin: 18px 0 8px 0; }
+    .answer-box {
+      background: #fff;
+      border: 2px solid #1e5fa8;
+      border-radius: 8px;
+      padding: 18px 24px;
+      margin: 16px 0;
+    }
+    .step {
+      background: #f8faff;
+      border-left: 4px solid #5b9cf6;
+      padding: 10px 18px;
+      margin: 12px 0;
+      border-radius: 0 6px 6px 0;
+    }
+    .result {
+      background: #fffbe6;
+      border: 1px solid #f0c040;
+      border-radius: 6px;
+      padding: 10px 18px;
+      margin: 12px 0;
+      font-weight: bold;
+    }
+    .note {
+      background: #f0f8ff;
+      border: 1px solid #b0d4f8;
+      border-radius: 6px;
+      padding: 10px 18px;
+      margin: 12px 0;
+      font-size: 11.5pt;
+      color: #333;
+    }
+    table { border-collapse: collapse; margin: 12px 0; width: 100%; }
+    th, td { border: 1px solid #c5d8f5; padding: 8px 14px; text-align: center; }
+    th { background: #e8f0fb; color: #0d2b5e; font-weight: bold; }
+    footer { margin-top: 60px; color: #aaa; font-size: 10pt; text-align: center; }
+    .back-link { display: inline-block; margin-bottom: 24px; color: #1e5fa8; text-decoration: none; font-size: 11pt; }
+    .back-link:hover { text-decoration: underline; }
+    .formula-block { text-align: center; margin: 16px 0; }
+  </style>
+</head>
+<body>
+
+<a class="back-link" href="index.html">← 解答解説まとめへ戻る</a>
+<h1>H18年度 午前 電気回路 解答解説</h1>
+<p class="subtitle">平成17年8月17日実施 ／ 専門科目：電気回路（午前）</p>
+
+<!-- ============================== 大問1 ============================== -->
+<h2>大問1：回路解析（定常状態）</h2>
+
+<h3>問1-1) 並列 RL 回路の電圧</h3>
+<p>図1.1：電流源 \(i(t)=I_0\sin\omega t\) に抵抗 \(R\) とインダクタ \(L\) が並列接続。</p>
+
+<div class="answer-box">
+<div class="step">
+並列 RL のインピーダンス：
+\[Z = R \parallel j\omega L = \frac{j\omega RL}{R + j\omega L}\]
+大きさ・位相：
+\[|Z| = \frac{\omega RL}{\sqrt{R^2+\omega^2 L^2}}, \qquad \angle Z = \arctan\!\left(\frac{R}{\omega L}\right)\]
+（虚軸正 \(\times\) 分母の逆数なので位相は正、すなわち \(v\) は \(i\) より進む）
+</div>
+
+<div class="result">
+\[v(t) = \frac{\omega RL\, I_0}{\sqrt{R^2+\omega^2L^2}}\sin\!\left(\omega t + \arctan\frac{R}{\omega L}\right)\]
+</div>
+</div>
+
+<h3>問1-2) 非正弦波 \(i(t)\) に対する \(v(t)\) 波形</h3>
+<div class="answer-box">
+<div class="step">
+並列 RL の端子関係：
+\[i(t) = \frac{v}{R} + \frac{1}{L}\int_0^t v\,d\tau \quad\Longrightarrow\quad L\frac{di}{dt} = \frac{L}{R}\frac{dv}{dt} + v\]
+時定数 \(\tau = L/R\)。<br><br>
+\(i(t)\) が方形波ステップ状の場合、ステップ後は \(v\) が指数的に減衰（インダクタが時間経過で短絡に近づく）。<br>
+定常状態では \(v_{\infty}=0\)（直流定常時 \(L\) は短絡）、過渡的ピーク \(v(0^+)=R\cdot\Delta i\)。<br>
+また \(i\) の傾きが一定のランプ区間では \(v\) は一定値を保つ（\(v \propto L\,di/dt\) の誘導起電力寄与）。
+</div>
+<div class="note">
+縦軸に \(v(t)\)、時間軸に \(t\) を記入し、\(i(t)\) のステップ変化点でのピーク値 \(RI_0\) と、時定数 \(\tau=L/R\) による指数減衰を描く。
+</div>
+</div>
+
+<h3>問1-3) 平均電力</h3>
+<div class="answer-box">
+<div class="step">
+電力消費は抵抗 \(R\) のみ。電流分流（電流分割）：
+\[I_R = I_0\cdot\frac{j\omega L}{R+j\omega L}, \qquad |I_R| = \frac{\omega L\, I_0}{\sqrt{R^2+\omega^2L^2}}\]
+平均電力：
+\[P = \frac{1}{2}|I_R|^2\cdot R\]
+</div>
+
+<div class="result">
+\[P = \frac{R\,\omega^2 L^2\, I_0^2}{2(R^2+\omega^2 L^2)}\]
+</div>
+</div>
+
+<h3>問1-4) 節点行列（アドミタンス行列）</h3>
+<p>図1.3：節点 1, 2, 3、各節点に電流源 \(I_1,I_2,I_3\)。<br>
+素子配置：\(Y_1\)（節点1シャント）、\(Y_4\)（節点1–2間）、\(Y_2\)（節点2シャント）、\(Y_3\)（節点2–3間）</p>
+
+<div class="answer-box">
+<div class="step">
+KCL を各節点に適用して節点方程式 \([\mathbf{Y}]\mathbf{V}=\mathbf{I}\) を立てると：
+</div>
+<div class="formula-block">
+\[\begin{bmatrix}Y_1+Y_4 & -Y_4 & 0 \\ -Y_4 & Y_2+Y_4+Y_3 & -Y_3 \\ 0 & -Y_3 & Y_3\end{bmatrix}\begin{bmatrix}V_1\\V_2\\V_3\end{bmatrix}=\begin{bmatrix}I_1\\I_2\\I_3\end{bmatrix}\]
+</div>
+<div class="result">
+節点行列（アドミタンス行列）：
+\[\mathbf{Y} = \begin{bmatrix}Y_1+Y_4 & -Y_4 & 0 \\ -Y_4 & Y_2+Y_4+Y_3 & -Y_3 \\ 0 & -Y_3 & Y_3\end{bmatrix}\]
+対角成分＝節点接続の全アドミタンス和、非対角 \((i,j)\)＝節点 \(i\)–\(j\) 間アドミタンスの負値。
+</div>
+</div>
+
+<h3>問1-5) 全 \(Y_i=1\)S、\(I_1=I_2=1\)A、\(I_3=0\) のとき \(V_3\)</h3>
+<div class="answer-box">
+<div class="step">
+代入すると：
+\[\begin{bmatrix}2 & -1 & 0 \\ -1 & 3 & -1 \\ 0 & -1 & 1\end{bmatrix}\begin{bmatrix}V_1\\V_2\\V_3\end{bmatrix}=\begin{bmatrix}1\\1\\0\end{bmatrix}\]
+第3行：\(-V_2+V_3=0 \Rightarrow V_3=V_2\)<br>
+第1行：\(2V_1-V_2=1 \Rightarrow V_1=(1+V_2)/2\)<br>
+第2行：\(-V_1+3V_2-V_3=1 \Rightarrow -V_1+2V_2=1\)<br>
+代入：\(-(1+V_2)/2+2V_2=1 \Rightarrow \dfrac{3}{2}V_2=\dfrac{3}{2} \Rightarrow V_2=1\)
+</div>
+<div class="result">
+\[V_3 = 1 \text{ V}\]
+</div>
+</div>
+
+<h3>問1-6) 補償定理を用いた \(R\) の決定</h3>
+<p>回路 N（\(n\) 個の抵抗、電源 \(V_0=10\)V）の端子 x–y について：<br>
+(a) x–y 短絡時：電流 1A が x→y に流れる<br>
+(b) x–y に \(R\) 接続時：\(I_R=0.8\)A、電源供給電力が 1W 減少</p>
+
+<div class="answer-box">
+<h4>テブナン等価からの関係</h4>
+<div class="step">
+(a) より：短絡電流 \(I_{sc}=1\text{ A}\)<br>
+\[I_R = \frac{V_{oc}}{R_{th}+R}=0.8, \quad I_{sc}=\frac{V_{oc}}{R_{th}}=1\]
+→ \(\dfrac{R_{th}}{R_{th}+R}=0.8 \Rightarrow R_{th}=4R\)
+</div>
+
+<h4>補償定理による電力変化</h4>
+<div class="step">
+補償定理：0Ω（短絡）から \(R\) への変化は、x–y に逆起電力 \(V_c = I_{sc}\cdot R\) を挿入したことと等価。<br>
+相反定理より \(V_0\) から見た電流変化：
+\[\Delta I_{V_0} = V_c\cdot\frac{I_{sc}}{V_0} = \frac{R\cdot 1}{10}\]
+電力変化：
+\[\Delta P = V_0\cdot\Delta I_{V_0} = 10\cdot\frac{R}{10} = R = 1\text{ W}\]
+</div>
+
+<div class="result">
+\[R = 1\ \Omega\]
+（確認：\(R_{th}=4\Omega\)、\(V_{oc}=4\text{ V}\)、\(I_R=4/5=0.8\text{ A}\ \checkmark\)）
+</div>
+</div>
+
+<!-- ============================== 大問2 ============================== -->
+<h2>大問2：CR 受動回路</h2>
+
+<h3>問2-1) RC ローパスフィルタ（図2.1）</h3>
+<p>直列 \(R\)、並列 \(C\) の一段 RC フィルタ。</p>
+
+<div class="answer-box">
+<h4>a) 伝達関数</h4>
+<div class="step">
+電圧分割：
+\[\frac{V_{out}}{V_{in}} = \frac{1/(j\omega C)}{R+1/(j\omega C)} = \frac{1}{1+j\omega CR}\]
+</div>
+<div class="result">
+\[\frac{V_{out}}{V_{in}} = \frac{1}{1+j\omega CR}\]
+</div>
+
+<h4>b) 実部 = 虚部となる周波数 \(f_c\)</h4>
+<div class="step">
+\(\dfrac{V_{out}}{V_{in}} = \dfrac{1-j\omega CR}{1+\omega^2C^2R^2}\)<br><br>
+実部 \(=\dfrac{1}{1+\omega^2C^2R^2}\)、虚部の絶対値 \(=\dfrac{\omega CR}{1+\omega^2C^2R^2}\)<br><br>
+実部 \(=\) 虚部：\(1 = \omega CR \Rightarrow \omega_c = 1/(CR)\)
+</div>
+<div class="result">
+\[f_c = \frac{1}{2\pi CR}\]
+</div>
+
+<h4>c) \(f \gg f_c\) で \(f\) が2倍になったときの変化量</h4>
+<div class="step">
+\(f \gg f_c\) では \(|V_{out}/V_{in}| \approx 1/(\omega CR) = f_c/f\)<br>
+\[\left|\frac{H(2f)}{H(f)}\right| = \frac{f}{2f} = \frac{1}{2}\]
+\[20\log_{10}\!\left(\frac{1}{2}\right) = -20\log_{10}2 \approx -6\text{ dB}\]
+</div>
+<div class="result">
+\(f\) が2倍（1オクターブ）になると \(-6\) dB（\(-20\) dB/decade の特性）
+</div>
+
+<h4>d) \(C=1\,\mu\text{F}\)、\(R=1\,\text{k}\Omega\) のボード線図概形</h4>
+<div class="step">
+\[f_c = \frac{1}{2\pi\times 10^{-6}\times 10^3} = \frac{1}{2\pi\times 10^{-3}} \approx 159\text{ Hz}\]
+</div>
+<div class="note">
+ボード線図概形：<br>
+・DC（\(f\to 0\)）：\(|H|=0\) dB<br>
+・\(f=f_c\approx159\text{ Hz}\)：\(-3\) dB（折れ点）<br>
+・\(f \gg f_c\)：\(-20\) dB/decade の傾き<br>
+位相：DC で 0°、\(f_c\) で \(-45°\)、\(f\to\infty\) で \(-90°\)
+</div>
+</div>
+
+<h3>問2-2) ウィーンブリッジ（図2.2）</h3>
+<p>ブリッジ構成：左辺 \(R_1, R_2\)、右辺上 \(Z_4 = R_4 + 1/(j\omega C_4)\)（直列 RC）、右辺下 \(Z_3 = R_3 \parallel 1/(j\omega C_3)\)（並列 RC）。検流計 G が対角に。</p>
+
+<div class="answer-box">
+<h4>平衡条件の導出</h4>
+<div class="step">
+ブリッジ平衡（G に電流ゼロ）：\(\dfrac{R_1}{R_2} = \dfrac{Z_4}{Z_3}\)<br><br>
+\[Z_3 = \frac{R_3}{1+j\omega R_3 C_3}, \qquad Z_4 = R_4 + \frac{1}{j\omega C_4}\]
+\[\frac{Z_4}{Z_3} = \left(R_4+\frac{1}{j\omega C_4}\right)\cdot\frac{1+j\omega R_3 C_3}{R_3}\]
+展開して整理：
+\[\frac{Z_4}{Z_3} = \frac{R_4}{R_3}+\frac{C_3}{C_4} + j\left(\omega R_4 C_3 - \frac{1}{\omega R_3 C_4}\right) \cdot \frac{1}{\frac{1}{...}}\]
+
+実際に整理すると：
+\[\frac{Z_4}{Z_3} = \left(\frac{R_4}{R_3}+\frac{C_3}{C_4}\right) + j\!\left(\omega R_3 R_4 C_3 / R_3 - \frac{1}{\omega R_3 C_4}\right)...\]
+
+より正確に：
+\[Z_4 \cdot \frac{1+j\omega R_3 C_3}{R_3} = \frac{R_4(1+j\omega R_3 C_3)}{R_3} + \frac{1+j\omega R_3 C_3}{j\omega C_4 R_3}\]
+\[= \frac{R_4}{R_3} + j\omega R_4 C_3 + \frac{1}{j\omega C_4 R_3} + \frac{C_3}{C_4}\]
+\[= \left(\frac{R_4}{R_3}+\frac{C_3}{C_4}\right) + j\!\left(\omega R_4 C_3 - \frac{1}{\omega C_4 R_3}\right)\]
+
+平衡条件（実数比）より虚部 \(= 0\)：
+\[\omega R_4 C_3 = \frac{1}{\omega C_4 R_3} \Rightarrow \omega^2 = \frac{1}{R_3 R_4 C_3 C_4}\]
+</div>
+
+<div class="result">
+<b>a) 平衡角周波数：</b>
+\[\omega_0 = \frac{1}{\sqrt{R_3 R_4 C_3 C_4}}\]
+</div>
+
+<div class="result">
+<b>b) 平衡条件（抵抗比）：</b>
+\[\frac{R_1}{R_2} = \frac{R_4}{R_3} + \frac{C_3}{C_4}\]
+</div>
+
+<h4>c) \(C_3=C_4,\ R_3=R_4\) のとき \(V_3\) と \(I_3\) の位相関係</h4>
+<div class="step">
+\(\omega_0 = 1/(R_3 C_3)\) のとき：
+\[Z_3 = \frac{R_3}{1+j} = \frac{R_3(1-j)}{2}\]
+\(\angle Z_3 = -45°\)<br><br>
+\(V_3 = I_3 \cdot Z_3\) なので、\(V_3\) は \(I_3\) より \(-45°\) 遅れる。
+</div>
+
+<div class="result">
+<b>c)</b> \(V_3\) は \(I_3\) より \(45°\) 遅れる（位相差 \(-45°\)）。<br>
+（理由：\(Z_3\) が抵抗成分と容量性成分を持ち、\(\angle Z_3=-45°\)）
+</div>
+
+<h4>d) \(V_1\) と \(V_4\) の位相関係</h4>
+<div class="step">
+\(C_3=C_4,\ R_3=R_4\) のとき \(\dfrac{R_1}{R_2} = 1+1 = 2\)。<br><br>
+電源電圧 \(V_s\) に対して：
+\[Z_4 = R_3 + \frac{1}{j\omega_0 C_3} = R_3(1-j), \quad Z_3 = \frac{R_3(1-j)}{2}\]
+右辺合計：\(Z_3+Z_4 = \dfrac{3R_3(1-j)}{2}\)<br><br>
+\[V_4 = V_s\cdot\frac{Z_4}{Z_3+Z_4} = V_s\cdot\frac{R_3(1-j)}{3R_3(1-j)/2} = \frac{2V_s}{3} \quad (\text{実数})\]
+\[V_1 = V_s\cdot\frac{R_1}{R_1+R_2} = V_s\cdot\frac{2}{3} \quad (\text{実数})\]
+どちらも \(V_s\) と同位相（実数）。
+</div>
+
+<div class="result">
+<b>d)</b> \(V_4\) と \(V_1\) の位相差は \(0°\)（同位相）。<br>
+（両者ともに電源と同位相、大きさも \(2V_s/3\) で等しい）
+</div>
+</div>
+
+<!-- ============================== まとめ ============================== -->
+<h2>解答まとめ</h2>
+<table>
+  <tr><th>問</th><th>主な結果</th></tr>
+  <tr><td>1-1</td><td>\(v(t)=\frac{\omega RL I_0}{\sqrt{R^2+\omega^2L^2}}\sin(\omega t+\arctan\frac{R}{\omega L})\)</td></tr>
+  <tr><td>1-2</td><td>ステップ変化点でピーク、時定数 \(\tau=L/R\) で指数減衰する波形</td></tr>
+  <tr><td>1-3</td><td>\(P = R\omega^2L^2I_0^2\,/\,2(R^2+\omega^2L^2)\)</td></tr>
+  <tr><td>1-4</td><td>アドミタンス行列：対角 \((Y_1{+}Y_4,\ Y_2{+}Y_4{+}Y_3,\ Y_3)\)、非対角 \(-Y_4,\ -Y_3\)</td></tr>
+  <tr><td>1-5</td><td>\(V_3 = 1\) V</td></tr>
+  <tr><td>1-6</td><td>\(R = 1\ \Omega\)（補償定理より \(\Delta P = R = 1\) W）</td></tr>
+  <tr><td>2-1a</td><td>\(V_{out}/V_{in} = 1/(1+j\omega CR)\)</td></tr>
+  <tr><td>2-1b</td><td>\(f_c = 1/(2\pi CR)\)</td></tr>
+  <tr><td>2-1c</td><td>\(f\) が2倍で \(-6\) dB（\(-20\) dB/decade）</td></tr>
+  <tr><td>2-2a</td><td>\(\omega_0 = 1/\sqrt{R_3R_4C_3C_4}\)</td></tr>
+  <tr><td>2-2b</td><td>\(R_1/R_2 = R_4/R_3 + C_3/C_4\)</td></tr>
+  <tr><td>2-2c</td><td>\(V_3\) は \(I_3\) より 45° 遅れ</td></tr>
+  <tr><td>2-2d</td><td>\(V_4\) と \(V_1\) は同位相（0°）</td></tr>
+</table>
+
+<footer>
+  解答解説作成：Claude（Anthropic） ／ H18年度（平成17年8月17日実施）午前 電気回路
+</footer>
+</body>
+</html>

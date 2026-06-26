@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>H21年度 電磁気学（午後）解答解説</title>
+  <script>
+    MathJax = { tex: { inlineMath: [['$','$']], displayMath: [['$$','$$']] } };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: "Yu Gothic", "游ゴシック", sans-serif; font-size: 13pt; line-height: 1.9; color: #1a1a2e; background: #f4f7fb; padding: 40px; }
+    h1 { font-size: 20pt; color: #0d2b5e; border-bottom: 3px solid #0d2b5e; padding-bottom: 10px; margin-bottom: 6px; }
+    .subtitle { color: #666; font-size: 11pt; margin-bottom: 36px; }
+    h2 { font-size: 15pt; color: #0d2b5e; margin: 40px 0 16px; padding: 8px 16px; background: #e8f0fb; border-left: 5px solid #1e5fa8; border-radius: 4px; }
+    h3 { font-size: 13pt; color: #1e5fa8; margin: 28px 0 10px; border-bottom: 1px solid #c5d8f5; padding-bottom: 4px; }
+    .answer-box { background: #fff; border: 1px solid #c5d8f5; border-radius: 8px; padding: 20px 28px; margin: 12px 0 20px; }
+    .step { background: #f0f6ff; border-left: 3px solid #1e5fa8; padding: 10px 18px; margin: 10px 0; border-radius: 0 4px 4px 0; }
+    .result { background: #fff8e1; border: 2px solid #f9a825; border-radius: 6px; padding: 10px 18px; margin: 12px 0; font-weight: bold; }
+    .note { background: #f3f9f3; border-left: 3px solid #4caf50; padding: 8px 16px; margin: 10px 0; font-size: 11.5pt; color: #2e5f2e; }
+    footer { margin-top: 60px; color: #aaa; font-size: 10pt; text-align: center; }
+    a { color: #1e5fa8; }
+  </style>
+</head>
+<body>
+
+<h1>H21年度 電磁気学（午後）解答解説</h1>
+<p class="subtitle">平成20年8月19日実施 ／ 専門科目 電磁気学（電気電子工学・電子物理工学）</p>
+
+<!-- ===== 大問1 ===== -->
+<h2>大問1：誘電体の境界条件と映像法</h2>
+
+<h3>問1）誘電体境界面での電界の屈折条件</h3>
+<div class="answer-box">
+  <div class="step">
+    境界面（法線方向を $x$，接線方向を $y$ とする）での基本境界条件：
+    <ul style="margin:8px 0 8px 20px;">
+      <li>電界の接線成分（連続）：$E_1\sin\theta_1 = E_2\sin\theta_2$</li>
+      <li>電束密度の法線成分（自由電荷なし → 連続）：$\varepsilon_1 E_1\cos\theta_1 = \varepsilon_2 E_2\cos\theta_2$</li>
+    </ul>
+    上式を下式で割ると：
+    $$\frac{\sin\theta_1/\cos\theta_1}{\sin\theta_2/\cos\theta_2} = \frac{\varepsilon_2}{\varepsilon_1}$$
+  </div>
+  <div class="result">
+    $$\frac{\tan\theta_1}{\tan\theta_2} = \frac{\varepsilon_1}{\varepsilon_2}$$
+    （スネルの法則の電気版：比誘電率が大きい側で電界は法線に近づく）
+  </div>
+  <div class="note">
+    $\varepsilon_1 > \varepsilon_2$ なら $\theta_1 > \theta_2$（高誘電率側で電界は境界面と平行に近い方向）。
+  </div>
+</div>
+
+<h3>問2）平板コンデンサ — 2層誘電体（直列）</h3>
+<p style="margin-bottom:8px">誘電率 $\varepsilon_1$（厚さ $t$）と $\varepsilon_2$（厚さ $d-t$）を積層。上極板に $+$，下極板に $-$，全体電圧 $V_0$。</p>
+
+<h3 style="margin-top:16px">問2-a）単位面積あたりの静電容量 $C'$</h3>
+<div class="answer-box">
+  <div class="step">
+    単位面積の平板コンデンサ 2 枚の直列接続：
+    $$\frac{1}{C'} = \frac{t}{\varepsilon_1} + \frac{d-t}{\varepsilon_2}$$
+  </div>
+  <div class="result">
+    $$C' = \frac{1}{\dfrac{t}{\varepsilon_1} + \dfrac{d-t}{\varepsilon_2}} = \frac{\varepsilon_1\varepsilon_2}{\varepsilon_2 t + \varepsilon_1(d-t)}$$
+  </div>
+</div>
+
+<h3>問2-b）下極板 $x=0$ から高さ $x$ の点の電位 $V_x$（$0 \le x \le d$）</h3>
+<div class="answer-box">
+  <div class="step">
+    直列なので各層の電束密度 $D$ は共通：
+    $$D = C'V_0 = \frac{\varepsilon_1\varepsilon_2 V_0}{\varepsilon_2 t + \varepsilon_1(d-t)}$$
+    各層の電界：
+    $E_1 = D/\varepsilon_1$（$0 \le x \le t$），$E_2 = D/\varepsilon_2$（$t < x \le d$）
+  </div>
+  <div class="result">
+    $0 \le x \le t$（誘電率 $\varepsilon_1$ の層内）：
+    $$V_x = E_1 x = \frac{D}{\varepsilon_1}x = \frac{\varepsilon_2 V_0\, x}{\varepsilon_2 t + \varepsilon_1(d-t)}$$
+    $t < x \le d$（誘電率 $\varepsilon_2$ の層内，$x=t$ での電位を基準に加算）：
+    $$V_x = E_1 t + E_2(x-t) = D\!\left(\frac{t}{\varepsilon_1}+\frac{x-t}{\varepsilon_2}\right) = \frac{V_0\!\left[\varepsilon_2 t + \varepsilon_1(x-t)\right]}{\varepsilon_2 t + \varepsilon_1(d-t)}$$
+  </div>
+  <div class="note">
+    $x=0$ で $V_x=0$，$x=d$ で $V_x=V_0$ となることを確認。
+    各層では $V_x$ が線形（電界が一様）。$\varepsilon_1 \ne \varepsilon_2$ のとき折れ点が $x=t$ に生じる。
+  </div>
+</div>
+
+<h3>問3）誘電体境界面近傍の点電荷 — 映像法</h3>
+<p style="margin-bottom:8px">境界面（$x=0$）を挟み，$x>0$ 側に誘電率 $\varepsilon_1$，$x<0$ 側に $\varepsilon_2$。$x=d$ に点電荷 $Q$（$\varepsilon_1$ 領域内）。</p>
+
+<h3 style="margin-top:16px">問3-a）映像電荷の配置と誘電率の図（説明）</h3>
+<div class="answer-box">
+  <div class="step">
+    <b>$\varepsilon_1$ 側（$x>0$）の電界を求めるとき</b>：空間全体を $\varepsilon_1$ とみなし，
+    <ul style="margin:6px 0 6px 20px;">
+      <li>$x=d$：真の電荷 $Q$</li>
+      <li>$x=-d$（境界面の裏）：映像電荷 $Q'$</li>
+    </ul>
+    <b>$\varepsilon_2$ 側（$x<0$）の電界を求めるとき</b>：空間全体を $\varepsilon_2$ とみなし，
+    <ul style="margin:6px 0 6px 20px;">
+      <li>$x=d$（$Q$ と同位置）：透過映像電荷 $Q''$</li>
+    </ul>
+  </div>
+</div>
+
+<h3>問3-b）$Q'$ と $Q''$ を求める</h3>
+<div class="answer-box">
+  <div class="step">
+    境界面 $x=0$ 上の点 $(0,y,0)$ での電界を両側から計算し，境界条件（接線成分連続・法線成分 $D$ 連続）を適用する。
+    <br><br>
+    <b>接線成分（$y$ 方向）連続：</b>
+    $$\frac{Q+Q'}{4\pi\varepsilon_1}\cdot\frac{y}{(d^2+y^2)^{3/2}} = \frac{Q''}{4\pi\varepsilon_2}\cdot\frac{y}{(d^2+y^2)^{3/2}}$$
+    $$\Rightarrow \frac{Q+Q'}{\varepsilon_1} = \frac{Q''}{\varepsilon_2} \quad \cdots (1)$$
+
+    <b>法線成分 $D_x$（$x$ 方向）連続：</b>
+    右側の $x$ 成分：$-Qd$ と $+Q'd$ の寄与（$Q$ は右から左 $(-d)$ 方向，$Q'$ は左から右 $(+d)$ 方向）
+    $$\varepsilon_1\cdot\frac{Q'-Q}{4\pi\varepsilon_1}\cdot\frac{d}{(d^2+y^2)^{3/2}} = \varepsilon_2\cdot\frac{-Q''}{4\pi\varepsilon_2}\cdot\frac{d}{(d^2+y^2)^{3/2}}$$
+    $$\Rightarrow Q' - Q = -Q'' \quad \cdots (2)$$
+
+    $(2)$ を $(1)$ に代入：$\dfrac{Q+Q'}{\varepsilon_1} = \dfrac{Q-Q'}{\varepsilon_2}$
+    $$\varepsilon_2(Q+Q') = \varepsilon_1(Q-Q') \Rightarrow Q'(\varepsilon_1+\varepsilon_2) = Q(\varepsilon_1-\varepsilon_2)$$
+  </div>
+  <div class="result">
+    $$Q' = \frac{\varepsilon_1-\varepsilon_2}{\varepsilon_1+\varepsilon_2}\,Q, \qquad Q'' = Q - Q' = \frac{2\varepsilon_2}{\varepsilon_1+\varepsilon_2}\,Q$$
+  </div>
+  <div class="note">
+    $\varepsilon_2 > \varepsilon_1$ のとき $Q' < 0$（映像電荷は $Q$ と逆符号 → 境界に引き付けられる）。
+    $\varepsilon_1 = \varepsilon_2$ のとき $Q'=0$，$Q''=Q$（境界なし）。接地導体では $\varepsilon_2\to\infty$ → $Q'=-Q$，$Q''=2Q$ に相当。
+  </div>
+</div>
+
+<h3>問3-c）点電荷 $Q$ に働く力</h3>
+<div class="answer-box">
+  <div class="step">
+    $\varepsilon_1$ 領域では，$Q$ は映像電荷 $Q'$（$x=-d$ に位置）との距離 $2d$ にある点電荷として引力/斥力を受ける。
+    $$F = \frac{QQ'}{4\pi\varepsilon_1(2d)^2} = \frac{Q^2(\varepsilon_1-\varepsilon_2)}{16\pi\varepsilon_1(\varepsilon_1+\varepsilon_2)d^2}$$
+  </div>
+  <div class="result">
+    $$F = \frac{Q^2(\varepsilon_1-\varepsilon_2)}{16\pi\varepsilon_1(\varepsilon_1+\varepsilon_2)d^2}$$
+    $\varepsilon_2 > \varepsilon_1$ のとき $F < 0$ → 点電荷 $Q$ は境界面に<b>引き付けられる方向</b>（$-x$ 方向）に力を受ける。
+  </div>
+  <div class="note">
+    高誘電率媒質との境界には，点電荷が引き付けられる（境界に向かう引力が生じる）。これは $Q'$ の符号が $Q$ と逆になるためである。
+  </div>
+</div>
+
+<h3>問3-d）電気力線の概略図（説明）</h3>
+<div class="answer-box">
+  <div class="step">
+    <ul style="margin: 4px 0 4px 20px;">
+      <li>$\varepsilon_1$ 側：$Q$ から出る電気力線は境界面で屈折（$\tan\theta_1/\tan\theta_2 = \varepsilon_1/\varepsilon_2 < 1$）→ $\varepsilon_2$ 側で法線方向に近づく（より垂直になる）。</li>
+      <li>$\varepsilon_2$ 側：$Q''$ から出る（より小さい強さの）電気力線が $\varepsilon_2$ 全域に広がる。</li>
+      <li>境界面に向かうほど力線が集まる傾向（$\varepsilon_2 > \varepsilon_1$ の場合）。</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ===== 大問2 ===== -->
+<h2>大問2：インダクタンス</h2>
+
+<h3>問1）アンペアの周回積分の法則</h3>
+<div class="answer-box">
+  <div class="result">
+    $$\oint_C \boldsymbol{H}\cdot d\boldsymbol{l} = I_{enc}$$
+    閉曲線 $C$ に囲まれた面を貫く全電流 $I_{enc}$ に等しい（真空・線形媒質共通）。
+  </div>
+</div>
+
+<h3>問2）無限長ソレノイド（単位長さあたり $n$ 巻，半径 $a$，電流 $I$）</h3>
+
+<h3 style="margin-top:16px">問2-a）内部磁束密度が一様であることの説明</h3>
+<div class="answer-box">
+  <div class="step">
+    ソレノイドの軸方向（$z$）に長さ $\ell$ の長方形経路（内部1辺・外部1辺）をとる。
+    対称性からソレノイド外部で $H_{out}=0$（外を通る閉曲線では鎖交電流ゼロ → $H_{out}=0$）。
+    長方形経路に沿うアンペアの法則：
+    $$H_{in}\cdot\ell - H_{out}\cdot\ell = n\ell I$$
+    $H_{out}=0$ を代入：$H_{in} = nI$（$\ell$ に依らず一定）→ <b>内部 $B$ は一様</b>。
+  </div>
+</div>
+
+<h3>問2-b）ソレノイド内部の磁束密度 $B$</h3>
+<div class="answer-box">
+  <div class="result">
+    $$B = \mu_0 H_{in} = \mu_0 nI$$
+  </div>
+</div>
+
+<h3>問2-c）長さ $l_0$ 部分の自己インダクタンス $L$</h3>
+<div class="answer-box">
+  <div class="step">
+    1 巻き分の磁束：$\Phi = B\cdot\pi a^2 = \mu_0 nI\pi a^2$
+    <br>
+    長さ $l_0$ の巻数：$nl_0$
+    <br>
+    鎖交磁束：$\Psi = nl_0\cdot\Phi = \mu_0 n^2 l_0\pi a^2 I$
+  </div>
+  <div class="result">
+    $$L = \frac{\Psi}{I} = \mu_0\pi n^2 a^2 l_0$$
+  </div>
+</div>
+
+<h3>問3）円環状磁性体（透磁率 $\mu$，断面積 $S$，平均磁路長 $l_m$）に 2 コイル巻き付け</h3>
+
+<h3 style="margin-top:16px">問3-a）起磁力・磁束・磁気抵抗 $R_m$ の関係式</h3>
+<div class="answer-box">
+  <div class="result">
+    $$\mathcal{F} = N_1 I_1 = R_m\,\Phi, \qquad \Phi = \frac{\mathcal{F}}{R_m}$$
+  </div>
+</div>
+
+<h3>問3-b）磁気抵抗 $R_m$</h3>
+<div class="answer-box">
+  <div class="result">
+    $$R_m = \frac{l_m}{\mu S}$$
+  </div>
+</div>
+
+<h3>問3-c）自己インダクタンス $L_1$，$L_2$，相互インダクタンス $M$</h3>
+<div class="answer-box">
+  <div class="step">
+    コイル 1 に電流 $I_1$，コイル 2 を開放。磁束 $\Phi = N_1 I_1/R_m$。
+    <br>
+    コイル 1 の鎖交磁束：$\Psi_{11} = N_1\Phi = N_1^2 I_1/R_m$
+    <br>
+    コイル 2 の鎖交磁束（漏れなし）：$\Psi_{21} = N_2\Phi = N_2 N_1 I_1/R_m$
+  </div>
+  <div class="result">
+    $$L_1 = \frac{\Psi_{11}}{I_1} = \frac{\mu S N_1^2}{l_m}, \quad L_2 = \frac{\mu S N_2^2}{l_m}, \quad M = \frac{\Psi_{21}}{I_1} = \frac{\mu S N_1 N_2}{l_m}$$
+  </div>
+  <div class="note">
+    結合係数 $k = M/\sqrt{L_1 L_2} = 1$（完全結合，漏れ磁束ゼロのトロイダルコア）。
+  </div>
+</div>
+
+<h3>問3-d）2 コイルを直列接続（同方向巻き）し電流 $I$ で蓄えられる磁気エネルギー $E_m$</h3>
+<div class="answer-box">
+  <div class="step">
+    同方向直列なので合成インダクタンス：$L = L_1 + L_2 + 2M$
+  </div>
+  <div class="result">
+    $$E_m = \frac{1}{2}LI^2 = \frac{1}{2}(L_1+L_2+2M)I^2 = \frac{\mu S(N_1+N_2)^2 I^2}{2l_m}$$
+  </div>
+</div>
+
+<h3>問3-e）合成インダクタンス $L$</h3>
+<div class="answer-box">
+  <div class="result">
+    $$L = L_1 + L_2 + 2M = \frac{\mu S}{l_m}(N_1^2 + N_2^2 + 2N_1 N_2) = \frac{\mu S(N_1+N_2)^2}{l_m}$$
+  </div>
+  <div class="note">
+    これは巻数 $(N_1+N_2)$ の単一コイルと等価。巻数の 2 乗に比例する性質が確認できる。
+  </div>
+</div>
+
+<footer>
+  解答解説作成：Claude（Anthropic）| <a href="index.html">← 一覧に戻る</a>
+</footer>
+
+</body>
+</html>

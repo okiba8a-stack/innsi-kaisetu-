@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>R4年度 解答解説（2023大修）</title>
+  <script>
+    MathJax = { tex: { inlineMath: [['$','$']] }, options: { skipHtmlTags: ['script','noscript','style','textarea'] } };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+  <style>
+    body { font-family:"Yu Gothic","游ゴシック",sans-serif; font-size:13pt; line-height:1.9; color:#1a1a2e; background:#f4f7fb; padding:40px; max-width:900px; margin:0 auto; }
+    h1 { font-size:20pt; color:#0d2b5e; border-bottom:3px solid #0d2b5e; padding-bottom:10px; }
+    .meta { color:#555; font-size:11pt; margin:6px 0 30px; }
+    h2 { font-size:15pt; color:#fff; background:#0d2b5e; padding:8px 16px; border-radius:4px; margin-top:40px; }
+    h3 { font-size:13pt; color:#0d2b5e; border-left:4px solid #1e5fa8; padding-left:10px; margin-top:24px; }
+    .answer-box { border:2px solid #1e5fa8; border-radius:6px; padding:14px 18px; background:#f0f6ff; margin:10px 0; }
+    .step { background:#e8f4fd; border-left:4px solid #5ba4d4; padding:10px 14px; margin:8px 0; border-radius:0 4px 4px 0; }
+    .note { border-left:4px solid #f0a500; background:#fffbe6; padding:10px 14px; margin:8px 0; border-radius:0 4px 4px 0; }
+    table { border-collapse:collapse; width:100%; margin:12px 0; }
+    th { background:#0d2b5e; color:#fff; padding:8px 12px; }
+    td { border:1px solid #c5d8f5; padding:7px 12px; }
+    .section-label { display:inline-block; background:#e8f4fd; color:#1e5fa8; font-size:10pt; font-weight:bold; padding:2px 10px; border-radius:20px; margin-bottom:4px; }
+    .choice-label { display:inline-block; background:#fff3e0; color:#e65100; font-size:10pt; font-weight:bold; padding:2px 10px; border-radius:20px; margin-bottom:4px; border:1px solid #e65100; }
+    a.back { display:inline-block; margin-top:40px; color:#1e5fa8; text-decoration:none; font-size:11pt; }
+    a.back:hover { text-decoration:underline; }
+  </style>
+</head>
+<body>
+
+<a class="back" href="index.html">← 解答解説まとめに戻る</a>
+
+<h1>R4年度 解答解説</h1>
+<p class="meta">令和4年8月実施 ／ 2023年度大学院修士課程入試（2023大修）<br>
+構成：数学（必須）・電磁気学（必須）・選択専門科目（電気回路 または 量子力学/物性基礎）</p>
+
+<!-- ========== 数学 ========== -->
+<h2>数学</h2>
+
+<h3>大問1　2階線形常微分方程式</h3>
+<p>$\dfrac{d^2y}{dx^2} + A\dfrac{dy}{dx} + By = 0$ の特性方程式：$\lambda^2 + A\lambda + B = 0$　（根 $\lambda = \alpha \pm \beta$）</p>
+
+<h3>問1）一般解の $\alpha$, $\beta$ の表現</h3>
+<div class="answer-box">
+特性方程式の2根は $\lambda = \dfrac{-A \pm \sqrt{A^2 - 4B}}{2}$。
+$$\alpha = -\frac{A}{2}, \qquad \beta = \frac{\sqrt{A^2 - 4B}}{2}$$
+</div>
+
+<h3>問2）2つの異なる実数解をもち、$x\to\infty$ で収束する条件</h3>
+<div class="step">
+<b>2つの異なる実数解の条件：</b>　$A^2 - 4B > 0$<br>
+<b>$x\to\infty$ で収束する条件：</b>　両根ともに $\text{Re}(\lambda) < 0$、すなわち $\alpha + |\beta| < 0$ かつ $\alpha - |\beta| < 0$。<br>
+$\alpha = -A/2 < 0$ かつ $|\beta| < |{\alpha}|$（絶対値が $|\alpha|$ より小さい）が必要。
+</div>
+<div class="answer-box">
+$$A > 0, \quad B > 0, \quad A^2 > 4B$$
+</div>
+
+<h3>問3）2つの異なる虚数解のときの実数形一般解</h3>
+<div class="step">
+$A^2 - 4B < 0$ のとき $\beta = j\sqrt{B - A^2/4}$（虚数）。<br>
+$y = C_1 e^{(\alpha+\beta)x} + C_2 e^{(\alpha-\beta)x}$ をオイラーの公式で変形：
+</div>
+<div class="answer-box">
+$$y = e^{\boxed{-\frac{A}{2}x}} \!\left\{ \boxed{C_1} \cos\!\left(\boxed{\sqrt{B-\frac{A^2}{4}}\,x}\right) + \boxed{C_2} \sin\!\left(\boxed{\sqrt{B-\frac{A^2}{4}}\,x}\right) \right\}$$
+①$= -\dfrac{A}{2}x$，②$= C_1$，③$= \sqrt{B-A^2/4}\,x$，④$= C_2$
+</div>
+
+<h3>問4）重解のときの特殊解（$y(0)=1,\ y'(0)=1$）</h3>
+<div class="step">
+重解条件：$A^2 = 4B$。このとき $\lambda = -A/2$ が重解。<br>
+一般解：$y = (C_1 + C_2 x)e^{-Ax/2}$<br>
+初期条件：$y(0) = C_1 = 1$<br>
+$y' = C_2 e^{-Ax/2} - \dfrac{A}{2}(C_1+C_2 x)e^{-Ax/2}$　より　$y'(0) = C_2 - \dfrac{A}{2}C_1 = 1$　→　$C_2 = 1 + \dfrac{A}{2}$
+</div>
+<div class="answer-box">
+$$y = \left(1 + \left(1 + \frac{A}{2}\right)x\right)e^{-\frac{A}{2}x}$$
+（答えに $B$ を使わない：$B = A^2/4$ を代入済み）
+</div>
+
+<h3>問5）$A=2$ のとき極大値</h3>
+<div class="step">
+$A=2$：$y = (1+2x)e^{-x}$<br>
+$y' = 2e^{-x} - (1+2x)e^{-x} = e^{-x}(1-2x) = 0$ より $x = \dfrac{1}{2}$
+</div>
+<div class="answer-box">
+極大となる $x = \dfrac{1}{2}$，そのときの極大値 $y = 2 \cdot e^{-1/2} = \dfrac{2}{\sqrt{e}}$
+</div>
+
+---
+
+<h3>大問2　テイラー展開と等比級数</h3>
+<p>$f(x) = \dfrac{1}{x+1}$，　$-1 < x < 1$</p>
+
+<h3>問1）$x=0$ での 2次テイラー多項式の係数 $a_0, a_1, a_2$</h3>
+<div class="answer-box">
+$f(0) = 1$，$f'(x) = -1/(x+1)^2 \Rightarrow f'(0)=-1$，$f''(x)=2/(x+1)^3 \Rightarrow f''(0)=2$<br>
+$$a_0 = 1, \quad a_1 = -1, \quad a_2 = 1$$
+</div>
+
+<h3>問2）$f(x)$ の全次数テイラー展開の $a_n$</h3>
+<div class="step">
+$\dfrac{1}{1+x} = \displaystyle\sum_{n=0}^{\infty}(-x)^n = \sum_{n=0}^{\infty}(-1)^n x^n$（等比級数、$|x|<1$ で収束）
+</div>
+<div class="answer-box">
+$$a_n = (-1)^n$$
+</div>
+
+<h3>問3）$h(x,N)$ の閉形式（①, ②）</h3>
+<div class="step">
+$h(x,N) = \displaystyle\sum_{n=0}^{N}(-1)^n x^n$ は初項1、公比 $(-x)$、$(N+1)$ 項の等比数列の和：
+$$h(x,N) = \frac{1-(-x)^{N+1}}{1-(-x)} = \frac{1-(-x)^{N+1}}{1+x}$$
+</div>
+<div class="answer-box">
+①$= (-x)^{N+1}$（または $(-1)^{N+1}x^{N+1}$），　②$= 1+x$
+$$h(x,N) = \frac{1 - (-x)^{N+1}}{1+x}$$
+</div>
+
+<h3>問4）$\lim_{N\to\infty} h(x,N) = f(x)$ の証明</h3>
+<div class="answer-box">
+$|x|<1$ のとき $|{-x}|<1$ なので $|(-x)^{N+1}| = |x|^{N+1} \to 0$（$N\to\infty$）。<br>
+よって $h(x,N) \to \dfrac{1-0}{1+x} = \dfrac{1}{1+x} = f(x)$ &ensp;□
+</div>
+
+<!-- ========== 電磁気学 ========== -->
+<h2>電磁気学</h2>
+
+<h3>大問1　平行平板コンデンサ</h3>
+
+<h3>問1)①　電圧 $V$ 印加時（$C_1$, $E_1$, $U_1$, $F_1$）</h3>
+<div class="answer-box">
+面積 $S = ab$，間隔 $x$，真空誘電率 $\varepsilon_0$
+$$C_1 = \frac{\varepsilon_0 ab}{x}$$
+$$E_1 = \frac{V}{x}$$
+$$U_1 = \frac{1}{2}C_1 V^2 = \frac{\varepsilon_0 ab V^2}{2x}$$
+$$F_1 = -\frac{\partial U_1}{\partial x}\bigg|_V = \frac{\varepsilon_0 ab V^2}{2x^2} \quad\text{（引き合う方向）}$$
+</div>
+
+<h3>問1)②　電荷 $\pm Q$ 固定時（$E_2$, $U_2$, $F_2$）</h3>
+<div class="answer-box">
+面電荷密度 $\sigma = Q/(ab)$，ガウスの法則より：
+$$E_2 = \frac{Q}{\varepsilon_0 ab} = \frac{\sigma}{\varepsilon_0}$$
+$$U_2 = \frac{Q^2}{2C_1} = \frac{Q^2 x}{2\varepsilon_0 ab}$$
+$$F_2 = +\frac{\partial U_2}{\partial x}\bigg|_Q = \frac{Q^2}{2\varepsilon_0 ab} \quad\text{（引き合う方向）}$$
+</div>
+<div class="note">電圧固定 $F_1$：$U$ 減少で $F$ → 仮想仕事法で符号に注意。電荷固定 $F_2$：$U$ 増加で内向き力。</div>
+
+<h3>問2)①　正方形板への誘電体部分挿入（$C_{\rm I}$, $C_{\rm II}$）</h3>
+<div class="step">
+誘電体（一辺 $a$, 厚さ $d$, 誘電率 $\varepsilon$）を導体板間（間隔 $x$）の中央に量 $l$ だけ挿入。<br>
+<b>領域 I</b>（誘電体なし、幅 $a-l$）：$C_{\rm I} = \dfrac{\varepsilon_0 a(a-l)}{x}$<br>
+<b>領域 II</b>（誘電体あり、幅 $l$）：誘電体上下に真空層 $(x-d)/2$ ずつ → 直列容量：
+$$\frac{1}{C_{\rm II}} = \frac{x-d}{\varepsilon_0 a l} + \frac{d}{\varepsilon a l}$$
+</div>
+<div class="answer-box">
+$$C_{\rm I} = \frac{\varepsilon_0 a(a-l)}{x}, \qquad C_{\rm II} = \frac{\varepsilon_0 \varepsilon\, al}{\varepsilon(x-d) + \varepsilon_0 d}$$
+</div>
+
+<h3>問2)②　誘電体に働く静電気力 $F_3$（の方向）</h3>
+<div class="step">
+全容量 $C = C_{\rm I} + C_{\rm II}$。電圧 $V$ 一定で $l$ 方向に仮想変位：
+$$F_3 = \frac{V^2}{2}\frac{\partial C}{\partial l} = \frac{V^2}{2}\left(\frac{\varepsilon_0\varepsilon a}{\varepsilon(x-d)+\varepsilon_0 d} - \frac{\varepsilon_0 a}{x}\right)$$
+</div>
+<div class="answer-box">
+$\varepsilon > \varepsilon_0$ なので $\partial C/\partial l > 0$（挿入により容量増加）。<br>
+$$F_3 = \frac{\varepsilon_0 V^2 a}{2}\!\left(\frac{\varepsilon}{\varepsilon(x-d)+\varepsilon_0 d} - \frac{1}{x}\right) \quad\text{（図1.3の右向き＝挿入方向）}$$
+</div>
+
+---
+
+<h3>大問2　荷電粒子の運動</h3>
+
+<h3>問1）磁場・電場中での直進運動（速度選別器）</h3>
+<p>電荷 $q(>0)$, 質量 $m$。領域 I：電場 $E$（$-x$方向）, 磁束密度 $B$（紙面裏向き）。<br>$y=0$ から $+y$ 方向に速度 $v_0$ で入射し直進。</p>
+
+<h3>①　力の大きさと方向</h3>
+<div class="answer-box">
+電場力：$F_E = qE$　（$-x$ 方向）<br>
+磁気力：$F_B = qv_0 B$　（$+x$ 方向）
+</div>
+
+<h3>②　直進条件</h3>
+<div class="answer-box">
+$F_E = F_B$ より：$qE = qv_0 B$ &emsp;∴ $\boxed{v_0 = \dfrac{E}{B}}$
+</div>
+
+<h3>③　領域 II での軌跡の概略</h3>
+<div class="answer-box">
+領域 II（電場なし、磁場 $B$ のみ）に速度 $v_0$（$+y$ 方向）で入射 → ローレンツ力のみが働き<b>等速円運動</b>（時計回り）。<br>
+半径 $r = mv_0/(qB)$ の半円を描いて境界に戻る。
+</div>
+
+<h3>④　$y=0$ から $y=y_{\rm max}$ まで外力のする仕事</h3>
+<div class="step">
+領域 I で電場力は $-x$ 方向、粒子の変位は $+y$ 方向 → 電場力の仕事 $= 0$。<br>
+領域 II では磁力はつねに速度と垂直 → 仕事 $= 0$。
+</div>
+<div class="answer-box">
+外力（電場力 + 磁気力）がする仕事 $= \boxed{0}$<br>
+（$y_{\rm max}$ では速度の大きさは変わらず $v_0$、KE 不変）
+</div>
+
+<h3>問2）静止から出発する荷電粒子（サイクロイド運動）</h3>
+<p>領域：電場 $E$（$+y$ 方向）, 磁場 $B$（紙面裏向き）。$t=0$ で原点に静止。</p>
+
+<h3>①　運動方程式の空欄（ア）, （イ）</h3>
+<div class="step">
+$\boldsymbol{F} = q(\boldsymbol{E} + \boldsymbol{v}\times\boldsymbol{B})$。$\boldsymbol{B}$が紙面裏（$-z$方向）とすると：<br>
+$x$成分：$(v_x\hat{x}+v_y\hat{y})\times(-B\hat{z})$ の $x$ 成分 $= -qv_y B$<br>
+$y$成分：$qE + qv_xB$
+</div>
+<div class="answer-box">
+$$m\frac{dv_x}{dt} = \boxed{qv_yB} \quad\text{(ア)}, \qquad m\frac{dv_y}{dt} = \boxed{q(E - v_xB)} \quad\text{(イ)}$$
+（符号は座標系の向きによる。$x$軸が左向きの場合はア $= qv_yB$）
+</div>
+
+<h3>②　$v_y$ の微分方程式</h3>
+<div class="step">
+$\omega = qB/m$ とおく。(2.1) より $v_y = (m/qB)(dv_x/dt)$ を (2.2) に代入して $v_x$ を消去：
+$$\frac{d^2 v_y}{dt^2} + \omega^2 v_y = 0$$
+</div>
+<div class="answer-box">
+$$\frac{d^2 v_y}{dt^2} + \omega^2 v_y = 0 \quad \left(\omega = \frac{qB}{m}\right)$$
+</div>
+
+<h3>③　$v_x$, $v_y$ の空欄（ウ）〜（カ）</h3>
+<div class="step">
+初期条件 $v_x(0)=v_y(0)=0$。$v_y = A\sin(\omega t) + B\cos(\omega t)$, $v_y(0)=0$ → $B=0$。<br>
+$v_y = (E/B)\sin(\omega t)$（振幅は漂流速度 $E/B$）<br>
+$v_x$ は積分：$v_x = (E/B)(1-\cos(\omega t))$（$v_x(0)=0$ を満たす）
+</div>
+<div class="answer-box">
+$$v_x = \frac{E}{B}\bigl[1-\cos(\omega t)\bigr], \qquad v_y = \frac{E}{B}\sin(\omega t)$$
+（ウ）$= E/B$，（エ）$= \omega t$，（オ）$= E/B$，（カ）$= \omega t$
+</div>
+
+<h3>④　$y_{\rm max}$</h3>
+<div class="step">
+$y = \displaystyle\int_0^t v_y\,dt = \frac{E}{B\omega}(1-\cos\omega t)$。$y$ が最大となるのは $\cos\omega t = -1$（$t = \pi/\omega$）のとき。
+</div>
+<div class="answer-box">
+$$y_{\rm max} = \frac{2E}{B\omega} = \frac{2mE}{qB^2}$$
+</div>
+
+<!-- ========== 電気回路（選択） ========== -->
+<h2>選択専門科目（A）：電気回路</h2>
+<p><span class="choice-label">選択必須</span>　電気回路と量子力学/物性基礎のうち1科目を選択。</p>
+
+<h3>大問1　ソース接地 MOSFET 回路</h3>
+<p>$V_{\rm GS} - V_T = 1\,\mathrm{V}$ のとき $I_D = I_{D0}$（飽和領域）。$I_D = I_{D0}(V_{\rm GS}-V_T)^2$。</p>
+
+<h3>問1）ドレイン電流が流れる $V_{\rm IN}$ の条件</h3>
+<div class="answer-box">
+$V_{\rm GS} = V_{\rm IN} > V_T$
+</div>
+
+<h3>問2）飽和領域でのドレイン電流 $I_D$</h3>
+<div class="answer-box">
+$$I_D = I_{D0}(V_{\rm IN} - V_T)^2$$
+</div>
+
+<h3>問3）飽和領域で動作するための $V_{\rm DD}$ の条件</h3>
+<div class="step">
+飽和条件：$V_{\rm DS} \geq V_{\rm GS} - V_T$。$V_{\rm DS} = V_{\rm OUT} = V_{\rm DD} - I_D R$。
+</div>
+<div class="answer-box">
+$$V_{\rm DD} - I_{D0}(V_{\rm IN}-V_T)^2 R \geq V_{\rm IN} - V_T$$
+$$\therefore\quad V_{\rm DD} \geq I_{D0}(V_{\rm IN}-V_T)^2 R + (V_{\rm IN}-V_T)$$
+</div>
+
+<h3>問4）飽和領域での $g_m$（$I_{D0}$ を用いて）</h3>
+<div class="step">
+$g_m = \partial I_D/\partial V_{\rm GS} = 2I_{D0}(V_{\rm GS}-V_T)$。動作点 $V_{\rm GS}-V_T = 1\,\mathrm{V}$：
+</div>
+<div class="answer-box">
+$$g_m = 2I_{D0}(V_{\rm GS}-V_T) = 2I_{D0}$$
+</div>
+
+<h3>問5）小信号等価回路</h3>
+<div class="answer-box">
+ゲートに $v_{\rm in}$，ソース接地，ドレインと $V_{\rm DD}$ の間に $R$。<br>
+小信号等価：$v_{gs} = v_{\rm in}$，電流源 $g_m v_{gs}$ がドレイン→ソース方向に流れ，$R$ を通って $V_{\rm DD}$（AC グランド）へ。<br>
+（図：$v_{\rm in}$ → $v_{gs}$ → $g_m v_{gs}$ → $R$ → GND）
+</div>
+
+<h3>問6）小信号電圧利得</h3>
+<div class="answer-box">
+$v_{\rm out} = -g_m v_{\rm in} R = -2I_{D0} R \cdot v_{\rm in}$<br>
+$$\frac{v_{\rm out}}{v_{\rm in}} = -2I_{D0} R$$
+</div>
+
+---
+
+<h3>大問2　5抵抗ブリッジ回路</h3>
+<p>$R_1$〜$R_5$ と電源 $E$。メッシュ電流 $I_1$（外側ループ A），$I_2$（内側上ループ B），$I_3$（内側下ループ C）。</p>
+
+<h3>問1）閉路 A の KVL 方程式</h3>
+<div class="answer-box">
+$$E = (R_1+R_3)I_1 - R_1 I_2 - R_3 I_3$$
+</div>
+
+<h3>問2）閉路 B の KVL 方程式</h3>
+<div class="answer-box">
+$$0 = -R_1 I_1 + (R_1+R_2+R_5)I_2 - R_5 I_3$$
+</div>
+
+<h3>問3）閉路 C の KVL 方程式</h3>
+<div class="answer-box">
+$$0 = -R_3 I_1 - R_5 I_2 + (R_3+R_4+R_5)I_3$$
+</div>
+
+<h3>問4）行列表現</h3>
+<div class="answer-box">
+$$\begin{pmatrix} R_1+R_3 & -R_1 & -R_3 \\ -R_1 & R_1+R_2+R_5 & -R_5 \\ -R_3 & -R_5 & R_3+R_4+R_5 \end{pmatrix} \begin{pmatrix} I_1\\I_2\\I_3 \end{pmatrix} = \begin{pmatrix} E\\0\\0 \end{pmatrix}$$
+</div>
+
+<h3>問5）$I_2/I_3$ の導出</h3>
+<div class="step">
+問2・問3 を $I_2$, $I_3$ の連立方程式とみなし（$I_1$ は既知パラメータとして扱う）：<br>
+$(R_1+R_2+R_5)I_2 - R_5 I_3 = R_1 I_1 \quad\cdots①$<br>
+$-R_5 I_2 + (R_3+R_4+R_5)I_3 = R_3 I_1 \quad\cdots②$<br>
+クラメールの公式：
+$$D = (R_1+R_2+R_5)(R_3+R_4+R_5) - R_5^2$$
+$$I_2 = \frac{R_1(R_3+R_4+R_5)+R_3 R_5}{D}\cdot I_1, \quad I_3 = \frac{R_3(R_1+R_2+R_5)+R_1 R_5}{D}\cdot I_1$$
+</div>
+<div class="answer-box">
+$$\frac{I_2}{I_3} = \frac{R_1(R_3+R_4+R_5)+R_3 R_5}{R_3(R_1+R_2+R_5)+R_1 R_5}$$
+</div>
+
+<h3>問6）$R_5$ を流れる電流が 0 になる条件（$I_2 = I_3$ の条件）</h3>
+<div class="step">
+$I_2 = I_3$ となるとき：
+$$R_1(R_3+R_4+R_5)+R_3 R_5 = R_3(R_1+R_2+R_5)+R_1 R_5$$
+$$R_1 R_3 + R_1 R_4 + \cancel{R_1 R_5} + \cancel{R_3 R_5} = R_1 R_3 + R_2 R_3 + \cancel{R_3 R_5} + \cancel{R_1 R_5}$$
+</div>
+<div class="answer-box">
+$$\boxed{R_1 R_4 = R_2 R_3}$$
+（ホイートストンブリッジの平衡条件）
+</div>
+
+<h3>問7）平衡時の $I_1$, $I_2$</h3>
+<div class="step">
+$I_2 = I_3$ のとき，閉路 B：$-R_1 I_1 + (R_1+R_2)I_2 = 0$ → $I_1 = \dfrac{R_1+R_2}{R_1}I_2$<br>
+閉路 A：$E = (R_1+R_3)I_1 - (R_1+R_3)I_2 = (R_1+R_3)\cdot\dfrac{R_2}{R_1}\cdot I_2$<br>
+→　$I_2 = \dfrac{E R_1}{R_2(R_1+R_3)}$
+</div>
+<div class="answer-box">
+$$I_1 = \frac{E(R_1+R_2)}{R_2(R_1+R_3)}, \qquad I_2 = I_3 = \frac{E R_1}{R_2(R_1+R_3)}$$
+</div>
+
+<!-- ========== 量子力学/物性基礎（選択） ========== -->
+<h2>選択専門科目（B）：量子力学/物性基礎</h2>
+
+<h3>大問1　1次元シュレーディンガー方程式（階段型ポテンシャル）</h3>
+<p>$V(x) = 0\ (x<0)$，$V(x) = -V_0\ (x\geq0)$，$E > 0$。</p>
+
+<h3>問1）$x<0$ での方程式と波数 $k_1$</h3>
+<div class="answer-box">
+$$-\frac{\hbar^2}{2m}\frac{d^2\psi}{dx^2} = E\psi \quad\Rightarrow\quad \frac{d^2\psi}{dx^2} = -k_1^2\psi$$
+$$k_1 = \frac{\sqrt{2mE}}{\hbar} \quad (> 0)$$
+解：$\psi_1(x) = Ae^{jk_1 x} + Be^{-jk_1 x}$（入射波 $A$, 反射波 $B$）
+</div>
+
+<h3>問2）$x\geq0$ での方程式と波数 $k_2$</h3>
+<div class="answer-box">
+$$-\frac{\hbar^2}{2m}\frac{d^2\psi}{dx^2} - V_0\psi = E\psi \quad\Rightarrow\quad \frac{d^2\psi}{dx^2} = -k_2^2\psi$$
+$$k_2 = \frac{\sqrt{2m(E+V_0)}}{\hbar} \quad (> k_1 > 0)$$
+解：$\psi_2(x) = Ce^{jk_2 x}$（透過波のみ）
+</div>
+
+<h3>問3）$x=0$ での境界条件（2つ）</h3>
+<div class="answer-box">
+①　$\psi_1(0) = \psi_2(0)$：波動関数の連続性<br>
+②　$\psi_1'(0) = \psi_2'(0)$：微分の連続性
+</div>
+
+<h3>問4）$B$ と $C$ の関係式</h3>
+<div class="step">
+①：$A + B = C$<br>
+②：$jk_1(A-B) = jk_2 C$　→　$k_1(A-B) = k_2 C$
+</div>
+<div class="answer-box">
+$$B = \frac{k_1 - k_2}{k_1 + k_2} A, \qquad C = \frac{2k_1}{k_1 + k_2} A \quad (A=1 \text{として})$$
+$$B = \frac{k_1-k_2}{k_1+k_2}, \qquad C = \frac{2k_1}{k_1+k_2}$$
+</div>
+
+<h3>問5）$B$ と $C$ の値</h3>
+<div class="answer-box">
+$A=1$ のとき：
+$$B = \frac{k_1 - k_2}{k_1 + k_2}, \qquad C = \frac{2k_1}{k_1 + k_2}$$
+</div>
+
+<h3>問6）透過率 $T$ の表現と取りうる範囲</h3>
+<div class="step">
+透過率 $T$ = 透過確率流 / 入射確率流 $= \dfrac{k_2|C|^2}{k_1|A|^2}$：
+$$T = \frac{k_2}{k_1}\cdot\left(\frac{2k_1}{k_1+k_2}\right)^2 = \frac{4k_1 k_2}{(k_1+k_2)^2}$$
+</div>
+<div class="answer-box">
+$$T = \frac{4k_1 k_2}{(k_1+k_2)^2}$$
+取りうる範囲：$k_2 > k_1 > 0$ より $(k_1+k_2)^2 > 4k_1k_2$（相加・相乗平均）。<br>
+また $T > 0$。よって $\boxed{0 < T < 1}$。
+</div>
+<div class="note">$V_0 = 0$ なら $k_1 = k_2$，$T = 1$（全透過）。$V_0 > 0$ なら $k_2 > k_1$ で常に $T < 1$。</div>
+
+---
+
+<h3>大問2　p型半導体の少数キャリア拡散</h3>
+<p>光励起による電子キャリア密度 $n'_p = N(W-x)/W$。$p_{p0} \gg n_{p0}$，$\mu_n \neq \mu_p$。</p>
+
+<h3>問1）電子電流密度 $J_n$（拡散のみ）</h3>
+<div class="step">
+$n_p = n_{p0} + n'_p$，$dn'_p/dx = -N/W$
+</div>
+<div class="answer-box">
+$$J_n = qD_n\frac{dn_p}{dx} = qD_n\cdot\left(-\frac{N}{W}\right) = -\frac{qD_n N}{W}$$
+（電流は $-x$ 方向：電子は $x=0$ 側に流れる）
+</div>
+
+<h3>問2）$J_n$ と正孔電流密度 $J_p$ の関係 → $J_p$</h3>
+<div class="step">
+定常状態・開放回路：総電流密度 $J = J_n + J_p = 0$
+</div>
+<div class="answer-box">
+$$J_p = -J_n = \frac{qD_n N}{W}$$
+</div>
+
+<h3>問3）正孔の拡散電流密度 $J_{p,\rm diff}$</h3>
+<div class="step">
+$p'_p = n'_p = N(W-x)/W$，$dp'_p/dx = -N/W$
+</div>
+<div class="answer-box">
+$$J_{p,\rm diff} = -qD_p\frac{dp_p}{dx} = -qD_p\cdot\left(-\frac{N}{W}\right) = \frac{qD_p N}{W}$$
+</div>
+
+<h3>問4）正孔のドリフト電流密度 $J_{p,\rm drift}$</h3>
+<div class="answer-box">
+$$J_{p,\rm drift} = q\mu_p p_p E \approx q\mu_p p_{p0} E$$
+（$p_p \approx p_{p0}$：少数キャリアは多数キャリアに比べ十分少ない）
+</div>
+
+<h3>問5）半導体内部の電界 $E$</h3>
+<div class="step">
+$J_p = J_{p,\rm diff} + J_{p,\rm drift} = qD_n N/W$：
+$$\frac{qD_p N}{W} + q\mu_p p_{p0} E = \frac{qD_n N}{W}$$
+$$E = \frac{(D_n - D_p)N}{\mu_p p_{p0} W}$$
+アインシュタイン関係 $D = \mu kT/q$ を用いると：
+</div>
+<div class="answer-box">
+$$E = \frac{(\mu_n - \mu_p)kT\,N}{q\,\mu_p\,p_{p0}\,W} = \left(\frac{\mu_n}{\mu_p}-1\right)\frac{kT\,N}{q\,p_{p0}\,W}$$
+</div>
+
+<h3>問6）$J_{n,\rm drift}/J_{n,\rm diff}$ と仮定が成り立つ条件</h3>
+<div class="step">
+$J_{n,\rm diff} = J_n = -qD_n N/W$，$J_{n,\rm drift} = q\mu_n n_p E \approx q\mu_n n_{p0} E$<br>
+$E$ を代入して：
+$$\frac{J_{n,\rm drift}}{J_{n,\rm diff}} = \frac{q\mu_n n_{p0} E}{qD_n N/W} = \frac{\mu_n n_{p0} E W}{D_n N} = \frac{n_{p0}(\mu_n-\mu_p)}{\mu_p p_{p0}}$$
+</div>
+<div class="answer-box">
+$$\frac{J_{n,\rm drift}}{J_{n,\rm diff}} = \frac{n_{p0}(\mu_n-\mu_p)}{\mu_p\,p_{p0}}$$
+拡散のみの仮定が成り立つ条件：$\dfrac{J_{n,\rm drift}}{J_{n,\rm diff}} \ll 1$，すなわち
+$$n_{p0} \ll \frac{\mu_p\,p_{p0}}{\mu_n - \mu_p}$$
+$p_{p0} \gg n_{p0}$ のとき（$\mu_n > \mu_p$ の半導体）概ね成立する。
+</div>
+
+<!-- ========== 解答まとめ ========== -->
+<h2>解答まとめ</h2>
+<table>
+  <tr><th>科目</th><th>大問</th><th>主要結果</th></tr>
+  <tr><td>数学</td><td>1（ODE）</td><td>$\alpha=-A/2$, $\beta=\sqrt{A^2-4B}/2$；収束条件 $A>0,B>0,A^2>4B$；重解特殊解 $(1+(1+A/2)x)e^{-Ax/2}$；極大 $x=1/2$, $y=2/\sqrt{e}$（$A=2$時）</td></tr>
+  <tr><td>数学</td><td>2（テイラー）</td><td>$a_n=(-1)^n$；$h(x,N)=(1-(-x)^{N+1})/(1+x)$；極限→$f(x)$ 証明</td></tr>
+  <tr><td>電磁気学</td><td>1（コンデンサ）</td><td>$C_1=\varepsilon_0 ab/x$；誘電体挿入 $C_{\rm II}=\varepsilon_0\varepsilon al/(\varepsilon(x-d)+\varepsilon_0 d)$；力 $F_3$ 右向き</td></tr>
+  <tr><td>電磁気学</td><td>2（荷電粒子）</td><td>直進条件 $v_0=E/B$；サイクロイド $v_x=(E/B)(1-\cos\omega t)$, $v_y=(E/B)\sin\omega t$；$y_{\rm max}=2mE/(qB^2)$</td></tr>
+  <tr><td>電気回路</td><td>1（MOSFET）</td><td>$I_D=I_{D0}(V_{GS}-V_T)^2$；$g_m=2I_{D0}$；利得 $-2I_{D0}R$</td></tr>
+  <tr><td>電気回路</td><td>2（ブリッジ）</td><td>平衡条件 $R_1R_4=R_2R_3$；$I_1=E(R_1+R_2)/(R_2(R_1+R_3))$</td></tr>
+  <tr><td>量子力学</td><td>1（ポテンシャル障壁）</td><td>$k_1=\sqrt{2mE}/\hbar$，$k_2=\sqrt{2m(E+V_0)}/\hbar$；透過率 $T=4k_1k_2/(k_1+k_2)^2$，$0<T<1$</td></tr>
+  <tr><td>量子/物性</td><td>2（半導体）</td><td>$J_n=-qD_nN/W$；内部電界 $E=(\mu_n-\mu_p)kTN/(q\mu_p p_{p0}W)$</td></tr>
+</table>
+
+<a class="back" href="index.html">← 解答解説まとめに戻る</a>
+
+</body>
+</html>

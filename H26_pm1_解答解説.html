@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>H26年度 専門科目午後1 電気回路 解答解説</title>
+  <script>
+    MathJax = {
+      tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']], tags: 'ams' },
+      options: { skipHtmlTags: ['script','noscript','style','textarea','pre'] }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: "Yu Gothic","游ゴシック",sans-serif; font-size: 13pt; line-height: 1.9; color: #1a1a2e; background: #f4f7fb; padding: 40px; }
+    h1 { font-size: 19pt; color: #0d2b5e; border-bottom: 3px solid #0d2b5e; padding-bottom: 10px; margin-bottom: 6px; }
+    .meta { color: #666; font-size: 11pt; margin-bottom: 36px; }
+    h2 { font-size: 15pt; color: #0d2b5e; background: #e8f0fb; border-left: 5px solid #1e5fa8; padding: 8px 14px; margin: 40px 0 16px; border-radius: 0 6px 6px 0; }
+    h3 { font-size: 13pt; color: #1e5fa8; border-bottom: 1px solid #c5d8f5; margin: 28px 0 10px; padding-bottom: 4px; }
+    .answer-box { background: #fff; border: 2px solid #1e5fa8; border-radius: 6px; padding: 14px 20px; margin: 12px 0; }
+    .step { background: #eef4ff; border-left: 3px solid #5b8dee; padding: 10px 16px; margin: 10px 0; border-radius: 0 4px 4px 0; }
+    .note { background: #fffbe6; border-left: 4px solid #f0ad00; padding: 10px 16px; margin: 12px 0; border-radius: 0 4px 4px 0; font-size: 11.5pt; }
+    table { border-collapse: collapse; width: 100%; margin: 16px 0; font-size: 11.5pt; }
+    th { background: #0d2b5e; color: #fff; padding: 8px 12px; text-align: center; }
+    td { border: 1px solid #c5d8f5; padding: 8px 12px; text-align: center; }
+    td.left { text-align: left; }
+    tr:nth-child(even) td { background: #f0f6ff; }
+    .lattice { font-family: monospace; background: #f0f6ff; border: 1px solid #c5d8f5; padding: 16px; margin: 12px 0; white-space: pre; font-size: 10.5pt; line-height: 1.6; }
+    footer { margin-top: 60px; color: #aaa; font-size: 10pt; text-align: center; }
+    @media print { body { background: #fff; padding: 20px; } }
+  </style>
+</head>
+<body>
+
+<h1>H26年度 専門科目 午後1（電気回路）解答解説</h1>
+<p class="meta">東京工業大学 大学院修士課程入試（平成25年8月21日実施）</p>
+
+<!-- ===== 大問1 ===== -->
+<h2>大問1　無損失分布定数線路の過渡応答</h2>
+
+<p>特性インピーダンス $Z_0$、長さ $2\ell$ の無損失分布定数線路。BB'（$x=\ell$）にシャント抵抗 $R=Z_0$ を接続。電圧源 $E$、直列抵抗 $R=Z_0$ を介して $t=0$ にスイッチ S オン。CC' は開放。伝搬速度 $c$。</p>
+
+<h3>問1)　S行列</h3>
+<div class="step">
+シャント抵抗 $R=Z_0$ を2端子対回路（図1.2）として見る。
+入射波電圧 $a_k$、反射波電圧 $b_k$（規格化：$V_k = a_k+b_k$，$Z_0 I_k = a_k - b_k$）。
+
+ジャンクション電圧の連続性：
+$$a_1 + b_1 = a_2 + b_2 = V \quad \cdots (1)$$
+
+KCL（左からの電流 + 右からの電流 = $R$ への電流）：
+$$\frac{a_1-b_1}{Z_0} + \frac{a_2-b_2}{Z_0} = \frac{V}{R} = \frac{a_1+b_1}{Z_0}$$
+$$\Rightarrow (a_2 - b_2) = 2b_1 \quad \cdots (2)$$
+
+(1)(2) 連立して $b_1, b_2$ を $a_1, a_2$ で表す：
+(2) より $b_2 = a_2 - 2b_1$、(1) へ代入：$a_1 + b_1 = 2a_2 - 2b_1$
+
+$$b_1 = \frac{2a_2 - a_1}{3}, \quad b_2 = \frac{2a_1 - a_2}{3}$$
+</div>
+<div class="answer-box">
+$$\begin{pmatrix}b_1 \\ b_2\end{pmatrix} = \begin{pmatrix}S_{11} & S_{12} \\ S_{21} & S_{22}\end{pmatrix}\begin{pmatrix}a_1 \\ a_2\end{pmatrix}$$
+$$\boxed{\begin{pmatrix}S_{11} & S_{12} \\ S_{21} & S_{22}\end{pmatrix} = \begin{pmatrix}-\dfrac{1}{3} & \dfrac{2}{3} \\[6pt] \dfrac{2}{3} & -\dfrac{1}{3}\end{pmatrix}}$$
+
+（一般化：$R$ 一般のとき $S_{11}=S_{22}=-1/(2z+1)$, $S_{12}=S_{21}=2z/(2z+1)$，$z=R/Z_0$）
+</div>
+
+<h3>問2)　各端子対の電圧反射係数</h3>
+<div class="step">
+電圧反射係数 $\Gamma = (Z_L - Z_0)/(Z_L + Z_0)$：
+
+<b>AA'（電源側）：</b>直列抵抗 $R=Z_0$ が電源インピーダンス。線路から見たソースインピーダンス $= Z_0$。
+$$\Gamma_{AA'} = \frac{Z_0 - Z_0}{Z_0 + Z_0} = 0 \quad (\text{整合電源})$$
+
+<b>BB'（シャント抵抗）：</b>S行列より $S_{11}=S_{22}$：
+$$\Gamma_{BB'} = S_{11} = -\frac{1}{3}$$
+
+<b>CC'（開放端）：</b>$Z_L = \infty$：
+$$\Gamma_{CC'} = \frac{\infty - Z_0}{\infty + Z_0} = +1$$
+</div>
+<div class="answer-box">
+$$\Gamma_{AA'} = 0, \quad \Gamma_{BB'} = -\frac{1}{3}, \quad \Gamma_{CC'} = +1$$
+</div>
+
+<h3>問3)　$x=\ell$（BB'）における電圧の時間変化（$0\le t\le 4\ell/c$）</h3>
+<div class="step">
+<b>格子線図による波追跡：</b>
+
+$t=0$：スイッチ S オン。電源 $E$ から初期進行波（整合分圧）：
+$$V_+ = E \times \frac{Z_0}{R+Z_0} = \frac{E}{2} \quad (\text{右向き})$$
+
+<b>$t = \ell/c$：</b>$V_+ = E/2$ が BB' に到達（$a_1 = E/2$，$a_2=0$）：
+$$b_1 = S_{11}\cdot a_1 = -\frac{E}{6} \quad (\text{左向き}), \quad b_2 = S_{21}\cdot a_1 = \frac{E}{3} \quad (\text{右向き})$$
+$$V_{BB'} = a_1 + b_1 = \frac{E}{2} - \frac{E}{6} = \frac{E}{3}$$
+
+反射波 $-E/6$ は AA' へ戻るが $\Gamma_{AA'}=0$ で吸収。透過波 $E/3$ は CC' へ。
+
+<b>$t = 2\ell/c$：</b>$E/3$ が CC' に到達 $\rightarrow$ $\Gamma_{CC'}=+1$ で反射：$+E/3$（左向き）。
+
+<b>$t = 3\ell/c$：</b>$E/3$（左向き）が BB' に到達（$a_2 = E/3$，$a_1=0$）：
+$$b_1 = S_{12}\cdot a_2 = \frac{2}{3}\cdot\frac{E}{3} = \frac{2E}{9} \quad (\text{左向き})$$
+$$b_2 = S_{22}\cdot a_2 = -\frac{1}{3}\cdot\frac{E}{3} = -\frac{E}{9} \quad (\text{右向き})$$
+$$\Delta V_{BB'} = a_2 + b_2 = \frac{E}{3} - \frac{E}{9} = \frac{2E}{9}$$
+$$V_{BB'} = \frac{E}{3} + \frac{2E}{9} = \frac{3E}{9} + \frac{2E}{9} = \frac{5E}{9}$$
+
+$2E/9$ は AA' へ吸収。$-E/9$ は CC' へ（$t=4\ell/c$ 到達→BB'に戻るのは $5\ell/c$、範囲外）。
+</div>
+<div class="answer-box">
+<b>電圧グラフ（$x=\ell$, BB'）：</b>
+<div class="lattice">
+  電圧 V
+  5E/9 ─────────────────────────────
+       │
+  E/3  ─────────────────────┤
+       │                    │
+   0   ────────┤            │
+       0      ℓ/c          3ℓ/c    4ℓ/c → t
+</div>
+変化時刻と電圧値：
+$$t = \frac{\ell}{c}:\ V = \frac{E}{3} \qquad t = \frac{3\ell}{c}:\ V = \frac{5E}{9}$$
+（直流定常値は $V=E/2$：電源 $E$ を $R+R_{BB'}$ で分圧）
+</div>
+
+<!-- ===== 大問2 ===== -->
+<h2>大問2　LC 共振回路の過渡応答</h2>
+<p>$C_1, C_2, L$ の閉ループ（$t=0$ でスイッチ S オン）。$v_1(0)=E$，$v_2(0)=0$，$i(0)=0$。</p>
+
+<h3>問1)　振動角周波数 $\omega$</h3>
+<div class="step">
+KVL: $v_1 - L\dfrac{di}{dt} - v_2 = 0$
+
+素子方程式：$i = -C_1\dfrac{dv_1}{dt}$，$i = C_2\dfrac{dv_2}{dt}$
+
+電荷保存 $\dfrac{d}{dt}(C_1v_1+C_2v_2)=0$ より：$C_1v_1+C_2v_2 = C_1E$（一定）
+
+よって $v_1 = E - \dfrac{C_2}{C_1}v_2$。KVL に代入して微分方程式化：
+
+$$\frac{di}{dt} = \frac{v_1-v_2}{L} = \frac{E - v_2(1+C_2/C_1)}{L} = \frac{C_1 E - v_2(C_1+C_2)}{LC_1}$$
+
+$i = C_2 \dfrac{dv_2}{dt}$ で $\dfrac{d^2 i}{dt^2} + \dfrac{C_1+C_2}{LC_1C_2}\,i = 0$
+</div>
+<div class="answer-box">
+$$\boxed{\omega = \sqrt{\frac{C_1+C_2}{LC_1C_2}} = \frac{1}{\sqrt{L C_{\rm eq}}}, \quad C_{\rm eq} = \frac{C_1C_2}{C_1+C_2} \quad (\text{直列合成容量})}$$
+</div>
+
+<h3>問2)　電流 $i(t)$</h3>
+<div class="step">
+$i(0)=0$ より $i(t) = A\sin(\omega t)$。
+
+初期条件 $\dfrac{di}{dt}\big|_{t=0} = \dfrac{v_1(0)-v_2(0)}{L} = \dfrac{E}{L}$：
+$$A\omega = \frac{E}{L} \Rightarrow A = \frac{E}{\omega L}$$
+</div>
+<div class="answer-box">
+$$\boxed{i(t) = \frac{E}{\omega L}\sin(\omega t) = E\sqrt{\frac{C_1C_2}{L(C_1+C_2)}}\sin(\omega t)}$$
+</div>
+
+<h3>問3)　$v_2(t)$ の最大値</h3>
+<div class="step">
+$v_2(t) = \dfrac{1}{C_2}\displaystyle\int_0^t i\,dt' = \dfrac{E}{\omega L C_2}(1-\cos\omega t)$
+
+最大値は $\cos(\omega t) = -1$（$t = \pi/\omega$）のとき。
+
+<b>エネルギーで確認：</b>$t=\pi/\omega$ で $i=0$。電荷保存 $C_1v_1 + C_2v_2 = C_1E$ と
+エネルギー保存 $\dfrac{1}{2}C_1E^2 = \dfrac{1}{2}C_1v_1^2 + \dfrac{1}{2}C_2v_2^2$ より $v_{2,\max} = \dfrac{2C_1 E}{C_1+C_2}$。
+</div>
+<div class="answer-box">
+$$\boxed{v_{2,\max} = \frac{2C_1 E}{C_1+C_2}}$$
+（$C_1 = C_2$ のとき $v_{2,\max} = E$：全エネルギーが $C_2$ に移行）
+</div>
+
+<!-- ===== 大問3 ===== -->
+<h2>大問3　三相対称 RLC 回路（Y結線）</h2>
+<p>$f=50\,\mathrm{Hz}$、線間電圧 $V_L=200\,\mathrm{V}$、$R=10\,\Omega$、$X_L = 2\pi fL = 10\,\Omega$、$X_C = 1/(2\pi fC) = 20\,\Omega$。RLC 並列，Y結線。有効数字2桁。</p>
+
+<h3>問1)　相電圧</h3>
+<div class="answer-box">
+$$V_{ph} = \frac{V_L}{\sqrt{3}} = \frac{200}{\sqrt{3}} \approx \boxed{1.2 \times 10^2 \text{ V} = 120\text{ V}}$$
+</div>
+
+<h3>問2)　各素子の電流（実効値）</h3>
+<div class="step">
+RLC 並列なので各素子に相電圧 $V_{ph}$ がかかる：
+$$I_R = \frac{V_{ph}}{R} = \frac{200/\sqrt{3}}{10} = \frac{20}{\sqrt{3}} \approx 12\text{ A}$$
+$$I_L = \frac{V_{ph}}{X_L} = \frac{200/\sqrt{3}}{10} \approx 12\text{ A}$$
+$$I_C = \frac{V_{ph}}{X_C} = \frac{200/\sqrt{3}}{20} = \frac{10}{\sqrt{3}} \approx 5.8\text{ A}$$
+</div>
+<div class="answer-box">
+$$\boxed{I_R \approx 12\text{ A},\quad I_L \approx 12\text{ A},\quad I_C \approx 5.8\text{ A}}$$
+</div>
+
+<h3>問3)　線電流 $I$</h3>
+<div class="step">
+並列アドミタンス：
+$$\dot{Y} = \frac{1}{R} + j\left(\frac{1}{X_C} - \frac{1}{X_L}\right) = \frac{1}{10} + j\left(\frac{1}{20}-\frac{1}{10}\right) = 0.1 - j\,0.05 \text{ [S]}$$
+
+$$|Y| = \sqrt{0.1^2+0.05^2} = \sqrt{0.0125} = \frac{1}{4\sqrt{5}} \approx 0.112\text{ S}$$
+
+$$I = V_{ph}\cdot|Y| = \frac{200}{\sqrt{3}}\cdot\frac{1}{4\sqrt{5}} = \frac{200}{4\sqrt{15}} = \frac{50}{\sqrt{15}} \approx 12.9\text{ A}$$
+</div>
+<div class="answer-box">
+$$\boxed{I \approx 13\text{ A}}$$
+（位相角：$\phi = \arctan(-0.05/0.1) = \arctan(-0.5) \approx -26.6°$，遅れ無効電力あり）
+</div>
+
+<h3>問4)　$\Delta$結線コンデンサ $C_0$ 追加：$I$ 最小化</h3>
+<div class="step">
+$\Delta$ 結線容量のY等価アドミタンス：$B_{Y} = 3/X_{C_0}$（$\Delta$-Y変換で容量 3 倍）。
+
+$I$ 最小 ↔ 合成アドミタンスの虚部 = 0（力率1）：
+$$\mathrm{Im}[\dot{Y}] + \frac{3}{X_{C_0}} = 0 \Rightarrow -0.05 + \frac{3}{X_{C_0}} = 0$$
+$$X_{C_0} = \frac{3}{0.05} = 60\,\Omega \quad (\text{各}\Delta\text{素子のリアクタンス})$$
+
+このとき合成アドミタンス = $0.1\text{ S}$（純抵抗）：
+$$I_{\min} = V_{ph}\times 0.1 = \frac{200}{\sqrt{3}}\times 0.1 = \frac{20}{\sqrt{3}} \approx 11.5\text{ A} \approx 12\text{ A}$$
+</div>
+<div class="answer-box">
+$$\boxed{X_{C_0}=60\,\Omega \quad (\Delta \text{各素子}),\quad I_{\min} = \frac{20}{\sqrt{3}} \approx 12\text{ A}}$$
+（力率1（=1）に改善。問3の 13 A から削減）
+</div>
+
+<!-- ===== 大問4 ===== -->
+<h2>大問4　演算増幅器回路</h2>
+
+<h3>問1)　図4.1 の利得 $V_2/V_1$</h3>
+<div class="step">
+入力インピーダンス（直列 $R_1$, $C_1$）：$Z_{in} = R_1 + \dfrac{1}{j\omega C_1} = \dfrac{1+j\omega R_1C_1}{j\omega C_1}$
+
+帰還インピーダンス（並列 $R_2 \parallel C_2$）：$Z_f = \dfrac{R_2}{1+j\omega R_2C_2}$
+
+反転増幅の利得：$V_2/V_1 = -Z_f/Z_{in}$：
+$$\frac{V_2}{V_1} = -\frac{R_2/(1+j\omega R_2C_2)}{(1+j\omega R_1C_1)/(j\omega C_1)} = -\frac{j\omega R_2C_1}{(1+j\omega R_1C_1)(1+j\omega R_2C_2)}$$
+</div>
+<div class="answer-box">
+$$\boxed{\frac{V_2}{V_1} = \frac{-j\omega R_2 C_1}{(1+j\omega R_1C_1)(1+j\omega R_2C_2)}}$$
+バンドパスフィルタ（低域遮断：$\omega R_1C_1=1$、高域遮断：$\omega R_2C_2=1$）
+</div>
+
+<h3>問2)　素子値の設計（$f_L=1\,\mathrm{kHz}$, $f_H=100\,\mathrm{kHz}$, 最大利得40 dB, $R_1=1\,\mathrm{k\Omega}$）</h3>
+<div class="step">
+中域利得（$f_L \ll f \ll f_H$）：$j\omega R_1C_1\gg1$, $j\omega R_2C_2 \ll 1$ で：
+$$\left|\frac{V_2}{V_1}\right|_{\rm mid} \approx \frac{R_2}{R_1} = 40\text{ dB} = 100$$
+$$R_2 = 100R_1 = 100\times 1\text{ k}\Omega = 100\text{ k}\Omega$$
+
+低域遮断 $\omega_L R_1C_1 = 1$（$f_L = 1\text{ kHz}$）：
+$$C_1 = \frac{1}{\omega_L R_1} = \frac{1}{2\pi\times 10^3\times 10^3} = \frac{1}{2\pi\times 10^6} \approx 160\text{ nF}$$
+
+高域遮断 $\omega_H R_2C_2 = 1$（$f_H = 100\text{ kHz}$）：
+$$C_2 = \frac{1}{\omega_H R_2} = \frac{1}{2\pi\times 10^5\times 10^5} = \frac{1}{2\pi\times 10^{10}} \approx 16\text{ pF}$$
+</div>
+<div class="answer-box">
+$$\boxed{R_2 = 100\text{ k}\Omega,\quad C_1 \approx 160\text{ nF},\quad C_2 \approx 16\text{ pF}}$$
+</div>
+
+<h3>問3)　10 Hz 三角波（波高値 0.1 V）の入力・出力波形概形</h3>
+<div class="step">
+$f = 10\text{ Hz} \ll f_L = 1\text{ kHz}$：低周波域では $|\omega R_1C_1| \ll 1$ のため
+$Z_{in} \approx 1/(j\omega C_1)$（容量性）、$Z_f \approx R_2$。
+→ 回路が<b>微分器</b>として動作。
+
+三角波の微分 = 方形波（スロープの正負が交互入れ替わり）。
+</div>
+<div class="answer-box">
+<ul>
+  <li><b>入力</b>：三角波（周期 0.1 s、振幅 $\pm0.1\text{ V}$）</li>
+  <li><b>出力</b>：方形波（符号反転）。振幅 $|V_2| = R_2C_1\left|\dfrac{dV_1}{dt}\right| = R_2C_1\times 4\times 0.1\times 10 \approx 64\text{ mV}$</li>
+</ul>
+（出力は入力三角波の微分なので、入力が正の傾きのとき出力は負の一定値、負の傾きのとき正の一定値）
+</div>
+
+<h3>問4)　図4.2 の出力電流 $i_0$（$R_1 \gg R_2, R_3$）</h3>
+<div class="step">
+Howland 型電流源回路。4つの $R_1$（うち2つは電圧帰還路）、$R_2$ が電流出力段、$R_3$ は負荷。
+
+仮想短絡 $V_- = V_+$。$V_+$ は $R_1$ 分圧（$R_1$：出力ノード $N$ から $V_+$、$R_1$：$V_+$ からグラウンド）：
+$$V_+ = \frac{N}{2}$$
+
+$V_-$ での KCL（$R_1 \gg R_2$ 近似で $R_1$入力電流は無視）：
+$$\frac{v_1 - V_-}{R_1} + \frac{V_{\rm out}-V_-}{R_1} = 0 \Rightarrow v_1 + V_{\rm out} = 2V_- = N$$
+
+出力ノード $N$：$V_{\rm out} = N - v_1$（KVL より）。$R_2$ 電圧：$V_{\rm out}-N = -v_1 = R_2\times i_0$...
+
+→ KCL at $N$：$(V_{\rm out}-N)/R_2 = N/R_3 + i_{R_1}$（$i_{R_1}\approx 0$ で $R_1\gg$）：
+$$\frac{-v_1}{R_2} = \frac{N}{R_3} \Rightarrow N = -\frac{v_1 R_3}{R_2}$$
+$$i_0 = \frac{N}{R_3} = -\frac{v_1}{R_2}$$
+</div>
+<div class="answer-box">
+$$\boxed{i_0 = -\frac{v_1}{R_2}}$$
+
+$i_0 = -\dfrac{v_1}{R}$（$R=1\,\Omega$）となる条件：
+$$\boxed{R_2 = R = 1\,\Omega \quad (\text{かつ } R_1 \gg R_2, R_3 = 1\,\Omega\text{ を満たすこと})}$$
+（Howland 電流ポンプ：$R_2$ の値のみで出力電流を決定、$R_3$ 負荷に依存しない）
+</div>
+
+<!-- ===== まとめ表 ===== -->
+<h2>解答まとめ</h2>
+<table>
+  <tr><th>大問</th><th>問</th><th>解答</th></tr>
+  <tr><td rowspan="3">1<br>分布定数<br>線路</td>
+    <td>1)</td><td class="left">$S = \begin{pmatrix}-1/3 & 2/3 \\ 2/3 & -1/3\end{pmatrix}$</td></tr>
+  <tr><td>2)</td><td class="left">$\Gamma_{AA'}=0$，$\Gamma_{BB'}=-1/3$，$\Gamma_{CC'}=+1$</td></tr>
+  <tr><td>3)</td><td class="left">$0\le t<\ell/c$：$0$V；$\ell/c\le t<3\ell/c$：$E/3$；$3\ell/c\le t\le 4\ell/c$：$5E/9$</td></tr>
+  <tr><td rowspan="3">2<br>LC振動</td>
+    <td>1)</td><td class="left">$\omega=\sqrt{(C_1+C_2)/(LC_1C_2)}$</td></tr>
+  <tr><td>2)</td><td class="left">$i(t) = (E/\omega L)\sin\omega t$</td></tr>
+  <tr><td>3)</td><td class="left">$v_{2,\max} = 2C_1 E/(C_1+C_2)$</td></tr>
+  <tr><td rowspan="4">3<br>三相回路</td>
+    <td>1)</td><td class="left">$V_{ph} = 200/\sqrt{3} \approx 120\text{ V}$</td></tr>
+  <tr><td>2)</td><td class="left">$I_R \approx 12\text{ A}$，$I_L \approx 12\text{ A}$，$I_C \approx 5.8\text{ A}$</td></tr>
+  <tr><td>3)</td><td class="left">$I = 50/\sqrt{15} \approx 13\text{ A}$</td></tr>
+  <tr><td>4)</td><td class="left">$X_{C_0}=60\,\Omega$（$\Delta$ 各素子），$I_{\min}\approx 12\text{ A}$</td></tr>
+  <tr><td rowspan="4">4<br>演算<br>増幅器</td>
+    <td>1)</td><td class="left">$V_2/V_1 = -j\omega R_2C_1/[(1+j\omega R_1C_1)(1+j\omega R_2C_2)]$</td></tr>
+  <tr><td>2)</td><td class="left">$R_2=100\,\mathrm{k\Omega}$，$C_1\approx 160\,\mathrm{nF}$，$C_2\approx 16\,\mathrm{pF}$</td></tr>
+  <tr><td>3)</td><td class="left">入力：三角波 → 出力：方形波（微分器動作）</td></tr>
+  <tr><td>4)</td><td class="left">$i_0 = -v_1/R_2$；条件：$R_2=R=1\,\Omega$（かつ $R_1\gg R_2,R_3$）</td></tr>
+</table>
+
+<footer>解答解説作成：Claude（Anthropic）</footer>
+</body>
+</html>

@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>H26年度 専門科目午後2 電磁気学 解答解説</title>
+  <script>
+    MathJax = {
+      tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']], tags: 'ams' },
+      options: { skipHtmlTags: ['script','noscript','style','textarea','pre'] }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: "Yu Gothic","游ゴシック",sans-serif; font-size: 13pt; line-height: 1.9; color: #1a1a2e; background: #f4f7fb; padding: 40px; }
+    h1 { font-size: 19pt; color: #0d2b5e; border-bottom: 3px solid #0d2b5e; padding-bottom: 10px; margin-bottom: 6px; }
+    .meta { color: #666; font-size: 11pt; margin-bottom: 36px; }
+    h2 { font-size: 15pt; color: #0d2b5e; background: #e8f0fb; border-left: 5px solid #1e5fa8; padding: 8px 14px; margin: 40px 0 16px; border-radius: 0 6px 6px 0; }
+    h3 { font-size: 13pt; color: #1e5fa8; border-bottom: 1px solid #c5d8f5; margin: 28px 0 10px; padding-bottom: 4px; }
+    .answer-box { background: #fff; border: 2px solid #1e5fa8; border-radius: 6px; padding: 14px 20px; margin: 12px 0; }
+    .step { background: #eef4ff; border-left: 3px solid #5b8dee; padding: 10px 16px; margin: 10px 0; border-radius: 0 4px 4px 0; }
+    .note { background: #fffbe6; border-left: 4px solid #f0ad00; padding: 10px 16px; margin: 12px 0; border-radius: 0 4px 4px 0; font-size: 11.5pt; }
+    table { border-collapse: collapse; width: 100%; margin: 16px 0; font-size: 11.5pt; }
+    th { background: #0d2b5e; color: #fff; padding: 8px 12px; text-align: center; }
+    td { border: 1px solid #c5d8f5; padding: 8px 12px; text-align: center; }
+    td.left { text-align: left; }
+    tr:nth-child(even) td { background: #f0f6ff; }
+    footer { margin-top: 60px; color: #aaa; font-size: 10pt; text-align: center; }
+    @media print { body { background: #fff; padding: 20px; } }
+  </style>
+</head>
+<body>
+
+<h1>H26年度 専門科目 午後2（電磁気学）解答解説</h1>
+<p class="meta">東京工業大学 大学院修士課程入試（平成25年8月21日実施）</p>
+
+<!-- ===== 大問1 ===== -->
+<h2>大問1　同軸円筒の電気特性</h2>
+<p>内半径 $a$、外半径 $b$ の完全導体同軸円筒。円筒間を誘電率 $\varepsilon$、導電率 $\sigma$ の媒質で満たす。外部接地、内部に電圧 $V$ を印加。</p>
+
+<h3>(A) 問1)　距離 $r$ での電界</h3>
+<div class="step">
+単位長さあたりの電荷量を $\lambda$ とする。
+
+<b>$r < a$（内部導体内部）：</b>完全導体内部に電界なし。$E = 0$
+
+<b>$a < r < b$（媒質内）：</b>ガウスの法則（半径 $r$、長さ 1 の円柱）：
+$$E \cdot 2\pi r \cdot 1 = \frac{\lambda}{\varepsilon} \quad\Rightarrow\quad E = \frac{\lambda}{2\pi\varepsilon r}$$
+
+電位差の条件：$\displaystyle V = \int_a^b E\,dr = \frac{\lambda}{2\pi\varepsilon}\ln\frac{b}{a}$
+$$\lambda = \frac{2\pi\varepsilon V}{\ln(b/a)}$$
+</div>
+<div class="answer-box">
+$$r < a:\quad E = 0$$
+$$a < r < b:\quad \boxed{E = \frac{V}{r\ln(b/a)}} \quad (\text{放射方向})$$
+</div>
+
+<h3>(A) 問2)　静電容量と蓄積エネルギー（単位長さあたり）</h3>
+<div class="step">
+$Q = \lambda \cdot 1 = CV$ より：
+$$C = \frac{\lambda}{V} = \frac{2\pi\varepsilon}{\ln(b/a)} \quad [\mathrm{F/m}]$$
+
+蓄積エネルギー：$U = \dfrac{1}{2}CV^2 = \dfrac{\pi\varepsilon V^2}{\ln(b/a)}$
+
+（確認：$U = \dfrac{1}{2}\displaystyle\int_a^b \varepsilon E^2 \cdot 2\pi r\,dr = \dfrac{1}{2}\varepsilon\cdot\dfrac{V^2}{\ln^2(b/a)}\cdot 2\pi\ln(b/a) = \dfrac{\pi\varepsilon V^2}{\ln(b/a)}$ ✓）
+</div>
+<div class="answer-box">
+$$\boxed{C = \frac{2\pi\varepsilon}{\ln(b/a)},\quad U = \frac{\pi\varepsilon V^2}{\ln(b/a)}}$$
+</div>
+
+<h3>(B) 問3)　スイッチ開放後の電荷と電流の時間変化</h3>
+<div class="step">
+スイッチ開放後、媒質の導電率 $\sigma$ によりRC放電が起きる。
+
+単位長さあたりの抵抗：$R = \dfrac{\ln(b/a)}{2\pi\sigma}$
+
+時定数：$\tau = RC = \dfrac{\ln(b/a)}{2\pi\sigma} \cdot \dfrac{2\pi\varepsilon}{\ln(b/a)} = \dfrac{\varepsilon}{\sigma}$
+
+（誘電緩和時間 = $\varepsilon/\sigma$：媒質特有の定数）
+
+初期電荷 $\lambda_0 = 2\pi\varepsilon V/\ln(b/a)$：
+$$\lambda(t) = \lambda_0 e^{-t/\tau} = \frac{2\pi\varepsilon V}{\ln(b/a)} e^{-\sigma t/\varepsilon}$$
+
+電流：$i(t) = -\dfrac{d\lambda}{dt} = \dfrac{\lambda_0}{\tau}e^{-t/\tau}$：
+$$i(t) = \frac{2\pi\sigma V}{\ln(b/a)} e^{-\sigma t/\varepsilon}$$
+</div>
+<div class="answer-box">
+$$\boxed{\lambda(t) = \frac{2\pi\varepsilon V}{\ln(b/a)}\,e^{-\sigma t/\varepsilon},\quad i(t) = \frac{2\pi\sigma V}{\ln(b/a)}\,e^{-\sigma t/\varepsilon}}$$
+</div>
+
+<h3>(B) 問4)　総熱量（$t=0$ から $t\to\infty$）</h3>
+<div class="step">
+単位長さあたりの消費電力：$p(t) = i^2(t) \times R$
+
+$$Q = \int_0^\infty i^2(t) R\,dt = \left[\frac{2\pi\sigma V}{\ln(b/a)}\right]^2 \cdot \frac{\ln(b/a)}{2\pi\sigma} \cdot \int_0^\infty e^{-2\sigma t/\varepsilon}\,dt$$
+
+$\displaystyle\int_0^\infty e^{-2\sigma t/\varepsilon}\,dt = \frac{\varepsilon}{2\sigma}$ より：
+$$Q = \frac{4\pi^2\sigma^2 V^2}{\ln^2(b/a)} \cdot \frac{\ln(b/a)}{2\pi\sigma} \cdot \frac{\varepsilon}{2\sigma} = \frac{\pi\varepsilon V^2}{\ln(b/a)}$$
+</div>
+<div class="answer-box">
+$$\boxed{Q = \frac{\pi\varepsilon V^2}{\ln(b/a)}}$$
+</div>
+
+<h3>(B) 問5)　蓄積エネルギーと総熱量の関係</h3>
+<div class="answer-box">
+問2の蓄積エネルギー $U = \pi\varepsilon V^2/\ln(b/a)$ と問4の総熱量 $Q$ が一致する。
+
+<b>物理的意味：</b>スイッチを開放する前に静電場として蓄えられていたエネルギーが、放電過程で完全にジュール熱に変換される。媒質（誘電体＋導体）は電荷の分離（静電エネルギー）をそのまま熱エネルギーとして放出する系になっている。エネルギー保存則を確認している。
+</div>
+
+<h3>(C) 2層媒質：定常電流・問1) 電界強度</h3>
+<p>内層（$a<r<c$）：$\varepsilon_1, \sigma_1$、外層（$c<r<b$）：$\varepsilon_2, \sigma_2$。定常電流が流れる。</p>
+<div class="step">
+定常電流密度（電流連続の条件）：$J = \sigma E$、単位長さあたり電流 $K$（一定）：
+$$K = \sigma_1 E_1 \cdot 2\pi r = \sigma_2 E_2 \cdot 2\pi r$$
+
+よって $E_1 = K/(2\pi\sigma_1 r)$，$E_2 = K/(2\pi\sigma_2 r)$（各層で $1/r$ 依存性）。
+
+電圧条件：
+$$\int_a^c E_1\,dr + \int_c^b E_2\,dr = V$$
+$$\frac{K}{2\pi}\left[\frac{\ln(c/a)}{\sigma_1} + \frac{\ln(b/c)}{\sigma_2}\right] = V$$
+$$K = \frac{2\pi V}{\dfrac{\ln(c/a)}{\sigma_1} + \dfrac{\ln(b/c)}{\sigma_2}}$$
+</div>
+<div class="answer-box">
+$$\boxed{E_1 = \frac{V}{\sigma_1 r\left[\dfrac{\ln(c/a)}{\sigma_1}+\dfrac{\ln(b/c)}{\sigma_2}\right]}},\quad a<r<c$$
+
+$$\boxed{E_2 = \frac{V}{\sigma_2 r\left[\dfrac{\ln(c/a)}{\sigma_1}+\dfrac{\ln(b/c)}{\sigma_2}\right]}},\quad c<r<b$$
+</div>
+
+<h3>(C) 問2) 境界 $r=c$ に誘起される電荷密度</h3>
+<div class="step">
+電束の境界条件（法線成分の不連続 = 表面電荷密度）：
+$$\sigma_s = D_{2,n} - D_{1,n} = \varepsilon_2 E_2\big|_{r=c} - \varepsilon_1 E_1\big|_{r=c}$$
+
+$E_1|_{r=c} = K/(2\pi\sigma_1 c)$，$E_2|_{r=c} = K/(2\pi\sigma_2 c)$：
+$$\sigma_s = \frac{K}{2\pi c}\left(\frac{\varepsilon_2}{\sigma_2} - \frac{\varepsilon_1}{\sigma_1}\right)$$
+
+$K = 2\pi V / [\ln(c/a)/\sigma_1 + \ln(b/c)/\sigma_2]$ を代入：
+</div>
+<div class="answer-box">
+$$\boxed{\sigma_s = \frac{\left(\dfrac{\varepsilon_2}{\sigma_2} - \dfrac{\varepsilon_1}{\sigma_1}\right) V}{c\left[\dfrac{\ln(c/a)}{\sigma_1}+\dfrac{\ln(b/c)}{\sigma_2}\right]}}$$
+$\varepsilon_2/\sigma_2 = \varepsilon_1/\sigma_1$ の場合は表面電荷が誘起されない（両媒質の誘電緩和時間が等しい）。
+</div>
+
+<!-- ===== 大問2 ===== -->
+<h2>大問2　磁気双極子・常磁性体</h2>
+
+<h3>(A) 問1)　$A_r = 0$，$A_\theta = 0$ の理由</h3>
+<div class="answer-box">
+電流ループは $z$ 軸周りに完全な回転対称性を持つ（$\phi$ 非依存）。電流素子 $Id\boldsymbol{l}$ は各点で $\hat{\phi}'$ 方向を向く。
+<ul>
+  <li><b>$A_r = 0$：</b>任意の点 $(a,\pi/2,\phi')$ の $d\boldsymbol{l}$ は $\hat{\phi}'$ 方向で、観測点の $\hat{r}$ への射影を $\phi'$ で積分すると $0$ になる（対称な正負が打ち消す）。</li>
+  <li><b>$A_\theta = 0$：</b>電流ループは $z \to -z$ 反射で不変（電流方向も保たれる）。この変換で $A_\theta \to -A_\theta$ であるが、対称性より $A_\theta = 0$。一方 $A_\phi \to A_\phi$ で非零となりうる。</li>
+</ul>
+</div>
+
+<h3>(A) 問2)　距離 $R$</h3>
+<div class="step">
+ループ上の点：$(a\cos\phi', a\sin\phi', 0)$
+観測点 P：$(r\sin\theta\cos\phi, r\sin\theta\sin\phi, r\cos\theta)$
+
+$$R^2 = r^2 - 2ar\sin\theta\cos(\phi-\phi') + a^2$$
+$$= r^2\left[1 - \frac{2a}{r}\sin\theta\cos(\phi-\phi') + \left(\frac{a}{r}\right)^2\right]$$
+</div>
+<div class="answer-box">
+$$\boxed{R = r\sqrt{1 - \frac{2a}{r}\sin\theta\cos(\phi-\phi') + \frac{a^2}{r^2}}}$$
+</div>
+
+<h3>(A) 問3)　$A_\phi$ を求める</h3>
+<div class="step">
+$d\boldsymbol{l}$ の $\hat{\phi}$ 成分：$d\boldsymbol{l}\cdot\hat{\phi} = a\,d\phi'\cos(\phi-\phi')$
+
+$\dfrac{1}{R}$ の近似（$a/r \ll 1$、$x = -2(a/r)\sin\theta\cos(\phi-\phi') + (a/r)^2 \approx -2(a/r)\sin\theta\cos(\phi-\phi')$）：
+$$\frac{1}{R} \approx \frac{1}{r}\left[1 + \frac{a}{r}\sin\theta\cos(\phi-\phi')\right]$$
+
+代入：
+$$A_\phi = \frac{\mu_0 I}{4\pi}\int_0^{2\pi}\frac{a\cos(\phi-\phi')}{R}\,d\phi'$$
+$$= \frac{\mu_0 Ia}{4\pi r}\int_0^{2\pi}\cos(\phi-\phi')\left[1 + \frac{a}{r}\sin\theta\cos(\phi-\phi')\right]d\phi'$$
+
+$\displaystyle\int_0^{2\pi}\cos(\phi-\phi')d\phi'=0$、$\displaystyle\int_0^{2\pi}\cos^2(\phi-\phi')d\phi'=\pi$ を用いると：
+$$A_\phi = \frac{\mu_0 Ia}{4\pi r}\cdot\frac{a\sin\theta}{r}\cdot\pi = \frac{\mu_0 Ia^2\sin\theta}{4r^2}$$
+</div>
+<div class="answer-box">
+$$\boxed{A_\phi = \frac{\mu_0 I a^2 \sin\theta}{4r^2} = \frac{\mu_0 m\sin\theta}{4\pi r^2}}$$
+ここで $m = I\pi a^2$（磁気双極子モーメント）。これは磁気双極子のベクトルポテンシャルの標準形。
+</div>
+
+<h3>(B) 問4)　1個の微小電流ループの磁気双極子モーメント $m$</h3>
+<div class="answer-box">
+磁気双極子モーメント = 電流 × 面積：
+$$\boxed{m = J_m S_0}$$
+</div>
+
+<h3>(B) 問5)　常磁性体内の磁化の大きさ</h3>
+<div class="step">
+断面に $N$ 個、長さ方向に $L$ 個のループが配列（全ループ数 $NL$）。
+
+断面積 = $N S_0$（各ループが $S_0$ を占有）、体積 = $N S_0 \times l$。
+
+磁化（単位体積あたりの磁気双極子モーメント）：
+$$M = \frac{NL \times m}{N S_0 \times l} = \frac{Lm}{S_0 l} = \frac{L J_m S_0}{S_0 l} = \frac{J_m L}{l}$$
+</div>
+<div class="answer-box">
+$$\boxed{M = \frac{J_m L}{l}}$$
+</div>
+
+<h3>(B) 問6)　ループ $C$ 上での $\boldsymbol{B}$ の線積分</h3>
+<div class="step">
+ループ $C$ は磁性体内部を長さ方向に貫く矩形閉路（磁性体の側面に平行）。
+
+内部ループは互いに打ち消し合い、磁性体表面の電流のみが残る。表面の等価電流（磁化電流）の線密度 = $M$。
+
+ループ $C$ の長さ $l$（磁性体内側）が囲む表面電流 = $M \times l$ 方向 × 長さ $l$...
+
+実際には: アンペールの法則 $\oint_C \boldsymbol{B}\cdot d\boldsymbol{l} = \mu_0 I_{\rm enc}$
+
+囲まれる電流：表面に $L$ 層のループが並び、各ループの側辺電流 $J_m$ が $N$ 個 → 表面電流密度 $K = J_m \times N/(\text{幅})$...
+
+より直接的に：ループ $C$ の辺（長さ方向、磁性体内）に沿って $L$ 個のループが並ぶ。各ループが境界を横切る電流 $J_m$ を1本 × $N$ 個（横断面）...
+
+磁化電流密度 $M = J_m L/l$、表面電流線密度 $K_m = M$、ループ C で囲む電流 = $K_m \times l = J_m L$。
+</div>
+<div class="answer-box">
+$$\oint_C \boldsymbol{B}\cdot d\boldsymbol{l} = \mu_0 I_{\rm enc} = \mu_0 J_m L$$
+$$\boxed{\oint_C \boldsymbol{B}\cdot d\boldsymbol{l} = \mu_0 J_m L}$$
+（これが $\mu_0 M \ell = \mu_0 (J_m L/l)\cdot l = \mu_0 J_m L$ に一致）
+</div>
+
+<h3>(C) 問7)　角度 $\theta$ の球表面における境界条件</h3>
+<div class="step">
+球の表面 $r=b$ での磁束密度（外側：$B_0$ + 磁気双極子による $\boldsymbol{B}_m$；内側：一様 $B_1$）：
+
+球の外側（$\mu_0$）：
+$$B_{{\rm out},r}\big|_{r=b} = B_0\cos\theta + \frac{\mu_0 m\cos\theta}{2\pi b^3}, \quad B_{{\rm out},\theta}\big|_{r=b} = -B_0\sin\theta + \frac{\mu_0 m\sin\theta}{4\pi b^3}$$
+
+球の内側（$\mu$、均一 $B_1$ 軸方向）：
+$$B_{{\rm in},r} = B_1\cos\theta, \quad B_{{\rm in},\theta} = -B_1\sin\theta$$
+</div>
+<div class="answer-box">
+<b>法線成分（$\boldsymbol{B}$ の法線成分連続）：</b>
+$$B_1\cos\theta = B_0\cos\theta + \frac{\mu_0 m\cos\theta}{2\pi b^3}$$
+$$\Rightarrow\quad B_1 = B_0 + \frac{\mu_0 m}{2\pi b^3} \quad\cdots(1)$$
+
+<b>接線成分（$\boldsymbol{H}$ の接線成分連続）：</b>
+$$\frac{B_{{\rm in},\theta}}{\mu} = \frac{B_{{\rm out},\theta}}{\mu_0}$$
+$$\frac{-B_1\sin\theta}{\mu} = \frac{-B_0\sin\theta + \dfrac{\mu_0 m\sin\theta}{4\pi b^3}}{\mu_0}$$
+$$\Rightarrow\quad \frac{B_1}{\mu} = \frac{B_0}{\mu_0} - \frac{m}{4\pi b^3} \quad\cdots(2)$$
+</div>
+
+<h3>(C) 問8)　$B_1$ と磁気双極子モーメント $m$ を求める</h3>
+<div class="step">
+(1) より $m = 2\pi b^3(B_1-B_0)/\mu_0$ → $m/(4\pi b^3) = (B_1-B_0)/(2\mu_0)$ を (2) に代入：
+$$\frac{B_1}{\mu} = \frac{B_0}{\mu_0} - \frac{B_1-B_0}{2\mu_0} = \frac{3B_0}{2\mu_0} - \frac{B_1}{2\mu_0}$$
+$$\frac{B_1}{\mu} + \frac{B_1}{2\mu_0} = \frac{3B_0}{2\mu_0}$$
+$$B_1\cdot\frac{2\mu_0+\mu}{2\mu\mu_0} = \frac{3B_0}{2\mu_0}$$
+$$B_1 = \frac{3\mu B_0}{\mu + 2\mu_0}$$
+
+$m$ の計算：
+$$B_1 - B_0 = \frac{3\mu B_0}{\mu+2\mu_0} - B_0 = \frac{2(\mu-\mu_0)B_0}{\mu+2\mu_0}$$
+$$m = \frac{2\pi b^3}{\mu_0}\cdot\frac{2(\mu-\mu_0)B_0}{\mu+2\mu_0} = \frac{4\pi b^3(\mu-\mu_0)B_0}{\mu_0(\mu+2\mu_0)}$$
+</div>
+<div class="answer-box">
+$$\boxed{B_1 = \frac{3\mu B_0}{\mu + 2\mu_0}}$$
+$$\boxed{m = \frac{4\pi b^3(\mu-\mu_0)B_0}{\mu_0(\mu+2\mu_0)}}$$
+
+<b>確認：</b>$\mu\to\mu_0$ で $B_1\to B_0$，$m\to 0$（非磁性の場合）✓<br>
+$\mu\gg\mu_0$ で $B_1\approx 3B_0$（強磁性球は内部磁束を3倍に集中），$m\approx 4\pi b^3 B_0/\mu_0$。
+</div>
+
+<!-- ===== まとめ ===== -->
+<h2>解答まとめ</h2>
+<table>
+  <tr><th>大問</th><th>問</th><th>解答</th></tr>
+  <tr><td rowspan="7">1<br>同軸<br>円筒</td>
+    <td>(A)1)</td><td class="left">$r{<}a$：$E=0$；$a{<}r{<}b$：$E=V/[r\ln(b/a)]$</td></tr>
+  <tr><td>(A)2)</td><td class="left">$C=2\pi\varepsilon/\ln(b/a)$；$U=\pi\varepsilon V^2/\ln(b/a)$</td></tr>
+  <tr><td>(B)3)</td><td class="left">$\lambda(t)=(2\pi\varepsilon V/\ln(b/a))e^{-\sigma t/\varepsilon}$；$i(t)=(2\pi\sigma V/\ln(b/a))e^{-\sigma t/\varepsilon}$</td></tr>
+  <tr><td>(B)4)</td><td class="left">$Q=\pi\varepsilon V^2/\ln(b/a)$</td></tr>
+  <tr><td>(B)5)</td><td class="left">$Q=U$（静電エネルギーが完全にジュール熱に変換）</td></tr>
+  <tr><td>(C)1)</td><td class="left">$E_k = V/[\sigma_k r(\ln(c/a)/\sigma_1+\ln(b/c)/\sigma_2)]$（$k=1,2$）</td></tr>
+  <tr><td>(C)2)</td><td class="left">$\sigma_s = (\varepsilon_2/\sigma_2-\varepsilon_1/\sigma_1)V/\{c[\ln(c/a)/\sigma_1+\ln(b/c)/\sigma_2]\}$</td></tr>
+  <tr><td rowspan="5">2<br>磁場</td>
+    <td>(A)1)</td><td class="left">対称性より $A_r=A_\theta=0$（$\phi$成分のみ残る）</td></tr>
+  <tr><td>(A)2-3)</td><td class="left">$R=r\sqrt{1-2(a/r)\sin\theta\cos(\phi-\phi')+(a/r)^2}$；$A_\phi=\mu_0 I a^2\sin\theta/(4r^2)$</td></tr>
+  <tr><td>(B)4-5)</td><td class="left">$m=J_m S_0$；$M=J_m L/l$</td></tr>
+  <tr><td>(B)6)</td><td class="left">$\oint_C \boldsymbol{B}\cdot d\boldsymbol{l}=\mu_0 J_m L$</td></tr>
+  <tr><td>(C)7-8)</td><td class="left">$B_1=3\mu B_0/(\mu+2\mu_0)$；$m=4\pi b^3(\mu-\mu_0)B_0/[\mu_0(\mu+2\mu_0)]$</td></tr>
+</table>
+
+<footer>解答解説作成：Claude（Anthropic）</footer>
+</body>
+</html>

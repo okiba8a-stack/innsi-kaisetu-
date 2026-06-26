@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>H18年度 電磁気学（午後）解答解説</title>
+  <script>
+    MathJax = { tex: { inlineMath: [['$','$']], displayMath: [['$$','$$']] } };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: "Yu Gothic", "游ゴシック", sans-serif; font-size: 13pt; line-height: 1.9; color: #1a1a2e; background: #f4f7fb; padding: 40px; }
+    h1 { font-size: 20pt; color: #0d2b5e; border-bottom: 3px solid #0d2b5e; padding-bottom: 10px; margin-bottom: 6px; }
+    .subtitle { color: #666; font-size: 11pt; margin-bottom: 36px; }
+    h2 { font-size: 15pt; color: #0d2b5e; margin: 40px 0 16px; padding: 8px 16px; background: #e8f0fb; border-left: 5px solid #1e5fa8; border-radius: 4px; }
+    h3 { font-size: 13pt; color: #1e5fa8; margin: 28px 0 10px; border-bottom: 1px solid #c5d8f5; padding-bottom: 4px; }
+    .answer-box { background: #fff; border: 1px solid #c5d8f5; border-radius: 8px; padding: 20px 28px; margin: 12px 0 20px; }
+    .step { background: #f0f6ff; border-left: 3px solid #1e5fa8; padding: 10px 18px; margin: 10px 0; border-radius: 0 4px 4px 0; }
+    .result { background: #fff8e1; border: 2px solid #f9a825; border-radius: 6px; padding: 10px 18px; margin: 12px 0; font-weight: bold; }
+    .note { background: #f3f9f3; border-left: 3px solid #4caf50; padding: 8px 16px; margin: 10px 0; font-size: 11.5pt; color: #2e5f2e; }
+    footer { margin-top: 60px; color: #aaa; font-size: 10pt; text-align: center; }
+    a { color: #1e5fa8; }
+  </style>
+</head>
+<body>
+
+<h1>H18年度 電磁気学（午後）解答解説</h1>
+<p class="subtitle">平成17年8月17日実施 ／ 専門科目 電磁気学（電気電子工学・電子物理工学）</p>
+
+<!-- ===== 大問1 ===== -->
+<h2>大問1：電気映像法（接地完全導体平面と点電荷）</h2>
+
+<p style="margin-bottom:12px">設定：$z=0$ が接地完全導体の表面。点 $(0,0,d)$ に電荷 $+Q$、$z>0$ の空間の静電界を映像電荷法（$(0,0,-d)$ に $-Q$ を置いて導体を取り除く）で求める。真空の誘電率 $\varepsilon_0$。</p>
+
+<h3>問1）点 $(0,0,d)$ の電荷に働く力</h3>
+<div class="answer-box">
+  <div class="step">
+    映像電荷 $-Q$ が点 $(0,0,-d)$ に置かれる。$+Q$ と $-Q$ の距離 $= 2d$。
+    クーロンの法則（引力、$-z$ 方向）：
+  </div>
+  <div class="result">
+    $$F = \frac{Q^2}{4\pi\varepsilon_0(2d)^2} = \frac{Q^2}{16\pi\varepsilon_0 d^2} \quad \text{（大きさ；方向は } -z \text{ 方向）}$$
+  </div>
+</div>
+
+<h3>問2）映像法が使える理由</h3>
+<div class="answer-box">
+  <div class="step">
+    静電界の<b>ユニークネス定理</b>：ある領域（$z>0$）において，境界条件（$z=0$ で電位 $= 0$，$z\to\infty$ で電位 $\to 0$）と自由電荷分布（$+Q$ at $(0,0,d)$）が与えられたとき，その領域内の解は一意に定まる。
+    <br><br>
+    映像電荷 $-Q$ を $(0,0,-d)$ に置いたとき：
+    <ul style="margin-top:6px;margin-left:24px">
+      <li>$z=0$ の全面上で $+Q$ と $-Q$ による電位が対称的に相殺しゼロになる → 境界条件を満足</li>
+      <li>$z>0$ の自由電荷は $+Q$ at $(0,0,d)$ のみ → 元の問題と同一</li>
+    </ul>
+    よって，映像電荷を使った解が $z>0$ の元の問題の唯一の解と一致する。
+  </div>
+</div>
+
+<h3>問3）導体表面の電荷面密度 $\sigma(r)$、最大値、総電荷量</h3>
+<div class="answer-box">
+  <div class="step">
+    $z=0$ 上の点（$z$ 軸から距離 $r$）における法線方向電界 $E_z$（$+z$ が外向き）：
+    <br><br>
+    $+Q$（at $(0,0,d)$）による $E_z$ 成分：$z=0$ 上の点へ向かうベクトルの $z$ 成分が $-d$：
+    $$E_z^{+Q} = \frac{Q}{4\pi\varepsilon_0(r^2+d^2)}\cdot\frac{-d}{\sqrt{r^2+d^2}} = \frac{-Qd}{4\pi\varepsilon_0(r^2+d^2)^{3/2}}$$
+    $-Q$（at $(0,0,-d)$）による $E_z$ 成分：$z=0$ 上の点へ向かうベクトルの $z$ 成分が $+d$，電荷は $-Q$：
+    $$E_z^{-Q} = \frac{-Q}{4\pi\varepsilon_0(r^2+d^2)}\cdot\frac{+d}{\sqrt{r^2+d^2}} = \frac{-Qd}{4\pi\varepsilon_0(r^2+d^2)^{3/2}}$$
+    合計：
+    $$E_z = \frac{-Qd}{2\pi\varepsilon_0(r^2+d^2)^{3/2}}$$
+  </div>
+  <div class="result">
+    $$\sigma(r) = \varepsilon_0 E_z = \frac{-Qd}{2\pi(r^2+d^2)^{3/2}}$$
+    （負符号：電荷 $+Q$ に引き寄せられる負電荷）
+  </div>
+  <div class="step">
+    <b>絶対値最大</b>：$r=0$ で $|\sigma|_{\max} = \dfrac{Q}{2\pi d^2}$
+
+    <b>総電荷量</b>（ヒントの微分 $\dfrac{d}{dr}\!\left(\dfrac{1}{\sqrt{r^2+d^2}}\right) = \dfrac{-r}{(r^2+d^2)^{3/2}}$ を利用）：
+    $$Q_{ind} = \int_0^\infty \sigma(r)\cdot 2\pi r\,dr = \int_0^\infty \frac{-Qd}{\cancel{2\pi}(r^2+d^2)^{3/2}}\cdot \cancel{2\pi} r\,dr$$
+    $= -Qd\int_0^\infty \frac{r\,dr}{(r^2+d^2)^{3/2}}$
+
+    ヒントより：$\displaystyle\int_0^\infty \frac{r\,dr}{(r^2+d^2)^{3/2}} = \left[-\frac{1}{\sqrt{r^2+d^2}}\right]\bigg|_\infty^0 \cdot(-1)= \frac{1}{d}$
+    （$\dfrac{d}{dr}\!\left(\dfrac{1}{\sqrt{r^2+d^2}}\right) = \dfrac{-r}{(r^2+d^2)^{3/2}}$ を積分して代入）
+  </div>
+  <div class="result">
+    $$Q_{ind} = -Qd\cdot\frac{1}{d} = -Q$$
+    （$+Q$ と等量逆符号の電荷が導体面に誘起される）
+  </div>
+</div>
+
+<h3>問4）点 $(0,0,z)$（$z>0$）における電界の大きさ，$z\gg d$ の近似</h3>
+<div class="answer-box">
+  <div class="step">
+    $z$ 軸上（$(0,0,z)$）では電界は $z$ 方向成分のみ（$r=0$ の対称性）。
+
+    $+Q$（at $(0,0,d)$）による $z$ 成分：$\dfrac{Q}{4\pi\varepsilon_0(z-d)^2}\cdot\dfrac{z-d}{|z-d|}$
+
+    $-Q$（at $(0,0,-d)$）による $z$ 成分：$\dfrac{-Q}{4\pi\varepsilon_0(z+d)^2}$（$z+d>0$ なので $-z$ 方向）
+
+    合成（$z>d$ の場合は両方 $+z$ 方向）：
+    $$E(z) = \frac{Q}{4\pi\varepsilon_0}\!\left[\frac{1}{(z-d)^2} - \frac{1}{(z+d)^2}\right] \quad (z>d)$$
+    $0 < z < d$ では $+Q$ 方向が $-z$ 成分なので：
+    $$E(z) = \frac{Q}{4\pi\varepsilon_0}\!\left[-\frac{1}{(d-z)^2} - \frac{1}{(z+d)^2}\right] \quad (0<z<d)$$
+  </div>
+  <div class="step">
+    <b>$z\gg d$ の近似</b>（$z>d$）：
+    $$\frac{1}{(z-d)^2} \approx \frac{1}{z^2}\!\left(1+\frac{2d}{z}\right), \quad \frac{1}{(z+d)^2} \approx \frac{1}{z^2}\!\left(1-\frac{2d}{z}\right)$$
+    $$E(z) \approx \frac{Q}{4\pi\varepsilon_0}\cdot\frac{4d}{z^3}$$
+  </div>
+  <div class="result">
+    $$E(z) \approx \frac{Qd}{\pi\varepsilon_0 z^3} = \frac{A}{z^3} \quad \left(A = \frac{Qd}{\pi\varepsilon_0},\ n=3\right)$$
+  </div>
+</div>
+
+<h3>問5）①乗と②乗</h3>
+<div class="answer-box">
+  <div class="result">
+    ①＝ <b>3</b>，②＝ <b>2</b>
+  </div>
+  <div class="note">
+    <b>物理的説明</b>：導体面がある場合，点電荷 $+Q$ とその映像電荷 $-Q$（距離 $2d$ の双極子系）が形成される。遠方での双極子電界は $1/r^3$ で減衰する（モノポールの $1/r^2$ より速い）。导体面がない孤立点電荷の電界は $1/r^2$ に反比例する。
+  </div>
+</div>
+
+<h3>問6）接地完全導体を近づけたとき面内反発力の変化</h3>
+<div class="answer-box">
+  <div class="step">
+    導体が近づくと各点電荷（$+Q_1$，$+Q_2$）に対して映像電荷（$-Q_1$，$-Q_2$）が誘起される。
+    <ul style="margin-top:8px;margin-left:24px">
+      <li>$+Q_1$ は $-Q_2$ の映像電荷から <b>引力</b> を受ける（面内成分あり）</li>
+      <li>同様に $+Q_2$ は $-Q_1$ の映像電荷から引力を受ける</li>
+    </ul>
+    これらの引力は薄板面内で 2 電荷間の反発力と逆方向に作用する。
+  </div>
+  <div class="result">
+    接地完全導体を近づけると，映像電荷（逆符号）が誘起され，2点電荷間の <b>面内反発力は減少</b> する。導体が薄板に近づくほど映像電荷の効果が大きくなり，反発力はさらに小さくなる。
+  </div>
+</div>
+
+<!-- ===== 大問2 ===== -->
+<h2>大問2：長直線電流とローレンツ力，ベクトル恒等式</h2>
+
+<h3>問1-a）導線から距離 $r$ の磁界の大きさ</h3>
+<div class="answer-box">
+  <div class="step">
+    アンペアの法則（積分形）：$\oint H\cdot dl = I$ → 半径 $r$ の円形経路で $H\cdot 2\pi r = I$：
+  </div>
+  <div class="result">
+    $$H = \frac{I}{2\pi r}$$
+    磁束密度：$B = \mu_0 H = \dfrac{\mu_0 I}{2\pi r}$
+  </div>
+</div>
+
+<h3>問1-b）点電荷に働く力の大きさ</h3>
+<div class="answer-box">
+  <div class="step">
+    点電荷 $q$ が電流と同方向に速度 $v$ で運動しているので，ローレンツ力 $\boldsymbol{F} = q\boldsymbol{v}\times\boldsymbol{B}$：
+    $v$ と $B$ は直交（$\boldsymbol{v}$ は電流方向，$\boldsymbol{B}$ は $\boldsymbol{v}$ に垂直な面内方向）なので：
+  </div>
+  <div class="result">
+    $$F = qvB = \frac{q v \mu_0 I}{2\pi r}$$
+  </div>
+</div>
+
+<h3>問1-c）$\boldsymbol{F}$ と $\boldsymbol{B}$ の方向</h3>
+<div class="answer-box">
+  <div class="step">
+    電流が $+z$ 方向（図2.1の斜め上），点電荷は電流の右下（$x$ 正方向に距離 $r$）：
+    <ul style="margin-top:6px;margin-left:24px">
+      <li>$\boldsymbol{B}$：右手ルールで導線を中心に円周方向 → 点電荷の位置では $-y$ 方向（紙面内，電流の右側で奥に向かう）</li>
+      <li>$\boldsymbol{v} \times \boldsymbol{B} = (+z)\times(-y) = +x$（方向確認：$z\times y = -x$ → $z\times(-y)=+x$）</li>
+      <li>$\boldsymbol{F} = q\boldsymbol{v}\times\boldsymbol{B}$：$q>0$ のとき導線方向（$-x$ 方向：引力）</li>
+    </ul>
+    <b>結論</b>：同方向に平行運動する電荷 $q>0$ には<b>導線へ向かう引力</b>が働く（平行電流の引き合いに対応）。矢印は $\boldsymbol{B}$：導線周りの円周方向，$\boldsymbol{F}$：導線に向かう方向。
+  </div>
+</div>
+
+<h3>問2）$\text{rot}(\varphi\boldsymbol{A}) = \text{grad}(\varphi)\times\boldsymbol{A} + \varphi\,\text{rot}(\boldsymbol{A})$ の $x$ 成分の証明</h3>
+<div class="answer-box">
+  <div class="step">
+    左辺 $[\text{rot}(\varphi\boldsymbol{A})]_x$ を展開：
+    $$[\text{rot}(\varphi\boldsymbol{A})]_x = \frac{\partial(\varphi A_z)}{\partial y} - \frac{\partial(\varphi A_y)}{\partial z}$$
+    積の微分則を適用：
+    $$= \frac{\partial\varphi}{\partial y}A_z + \varphi\frac{\partial A_z}{\partial y} - \frac{\partial\varphi}{\partial z}A_y - \varphi\frac{\partial A_y}{\partial z}$$
+    $= \underbrace{\left(\frac{\partial\varphi}{\partial y}A_z - \frac{\partial\varphi}{\partial z}A_y\right)}_{[\text{grad}(\varphi)\times\boldsymbol{A}]_x} + \underbrace{\varphi\!\left(\frac{\partial A_z}{\partial y} - \frac{\partial A_y}{\partial z}\right)}_{[\varphi\,\text{rot}(\boldsymbol{A})]_x}$
+  </div>
+  <div class="step">
+    右辺 $x$ 成分の確認：
+    <ul style="margin-left:20px">
+      <li>$[\text{grad}(\varphi)\times\boldsymbol{A}]_x = (\nabla\varphi)_y A_z - (\nabla\varphi)_z A_y = \dfrac{\partial\varphi}{\partial y}A_z - \dfrac{\partial\varphi}{\partial z}A_y$ ✓</li>
+      <li>$[\varphi\,\text{rot}(\boldsymbol{A})]_x = \varphi\!\left(\dfrac{\partial A_z}{\partial y} - \dfrac{\partial A_y}{\partial z}\right)$ ✓</li>
+    </ul>
+  </div>
+  <div class="result">
+    左辺 $=$ 右辺が $x$ 成分で成り立つことが示された。$\quad\blacksquare$
+  </div>
+</div>
+
+<!-- ===== 大問3 ===== -->
+<h2>大問3：ソレノイド内の回転コイル（電磁誘導）</h2>
+
+<p style="margin-bottom:12px">単位長あたり巻数 $n$，電流 $I$ のソレノイド内部に一様磁界 $\boldsymbol{H}$。面積 $S$，巻数 1 の円形コイルが $x$-$x'$ 軸周りに自由回転。抵抗 $R$ 接続。</p>
+
+<h3>問1）ソレノイドの電流 $I$ と磁界 $H$ の関係</h3>
+<div class="answer-box">
+  <div class="step">
+    長さ $\ell$ のアンペア経路（ソレノイド内を通り外部を結ぶ長方形）にアンペアの法則を適用。内部の囲まれる電流 $= nI\ell$，外部（ソレノイド外は $H\approx0$）への寄与を無視：
+    $$H\ell = nI\ell$$
+  </div>
+  <div class="result">
+    $$H = nI$$
+  </div>
+</div>
+
+<h3>問2）コイルに鎖交する磁束（$\mu_0, H, S, \theta$ で表す）</h3>
+<div class="answer-box">
+  <div class="step">
+    磁束密度：$B = \mu_0 H$。コイル面の法線と磁界がなす角 $\theta$（$\theta=0$ で法線と磁界が平行）。
+  </div>
+  <div class="result">
+    $$\Phi = \mu_0 H S\cos\theta$$
+  </div>
+</div>
+
+<h3>問3）ソレノイドとコイルの相互インダクタンス</h3>
+<div class="answer-box">
+  <div class="step">
+    $\Phi = M I$ の関係と $H = nI$ より：
+    $\mu_0 H S\cos\theta = M\cdot (H/n)$ → $M = \mu_0 n S\cos\theta$
+  </div>
+  <div class="result">
+    $$M(\theta) = \mu_0 n S\cos\theta$$
+    （$\theta=0$ のとき最大 $M_0 = \mu_0 n S$）
+  </div>
+</div>
+
+<h3>問4）角速度 $\omega$ で回転させたときの誘起電圧</h3>
+<div class="answer-box">
+  <div class="step">
+    $\theta = \omega t$（初期 $\theta=0$ でスタート）とすると，鎖交磁束：
+    $\Phi(t) = \mu_0 H S\cos(\omega t)$
+
+    ファラデーの法則：
+  </div>
+  <div class="result">
+    $$e = -\frac{d\Phi}{dt} = \mu_0 H S\omega\sin(\omega t)$$
+    （$H = nI$ を代入：$e = \mu_0 n I S\omega\sin(\omega t)$）
+  </div>
+</div>
+
+<h3>問5）$\theta=0$ から $\theta=\pi$ の間の電流の $\theta$ に対する平均値</h3>
+<div class="answer-box">
+  <div class="step">
+    電流（自己インダクタンス無視，$i = e/R$）：$i = \dfrac{\mu_0 H S\omega\sin\theta}{R}$
+
+    $\theta=0$ から $\theta=\pi$ の平均値：
+    $$\bar{i} = \frac{1}{\pi}\int_0^\pi \frac{\mu_0 H S\omega\sin\theta}{R}\,d\theta = \frac{\mu_0 H S\omega}{\pi R}\!\left[-\cos\theta\right]_0^\pi = \frac{\mu_0 H S\omega}{\pi R}\cdot 2$$
+  </div>
+  <div class="result">
+    $$\bar{i} = \frac{2\mu_0 H S\omega}{\pi R}$$
+    （$H=nI$ 代入：$\bar{i} = \dfrac{2\mu_0 n I S\omega}{\pi R}$）
+  </div>
+  <div class="note">
+    $\theta=0$：コイル面が磁界に垂直（鎖交磁束最大），$\theta=\pi$：再び垂直（鎖交磁束最大だが符号逆）。半回転の間，電流は常に同じ符号（$\sin\theta \ge 0$）で流れ，その平均が $2\mu_0 H S\omega/(\pi R)$。
+  </div>
+</div>
+
+<footer>
+  解答解説作成：Claude（Anthropic）| <a href="index.html">← 一覧に戻る</a>
+</footer>
+
+</body>
+</html>

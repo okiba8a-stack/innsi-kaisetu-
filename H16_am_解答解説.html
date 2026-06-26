@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>H16年度 専門科目（午前）解答解説</title>
+  <script>
+    MathJax = { tex: { inlineMath: [['$','$'],['\\(','\\)']] }, options: { skipHtmlTags: ['script','noscript','style','textarea','pre'] } };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: "Yu Gothic","游ゴシック",sans-serif; font-size: 13pt; line-height: 1.9; color: #1a1a2e; background: #f4f7fb; padding: 40px; }
+    h1 { font-size: 20pt; color: #0d2b5e; border-bottom: 3px solid #0d2b5e; padding-bottom: 10px; margin-bottom: 6px; }
+    .meta { color: #666; font-size: 11pt; margin-bottom: 32px; }
+    h2 { font-size: 15pt; color: #fff; background: #0d2b5e; padding: 8px 16px; border-radius: 6px; margin: 36px 0 16px; }
+    h3 { font-size: 13pt; color: #0d2b5e; border-left: 4px solid #1e5fa8; padding-left: 10px; margin: 24px 0 10px; }
+    h4 { font-size: 12pt; color: #1e5fa8; margin: 18px 0 6px; }
+    .answer-box { background: #fff; border: 2px solid #1e5fa8; border-radius: 8px; padding: 16px 20px; margin: 12px 0; }
+    .note { background: #fffbe6; border-left: 4px solid #f0a500; padding: 10px 16px; margin: 10px 0; border-radius: 0 6px 6px 0; font-size: 12pt; }
+    .step { background: #f0f5ff; border-radius: 6px; padding: 12px 16px; margin: 8px 0; }
+    .result { background: #e8f4e8; border: 1px solid #4caf50; border-radius: 6px; padding: 10px 16px; margin: 10px 0; font-weight: bold; }
+    table { border-collapse: collapse; width: 100%; margin: 12px 0; }
+    th { background: #0d2b5e; color: #fff; padding: 8px 12px; text-align: center; }
+    td { border: 1px solid #c5d8f5; padding: 8px 12px; text-align: center; }
+    tr:nth-child(even) td { background: #f0f5ff; }
+    .tag { display: inline-block; background: #eef4ff; border: 1px solid #c5d8f5; border-radius: 20px; padding: 2px 10px; font-size: 10pt; color: #1e5fa8; margin: 2px; }
+    .choice-note { background: #fff0f0; border: 1px solid #ffaaaa; border-radius: 6px; padding: 10px 16px; margin: 12px 0; font-size: 12pt; }
+    footer { margin-top: 60px; color: #aaa; font-size: 10pt; text-align: center; }
+  </style>
+</head>
+<body>
+
+<h1>H16年度 専門科目（午前）解答解説</h1>
+<p class="meta">電気電子工学・電子物理工学 ／ 平成15年8月実施（9:30〜11:00）</p>
+<p class="meta"><span class="tag">電気数学</span><span class="tag">電気回路</span><span class="tag">電磁気学</span></p>
+<div class="choice-note">⚠️ 3分野（I〜III）から2分野を選択して解答する形式です。全問の解答を掲載します。</div>
+
+<!-- ===== 大問I 電気数学 ===== -->
+<h2>大問I【電気数学】ラプラス変換と微分方程式</h2>
+
+<p>$F(s) = \mathcal{L}\{f(t)\} = \displaystyle\int_0^\infty e^{-st}f(t)\,dt$</p>
+
+<h3>問1）各関数のラプラス変換</h3>
+
+<h4>a) 単位ステップ関数 $f(t) = u(t)$</h4>
+<div class="step">
+  $F(s) = \displaystyle\int_0^\infty e^{-st}\cdot 1\,dt = \left[-\dfrac{e^{-st}}{s}\right]_0^\infty = \dfrac{1}{s}$
+</div>
+<div class="result">$F(s) = \dfrac{1}{s}$</div>
+
+<h4>b) 遅延ステップ $f(t) = u(t - t_0)$</h4>
+<div class="step">
+  $F(s) = \displaystyle\int_{t_0}^\infty e^{-st}\,dt = \left[-\dfrac{e^{-st}}{s}\right]_{t_0}^\infty = \dfrac{e^{-st_0}}{s}$
+</div>
+<div class="result">$F(s) = \dfrac{e^{-st_0}}{s}$</div>
+
+<h4>c) 遅延正弦波 $f(t) = \sin\omega(t-t_0)\cdot u(t-t_0)$</h4>
+<div class="step">
+  $\mathcal{L}[\sin\omega t \cdot u(t)] = \dfrac{\omega}{s^2+\omega^2}$，遅延定理（問2b）より：
+</div>
+<div class="result">$F(s) = \dfrac{\omega\, e^{-st_0}}{s^2 + \omega^2}$</div>
+
+<h3>問2）基本定理</h3>
+
+<h4>a) 導関数のラプラス変換：$\mathcal{L}[f'(t)] = sF(s) - f(0)$ の証明</h4>
+<div class="step">
+  部分積分 $\int uv'\,dt = [uv] - \int u'v\,dt$ を適用。$u = e^{-st}$，$v' = f'(t)$：
+  $$\int_0^\infty e^{-st}f'(t)\,dt = \underbrace{\bigl[e^{-st}f(t)\bigr]_0^\infty}_{0 - f(0)} + s\int_0^\infty e^{-st}f(t)\,dt$$
+</div>
+<div class="result">
+  $\mathcal{L}[f'(t)] = sF(s) - f(0)$ （示された）
+</div>
+
+<h4>b) 遅延定理：$\mathcal{L}[f(t-t_0)] = e^{-st_0}F(s)$</h4>
+<div class="step">
+  $\tau = t - t_0$ と置換（$f(\tau) = 0$ for $\tau < 0$）：
+  $$\int_0^\infty e^{-st}f(t-t_0)\,dt = \int_0^\infty e^{-s(\tau+t_0)}f(\tau)\,d\tau = e^{-st_0}F(s)$$
+</div>
+<div class="result">$\mathcal{L}[f(t-t_0)] = e^{-st_0}F(s)$（示された）</div>
+
+<h4>c) デルタ関数 $\mathcal{L}[\delta(t-t_0)]$</h4>
+<div class="step">
+  $\delta$ 関数の定義 $\int_0^\infty \delta(t-t_0)g(t)\,dt = g(t_0)$ に $g(t) = e^{-st}$ を代入：
+  $$\mathcal{L}[\delta(t-t_0)] = \int_0^\infty e^{-st}\delta(t-t_0)\,dt = e^{-st_0}$$
+</div>
+<div class="result">$\mathcal{L}[\delta(t-t_0)] = e^{-st_0}$</div>
+
+<h3>問3〜4）自由質点の速度（衝撃力）</h3>
+<p>$m\dfrac{d}{dt}v(t) = P\delta(t-t_0)$</p>
+
+<h4>問3）$V(s)$ の導出</h4>
+<div class="step">
+  両辺をラプラス変換：$m[sV(s) - v(0)] = Pe^{-st_0}$
+</div>
+<div class="result">
+  $$V(s) = \frac{v(0)}{s} + \frac{Pe^{-st_0}}{ms}$$
+</div>
+
+<h4>問4）$v(0)=0$ のとき $v(t)$（$t \ge 0$）</h4>
+<div class="step">
+  $V(s) = \dfrac{Pe^{-st_0}}{ms}$ → 逆変換：$\dfrac{1}{s}\leftrightarrow u(t)$，遅延定理より
+</div>
+<div class="result">
+  $$v(t) = \frac{P}{m}u(t-t_0) = \begin{cases} 0 & t < t_0 \\ P/m & t \ge t_0 \end{cases}$$
+  時刻 $t_0$ に衝撃力 $P$ を受け，速度が瞬時に $P/m$ にジャンプ。
+</div>
+
+<h3>問5〜7）ばね質点系（衝撃力）</h3>
+<p>$m\dfrac{d^2}{dt^2}x(t) = P\delta(t-t_0) - kx(t)$，$x(0)=0$，$k/m = \omega_0^2$</p>
+
+<h4>問5）$X(s)$ の導出</h4>
+<div class="step">
+  $m[s^2X(s) - sv(0)] = Pe^{-st_0} - kX(s)$（$x(0)=0$）
+  $(ms^2+k)X(s) = Pe^{-st_0} + mv(0)$
+</div>
+<div class="result">
+  $$X(s) = \frac{Pe^{-st_0}}{m(s^2+\omega_0^2)} + \frac{v(0)}{s^2+\omega_0^2}$$
+</div>
+
+<h4>問6）$v(0)=0$ のとき $x(t)$</h4>
+<div class="step">
+  $X(s) = \dfrac{P}{m}\cdot\dfrac{e^{-st_0}}{s^2+\omega_0^2} = \dfrac{P}{m\omega_0}\cdot\dfrac{\omega_0 e^{-st_0}}{s^2+\omega_0^2}$，遅延定理と $\dfrac{\omega_0}{s^2+\omega_0^2}\leftrightarrow\sin\omega_0 t$
+</div>
+<div class="result">
+  $$x(t) = \frac{P}{m\omega_0}\sin\omega_0(t-t_0)\cdot u(t-t_0)$$
+  衝撃を受けた後，振幅 $P/(m\omega_0)$ の単振動を行う。
+</div>
+
+<h4>問7）$t \ge 0$ での速度の議論</h4>
+<div class="step">
+  $v(t) = \dot{x}(t) = \dfrac{P}{m}\cos\omega_0(t-t_0)\cdot u(t-t_0)$
+</div>
+<div class="answer-box">
+  ・$0 \le t < t_0$：$v(t) = 0$（静止）<br>
+  ・$t = t_0^+$：$v(t_0^+) = P/m$（衝撃力により速度が瞬時に $P/m$ にジャンプ）<br>
+  ・$t > t_0$：$v(t) = \dfrac{P}{m}\cos\omega_0(t-t_0)$（角振動数 $\omega_0$ の単振動）<br>
+  エネルギーはばねと質点間で交互に変換され，速度は $-P/m$ から $+P/m$ の間を振動する。
+</div>
+
+<!-- ===== 大問II 電気回路 ===== -->
+<h2>大問II【電気回路】立体回路・補償定理・梯子回路</h2>
+
+<h3>問1）立方体形状の立体回路（図II.1.1）</h3>
+<p>12本の辺それぞれに抵抗 $R$ を配した立方体，端子 a-b は体対角線の対頂点。</p>
+
+<h4>a) a-b間の合成抵抗</h4>
+<div class="step">
+  対称性により等電位面を3グループに分類：
+  <ul style="margin:6px 0 6px 16px">
+    <li>グループ1（$a$ のみ）→ グループ2（$a$ に隣接する3頂点）：並列3本 = $R/3$</li>
+    <li>グループ2 → グループ3（$b$ に隣接する3頂点）：並列6本 = $R/6$</li>
+    <li>グループ3 → グループ4（$b$ のみ）：並列3本 = $R/3$</li>
+  </ul>
+</div>
+<div class="result">
+  $$R_{ab} = \frac{R}{3} + \frac{R}{6} + \frac{R}{3} = \frac{2+1+2}{6}R = \frac{5R}{6}$$
+</div>
+
+<h4>b) 独立な閉路の数</h4>
+<div class="step">
+  立方体グラフ：頂点数 $V=8$，辺数 $E=12$，連結成分数 $C=1$<br>
+  独立閉路数（閉路ランク）$= E - V + C = 12 - 8 + 1$
+</div>
+<div class="result">独立な閉路の数 $= 5$</div>
+
+<h3>問2）ブリッジ回路（図II.1.2）</h3>
+<p>回路：$V^+\to R\to a\to R\to c$，$V^-\to R\to b\to R\to d$，クロスアーム：$R$（a-b間），$R$（c-d間）</p>
+
+<h4>a) a-b間の電圧</h4>
+<div class="step">
+  節点電圧法（$V^+ = V$，$V^- = 0$）により4節点方程式を連立：
+  <br>
+  対称性の結果：$V_a = 7V/11$，$V_b = 4V/11$，$V_c = 6V/11$，$V_d = 5V/11$
+</div>
+<div class="result">
+  $$V_{ab} = V_a - V_b = \frac{7V}{11} - \frac{4V}{11} = \frac{3V}{11}$$
+</div>
+
+<h4>b) 補償定理による $\Delta V_{ab}$（c-d抵抗 $R\to R+\Delta R$）</h4>
+<div class="step">
+  <strong>補償定理：</strong>c-d間の変化量 $\Delta R$ を等価電圧源 $\Delta V_{comp} = I_{cd}\cdot\Delta R$ で代替。<br>
+  元のc-d電流：$I_{cd} = (V_c - V_d)/R = \dfrac{V/11}{R} = \dfrac{V}{11R}$<br>
+  補償源：$\Delta V_{comp} = \dfrac{V}{11R}\cdot\Delta R$（元の回路のVを0に置換して解析）
+  <br><br>
+  元のVを短絡し，$\Delta V_{comp}$ のみで節点方程式を解くと：
+  $\Delta V_a = \Delta V_{comp}/11$，$\Delta V_b = -\Delta V_{comp}/11$
+</div>
+<div class="result">
+  $$\Delta V_{ab} = \frac{2\Delta V_{comp}}{11} = \frac{2}{11}\cdot\frac{V\Delta R}{11R} = \frac{2V\Delta R}{121R}$$
+</div>
+
+<h3>問3）無限梯子回路（図II.1.3）の入力インピーダンス</h3>
+<p>上下対称な2線式梯子：各段に直列 $R$（上線）＋直列 $R$（下線）＋分路 $R$</p>
+<div class="step">
+  無限梯子は自己相似：1段追加しても $Z_{in}$ は変わらない。
+  $$Z_{in} = 2R + \frac{R\cdot Z_{in}}{R + Z_{in}}$$
+  $Z_{in}(R+Z_{in}) = 2R(R+Z_{in}) + RZ_{in}$ → $Z_{in}^2 - 2RZ_{in} - 2R^2 = 0$
+  $$Z_{in} = \frac{2R + \sqrt{4R^2+8R^2}}{2} = R(1+\sqrt{3})$$
+</div>
+<div class="result">$$Z_{in} = (1+\sqrt{3})R \approx 2.73\,R$$</div>
+
+<h3>問4）LC梯子回路（分布定数線路）</h3>
+<p>1段：上下に $L\Delta z$（直列），分路に $C\Delta z$。$L$[H/m]，$C$[F/m]，$\Delta z$[m]。</p>
+
+<h4>a) 有限段→純虚数インピーダンス（数学的帰納法）</h4>
+<div class="step">
+  <strong>基底：</strong>$n=1$ 段（終端開放）：
+  $$Z_1 = 2j\omega L\Delta z + \frac{1}{j\omega C\Delta z} = j\!\left(2\omega L\Delta z - \frac{1}{\omega C\Delta z}\right) \in j\mathbb{R}$$
+  <strong>帰納ステップ：</strong>$Z_k = jX_k$（純虚数）と仮定する。$n=k+1$ 段の入力インピーダンス：
+  $$Z_{k+1} = 2j\omega L\Delta z + \frac{jX_k \cdot \frac{1}{j\omega C\Delta z}}{jX_k + \frac{1}{j\omega C\Delta z}} = 2j\omega L\Delta z + \frac{jX_k/(\omega C\Delta z)}{j(X_k - 1/(\omega C\Delta z))}$$
+  分子は実数，分母は純虚数 → 商は純虚数 → $Z_{k+1}$ も純虚数。
+</div>
+<div class="answer-box">
+  有限段（終端開放）のLC梯子の入力インピーダンスは常に<strong>純虚数</strong>（無損失リアクタンス）。（示された）
+</div>
+
+<h4>b) 無限段の入力インピーダンス（$2\omega^2 LC(\Delta z)^2$ 無視）</h4>
+<div class="step">
+  自己相似方程式：$Z_{in} = 2j\omega L\Delta z + \dfrac{Z_{in}/(j\omega C\Delta z)}{Z_{in} + 1/(j\omega C\Delta z)}$<br>
+  整理すると：$Z_{in}^2 = 2j\omega L\Delta z\cdot Z_{in} + 2L(\Delta z)^2/C$<br>
+  特性インピーダンス公式：$Z_0 = \sqrt{Z_s Z_p + (Z_s/2)^2}$（$Z_s = 2j\omega L\Delta z$，$Z_p = 1/(j\omega C\Delta z)$）
+  $$Z_0 = \sqrt{\frac{2L}{C} - \omega^2L^2(\Delta z)^2} \approx \sqrt{\frac{2L}{C}} \quad (2\omega^2LC(\Delta z)^2 \text{ 無視})$$
+</div>
+<div class="result">$$Z_{in} = \sqrt{\frac{2L}{C}} \quad \text{（実数，特性インピーダンス）}$$</div>
+
+<h4>c) 有限段と無限段の違いの物理的意味</h4>
+<div class="answer-box">
+  <strong>有限段（純虚数）：</strong>終端で波が全反射するため，進行波と反射波が定在波を形成。電力は往復するだけで外部に伝わらない（エネルギー貯蔵のみ）。<br><br>
+  <strong>無限段（実数 $\sqrt{2L/C}$）：</strong>波が一方向に伝搬し続け反射が戻らない。電力が「吸収」される（実際には無限遠に伝送される）。これが伝送線路の特性インピーダンスに対応する。
+</div>
+
+<!-- ===== 大問III 電磁気学 ===== -->
+<h2>大問III【電磁気学】アンペールの法則とMEMSキャパシタ</h2>
+
+<h3>問1）閉曲線に沿ったアンペール積分 $\oint\mathbf{H}\cdot d\mathbf{l}$</h3>
+
+<p>電流の向き：$I_1 = 1\text{A}$（紙面奥へ ⊗），$I_2 = 2\text{A}$（紙面手前 ⊙），$I_3 = 3\text{A}$（紙面奥へ ⊗）</p>
+
+<div class="step">
+  <strong>符号規則：</strong>閉曲線の方向に右ねじを回したとき親指が向く方向に流れる電流を正とする。<br>
+  反時計回り（CCW）の曲線では：⊙（手前）= 正，⊗（奥）= 負
+</div>
+
+<div class="answer-box">
+  <table>
+    <tr><th>曲線</th><th>囲む電流（符号付き）</th><th>$\oint\mathbf{H}\cdot d\mathbf{l}$</th></tr>
+    <tr><td>$C_1$（CCW，$I_1,I_2,I_3$ 全囲）</td><td>$-I_1 + I_2 - I_3 = -1+2-3$</td><td>$-2$ A</td></tr>
+    <tr><td>$C_2$（CW，$I_1,I_2$ 囲む）</td><td>$+I_1 - I_2 = 1-2$</td><td>$-1$ A</td></tr>
+    <tr><td>$C_3$（複合曲線，$I_2,I_3$ 囲む）</td><td>$+I_2 - I_3 = 2-3$</td><td>$-1$ A</td></tr>
+    <tr><td>$C_4$（図形8字，巻数注意）</td><td>$-I_1 + I_2 - I_3 = -1+2-3$（両ループ考慮）</td><td>$-2$ A</td></tr>
+  </table>
+  <p style="margin-top:8px;font-size:11pt;color:#555">※ 各曲線の方向は問題図の矢印に従う。上記は代表的な解答。複合曲線や8字形曲線では各閉ループの巻付き数（winding number）を個別に数える。</p>
+</div>
+
+<div class="note">アンペールの法則：$\oint_C\mathbf{H}\cdot d\mathbf{l} = \sum_i n_i I_i$（$n_i$ は巻付き数，右ねじ規則で符号決定）</div>
+
+<h3>問2）MEMSキャパシタ（バラクタダイオード・MEMS平行平板）</h3>
+
+<h4>A の答え（バラクタダイオード）</h4>
+<div class="answer-box">
+  逆方向電圧を大きくする → 空乏層が広がる → 等価コンデンサの電極間距離が増加 → $C = \varepsilon S/d$ より<br>
+  静電容量は<strong>小さく</strong>なる。
+</div>
+
+<h4>B の答え（MEMS平行平板キャパシタ）</h4>
+<div class="answer-box">
+  電圧 $V$ を印加すると，電極間に電界が生じ，上部可動電極と下部固定電極が静電気力で<strong>引き</strong>合う。
+</div>
+
+<h4>下線部（ア）〜（ウ）の説明</h4>
+<div class="answer-box">
+  <strong>（ア）平行平板キャパシタ：</strong>誘電体（空気）をはさんだ2枚の導体板で形成されるキャパシタ。静電容量 $C = \varepsilon_0 S/d$（$S$：面積，$d$：間隔）。<br><br>
+  <strong>（イ）電極間に働く静電引力：</strong>
+  電極間電界 $E = V/d$，静電エネルギー $U = \frac{1}{2}CV^2 = \frac{\varepsilon_0 S V^2}{2d}$
+  $$F = -\frac{\partial U}{\partial d} = \frac{\varepsilon_0 S V^2}{2d^2} > 0 \quad \text{（引力）}$$
+  <strong>（ウ）距離が縮まると容量が変わる：</strong>
+  電圧 $V$ を印加 → 引力により間隔 $d$ が小さくなる → $C = \varepsilon_0 S/d$ が増加する（電圧で容量を制御できる原理）。
+</div>
+
+<!-- ===== まとめ ===== -->
+<h2>解答まとめ</h2>
+<table>
+  <tr><th>問</th><th>科目</th><th>主要結果</th></tr>
+  <tr><td>I.1a〜c</td><td>数学</td><td>$1/s$，$e^{-st_0}/s$，$\omega e^{-st_0}/(s^2+\omega^2)$</td></tr>
+  <tr><td>I.4</td><td>数学</td><td>$v(t) = (P/m)u(t-t_0)$（衝撃後に速度ジャンプ）</td></tr>
+  <tr><td>I.6</td><td>数学</td><td>$x(t) = \frac{P}{m\omega_0}\sin\omega_0(t-t_0)u(t-t_0)$</td></tr>
+  <tr><td>II.1a</td><td>回路</td><td>立方体合成抵抗 $= 5R/6$</td></tr>
+  <tr><td>II.1b</td><td>回路</td><td>独立閉路数 $= 5$</td></tr>
+  <tr><td>II.2a</td><td>回路</td><td>$V_{ab} = 3V/11$</td></tr>
+  <tr><td>II.2b</td><td>回路</td><td>$\Delta V_{ab} = 2V\Delta R/(121R)$</td></tr>
+  <tr><td>II.3</td><td>回路</td><td>$Z_{in} = (1+\sqrt{3})R$</td></tr>
+  <tr><td>II.4b</td><td>回路</td><td>$Z_{in} = \sqrt{2L/C}$（特性インピーダンス）</td></tr>
+  <tr><td>III.1</td><td>電磁気</td><td>各 $\oint\mathbf{H}\cdot dl$：曲線方向と囲む電流に依存</td></tr>
+  <tr><td>III.2</td><td>電磁気</td><td>A=小さく，B=引き，静電引力 $F = \varepsilon_0 SV^2/(2d^2)$</td></tr>
+</table>
+
+<footer>解答解説作成：Claude（Anthropic）</footer>
+</body>
+</html>

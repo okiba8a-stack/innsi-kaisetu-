@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>H25年度 専門科目午後2 電磁気学 解答解説</title>
+  <script>
+    MathJax = {
+      tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']], tags: 'ams' },
+      options: { skipHtmlTags: ['script','noscript','style','textarea','pre'] }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: "Yu Gothic","游ゴシック",sans-serif; font-size: 13pt; line-height: 1.9; color: #1a1a2e; background: #f4f7fb; padding: 40px; }
+    h1 { font-size: 19pt; color: #0d2b5e; border-bottom: 3px solid #0d2b5e; padding-bottom: 10px; margin-bottom: 6px; }
+    .meta { color: #666; font-size: 11pt; margin-bottom: 36px; }
+    h2 { font-size: 15pt; color: #0d2b5e; background: #e8f0fb; border-left: 5px solid #1e5fa8; padding: 8px 14px; margin: 40px 0 16px; border-radius: 0 6px 6px 0; }
+    h3 { font-size: 13pt; color: #1e5fa8; border-bottom: 1px solid #c5d8f5; margin: 28px 0 10px; padding-bottom: 4px; }
+    .answer-box { background: #fff; border: 2px solid #1e5fa8; border-radius: 6px; padding: 14px 20px; margin: 12px 0; }
+    .step { background: #eef4ff; border-left: 3px solid #5b8dee; padding: 10px 16px; margin: 10px 0; border-radius: 0 4px 4px 0; }
+    .note { background: #fffbe6; border-left: 4px solid #f0ad00; padding: 10px 16px; margin: 12px 0; border-radius: 0 4px 4px 0; font-size: 11.5pt; }
+    table { border-collapse: collapse; width: 100%; margin: 16px 0; font-size: 11.5pt; }
+    th { background: #0d2b5e; color: #fff; padding: 8px 12px; text-align: center; }
+    td { border: 1px solid #c5d8f5; padding: 8px 12px; text-align: center; }
+    td.left { text-align: left; }
+    tr:nth-child(even) td { background: #f0f6ff; }
+    footer { margin-top: 60px; color: #aaa; font-size: 10pt; text-align: center; }
+    @media print { body { background: #fff; padding: 20px; } }
+  </style>
+</head>
+<body>
+
+<h1>H25年度 専門科目 午後2（電磁気学）解答解説</h1>
+<p class="meta">東京工業大学 大学院修士課程入試（平成24年8月22日実施）</p>
+
+<!-- ========== 大問1 ========== -->
+<h2>大問1　積層コンデンサの電位分布</h2>
+
+<p>
+面積 $S$，$n+1$ 枚の導体板（各厚さ $p/n$）と $n$ 枚の誘電率 $\varepsilon$ の誘電体板（各厚さ $p/n$）を交互に積層。
+導体板を下から $M_0, M_1, \ldots, M_n$、誘電体を $D_1, D_2, \ldots, D_n$ と呼ぶ。
+各誘電体層の厚さ $d = p/n$、各層の静電容量 $C = \varepsilon S / (p/n) = \varepsilon S n/p$。
+</p>
+
+<div class="note">
+<strong>基本公式（符号が重要）：</strong>
+ガウスの法則より導体板 $M_k$（接地・電圧源以外）の全電荷：
+$$Q_k = \frac{\varepsilon S}{d}(2V_k - V_{k-1} - V_{k+1}), \quad d = \frac{p}{n}$$
+電界（$D_k$層内、上向き正）：$E_k = (V_k - V_{k-1})/d$、電荷と電界の関係：
+$$Q_k = \varepsilon S (E_k - E_{k+1})$$
+</div>
+
+<h3>問1)　$n=2$，$M_0=0$，$M_2=V$，全板無帯電</h3>
+<div class="step">
+$M_1$ の電荷 $=0$：$\dfrac{\varepsilon S}{p/2}(2V_1 - V_0 - V_2) = 0$
+
+$$\Rightarrow 2V_1 = V_0 + V_2 = 0 + V = V \Rightarrow V_1 = \frac{V}{2}$$
+
+各誘電体内の電界（厚さ $p/2$）：
+$$E_1 = E_2 = \frac{V/2}{p/2} = \frac{V}{p}$$
+</div>
+<div class="answer-box">
+$$V(M_1) = \frac{V}{2}, \quad |E_{\mathrm{D_1}}| = |E_{\mathrm{D_2}}| = \frac{V}{p}$$
+（2枚のコンデンサが直列→電圧は等分）
+</div>
+
+<h3>問2)　$n=4$，$M_0=0$，$M_4=V$，$M_1$ に $+q/2$ の電荷</h3>
+<div class="step">
+各板の電荷条件（$d=p/4$）：
+$$\frac{4\varepsilon S}{p}(2V_k - V_{k-1} - V_{k+1}) = \begin{cases}q/2 & k=1 \\ 0 & k=2,3\end{cases}$$
+連立方程式：
+$$\text{(I)}:\;2V_1 - V_2 = \frac{qp}{8\varepsilon S} \quad
+\text{(II)}:\;2V_2-V_1-V_3=0 \quad
+\text{(III)}:\;2V_3-V_2=V$$
+
+(III) より $V_3=(V_2+V)/2$、これと (II)、(I) を連立：
+$3V_2 - 2V_1 = V$、$2V_1 - V_2 = qp/(8\varepsilon S)$
+解くと $V_1 = V/4 + 3qp/(32\varepsilon S)$、$V_2 = V/2 + qp/(16\varepsilon S)$、$V_3 = 3V/4 + qp/(32\varepsilon S)$
+
+電界（上向き）：
+$E_1 = 4V_1/p = V/p + 3q/(8\varepsilon S)$、
+$E_2 = 4(V_2-V_1)/p = V/p - q/(8\varepsilon S)$（$= E_3 = E_4$）
+</div>
+<div class="answer-box">
+$$\boxed{V_1 = \frac{V}{4}+\frac{3qp}{32\varepsilon S},\quad V_2 = \frac{V}{2}+\frac{qp}{16\varepsilon S},\quad V_3 = \frac{3V}{4}+\frac{qp}{32\varepsilon S}}$$
+$$|E_{\mathrm{D_1}}| = \frac{V}{p}+\frac{3q}{8\varepsilon S}, \quad |E_{\mathrm{D_2}}|=|E_{\mathrm{D_3}}|=|E_{\mathrm{D_4}}| = \left|\frac{V}{p}-\frac{q}{8\varepsilon S}\right|$$
+</div>
+<div class="note">
+検算：$Q_1 = \varepsilon S(E_1-E_2) = \varepsilon S \cdot 4q/(8\varepsilon S) = q/2$ ✓
+</div>
+
+<h3>問3)　$n=4$，$M_0=M_4=0$，$M_1,M_2,M_3$ に各 $+q/4$ の電荷</h3>
+<div class="step">
+対称性より $V_1 = V_3$（境界条件 $V_0=V_4=0$ も対称）。
+
+連立方程式：
+$$\text{(I)}:\;2V_1-V_2=\frac{qp}{16\varepsilon S},\quad \text{(II)}:\;2V_2-2V_1=\frac{qp}{16\varepsilon S}$$
+
+(II) より $V_2-V_1 = qp/(32\varepsilon S)$、(I) に代入：$V_1 = qp/(16\varepsilon S)+qp/(32\varepsilon S)=3qp/(32\varepsilon S)$
+
+$$V_1 = V_3 = \frac{3qp}{32\varepsilon S}, \quad V_2 = \frac{qp}{8\varepsilon S} = \frac{4qp}{32\varepsilon S}$$
+
+電界：
+$E_1 = 4V_1/p = 3q/(8\varepsilon S)$（$=E_4$）、
+$E_2 = 4(V_2-V_1)/p = q/(8\varepsilon S)$（$=E_3$）
+</div>
+<div class="answer-box">
+$$\boxed{V_1=V_3=\frac{3qp}{32\varepsilon S},\quad V_2=\frac{qp}{8\varepsilon S}}$$
+$$|E_{\mathrm{D_1}}|=|E_{\mathrm{D_4}}|=\frac{3q}{8\varepsilon S},\quad |E_{\mathrm{D_2}}|=|E_{\mathrm{D_3}}|=\frac{q}{8\varepsilon S}$$
+</div>
+
+<h3>問4)　一般 $n$，各内部板に $+q/n$，$M_0=M_n=0$</h3>
+<div class="step">
+差分方程式（$k=1,\ldots,n-1$）：
+$$V_{k+1} - 2V_k + V_{k-1} = -\frac{qp}{n^2\varepsilon S} \equiv -c, \quad c = \frac{qp}{n^2\varepsilon S}$$
+境界条件：$V_0=V_n=0$。
+
+一般解：$V_k = A + Bk - \dfrac{c}{2}k^2$
+
+$V_0=0 \Rightarrow A=0$；$V_n=0 \Rightarrow B = cn/2$
+
+$$V_k = \frac{c}{2}k(n-k) = \frac{qp}{2n^2\varepsilon S}\,k(n-k)$$
+
+電界（$D_k$層，$k=1,\ldots,n$）：
+$E_k = (V_k-V_{k-1})/d = n/p \times [V_k-V_{k-1}]$
+
+$V_k - V_{k-1} = \dfrac{c}{2}[k(n-k)-(k-1)(n-k+1)] = \dfrac{c}{2}(n+1-2k)$
+
+$$E_k = \frac{n}{p}\cdot\frac{c}{2}(n+1-2k) = \frac{q}{2n\varepsilon S}(n+1-2k)$$
+</div>
+<div class="answer-box">
+$$\boxed{V_k = \frac{qp}{2n^2\varepsilon S}\,k(n-k) \quad (k=0,1,\ldots,n)}$$
+$$\boxed{E_k = \frac{q(n+1-2k)}{2n\varepsilon S} \quad (k=1,\ldots,n)}$$
+最大電位（$k=n/2$）：$V_{\max} = \dfrac{qp}{2n^2\varepsilon S}\cdot\dfrac{n}{2}\cdot\dfrac{n}{2} = \dfrac{qp}{8\varepsilon S}$（$n$ 非依存）
+</div>
+
+<h3>問5)　$n\to\infty$ の極限：連続的電位分布</h3>
+<div class="step">
+位置 $z$（底面 $M_0$ から測定、$0\le z\le 2p$）：導体板厚 $p/n\to 0$ の極限で $M_k$ の位置 $z=2kp/n$。
+
+$k = nz/(2p)$ を代入：
+$$V(z) = \frac{qp}{2n^2\varepsilon S}\cdot\frac{nz}{2p}\cdot\left(n-\frac{nz}{2p}\right) = \frac{qp}{2n^2\varepsilon S}\cdot\frac{n^2 z(2p-z)}{4p^2} = \frac{qz(2p-z)}{8p\varepsilon S}$$
+</div>
+<div class="answer-box">
+$$\boxed{V(z) = \frac{qz(2p-z)}{8p\varepsilon S}}$$
+<strong>放物線（2次関数）分布。</strong><br>
+$V(0)=V(2p)=0$（接地板）、最大値 $z=p$（中央）で：
+$$V_{\max} = \frac{q\cdot p\cdot p}{8p\varepsilon S} = \frac{qp}{8\varepsilon S}$$
+
+（グラフ：下に凸の放物線、両端 0、中央で最大 $qp/(8\varepsilon S)$）
+</div>
+
+<!-- ========== 大問2 ========== -->
+<h2>大問2　ギャップ付き磁気回路</h2>
+
+<p>
+磁性体（断面半径 $r$，平均磁路長 $\ell$，透磁率 $\mu_1$）にギャップ $g$（透磁率 $\mu_0$）と巻数 $N$ のコイル。
+$\ell \gg r$，$\mu_1\gg\mu_0$，$g \ll r$。
+</p>
+
+<h3>問1)　直流電流 $I$ 時のギャップ内磁束密度</h3>
+<div class="step">
+磁束は連続（同一断面）：$B$ は磁路全体で一定（$= B$）。
+
+アンペールの法則：
+$$\oint H\cdot dl = NI \;\Rightarrow\; H_1\ell + H_0 g = NI$$
+$$\frac{B}{\mu_1}\ell + \frac{B}{\mu_0}g = NI \;\Rightarrow\; B\!\left(\frac{\ell}{\mu_1}+\frac{g}{\mu_0}\right) = NI$$
+</div>
+<div class="answer-box">
+$$\boxed{B = \frac{\mu_0\mu_1 NI}{\mu_0\ell + \mu_1 g}}$$
+（$\mu_1\gg\mu_0$ より $\mu_0\ell\ll\mu_1 g$ なので $B \approx \mu_0 NI/g$）
+</div>
+
+<h3>問2)　コイルの自己インダクタンス</h3>
+<div class="step">
+磁束 $\Phi = B\cdot\pi r^2$、鎖交磁束 $N\Phi$：
+$$L = \frac{N\Phi}{I} = \frac{N \cdot \mu_0\mu_1 NI/(\mu_0\ell+\mu_1 g)\cdot\pi r^2}{I}$$
+</div>
+<div class="answer-box">
+$$\boxed{L = \frac{N^2\mu_0\mu_1\pi r^2}{\mu_0\ell + \mu_1 g}}$$
+</div>
+
+<h3>問3)　ギャップ半分まで埋めた時（透磁率 $\mu_2$）：$B_2$, $B_0$ を $H_M$ で表す</h3>
+<div class="step">
+図2.3 を視点アから見ると：ギャップ内は円断面（半径 $r$）の半分（面積 $\pi r^2/2$）が $\mu_2$ の磁性体で、残り半分が空気（$\mu_0$）。
+
+ギャップ内の磁界は一様 $H_M$。境界条件（接線方向 $H$ は連続）より各領域で同じ $H_M$。
+$$B_2 = \mu_2 H_M \quad(\text{磁性体が埋まった部分}), \quad B_0 = \mu_0 H_M \quad(\text{空気部分})$$
+</div>
+<div class="answer-box">
+$$\boxed{B_2 = \mu_2 H_M, \quad B_0 = \mu_0 H_M}$$
+</div>
+
+<h3>問4)　磁束保存から $B_1$ を $H_M$ で表す</h3>
+<div class="step">
+磁路磁性体の断面積 $\pi r^2$ を通る磁束 = ギャップ内の合計磁束：
+$$B_1\cdot\pi r^2 = B_2\cdot\frac{\pi r^2}{2} + B_0\cdot\frac{\pi r^2}{2}$$
+$$B_1 = \frac{B_2+B_0}{2} = \frac{(\mu_2+\mu_0)H_M}{2}$$
+</div>
+<div class="answer-box">
+$$\boxed{B_1 = \frac{(\mu_2+\mu_0)}{2}H_M}$$
+</div>
+
+<h3>問5)　アンペールの法則：$H_M$ と $I$ の関係</h3>
+<div class="step">
+磁路（透磁率 $\mu_1$，長さ $\ell$）での磁界：
+$$H_1 = \frac{B_1}{\mu_1} = \frac{(\mu_2+\mu_0)H_M}{2\mu_1}$$
+
+アンペールの法則（閉路積分）：
+$$H_1\ell + H_M g = NI$$
+$$\frac{(\mu_2+\mu_0)H_M}{2\mu_1}\cdot\ell + H_M g = NI$$
+$$H_M\!\left[g + \frac{(\mu_2+\mu_0)\ell}{2\mu_1}\right] = NI$$
+</div>
+<div class="answer-box">
+$$\boxed{H_M = \frac{NI}{g + \dfrac{(\mu_2+\mu_0)\ell}{2\mu_1}}}$$
+（$\mu_1\gg\mu_2,\mu_0$ より $(\mu_2+\mu_0)\ell/(2\mu_1)\ll g$、したがって $H_M \approx NI/g$）
+</div>
+
+<!-- ========== まとめ表 ========== -->
+<h2>解答まとめ</h2>
+<table>
+  <tr><th>大問</th><th>問</th><th>解答</th></tr>
+  <tr><td rowspan="5">1<br>積層<br>コンデンサ</td>
+    <td>1)</td><td class="left">$V_1 = V/2$；$E_1=E_2=V/p$</td></tr>
+  <tr><td>2)</td><td class="left">$V_1=V/4+3qp/(32\varepsilon S)$，$V_2=V/2+qp/(16\varepsilon S)$，$V_3=3V/4+qp/(32\varepsilon S)$；$E_1=V/p+3q/(8\varepsilon S)$，$E_2=E_3=E_4=|V/p-q/(8\varepsilon S)|$</td></tr>
+  <tr><td>3)</td><td class="left">$V_1=V_3=3qp/(32\varepsilon S)$，$V_2=qp/(8\varepsilon S)$；$E_1=E_4=3q/(8\varepsilon S)$，$E_2=E_3=q/(8\varepsilon S)$</td></tr>
+  <tr><td>4)</td><td class="left">$V_k=qpk(n-k)/(2n^2\varepsilon S)$；$E_k=q(n+1-2k)/(2n\varepsilon S)$；$V_{\max}=qp/(8\varepsilon S)$（$k=n/2$）</td></tr>
+  <tr><td>5)</td><td class="left">$V(z)=qz(2p-z)/(8p\varepsilon S)$（放物線）；最大値 $V_{\max}=qp/(8\varepsilon S)$（$z=p$ 中央）</td></tr>
+  <tr><td rowspan="5">2<br>磁気<br>回路</td>
+    <td>1)</td><td class="left">$B=\mu_0\mu_1 NI/(\mu_0\ell+\mu_1 g)$</td></tr>
+  <tr><td>2)</td><td class="left">$L=N^2\mu_0\mu_1\pi r^2/(\mu_0\ell+\mu_1 g)$</td></tr>
+  <tr><td>3)</td><td class="left">$B_2=\mu_2 H_M$，$B_0=\mu_0 H_M$</td></tr>
+  <tr><td>4)</td><td class="left">$B_1=(\mu_2+\mu_0)H_M/2$</td></tr>
+  <tr><td>5)</td><td class="left">$H_M[g+(\mu_2+\mu_0)\ell/(2\mu_1)]=NI$</td></tr>
+</table>
+
+<footer>解答解説作成：Claude（Anthropic）</footer>
+</body>
+</html>

@@ -1,0 +1,540 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>院試　解答解説まとめ</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "Yu Gothic", "游ゴシック", sans-serif;
+      font-size: 13pt;
+      line-height: 1.8;
+      color: #1a1a2e;
+      background: #f4f7fb;
+      padding: 40px;
+      min-height: 100vh;
+    }
+    h1 {
+      font-size: 20pt;
+      color: #0d2b5e;
+      border-bottom: 3px solid #0d2b5e;
+      padding-bottom: 10px;
+      margin-bottom: 8px;
+    }
+    .subtitle {
+      color: #666;
+      font-size: 11pt;
+      margin-bottom: 36px;
+    }
+    h2 {
+      font-size: 13pt;
+      color: #0d2b5e;
+      margin: 32px 0 12px 0;
+      padding-left: 10px;
+      border-left: 4px solid #1e5fa8;
+    }
+    .card-grid {
+      display: grid;
+      gap: 16px;
+    }
+    .grid-auto  { grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); }
+    .grid-2col  { grid-template-columns: repeat(2, 1fr); }
+    .grid-3col  { grid-template-columns: repeat(3, 1fr); }
+    @media (max-width: 900px) {
+      .grid-3col { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .grid-2col, .grid-3col { grid-template-columns: 1fr; }
+    }
+    .card {
+      background: #fff;
+      border: 1px solid #c5d8f5;
+      border-radius: 8px;
+      padding: 18px 22px;
+      color: inherit;
+      display: block;
+      transition: box-shadow 0.2s, transform 0.15s;
+      cursor: pointer;
+    }
+    .card:hover {
+      box-shadow: 0 4px 16px rgba(30,95,168,0.18);
+      transform: translateY(-2px);
+    }
+    .card-year {
+      font-size: 10pt;
+      color: #1e5fa8;
+      font-weight: bold;
+      margin-bottom: 4px;
+    }
+    .card-title {
+      font-size: 13pt;
+      color: #0d2b5e;
+      font-weight: bold;
+      margin-bottom: 6px;
+    }
+    .card-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 10px;
+    }
+    .tag {
+      background: #eef4ff;
+      border: 1px solid #c5d8f5;
+      border-radius: 20px;
+      padding: 2px 10px;
+      font-size: 10pt;
+      color: #1e5fa8;
+    }
+    .card-desc {
+      font-size: 11pt;
+      color: #444;
+      margin-top: 6px;
+    }
+    .card-actions {
+      display: flex;
+      gap: 8px;
+      margin-top: 14px;
+      flex-wrap: wrap;
+    }
+    .btn-kaisetsu, .btn-pdf {
+      padding: 5px 16px;
+      border-radius: 20px;
+      font-size: 10.5pt;
+      text-decoration: none;
+      font-weight: bold;
+      display: inline-block;
+    }
+    .btn-kaisetsu { background: #1e5fa8; color: #fff; }
+    .btn-kaisetsu:hover { background: #1450a0; }
+    .btn-pdf { background: #fff; color: #c0392b; border: 2px solid #c0392b; }
+    .btn-pdf:hover { background: #fdf0ee; }
+    footer {
+      margin-top: 60px;
+      color: #aaa;
+      font-size: 10pt;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+<h1>院試　解答解説まとめ</h1>
+<p class="subtitle">東京科学大学大学院（電気電子系）修士課程入試 — 電気回路 · 電磁気学 · 電気数学</p>
+
+
+<!-- ========== H14〜H17：選択式（電気数学・電磁気学・電気回路から2題選択） ========== -->
+<h2>H14〜H17年度 — 専門科目（電気数学 · 電磁気学 · 電気回路 より2題選択）</h2>
+<div class="card-grid grid-auto">
+
+  <div class="card" onclick="window.location.href='H14_am_解答解説.html'">
+    <div class="card-year">H14年度（平成13年8月実施）</div>
+    <div class="card-title">専門科目 — 選択式</div>
+    <div class="card-desc">ヘルムホルツ方程式・留数定理、共振回路・有能電力、電気力線・ガウスの法則</div>
+    <div class="card-tags"><span class="tag">電気数学</span><span class="tag">電磁気学</span><span class="tag">電気回路</span></div>
+    <div class="card-actions">
+      <a class="btn-kaisetsu" href="H14_am_解答解説.html" onclick="event.stopPropagation()">解答解説を開く</a>
+      <a class="btn-pdf" href="院試　問題/am/H14_am.pdf" target="_blank" onclick="event.stopPropagation()">問題PDF</a>
+    </div>
+  </div>
+
+  <div class="card" onclick="window.location.href='H15_am_解答解説.html'">
+    <div class="card-year">H15年度（平成14年8月実施）</div>
+    <div class="card-title">専門科目 — 選択式</div>
+    <div class="card-desc">3次元調和関数・フーリエ変換、四端子回路・インピーダンス整合、鏡像法・磁束密度</div>
+    <div class="card-tags"><span class="tag">電気数学</span><span class="tag">電磁気学</span><span class="tag">電気回路</span></div>
+    <div class="card-actions">
+      <a class="btn-kaisetsu" href="H15_am_解答解説.html" onclick="event.stopPropagation()">解答解説を開く</a>
+      <a class="btn-pdf" href="院試　問題/am/H15_am.pdf" target="_blank" onclick="event.stopPropagation()">問題PDF</a>
+    </div>
+  </div>
+
+  <div class="card" onclick="window.location.href='H16_am_解答解説.html'">
+    <div class="card-year">H16年度（平成15年8月実施）</div>
+    <div class="card-title">専門科目 — 選択式</div>
+    <div class="card-desc">ラプラス変換・衝撃力応答、立方体抵抗・補償定理・LC梯子、アンペールの法則</div>
+    <div class="card-tags"><span class="tag">電気数学</span><span class="tag">電磁気学</span><span class="tag">電気回路</span></div>
+    <div class="card-actions">
+      <a class="btn-kaisetsu" href="H16_am_解答解説.html" onclick="event.stopPropagation()">解答解説を開く</a>
+      <a class="btn-pdf" href="院試　問題/am/H16_am.pdf" target="_blank" onclick="event.stopPropagation()">問題PDF</a>
+    </div>
+  </div>
+
+  <div class="card" onclick="window.location.href='H17_am_解答解説.html'">
+    <div class="card-year">H17年度（平成16年8月実施）</div>
+    <div class="card-title">専門科目 — 選択式</div>
+    <div class="card-desc">グリーン関数・複素写像、ノートン等価・相互インダクタンス・VCCS整合、部分挿入誘電体</div>
+    <div class="card-tags"><span class="tag">電気数学</span><span class="tag">電磁気学</span><span class="tag">電気回路</span></div>
+    <div class="card-actions">
+      <a class="btn-kaisetsu" href="H17_am_解答解説.html" onclick="event.stopPropagation()">解答解説を開く</a>
+      <a class="btn-pdf" href="院試　問題/am/H17_am.pdf" target="_blank" onclick="event.stopPropagation()">問題PDF</a>
+    </div>
+  </div>
+
+</div>
+
+
+<!-- ========== H18〜H24：電磁気学（pm）+ 電気回路（am） ========== -->
+<h2>H18〜H24年度 — 電磁気学（午後） · 電気回路（午前）</h2>
+<div class="card-grid grid-2col">
+
+  <!-- H18 -->
+  <div class="card" onclick="window.location.href='H18_pm_解答解説.html'">
+    <div class="card-year">H18年度（平成17年8月実施）— 電磁気学</div>
+    <div class="card-title">電磁気学（午後）</div>
+    <div class="card-desc">電気映像法（接地導体・誘導電荷・総電荷量）、長直線電流とローレンツ力・ベクトル恒等式証明、ソレノイド内回転コイルの電磁誘導</div>
+    <div class="card-tags"><span class="tag">電気映像法</span><span class="tag">ローレンツ力</span><span class="tag">電磁誘導</span></div>
+    <div class="card-actions">
+      <a class="btn-kaisetsu" href="H18_pm_解答解説.html" onclick="event.stopPropagation()">解答解説を開く</a>
+      <a class="btn-pdf" href="院試　問題/pm/H18_pm.pdf" target="_blank" onclick="event.stopPropagation()">問題PDF</a>
+    </div>
+  </div>
+  <div class="card" onclick="window.location.href='H18_am_解答解説.html'">
+    <div class="card-year">H18年度（平成17年8月実施）— 電気回路</div>
+    <div class="card-title">電気回路（午前）</div>
+    <div class="card-desc">並列RL過渡応答・節点行列・補償定理、ウィーンブリッジ平衡条件・位相解析</div>
+    <div class="card-tags"><span class="tag">過渡応答</span><span class="tag">節点方程式</span><span class="tag">ブリッジ回路</span></div>
+    <div class="card-actions">
+      <a class="btn-kaisetsu" href="H18_am_解答解説.html" onclick="event.stopPropagation()">解答解説を開く</a>
+      <a class="btn-pdf" href="院試　問題/am/H18_am.pdf" target="_blank" onclick="event.stopPropagation()">問題PDF</a>
+    </div>
+  </div>
+
+  <!-- H19 -->
+  <div class="card" onclick="window.location.href='H19_pm_解答解説.html'">
+    <div class="card-year">H19年度（平成18年8月実施）— 電磁気学</div>
+    <div class="card-title">電磁気学（午後）</div>
+    <div class="card-desc">同軸線路の静電容量・最適内径比（a=b/e）・磁界エネルギー・インダクタンス・表皮効果、平行レールと扇形レールの電磁誘導・電磁制動</div>
+    <div class="card-tags"><span class="tag">同軸線路</span><span class="tag">表皮効果</span><span class="tag">電磁制動</span></div>
+    <div class="card-actions">
+      <a class="btn-kaisetsu" href="H19_pm_解答解説.html" onclick="event.stopPropagation()">解答解説を開く</a>
+      <a class="btn-pdf" href="院試　問題/pm/H19_pm.pdf" target="_blank" onclick="event.stopPropagation()">問題PDF</a>
+    </div>
+  </div>
+  <div class="card" onclick="window.location.href='H19_am_解答解説.html'">
+    <div class="card-year">H19年度（平成18年8月実施）— 電気回路</div>
+    <div class="card-title">電気回路（午前）</div>
+    <div class="card-desc">変圧器等価回路・共振、全域通過ブリッジ、フーリエ三角波、RLC過渡（ラプラス）</div>
+    <div class="card-tags"><span class="tag">変圧器</span><span class="tag">ブリッジ</span><span class="tag">ラプラス変換</span></div>
+    <div class="card-actions">
+      <a class="btn-kaisetsu" href="H19_am_解答解説.html" onclick="event.stopPropagation()">解答解説を開く</a>
+      <a class="btn-pdf" href="院試　問題/am/H19_am.pdf" target="_blank" onclick="event.stopPropagation()">問題PDF</a>
+    </div>
+  </div>
+
+  <!-- H20 -->
+  <div class="card" onclick="window.location.href='H20_pm_解答解説.html'">
+    <div class="card-year">H20年度（平成19年8月実施）— 電磁気学</div>
+    <div class="card-title">電磁気学（午後）</div>
+    <div class="card-desc">円筒コンデンサへの誘電体挿入（電荷固定・電圧固定・静電力）、角型鉄心磁気回路（ギャップ磁界・エネルギー・吸引力・μ→∞での誘導起電力）</div>
+    <div class="card-tags"><span class="tag">誘電体挿入</span><span class="tag">仮想仕事の原理</span><span class="tag">磁気回路</span></div>
+    <div class="card-actions">
+      <a class="btn-kaisetsu" href="H20_pm_解答解説.html" onclick="event.stopPropagation()">解答解説を開く</a>
+      <a class="btn-pdf" href="院試　問題/pm/H20_pm.pdf" target="_blank" onclick="event.stopPropagation()">問題PDF</a>
+    </div>
+  </div>
+  <div class="card" onclick="window.location.href='H20_am_解答解説.html'">
+    <div class="card-year">H20年度（平成19年8月実施）— 電気回路</div>
+    <div class="card-title">電気回路（午前）</div>
+    <div class="card-desc">交直混在・不平衡三相（ミルマン）、無損失伝送線路過渡応答、コイル非理想特性（Q値・自己共振）</div>
+    <div class="card-tags"><span class="tag">三相回路</span><span class="tag">伝送線路</span><span class="tag">コイル特性</span></div>
+    <div class="card-actions">
+      <a class="btn-kaisetsu" href="H20_am_解答解説.html" onclick="event.stopPropagation()">解答解説を開く</a>
+      <a class="btn-pdf" href="院試　問題/am/H20_am.pdf" target="_blank" onclick="event.stopPropagation()">問題PDF</a>
+    </div>
+  </div>
+
+  <!-- H21 -->
+  <div class="card" onclick="window.location.href='H21_pm_解答解説.html'">
+    <div class="card-year">H21年度（平成20年8月実施）— 電磁気学</div>
+    <div class="card-title">電磁気学（午後）</div>
+    <div class="card-desc">誘電体境界条件（屈折角・2層平板コンデンサ・映像法Q'Q''・点電荷への力）、アンペアの法則・無限長ソレノイド・環状磁性体の結合インダクタンス</div>
+    <div class="card-tags"><span class="tag">誘電体境界条件</span><span class="tag">映像法</span><span class="tag">インダクタンス</span></div>
+    <div class="card-actions">
+      <a class="btn-kaisetsu" href="H21_pm_解答解説.html" onclick="event.stopPropagation()">解答解説を開く</a>
+      <a class="btn-pdf" href="院試　問題/pm/H21_pm.pdf" target="_blank" onclick="event.stopPropagation()">問題PDF</a>
+    </div>
+  </div>
+  <div class="card" onclick="window.location.href='H21_am_解答解説.html'">
+    <div class="card-year">H21年度（平成20年8月実施）— 電気回路</div>
+    <div class="card-title">電気回路（午前）</div>
+    <div class="card-desc">電源変換・F行列・整合条件（L型整合網）、直列RLC Q値・バンド幅、並列RL有効・無効電力</div>
+    <div class="card-tags"><span class="tag">F行列</span><span class="tag">インピーダンス整合</span><span class="tag">共振</span></div>
+    <div class="card-actions">
+      <a class="btn-kaisetsu" href="H21_am_解答解説.html" onclick="event.stopPropagation()">解答解説を開く</a>
+      <a class="btn-pdf" href="院試　問題/am/H21_am.pdf" target="_blank" onclick="event.stopPropagation()">問題PDF</a>
+    </div>
+  </div>
+
+  <!-- H22 -->
+  <div class="card" onclick="window.location.href='H22_pm_解答解説.html'">
+    <div class="card-year">H22年度（平成21年8月実施）— 電磁気学</div>
+    <div class="card-title">電磁気学（午後）</div>
+    <div class="card-desc">線電荷の電位と電界（ガウスの法則・エネルギー）、マクスウェル方程式と表皮効果（導体内電磁場・浸透深さ）</div>
+    <div class="card-tags"><span class="tag">静電場</span><span class="tag">マクスウェル方程式</span><span class="tag">表皮効果</span></div>
+    <div class="card-actions">
+      <a class="btn-kaisetsu" href="H22_pm_解答解説.html" onclick="event.stopPropagation()">解答解説を開く</a>
+      <a class="btn-pdf" href="院試　問題/pm/H22_pm.pdf" target="_blank" onclick="event.stopPropagation()">問題PDF</a>
+    </div>
+  </div>
+  <div class="card" onclick="window.location.href='H22_am_解答解説.html'">
+    <div class="card-year">H22年度（平成21年8月実施）— 電気回路</div>
+    <div class="card-title">電気回路（午前）</div>
+    <div class="card-desc">RC過渡応答（容量分割・スイッチング）、三角波実効値・フーリエ級数・消費電力最小化</div>
+    <div class="card-tags"><span class="tag">過渡応答</span><span class="tag">実効値</span><span class="tag">フーリエ解析</span></div>
+    <div class="card-actions">
+      <a class="btn-kaisetsu" href="H22_am_解答解説.html" onclick="event.stopPropagation()">解答解説を開く</a>
+      <a class="btn-pdf" href="院試　問題/am/H22_am.pdf" target="_blank" onclick="event.stopPropagation()">問題PDF</a>
+    </div>
+  </div>
+
+  <!-- H23 -->
+  <div class="card" onclick="window.location.href='H23_pm_解答解説.html'">
+    <div class="card-year">H23年度（平成22年8月実施）— 電磁気学</div>
+    <div class="card-title">電磁気学（午後）</div>
+    <div class="card-desc">回転式可変コンデンサ（C(θ)・トルク・回路応答）、半円弧電流の磁界（ビオ・サバール法則）と電磁誘導</div>
+    <div class="card-tags"><span class="tag">静電容量</span><span class="tag">ビオ・サバール</span><span class="tag">電磁誘導</span></div>
+    <div class="card-actions">
+      <a class="btn-kaisetsu" href="H23_pm_解答解説.html" onclick="event.stopPropagation()">解答解説を開く</a>
+      <a class="btn-pdf" href="院試　問題/pm/H23_pm.pdf" target="_blank" onclick="event.stopPropagation()">問題PDF</a>
+    </div>
+  </div>
+  <div class="card" onclick="window.location.href='H23_am_解答解説.html'">
+    <div class="card-year">H23年度（平成22年8月実施）— 電気回路</div>
+    <div class="card-title">電気回路（午前）</div>
+    <div class="card-desc">リアクタンス2ポート・最大電力整合・ZeZo=R²証明、無損失平行線路（スタブ・λ/4変換）</div>
+    <div class="card-tags"><span class="tag">2ポート整合</span><span class="tag">分布定数回路</span><span class="tag">スタブ</span></div>
+    <div class="card-actions">
+      <a class="btn-kaisetsu" href="H23_am_解答解説.html" onclick="event.stopPropagation()">解答解説を開く</a>
+      <a class="btn-pdf" href="院試　問題/am/H23_am.pdf" target="_blank" onclick="event.stopPropagation()">問題PDF</a>
+    </div>
+  </div>
+
+  <!-- H24 -->
+  <div class="card" onclick="window.location.href='H24_pm_解答解説.html'">
+    <div class="card-year">H24年度（平成23年8月実施）— 電磁気学</div>
+    <div class="card-title">電磁気学（午後）</div>
+    <div class="card-desc">電気映像法（点電荷と接地導体球・誘導電荷・力）、電流の基礎理論（オームの法則・連続の式・ジュール熱）</div>
+    <div class="card-tags"><span class="tag">電気映像法</span><span class="tag">接地導体球</span><span class="tag">電流理論</span></div>
+    <div class="card-actions">
+      <a class="btn-kaisetsu" href="H24_pm_解答解説.html" onclick="event.stopPropagation()">解答解説を開く</a>
+      <a class="btn-pdf" href="院試　問題/pm/H24_pm.pdf" target="_blank" onclick="event.stopPropagation()">問題PDF</a>
+    </div>
+  </div>
+  <div class="card" onclick="window.location.href='H24_am_解答解説.html'">
+    <div class="card-year">H24年度（平成23年8月実施）— 電気回路</div>
+    <div class="card-title">電気回路（午前）</div>
+    <div class="card-desc">Fパラメータ・整合インピーダンス・反復インピーダンス・無限梯子形回路、三相Y/Δ回路</div>
+    <div class="card-tags"><span class="tag">F行列</span><span class="tag">梯子形回路</span><span class="tag">三相回路</span></div>
+    <div class="card-actions">
+      <a class="btn-kaisetsu" href="H24_am_解答解説.html" onclick="event.stopPropagation()">解答解説を開く</a>
+      <a class="btn-pdf" href="院試　問題/am/H24_am.pdf" target="_blank" onclick="event.stopPropagation()">問題PDF</a>
+    </div>
+  </div>
+
+</div>
+
+
+<!-- ========== H25〜H27：電気数学（am）+ 電磁気学（pm2）+ 電気回路（pm1） ========== -->
+<h2>H25〜H27年度 — 電気数学（午前） · 電磁気学（午後2） · 電気回路（午後1）</h2>
+<div class="card-grid grid-3col">
+
+  <!-- H25 -->
+  <div class="card" onclick="window.location.href='H25_am_解答解説.html'">
+    <div class="card-year">H25年度（平成24年8月実施）— 電気数学</div>
+    <div class="card-title">電気数学（午前）</div>
+    <div class="card-desc">方形波のフーリエ級数・フィルタ出力、確率・通信路（ベイズ）、微分方程式・複素留数</div>
+    <div class="card-tags"><span class="tag">フーリエ解析</span><span class="tag">確率・ベイズ</span><span class="tag">微分方程式</span></div>
+    <div class="card-actions">
+      <a class="btn-kaisetsu" href="H25_am_解答解説.html" onclick="event.stopPropagation()">解答解説を開く</a>
+      <a class="btn-pdf" href="院試　問題/am/H25_am.pdf" target="_blank" onclick="event.stopPropagation()">問題PDF</a>
+    </div>
+  </div>
+  <div class="card" onclick="window.location.href='H25_pm2_解答解説.html'">
+    <div class="card-year">H25年度（平成24年8月実施）— 電磁気学</div>
+    <div class="card-title">電磁気学（午後2）</div>
+    <div class="card-desc">積層コンデンサの電位分布（一般式・連続極限）、ギャップ付き磁気回路（インダクタンス・部分挿入）</div>
+    <div class="card-tags"><span class="tag">静電気</span><span class="tag">磁気回路</span><span class="tag">インダクタンス</span></div>
+    <div class="card-actions">
+      <a class="btn-kaisetsu" href="H25_pm2_解答解説.html" onclick="event.stopPropagation()">解答解説を開く</a>
+      <a class="btn-pdf" href="院試　問題/pm/H25_pm2.pdf" target="_blank" onclick="event.stopPropagation()">問題PDF</a>
+    </div>
+  </div>
+  <div class="card" onclick="window.location.href='H25_pm1_解答解説.html'">
+    <div class="card-year">H25年度（平成24年8月実施）— 電気回路</div>
+    <div class="card-title">電気回路（午後1）</div>
+    <div class="card-desc">アドミタンス解析・並列共振、RL回路の過渡応答（ラプラス変換）、MOSFET小信号増幅器と周波数特性</div>
+    <div class="card-tags"><span class="tag">共振回路</span><span class="tag">過渡応答</span><span class="tag">MOSFET</span></div>
+    <div class="card-actions">
+      <a class="btn-kaisetsu" href="H25_pm1_解答解説.html" onclick="event.stopPropagation()">解答解説を開く</a>
+      <a class="btn-pdf" href="院試　問題/pm/H25_pm1.pdf" target="_blank" onclick="event.stopPropagation()">問題PDF</a>
+    </div>
+  </div>
+
+  <!-- H26 -->
+  <div class="card" onclick="window.location.href='H26_am_解答解説.html'">
+    <div class="card-year">H26年度（平成25年8月実施）— 電気数学</div>
+    <div class="card-title">電気数学（午前）</div>
+    <div class="card-desc">2階非斉次ODE・初期値問題、複素積分（留数定理・三角形路）、畳み込み積分、rot計算・ストークスの定理</div>
+    <div class="card-tags"><span class="tag">微分方程式</span><span class="tag">複素積分</span><span class="tag">ベクトル解析</span></div>
+    <div class="card-actions">
+      <a class="btn-kaisetsu" href="H26_am_解答解説.html" onclick="event.stopPropagation()">解答解説を開く</a>
+      <a class="btn-pdf" href="院試　問題/am/H26_am.pdf" target="_blank" onclick="event.stopPropagation()">問題PDF</a>
+    </div>
+  </div>
+  <div class="card" onclick="window.location.href='H26_pm2_解答解説.html'">
+    <div class="card-year">H26年度（平成25年8月実施）— 電磁気学</div>
+    <div class="card-title">電磁気学（午後2）</div>
+    <div class="card-desc">同軸円筒（容量・ジュール熱・緩和時間 τ=ε/σ）、磁気双極子と常磁性体球（B₁=3μB₀/(μ+2μ₀)）</div>
+    <div class="card-tags"><span class="tag">同軸円筒</span><span class="tag">誘電緩和</span><span class="tag">常磁性体</span></div>
+    <div class="card-actions">
+      <a class="btn-kaisetsu" href="H26_pm2_解答解説.html" onclick="event.stopPropagation()">解答解説を開く</a>
+      <a class="btn-pdf" href="院試　問題/pm/H26_pm2.pdf" target="_blank" onclick="event.stopPropagation()">問題PDF</a>
+    </div>
+  </div>
+  <div class="card" onclick="window.location.href='H26_pm1_解答解説.html'">
+    <div class="card-year">H26年度（平成25年8月実施）— 電気回路</div>
+    <div class="card-title">電気回路（午後1）</div>
+    <div class="card-desc">無損失分布定数線路の過渡応答（格子線図）、LC共振回路過渡応答、三相対称RLC回路、演算増幅器フィルタ回路</div>
+    <div class="card-tags"><span class="tag">分布定数回路</span><span class="tag">三相回路</span><span class="tag">オペアンプ</span></div>
+    <div class="card-actions">
+      <a class="btn-kaisetsu" href="H26_pm1_解答解説.html" onclick="event.stopPropagation()">解答解説を開く</a>
+      <a class="btn-pdf" href="院試　問題/pm/H26_pm1.pdf" target="_blank" onclick="event.stopPropagation()">問題PDF</a>
+    </div>
+  </div>
+
+  <!-- H27 -->
+  <div class="card" onclick="window.location.href='H27_am_解答解説.html'">
+    <div class="card-year">H27年度（平成26年8月実施）— 電気数学</div>
+    <div class="card-title">電気数学（午前）</div>
+    <div class="card-desc">複素数の4乗根・複素積分（コーシー・留数定理）、インパルス列フーリエ級数・サンプリング定理、拡散方程式（変数分離・フーリエ正弦展開）</div>
+    <div class="card-tags"><span class="tag">複素積分</span><span class="tag">サンプリング定理</span><span class="tag">偏微分方程式</span></div>
+    <div class="card-actions">
+      <a class="btn-kaisetsu" href="H27_am_解答解説.html" onclick="event.stopPropagation()">解答解説を開く</a>
+      <a class="btn-pdf" href="院試　問題/am/H27_am.pdf" target="_blank" onclick="event.stopPropagation()">問題PDF</a>
+    </div>
+  </div>
+  <div class="card" onclick="window.location.href='H27_pm2_解答解説.html'">
+    <div class="card-year">H27年度（平成26年8月実施）— 電磁気学</div>
+    <div class="card-title">電磁気学（午後2）</div>
+    <div class="card-desc">平行平板コンデンサへの誘電体挿入（仮想変位・可変誘電率）、平行導体板間の体積電荷（ポアソン方程式）、直線電流と矩形コイル（相互インダクタンス）</div>
+    <div class="card-tags"><span class="tag">誘電体挿入</span><span class="tag">ポアソン方程式</span><span class="tag">電磁誘導</span></div>
+    <div class="card-actions">
+      <a class="btn-kaisetsu" href="H27_pm2_解答解説.html" onclick="event.stopPropagation()">解答解説を開く</a>
+      <a class="btn-pdf" href="院試　問題/pm/H27_pm2.pdf" target="_blank" onclick="event.stopPropagation()">問題PDF</a>
+    </div>
+  </div>
+  <div class="card" onclick="window.location.href='H27_pm1_解答解説.html'">
+    <div class="card-year">H27年度（平成26年8月実施）— 電気回路</div>
+    <div class="card-title">電気回路（午後1）</div>
+    <div class="card-desc">変圧器（結合インダクタ）の行列表現（加極性・減極性）、無損失分布定数線路の過渡応答、ゲート接地MOSFET小信号回路</div>
+    <div class="card-tags"><span class="tag">変圧器行列</span><span class="tag">分布定数回路</span><span class="tag">MOSFET</span></div>
+    <div class="card-actions">
+      <a class="btn-kaisetsu" href="H27_pm1_解答解説.html" onclick="event.stopPropagation()">解答解説を開く</a>
+      <a class="btn-pdf" href="院試　問題/pm/H27_pm1.pdf" target="_blank" onclick="event.stopPropagation()">問題PDF</a>
+    </div>
+  </div>
+
+</div>
+
+
+<!-- ========== H28〜R6：総合（数学・電磁気学・電気回路 必須） ========== -->
+<h2>H28〜R6年度 — 総合（数学 · 電磁気学 · 電気回路）</h2>
+<div class="card-grid grid-auto">
+
+  <div class="card" onclick="window.location.href='H28_解答解説.html'">
+    <div class="card-year">H28年度（平成28年8月実施 · 29大修）</div>
+    <div class="card-title">総合 — 数学 · 電磁気学 · 電気回路</div>
+    <div class="card-desc">連立ODE（重解λ=−2）・双曲線・フーリエ近似、誘電緩和τ=ε/σ・磁性体境界・円形ループM、RLC振動条件・MOSFET増幅</div>
+    <div class="card-tags"><span class="tag">ODE重解</span><span class="tag">誘電緩和</span><span class="tag">RLC共振</span></div>
+    <div class="card-actions">
+      <a class="btn-kaisetsu" href="H28_解答解説.html" onclick="event.stopPropagation()">解答解説を開く</a>
+      <a class="btn-pdf" href="院試　問題/総合（H28-R6）/H28.pdf" target="_blank" onclick="event.stopPropagation()">問題PDF</a>
+    </div>
+  </div>
+
+  <div class="card" onclick="window.location.href='H29_解答解説.html'">
+    <div class="card-year">H29年度（平成29年8月実施 · 30大修）</div>
+    <div class="card-title">総合 — 数学 · 電磁気学 · 電気回路</div>
+    <div class="card-desc">ODE（重解・分離変数・同次型）・ラプラス変換・留数定理、ビオサバール・3平板コンデンサ・平面波、ウィーンブリッジ発振・RLC力率</div>
+    <div class="card-tags"><span class="tag">同次型ODE</span><span class="tag">ビオサバール</span><span class="tag">ウィーンブリッジ</span></div>
+    <div class="card-actions">
+      <a class="btn-kaisetsu" href="H29_解答解説.html" onclick="event.stopPropagation()">解答解説を開く</a>
+      <a class="btn-pdf" href="院試　問題/総合（H28-R6）/H29.pdf" target="_blank" onclick="event.stopPropagation()">問題PDF</a>
+    </div>
+  </div>
+
+  <div class="card" onclick="window.location.href='H30_解答解説.html'">
+    <div class="card-year">H30年度（平成30年8月実施 · 31大修）</div>
+    <div class="card-title">総合 — 数学 · 電磁気学 · 電気回路</div>
+    <div class="card-desc">ホーン方程式（指数断面管）・複素積分（留数定理・実積分）・DFT、電気映像法・鉄心変圧器、R-2R梯子DAC・LRスイッチング</div>
+    <div class="card-tags"><span class="tag">ホーン方程式</span><span class="tag">電気映像法</span><span class="tag">R-2R DAC</span></div>
+    <div class="card-actions">
+      <a class="btn-kaisetsu" href="H30_解答解説.html" onclick="event.stopPropagation()">解答解説を開く</a>
+      <a class="btn-pdf" href="院試　問題/総合（H28-R6）/H30.pdf" target="_blank" onclick="event.stopPropagation()">問題PDF</a>
+    </div>
+  </div>
+
+  <div class="card" onclick="window.location.href='R1_解答解説.html'">
+    <div class="card-year">R1年度（令和元年8月実施 · 2020大修）</div>
+    <div class="card-title">総合 — 数学 · 電磁気学 · 選択（電気回路 / 量子力学）</div>
+    <div class="card-desc">フーリエ変換性質（全7問）・非線形ODE（同次型）、球状電荷・トロイダルコイル、RC過渡応答・オペアンプGIC、半無限ポテンシャル束縛状態・フェルミ・ディラック分布と正孔密度</div>
+    <div class="card-tags"><span class="tag">フーリエ変換</span><span class="tag">球状電荷</span><span class="tag">GIC</span><span class="tag">量子井戸</span><span class="tag">フェルミ分布</span></div>
+    <div class="card-actions">
+      <a class="btn-kaisetsu" href="R1_解答解説.html" onclick="event.stopPropagation()">解答解説を開く</a>
+      <a class="btn-pdf" href="院試　問題/総合（H28-R6）/R1.pdf" target="_blank" onclick="event.stopPropagation()">問題PDF</a>
+    </div>
+  </div>
+
+  <div class="card" onclick="window.location.href='R3_解答解説.html'">
+    <div class="card-year">R3年度（令和3年8月実施 · 2022大修）</div>
+    <div class="card-title">総合 — 数学 · 電磁気学 · 選択（電気回路 / 量子力学）</div>
+    <div class="card-desc">FT・エルミート多項式漸化式・非斉次ODE（重解特解）、同軸コンデンサ・TEM平行板線路（位相速度=c）、RLCバンドパス・多周波3相回路、有限ポテンシャル井戸・空間電荷制限電流（Mott-Gurney則）</div>
+    <div class="card-tags"><span class="tag">エルミート多項式</span><span class="tag">TEM波</span><span class="tag">3相回路</span><span class="tag">量子井戸</span><span class="tag">Mott-Gurney則</span></div>
+    <div class="card-actions">
+      <a class="btn-kaisetsu" href="R3_解答解説.html" onclick="event.stopPropagation()">解答解説を開く</a>
+      <a class="btn-pdf" href="院試　問題/総合（H28-R6）/R3.pdf" target="_blank" onclick="event.stopPropagation()">問題PDF</a>
+    </div>
+  </div>
+
+  <div class="card" onclick="window.location.href='R4_解答解説.html'">
+    <div class="card-year">R4年度（令和4年8月実施 · 2023大修）</div>
+    <div class="card-title">総合 — 数学 · 電磁気学 · 選択（電気回路 / 量子力学）</div>
+    <div class="card-desc">2階ODE（重解・収束条件）・テイラー展開、コンデンサ静電力・荷電粒子サイクロトロン運動、MOSFET増幅・ブリッジ平衡、量子力学透過係数・半導体電流</div>
+    <div class="card-tags"><span class="tag">常微分方程式</span><span class="tag">荷電粒子運動</span><span class="tag">MOSFET</span><span class="tag">量子力学</span></div>
+    <div class="card-actions">
+      <a class="btn-kaisetsu" href="R4_解答解説.html" onclick="event.stopPropagation()">解答解説を開く</a>
+      <a class="btn-pdf" href="院試　問題/総合（H28-R6）/R4.pdf" target="_blank" onclick="event.stopPropagation()">問題PDF</a>
+    </div>
+  </div>
+
+  <div class="card" onclick="window.location.href='R5_解答解説.html'">
+    <div class="card-year">R5年度（令和5年8月実施 · 2024大修）</div>
+    <div class="card-title">総合 — 数学 · 電磁気学 · 選択（電気回路 / 量子力学）</div>
+    <div class="card-desc">ベッセル方程式・複素関数（留数定理・写像）、同軸線路・ヘルムホルツコイル、共振回路・LC-MOSFET発振器、プランク分布・量子力学期待値</div>
+    <div class="card-tags"><span class="tag">ベッセル方程式</span><span class="tag">複素積分</span><span class="tag">ヘルムホルツコイル</span><span class="tag">プランク分布</span></div>
+    <div class="card-actions">
+      <a class="btn-kaisetsu" href="R5_解答解説.html" onclick="event.stopPropagation()">解答解説を開く</a>
+      <a class="btn-pdf" href="院試　問題/総合（H28-R6）/R5.pdf" target="_blank" onclick="event.stopPropagation()">問題PDF</a>
+    </div>
+  </div>
+
+  <div class="card" onclick="window.location.href='R6_解答解説.html'">
+    <div class="card-year">R6年度（令和6年8月実施 · 2025大修）</div>
+    <div class="card-title">総合 — 数学 · 電磁気学 · 選択（電気回路 / 量子力学）</div>
+    <div class="card-desc">ベクトル解析（div rot・ガウス・ストークス）・サンプリング定理・三角波フーリエ、円板電荷電位・無限長円柱磁場、インピーダンス整合・三相回路、2準位系固有値・状態密度</div>
+    <div class="card-tags"><span class="tag">ベクトル解析</span><span class="tag">サンプリング定理</span><span class="tag">インピーダンス整合</span><span class="tag">状態密度</span></div>
+    <div class="card-actions">
+      <a class="btn-kaisetsu" href="R6_解答解説.html" onclick="event.stopPropagation()">解答解説を開く</a>
+      <a class="btn-pdf" href="院試　問題/総合（H28-R6）/R6.pdf" target="_blank" onclick="event.stopPropagation()">問題PDF</a>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  解答解説作成：Claude（Anthropic）
+</footer>
+
+</body>
+</html>

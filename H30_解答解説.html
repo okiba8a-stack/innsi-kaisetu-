@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>H30年度 専門科目 総合 解答解説</title>
+  <script>
+    MathJax = {
+      tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']], tags: 'ams' },
+      options: { skipHtmlTags: ['script','noscript','style','textarea','pre'] }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: "Yu Gothic","游ゴシック",sans-serif; font-size: 13pt; line-height: 1.9; color: #1a1a2e; background: #f4f7fb; padding: 40px; }
+    h1 { font-size: 19pt; color: #0d2b5e; border-bottom: 3px solid #0d2b5e; padding-bottom: 10px; margin-bottom: 6px; }
+    .meta { color: #666; font-size: 11pt; margin-bottom: 36px; }
+    h2 { font-size: 15pt; color: #0d2b5e; background: #e8f0fb; border-left: 5px solid #1e5fa8; padding: 8px 14px; margin: 40px 0 16px; border-radius: 0 6px 6px 0; }
+    h3 { font-size: 13pt; color: #1e5fa8; border-bottom: 1px solid #c5d8f5; margin: 28px 0 10px; padding-bottom: 4px; }
+    .answer-box { background: #fff; border: 2px solid #1e5fa8; border-radius: 6px; padding: 14px 20px; margin: 12px 0; }
+    .step { background: #eef4ff; border-left: 3px solid #5b8dee; padding: 10px 16px; margin: 10px 0; border-radius: 0 4px 4px 0; }
+    .note { background: #fffbe6; border-left: 4px solid #f0ad00; padding: 10px 16px; margin: 12px 0; border-radius: 0 4px 4px 0; font-size: 11.5pt; }
+    table { border-collapse: collapse; width: 100%; margin: 16px 0; font-size: 11.5pt; }
+    th { background: #0d2b5e; color: #fff; padding: 8px 12px; text-align: center; }
+    td { border: 1px solid #c5d8f5; padding: 8px 12px; text-align: center; }
+    td.left { text-align: left; }
+    tr:nth-child(even) td { background: #f0f6ff; }
+    footer { margin-top: 60px; color: #aaa; font-size: 10pt; text-align: center; }
+    @media print { body { background: #fff; padding: 20px; } }
+  </style>
+</head>
+<body>
+
+<h1>H30年度 専門科目（総合）解答解説</h1>
+<p class="meta">東京工業大学 大学院修士課程入試（平成30年8月実施・31大修） ／ 数学・電磁気学・電気回路</p>
+
+<!-- ============================================================ -->
+<h2>【数学】大問1　ホーン方程式（偏微分方程式）</h2>
+<p>断面積 $S(x)=S_1 e^{m(x-x_1)}$ の音響管における波動方程式：</p>
+$$\frac{\partial^2 y}{\partial t^2}=p^2\frac{\partial^2 y}{\partial x^2}+p^2\frac{\partial y}{\partial x}\frac{\partial \ln S}{\partial x}$$
+
+<h3>1)　常微分方程式への帰着</h3>
+<div class="step">
+$\partial\ln S/\partial x = m$（指数型断面のとき一定）。<br>
+$y(x,t)=\varphi(x)e^{jqt}$ を代入：
+$$-q^2\varphi = p^2\varphi''+p^2 m\varphi'$$
+$$\varphi''+m\varphi'+\frac{q^2}{p^2}\varphi=0$$
+</div>
+<div class="answer-box">
+$$\left(\frac{d^2}{dx^2}+m\frac{d}{dx}+\frac{q^2}{p^2}\right)\varphi=0$$
+（$A=m$，$B=q^2/p^2$）
+</div>
+
+<h3>2)　一般解（$\beta=m/2$，$\alpha=\sqrt{q^2/p^2-m^2/4}$）</h3>
+<div class="step">
+$\varphi=e^{rx}$ を代入：$r^2+mr+q^2/p^2=0$ → $r=-m/2\pm j\alpha$，$\alpha=\sqrt{q^2/p^2-m^2/4}$。
+</div>
+<div class="answer-box">
+$$\boxed{\varphi(x)=e^{-\beta x}\bigl(Ce^{j\alpha x}+De^{-j\alpha x}\bigr), \quad \beta=\frac{m}{2},\; \alpha=\sqrt{\frac{q^2}{p^2}-\frac{m^2}{4}}}$$
+進行波形：$y(x,t)=e^{-\beta x}\cos(\alpha x-qt+\phi_0)$（振幅が $e^{-\beta x}$ で指数減衰）
+</div>
+<div class="note">
+$\alpha^2>0$（$q/p>m/2$）のとき進行波解が存在（伝播条件）。$\alpha^2<0$ なら指数的減衰のみ（カットオフ）。
+</div>
+
+<!-- ============================================================ -->
+<h2>【数学】大問2　複素積分</h2>
+
+<h3>2-1)　$\displaystyle\oint_C\frac{dz}{z-p}=2\pi j$（コーシーの積分定理）</h3>
+<div class="step">
+$z-p=re^{j\varphi}$（$r$：定数，$\varphi\colon 0\to2\pi$）と置換：$dz=jre^{j\varphi}d\varphi$
+$$\oint_C\frac{dz}{z-p}=\int_0^{2\pi}\frac{jre^{j\varphi}}{re^{j\varphi}}d\varphi=j\int_0^{2\pi}d\varphi=2\pi j$$
+</div>
+<div class="answer-box">$$\oint_C\frac{dz}{z-p}=2\pi j \quad (p\text{ は }C\text{ 内部の点})$$</div>
+
+<h3>2-2)　$\displaystyle\int_0^{2\pi}\frac{d\theta}{1-2a\cos\theta+a^2}=\frac{2\pi}{1-a^2}$（$|a|<1$）</h3>
+<div class="step">
+$z=e^{j\theta}$，$d\theta=dz/(jz)$，$\cos\theta=(z+1/z)/2$。<br>
+$$1-2a\cos\theta+a^2=1-a(z+1/z)+a^2=\frac{(z-a)(1-az)}{z}$$（因数分解）<br>
+$$I=\oint_{|z|=1}\frac{z}{(z-a)(1-az)}\cdot\frac{dz}{jz}=\frac{1}{j}\oint\frac{dz}{(z-a)(1-az)}$$
+$|a|<1$ のとき，$|z|=1$ 内に極は $z=a$ のみ（$z=1/a$ は $|z|>1$）。<br>
+留数：$\text{Res}[z=a]=1/[(1-az)\big|_{z=a}(1)]=1/(1-a^2)$
+$$I=\frac{1}{j}\cdot 2\pi j\cdot\frac{1}{1-a^2}=\frac{2\pi}{1-a^2}$$
+</div>
+<div class="answer-box">$$\int_0^{2\pi}\frac{d\theta}{1-2a\cos\theta+a^2}=\frac{2\pi}{1-a^2}\quad(|a|<1)$$</div>
+
+<!-- ============================================================ -->
+<h2>【数学】大問3　離散フーリエ変換（DFT）</h2>
+<p>$N$ 点 DFT：$F(k)=\displaystyle\sum_{n=0}^{N-1}f(n)e^{-j2\pi kn/N}$</p>
+
+<h3>3-1)　DFT の性質</h3>
+<div class="step">
+<strong>① $f(-n)$ の DFT：</strong>
+$F[-n] \leftrightarrow \sum f(-n)e^{-j2\pi kn/N} = \sum f(m)e^{j2\pi km/N} = F(-k)=F^*$ ... 実数の場合。
+→ $f(-n) \leftrightarrow F(-k)$（時間反転 = 周波数反転）
+</div>
+<div class="step">
+<strong>② シフト定理：$f(n-m) \leftrightarrow F(k)e^{-j2\pi km/N}$</strong>
+$$\sum_{n=0}^{N-1}f(n-m)e^{-j2\pi kn/N}\overset{l=n-m}{=}\sum_{l}f(l)e^{-j2\pi k(l+m)/N}=F(k)e^{-j2\pi km/N}$$
+</div>
+<div class="answer-box">
+時間反転：$\text{DFT}[f(-n)]=F(-k)$<br>
+シフト定理：$\text{DFT}[f(n-m)]=F(k)e^{-j2\pi km/N}$
+</div>
+
+<h3>3-2)　$f=[3,0,-1,2]$（$N=4$）の DFT 計算</h3>
+<div class="step">
+$W=e^{-j2\pi/4}=e^{-j\pi/2}=-j$
+$$F(k)=\sum_{n=0}^{3}f(n)W^{kn}$$
+$k=0$：$F(0)=3+0-1+2=4$<br>
+$k=1$：$F(1)=3+0\cdot(-j)+(-1)(-j)^2+2(-j)^3=3+0-1(-1)+2(-1)(-j)^{...}$
+
+より丁寧に：$W^0=1$，$W^1=-j$，$W^2=-1$，$W^3=j$
+$F(0)=3+0+(-1)+2=4$
+$F(1)=3\cdot1+0\cdot(-j)+(-1)\cdot(-1)+2\cdot j=3+0+1+2j=4+2j$
+$F(2)=3\cdot1+0\cdot(-1)+(-1)\cdot1+2\cdot(-1)=3+0-1-2=0$
+$F(3)=3\cdot1+0\cdot j+(-1)\cdot(-1)+2\cdot(-j)=3+0+1-2j=4-2j$
+</div>
+<div class="answer-box">
+$$F(0)=4,\quad F(1)=4+2j,\quad F(2)=0,\quad F(3)=4-2j$$
+</div>
+
+<!-- ============================================================ -->
+<h2>【電磁気学】大問1　円柱状誘電体の電界・回転電流・誘導電界</h2>
+<p>半径 $a$，単位長さ電荷 $\lambda$，比誘電率 $\varepsilon_r$ の円柱誘電体。</p>
+
+<h3>1-a)　静電場（ガウスの法則）</h3>
+<div class="step">
+$r>a$：$2\pi r\varepsilon_0 E=\lambda \Rightarrow E=\lambda/(2\pi\varepsilon_0 r)$<br>
+$r<a$（内部に一様分布，$\lambda$：全線電荷）：$2\pi r\varepsilon_0\varepsilon_r E=\lambda r^2/a^2$
+$$E(r<a)=\frac{\lambda r}{2\pi\varepsilon_0\varepsilon_r a^2}$$
+</div>
+<div class="answer-box">
+$$E(r)=\begin{cases}\dfrac{\lambda}{2\pi\varepsilon_0\varepsilon_r a^2}r & (r<a)\\[6pt]\dfrac{\lambda}{2\pi\varepsilon_0 r} & (r>a)\end{cases}$$
+（連続電荷分布の場合。表面電荷の場合は内部 $E=0$，外部 $E=\lambda/(2\pi\varepsilon_0 r)$）
+</div>
+
+<h3>1-b)　角速度 $\omega$ で回転する誘電体の等価電流と磁場</h3>
+<div class="step">
+表面電荷密度 $\sigma_s=\lambda/(2\pi a)$，表面速度 $v=\omega a$：<br>
+表面電流密度（単位長さあたり）：$K=\sigma_s\cdot v=\frac{\lambda\omega}{2\pi}$（A/m）<br>
+これは $N=1$ 巻・電流 $K$ の薄いソレノイドと等価：内部 $B=\mu_0 K=\mu_0\lambda\omega/(2\pi)$，外部 $B=0$。
+</div>
+<div class="answer-box">
+$$B=\frac{\mu_0\lambda\omega}{2\pi} \quad (r<a),\qquad B=0\quad(r>a), \quad \text{方向：$z$ 軸方向}$$
+</div>
+
+<h3>1-c)　$\omega=kt$（一様加速回転）のときの誘導電界</h3>
+<div class="step">
+$B(t)=\mu_0\lambda kt/(2\pi)$（時間増加）。ファラデーの法則：
+$$\oint\mathbf{E}_{ind}\cdot d\mathbf{l}=-\frac{\partial\Phi}{\partial t}$$
+$r<a$：$2\pi r E_{ind}=-\pi r^2\cdot dB/dt=-\pi r^2\cdot\mu_0\lambda k/(2\pi)$
+$$E_{ind}=-\frac{\mu_0\lambda k}{4\pi}r \quad (\text{接線方向，誘導})$$
+</div>
+<div class="answer-box">
+$$E_{ind}(r<a)=-\frac{\mu_0\lambda k\,r}{4\pi}\,\hat{\varphi}$$
+（負号は逆方向の誘導電界，レンツの法則）
+</div>
+
+<!-- ============================================================ -->
+<h2>【電磁気学】大問2　電気映像法</h2>
+
+<h3>2-a)　点電荷 $+q$ at $(h,0,0)$ と接地無限平板（$x=0$）</h3>
+<div class="step">
+映像電荷：$-q$ at $(-h,0,0)$（$x=0$ 平面を鏡として反転）。<br>
+力：$F=\dfrac{q\cdot(-q)}{4\pi\varepsilon_0(2h)^2}=-\dfrac{q^2}{16\pi\varepsilon_0 h^2}$（引力，$-x$ 方向）
+</div>
+<div class="answer-box">
+映像電荷：$-q$ at $(-h,0,0)$<br>
+$$F=-\frac{q^2}{16\pi\varepsilon_0 h^2} \quad (\text{引力，$-x$ 方向})$$
+電位（$x=0$ 平面上，点 $(0,y,z)$，$r=\sqrt{y^2+z^2}$）：
+$$V(0,y,z)=\frac{1}{4\pi\varepsilon_0}\left(\frac{q}{\sqrt{h^2+r^2}}-\frac{q}{\sqrt{h^2+r^2}}\right)=0\quad(\text{接地条件を確認})$$
+面電荷密度：$\sigma=-\varepsilon_0\partial V/\partial x\big|_{x=0^+}=-\dfrac{qh}{2\pi(h^2+r^2)^{3/2}}$
+</div>
+
+<h3>2-b)　電気双極子の電位</h3>
+<div class="step">
+双極子モーメント $p=qd$（$q$：電荷，$d$：間隔）：
+$$V=\frac{p\cos\theta}{4\pi\varepsilon_0 r^2}=\frac{1}{4\pi\varepsilon_0}\frac{\mathbf{p}\cdot\hat{r}}{r^2}$$
+接地平面との映像法：双極子の映像は同じ位置に鏡映双極子。
+</div>
+
+<h3>2-c)　双極子と接地面のエネルギー・力</h3>
+<div class="answer-box">
+映像双極子との相互作用エネルギー：$U=-p^2/(16\pi\varepsilon_0 h^3)$（$h$：距離）<br>
+引力（接地面方向）：$F=-dU/dh=-3p^2/(16\pi\varepsilon_0 h^4)$
+</div>
+
+<!-- ============================================================ -->
+<h2>【電磁気学】大問3　鉄心コイル・変圧器</h2>
+
+<h3>3-a)　閉鉄心変圧器（透磁率 $\mu$，断面積 $S$，磁路長 $l_1$）</h3>
+<div class="step">
+アンペールの法則：$N_1 I_1=\mathcal{H}l_1=\dfrac{B}{\mu}l_1$ → $B=\dfrac{\mu N_1 I_1}{l_1}$，$\Phi=BS$。
+</div>
+<div class="answer-box">
+$$L_1=\frac{N_1\Phi}{I_1}=\frac{\mu N_1^2 S}{l_1},\quad L_2=\frac{\mu N_2^2 S}{l_1},\quad M=\frac{\mu N_1 N_2 S}{l_1}$$
+結合係数：$k=M/\sqrt{L_1 L_2}=1$（理想トランス）
+</div>
+
+<h3>3-b)　ギャップ付き鉄心（磁路長 $l_2$，ギャップ長 $x$，透磁率 $\mu$）</h3>
+<div class="step">
+アンペールの法則：$NI=\dfrac{B}{\mu}l_2+\dfrac{B}{\mu_0}x$（鉄心 + 空隙）
+$$B=\frac{\mu_0\mu NI}{\mu_0 l_2+\mu x}\approx\frac{\mu_0 NI}{x}\quad(\mu x\gg\mu_0 l_2\text{ のとき})$$
+</div>
+<div class="answer-box">
+磁束密度：$B=\dfrac{\mu_0\mu NI}{\mu l_2\cdot\dfrac{\mu_0}{\mu}+\mu_0 x}\approx\dfrac{\mu_0 NI}{\mu_0 l_2/\mu+x}$（正確な式）<br>
+自己インダクタンス：$L=\dfrac{N^2\mu_0\mu S}{\mu x+\mu_0 l_2}$<br>
+吸引力（ギャップ面積 $S$，仮想変位法）：
+$$F=\frac{B^2 S}{2\mu_0}=\frac{\mu_0 N^2 I^2 S}{2(\mu_0 l_2/\mu+x)^2}$$
+</div>
+
+<!-- ============================================================ -->
+<h2>【電気回路】大問1　抵抗梯子回路（DAC 原理）</h2>
+<p>$R$-$2R$ ラダー回路，スイッチ $S_1, S_2, S_3$ で各ノードを $E_1, E_2, E_3$ または GND に接続。</p>
+
+<h3>テブナン等価と重ね合わせ</h3>
+<div class="step">
+$R$-$2R$ ラダーの基本原理：各ノードから見た右側のインピーダンスは常に $2R$（再帰的に $2R\|2R=R$，$R+R=2R$）。<br>
+各スイッチに対応する重みつき電圧（重ね合わせの理）：
+</div>
+<div class="answer-box">
+出力電圧（3段ラダー，重みつき）：
+$$V_A=\frac{E_3}{2}+\frac{E_2}{4}+\frac{E_1}{8}$$
+（MSB: $E_3$，LSB: $E_1$）
+</div>
+<div class="note">
+これはデジタル-アナログ変換（DAC）の原理。$S_n=1$ なら $E_n$，$S_n=0$ なら GND に接続。
+</div>
+
+<!-- ============================================================ -->
+<h2>【電気回路】大問2　LR 直列回路のスイッチング（繰り返し）</h2>
+
+<h3>2-1)　ステップ応答のラプラス変換</h3>
+<div class="step">
+$t=0$ でスイッチが閉じ，電源 $E_0$ を印加：$V_R(s)=\dfrac{R\cdot E_0/s}{R+sL}=\dfrac{E_0 R/L}{s+R/L}\cdot\dfrac{1}{s}$...
+実際には：$V_R(s)=\dfrac{R}{R+sL}\cdot\dfrac{E_0}{s}=\dfrac{E_0/(sL)}{s/L+R/L}\cdot\dfrac{R}{1}$
+
+$$V_R(s)=\frac{E_0 R/L}{s(s+R/L)}=E_0\left(\frac{1}{s}-\frac{1}{s+R/L}\right)$$
+</div>
+<div class="answer-box">
+$$v_R(t)=E_0(1-e^{-Rt/L})u(t)$$
+</div>
+
+<h3>2-2)　スイッチ ON/OFF 繰り返し（周期 $T=2a=2L/R$）での定常電圧</h3>
+<div class="step">
+時定数 $\tau=L/R$，$T=2\tau$。<br>
+各サイクル開始時の初期電流値を $I_n$ とすると：
+- ON 期間（$t\in[0,a]$）：$i(t)=E_0/R+(I_n-E_0/R)e^{-t/\tau}$，終端値 $I_n^+=E_0/R+(I_n-E_0/R)e^{-a/\tau}$
+- OFF 期間（$t\in[0,a]$）：$i(t)=I_n^+ e^{-t/\tau}$，終端値 $I_{n+1}=I_n^+ e^{-a/\tau}$
+</div>
+<div class="step">
+定常状態：$I_n=I_{n+1}=I_\infty$。$a=\tau$（$T=2L/R$）のとき $e^{-a/\tau}=e^{-1}$：
+$$I_\infty=\frac{E_0/R\cdot(1-e^{-1})}{1-e^{-2}}=\frac{E_0(1-e^{-1})}{R(1-e^{-1})(1+e^{-1})}=\frac{E_0}{R(1+e^{-1})}=\frac{E_0}{R\cdot(e+1)/e}=\frac{E_0 e}{R(e+1)}$$
+</div>
+<div class="answer-box">
+定常 $v_R$ 最大値（ON 開始直後）：
+$$v_{sat}=\frac{E_0}{e+1}$$
+（$T=2L/R$ で正規化した場合の最終的な繰り返しピーク値の一例）
+</div>
+
+<!-- ============================================================ -->
+<h2>解答まとめ</h2>
+<table>
+  <tr><th>分野</th><th>大問</th><th>キーワード</th><th>結果</th></tr>
+  <tr><td>数学</td><td>1</td><td>ホーン方程式</td><td class="left">$\varphi=e^{-\beta x}(Ce^{j\alpha x}+De^{-j\alpha x})$，$\beta=m/2$</td></tr>
+  <tr><td>数学</td><td>2</td><td>留数定理・実積分</td><td class="left">$\int d\theta/(1-2a\cos\theta+a^2)=2\pi/(1-a^2)$</td></tr>
+  <tr><td>数学</td><td>3</td><td>DFT</td><td class="left">$F=[4,\,4+2j,\,0,\,4-2j]$</td></tr>
+  <tr><td>電磁気学</td><td>1</td><td>円柱電荷・回転</td><td class="left">$B=\mu_0\lambda\omega/(2\pi)$，誘導 $E\propto r$</td></tr>
+  <tr><td>電磁気学</td><td>2</td><td>電気映像法</td><td class="left">$F=-q^2/(16\pi\varepsilon_0 h^2)$（引力）</td></tr>
+  <tr><td>電磁気学</td><td>3</td><td>鉄心変圧器</td><td class="left">$L=\mu N^2 S/l$，吸引力 $F=B^2S/(2\mu_0)$</td></tr>
+  <tr><td>電気回路</td><td>1</td><td>R-2R DAC</td><td class="left">$V_A=E_3/2+E_2/4+E_1/8$</td></tr>
+  <tr><td>電気回路</td><td>2</td><td>LR繰り返しスイッチング</td><td class="left">$v_R(t)=E_0(1-e^{-Rt/L})$</td></tr>
+</table>
+
+<footer>東京科学大学（東京工業大学）大学院入試 H30年度（31大修）専門科目 解答解説</footer>
+</body>
+</html>

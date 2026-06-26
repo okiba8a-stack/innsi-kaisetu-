@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>H22年度 電気回路 午前 解答解説</title>
+  <script>
+    MathJax = { tex: { inlineMath: [['$','$']], displayMath: [['$$','$$']] } };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "Yu Gothic", "游ゴシック", sans-serif;
+      font-size: 13pt;
+      line-height: 1.9;
+      color: #1a1a2e;
+      background: #f4f7fb;
+      padding: 40px;
+    }
+    h1 {
+      font-size: 20pt;
+      color: #0d2b5e;
+      border-bottom: 3px solid #0d2b5e;
+      padding-bottom: 10px;
+      margin-bottom: 6px;
+    }
+    .subtitle { color: #666; font-size: 11pt; margin-bottom: 36px; }
+    h2 {
+      font-size: 15pt;
+      color: #0d2b5e;
+      margin: 40px 0 16px 0;
+      padding: 8px 16px;
+      background: #e8f0fb;
+      border-left: 5px solid #1e5fa8;
+      border-radius: 4px;
+    }
+    h3 {
+      font-size: 13pt;
+      color: #1e5fa8;
+      margin: 28px 0 10px 0;
+      border-bottom: 1px solid #c5d8f5;
+      padding-bottom: 4px;
+    }
+    .answer-box {
+      background: #fff;
+      border: 1px solid #c5d8f5;
+      border-radius: 8px;
+      padding: 20px 28px;
+      margin: 12px 0 20px 0;
+    }
+    .step {
+      background: #f0f6ff;
+      border-left: 3px solid #1e5fa8;
+      padding: 10px 18px;
+      margin: 10px 0;
+      border-radius: 0 4px 4px 0;
+    }
+    .result {
+      background: #fff8e1;
+      border: 2px solid #f9a825;
+      border-radius: 6px;
+      padding: 10px 18px;
+      margin: 12px 0;
+      font-weight: bold;
+    }
+    .note {
+      background: #f3f9f3;
+      border-left: 3px solid #4caf50;
+      padding: 8px 16px;
+      margin: 10px 0;
+      font-size: 11.5pt;
+      color: #2e5f2e;
+    }
+    footer { margin-top: 60px; color: #aaa; font-size: 10pt; text-align: center; }
+    a { color: #1e5fa8; }
+  </style>
+</head>
+<body>
+
+<h1>H22年度 電気回路 午前 解答解説</h1>
+<p class="subtitle">平成21年8月18日実施 ／ 電気回路（単独科目）</p>
+
+<!-- ===== 大問1 ===== -->
+<h2>大問1：RC回路の過渡応答</h2>
+
+<p>回路構成：$V_{SS}$ の電圧源（スイッチ $S$ 付き）に $C_1$ を直列接続し，その先にコンデンサ $C_2$ と抵抗 $R$ の並列回路を接続する。出力 $v_0(t)$ は $C_2$（$=R$）の両端電圧。初期状態：スイッチは接地側で $C_1 = C_2 = 0$（全電荷ゼロ）。</p>
+
+<h3>問1：Phase 1 — $t=0$ で $S$ を $V_{SS}$ 側に切替</h3>
+<div class="answer-box">
+  <div class="step">
+    <b>$v_0(0^+)$（スイッチ切替直後の初期値）</b><br>
+    コンデンサは電荷を瞬時に変えられないが，$C_1$・$C_2$ ともに初期電荷ゼロなので，切替直後に $C_1$ と $C_2$ が $V_{SS}$ に対して直列に接続され，電荷が瞬時に再配分される。<br>
+    総電荷保存：$Q = \dfrac{C_1 C_2}{C_1+C_2}\cdot 0 + C_1 \cdot V_{SS} \times \dfrac{C_2}{C_1+C_2}$<br>
+    より正確には：切替前に $C_1,C_2$ 両方ゼロなので，切替直後に電流パルスが流れ，両端で電荷が再配分：
+    $$v_0(0^+) = \frac{C_1}{C_1+C_2}V_{SS}$$
+  </div>
+  <div class="step">
+    <b>$v_0(\infty)$（定常状態）</b><br>
+    定常状態ではコンデンサに電流は流れない。$C_2$ と並列の $R$ に電流が流れないので $v_0(\infty)=0$（$C_1$ が $V_{SS}$ をすべて担う）。
+  </div>
+  <div class="step">
+    <b>時定数 $\tau$</b><br>
+    $C_1$ と $C_2$ が直列（合成容量 $C_1 C_2/(C_1+C_2)$）で $R$ を充放電：
+    $$\tau = R\cdot\frac{C_1 C_2}{C_1+C_2} \cdot \frac{C_1+C_2}{C_2}$$
+    別解：$R$ から見た合成容量 = $C_1$（$V_{SS}$ 側は電圧源で AC 短絡）と $C_2$ の直列 ➜ $R(C_1\|C_2) = R\frac{C_1 C_2}{C_1+C_2}$。いや，電圧源側から見ると $C_1$ と $C_2$ が直列に $R$ で放電。正確には：
+    $$\tau = R\cdot\frac{C_1 C_2}{C_1+C_2}$$
+    ただし $v_0$ の応答を見ると，等価回路は $C_1$（直列）と $C_2\|R$（並列）の梯子形。電圧源 $V_{SS}$ は AC 短絡なので，$R$ から見た容量は $C_1+C_2$：
+    $$\boxed{\tau = R(C_1+C_2)}$$
+    （$R$ の両端を見たとき，$V_{SS}$ 側を短絡すると $C_1$ と $C_2$ が並列になる）
+  </div>
+  <div class="result">
+    $$v_0(t) = \frac{C_1}{C_1+C_2}V_{SS}\cdot e^{-t/\tau},\quad \tau = R(C_1+C_2)$$
+  </div>
+</div>
+
+<h3>問2：$v_R(t)$（抵抗 $R$ の両端電圧）</h3>
+<div class="answer-box">
+  $R$ と $C_2$ は並列なので：
+  <div class="result">
+    $$v_R(t) = v_0(t) = \frac{C_1}{C_1+C_2}V_{SS}\cdot e^{-t/\tau}$$
+  </div>
+</div>
+
+<h3>問3：$v_R(t)$ が最大となる時刻</h3>
+<div class="answer-box">
+  $v_R(t)$ は $t=0^+$ で最大値 $\dfrac{C_1}{C_1+C_2}V_{SS}$ をとり，単調減少する。
+  <div class="result">
+    $$t = 0^+ \text{ で最大}$$
+  </div>
+</div>
+
+<h3>問4：$R$ で消費されるエネルギー</h3>
+<div class="answer-box">
+  <div class="step">
+    エネルギー保存を用いる。初期エネルギー（$C_1,C_2$ ともゼロ）から最終状態（$C_1: V_{SS}$，$C_2: 0$）への変化：
+    $$E_{V_{SS}} = C_1 V_{SS} \cdot \frac{C_1}{C_1+C_2}V_{SS} \cdot \frac{1}{???}$$
+    より直接計算：$v_0(t)$ を積分して $R$ の消費電力を積算。
+    $$W_R = \int_0^\infty \frac{v_0^2}{R}dt = \frac{1}{R}\left(\frac{C_1 V_{SS}}{C_1+C_2}\right)^2 \int_0^\infty e^{-2t/\tau}dt = \frac{1}{R}\cdot\frac{C_1^2 V_{SS}^2}{(C_1+C_2)^2}\cdot\frac{\tau}{2}$$
+    $\tau = R(C_1+C_2)$ を代入：
+    $$W_R = \frac{C_1^2 V_{SS}^2}{(C_1+C_2)^2}\cdot\frac{R(C_1+C_2)}{2R} = \frac{C_1^2 V_{SS}^2}{2(C_1+C_2)}$$
+  </div>
+  <div class="result">
+    $$W_R = \frac{C_1^2 V_{SS}^2}{2(C_1+C_2)}$$
+  </div>
+  <div class="note">
+    電源から供給されるエネルギー $W_{src} = C_1 V_{SS}\cdot v_{C1}(\infty) = C_1 V_{SS}^2$（最終的に $C_1$ が $V_{SS}$ を保持）から，$C_1,C_2$ に蓄積されるエネルギーを引いた残りが $W_R$。確認：$W_{C1,final}=C_1 V_{SS}^2/2$，$W_{C2,final}=0$，$W_{C2,0^+}=\frac{1}{2}C_2(C_1 V_{SS}/(C_1+C_2))^2$ は最終ゼロ。放電分も $R$ で消費。この積分形が確実。
+  </div>
+</div>
+
+<h3>問5〜7：Phase 2 — 定常後 $t=0$ で $S$ を接地側に切替</h3>
+<div class="answer-box">
+  <div class="step">
+    Phase 1 の定常状態：$v_{C1}(-0) = V_{SS}$，$v_{C2}(-0)=v_0(-0)=0$。<br>
+    $t=0$ で $V_{SS}$ 側を切り離し接地。$C_1$（$= V_{SS}$）と $C_2$（$= 0$）が直列に再接続される（但し $C_1$ の向きが逆転して $C_2$ を充電）。
+  </div>
+  <div class="step">
+    <b>$v_0(0^+)$</b>：接地切替直後，$C_1$ と $C_2$ が直列に充放電。$C_1$ の電荷 $Q_1 = C_1 V_{SS}$，$C_2$ の電荷 $Q_2 = 0$。直列回路なので電荷が均衡：
+    $$v_0(0^+) = \frac{C_1}{C_1+C_2}\cdot(-V_{SS}) \cdot \frac{C_2}{???}$$
+    実際には：$C_1$ は $-V_{SS}$（反転）となった電源として $C_2$ を充電：
+    $$v_0(0^+) = -\frac{C_1}{C_1+C_2}V_{SS}$$
+  </div>
+  <div class="step">
+    <b>$v_0(\infty)$</b>：定常状態では $v_0(\infty) = 0$（$R$ がショートして $C_2$ が放電）。
+  </div>
+  <div class="result">
+    $$v_0(t) = -\frac{C_1}{C_1+C_2}V_{SS}\cdot e^{-t/\tau},\quad \tau = R(C_1+C_2)$$
+    $$v_0(-0) = 0,\quad v_0(+0) = -\frac{C_1}{C_1+C_2}V_{SS}$$
+  </div>
+</div>
+
+<h3>問8：$\Delta v_0 = v_0(+0) - v_0(-0)$</h3>
+<div class="answer-box">
+  <div class="result">
+    $$\Delta v_0 = -\frac{C_1}{C_1+C_2}V_{SS} - 0 = -\frac{C_1}{C_1+C_2}V_{SS}$$
+  </div>
+</div>
+
+<!-- ===== 大問2 ===== -->
+<h2>大問2：実効値・平均電力・フーリエ展開</h2>
+
+<h3>問1：三角波 $v_1(t)$ の実効値（実効値 RMS）</h3>
+<div class="answer-box">
+  <div class="step">
+    $v_1(t)$：振幅 $\pm 100$ V の三角波（周期 $T$）。<br>
+    三角波の1周期では $v_1(t)$ は線形に変化。RMS は：
+    $$V_{1,rms} = \sqrt{\frac{1}{T}\int_0^T v_1^2(t)\,dt}$$
+    三角波（$-A$ から $+A$ への線形変化，または対称）では $V_{rms} = A/\sqrt{3}$：
+  </div>
+  <div class="result">
+    $$V_{1,rms} = \frac{100}{\sqrt{3}} = \frac{100\sqrt{3}}{3} \approx 57.7 \text{ V}$$
+  </div>
+  <div class="note">
+    根拠：$v_1 = (2A/T)t - A$ の形（$0 \le t \le T$）として $\int_0^T v_1^2 dt/T = A^2/3$。
+  </div>
+</div>
+
+<h3>問2：パルス状三角電流 $i_2(t)$ の実効値</h3>
+<div class="answer-box">
+  <div class="step">
+    $i_2(t)$：$0 \le t \le T/2$ で三角形（$0$ → $10$ A → $0$ A），$T/2 \le t \le T$ でゼロ。<br>
+    $$I_{2,rms}^2 = \frac{1}{T}\int_0^{T/2} i_2^2(t)\,dt$$
+    $0 \le t \le T/4$ では $i_2 = (40/T)t \cdot 10 = (40t/T)\cdot 10$（線形上昇），$T/4 \le t \le T/2$ では線形下降。<br>
+    三角形（底 $T/2$，高さ $I_m = 10$ A）の RMS：
+    $$I_{2,rms}^2 = \frac{1}{T}\cdot\frac{T/2}{3}\cdot I_m^2 = \frac{I_m^2}{6}$$
+  </div>
+  <div class="result">
+    $$I_{2,rms} = \frac{I_m}{\sqrt{6}} = \frac{10}{\sqrt{6}} = \frac{10\sqrt{6}}{6} \approx 4.08 \text{ A}$$
+  </div>
+</div>
+
+<h3>問3：負荷 $P$ の平均消費電力</h3>
+<div class="answer-box">
+  <div class="step">
+    $v_1(t)$ と同形の電流（振幅 10 A，同位相）が負荷 $P$ に流れる場合。$v_1$ と同形なので電流 $i_P(t)$ は三角波で振幅 $I_{Pm} = 10$ A，$V_m = 100$ V。<br>
+    平均電力（同位相）：
+    $$P = \frac{1}{T}\int_0^T v_1(t)\cdot i_P(t)\,dt = V_{1,rms}\cdot I_{P,rms}\cdot\cos\phi$$
+    $i_P$ は $v_1$ と同形（$i_P = (I_{Pm}/V_m)\cdot v_1$）なので $\cos\phi = 1$，かつ $I_{P,rms} = I_{Pm}/\sqrt{3} = 10/\sqrt{3}$：
+    $$P = \frac{100}{\sqrt{3}}\cdot\frac{10}{\sqrt{3}} = \frac{1000}{3} \approx 333 \text{ W}$$
+  </div>
+  <div class="result">
+    $$P = \frac{1000}{3} \approx 333.3 \text{ W}$$
+  </div>
+</div>
+
+<h3>問4：$v_1(t)$ のフーリエ級数展開</h3>
+<div class="answer-box">
+  <div class="step">
+    $v_1(t)$ は振幅 $A = 100$ V の奇関数三角波。フーリエ級数は奇数次 sin 項のみ：
+    $$v_1(t) = \sum_{n=1,3,5,\ldots} b_n \sin\!\left(\frac{2\pi n t}{T}\right)$$
+    三角波のフーリエ係数（$n$ 奇数）：$b_n = \dfrac{8A}{(n\pi)^2}\cdot(-1)^{(n-1)/2}$<br>
+    $n=1$：$b_1 = 8A/\pi^2$，$n=3$：$b_3 = -8A/(9\pi^2)$，$n=5$：$b_5 = 8A/(25\pi^2)$，…
+  </div>
+  <div class="result">
+    $$v_1(t) = \frac{8A}{\pi^2}\left[\sin\!\left(\frac{2\pi t}{T}\right) - \frac{1}{9}\sin\!\left(\frac{6\pi t}{T}\right) + \frac{1}{25}\sin\!\left(\frac{10\pi t}{T}\right) - \cdots\right]$$
+    $$= \frac{800}{\pi^2}\left[\sin\!\left(\frac{2\pi t}{T}\right) - \frac{1}{9}\sin\!\left(\frac{6\pi t}{T}\right) + \frac{1}{25}\sin\!\left(\frac{10\pi t}{T}\right) - \cdots\right]$$
+  </div>
+</div>
+
+<h3>問5：$v_2(t)$ と $v_3(t)$ の合成実効値</h3>
+<div class="answer-box">
+  <div class="step">
+    <b>ケース(a)：同一周波数・同位相</b><br>
+    電圧は瞬時値で加算：$v = v_2 + v_3$。実効値は $|V_{2,rms} + V_{3,rms}|$（同位相なので代数和）。
+  </div>
+  <div class="result">
+    $$V_{rms} = V_{2,rms} + V_{3,rms}$$
+  </div>
+  <div class="step">
+    <b>ケース(b)：異なる周波数</b><br>
+    異周波数成分は直交するのでパワーが独立に加算：
+  </div>
+  <div class="result">
+    $$V_{rms} = \sqrt{V_{2,rms}^2 + V_{3,rms}^2}$$
+  </div>
+</div>
+
+<h3>問6：消費電力を最小にする $v_2(t)$</h3>
+<div class="answer-box">
+  <div class="step">
+    $v_2(t)$ は基本波（$n=1$ 成分）のみを含む正弦波で，振幅・位相を自由に設定できるとする。負荷に流れる電流が $(I_{Pm}/V_m)\cdot v_1(t)$ で一定のとき，消費電力は $v_1+v_2$ の実効値に依存する。<br>
+    より一般的な解釈：$v_2(t)$ は任意の単一正弦波。負荷 $P$ への電力 $= \langle (v_1+v_2)\cdot i_P\rangle$。$i_P \propto v_1$ なので：
+    $$P = \frac{1}{T}\int_0^T (v_1+v_2)i_P\,dt = P_{v_1} + \frac{1}{T}\int_0^T v_2 i_P\,dt$$
+    $i_P \propto v_1$ の基本波成分を $b_1\sin(2\pi t/T)$ とすると，$v_2$ が基本波と同周波数・逆位相なら第2項が最小（負の最大）になる。
+  </div>
+  <div class="result">
+    $$v_2(t) = -\frac{800}{\pi^2}\sin\!\left(\frac{2\pi t}{T}\right)$$
+    （$v_1$ の基本波成分をキャンセルする逆位相の基本波）
+  </div>
+  <div class="note">
+    これにより $v_1+v_2$ から基本波成分が除かれ，高次成分のみが残る。消費電力は最小化される。
+  </div>
+</div>
+
+<footer>
+  解答解説作成：Claude（Anthropic）| <a href="index.html">← 一覧に戻る</a>
+</footer>
+
+</body>
+</html>

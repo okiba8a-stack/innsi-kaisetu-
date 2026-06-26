@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>H28年度 専門科目 総合 解答解説</title>
+  <script>
+    MathJax = {
+      tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']], tags: 'ams' },
+      options: { skipHtmlTags: ['script','noscript','style','textarea','pre'] }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: "Yu Gothic","游ゴシック",sans-serif; font-size: 13pt; line-height: 1.9; color: #1a1a2e; background: #f4f7fb; padding: 40px; }
+    h1 { font-size: 19pt; color: #0d2b5e; border-bottom: 3px solid #0d2b5e; padding-bottom: 10px; margin-bottom: 6px; }
+    .meta { color: #666; font-size: 11pt; margin-bottom: 36px; }
+    h2 { font-size: 15pt; color: #0d2b5e; background: #e8f0fb; border-left: 5px solid #1e5fa8; padding: 8px 14px; margin: 40px 0 16px; border-radius: 0 6px 6px 0; }
+    h3 { font-size: 13pt; color: #1e5fa8; border-bottom: 1px solid #c5d8f5; margin: 28px 0 10px; padding-bottom: 4px; }
+    .answer-box { background: #fff; border: 2px solid #1e5fa8; border-radius: 6px; padding: 14px 20px; margin: 12px 0; }
+    .step { background: #eef4ff; border-left: 3px solid #5b8dee; padding: 10px 16px; margin: 10px 0; border-radius: 0 4px 4px 0; }
+    .note { background: #fffbe6; border-left: 4px solid #f0ad00; padding: 10px 16px; margin: 12px 0; border-radius: 0 4px 4px 0; font-size: 11.5pt; }
+    table { border-collapse: collapse; width: 100%; margin: 16px 0; font-size: 11.5pt; }
+    th { background: #0d2b5e; color: #fff; padding: 8px 12px; text-align: center; }
+    td { border: 1px solid #c5d8f5; padding: 8px 12px; text-align: center; }
+    td.left { text-align: left; }
+    tr:nth-child(even) td { background: #f0f6ff; }
+    footer { margin-top: 60px; color: #aaa; font-size: 10pt; text-align: center; }
+    @media print { body { background: #fff; padding: 20px; } }
+  </style>
+</head>
+<body>
+
+<h1>H28年度 専門科目（総合）解答解説</h1>
+<p class="meta">東京工業大学 大学院修士課程入試（平成28年8月実施・29大修） ／ 数学・電磁気学・電気回路</p>
+
+<!-- ============================================================ -->
+<h2>【数学】大問1　連立定係数常微分方程式</h2>
+<p>$$\frac{dx}{dt}=-3x+y+1, \qquad \frac{dy}{dt}=-x-y+1$$</p>
+
+<h3>固定点の求め方</h3>
+<div class="step">
+$\dot{x}=\dot{y}=0$ とおくと，$-3x_0+y_0+1=0$，$-x_0-y_0+1=0$。
+加算：$-4x_0+2=0 \Rightarrow x_0=\tfrac{1}{2}$，代入：$y_0=\tfrac{1}{2}$。
+</div>
+
+<h3>固有値の計算</h3>
+<div class="step">
+$X=x-\tfrac{1}{2}$，$Y=y-\tfrac{1}{2}$ と置くと：
+$$\frac{d}{dt}\begin{pmatrix}X\\Y\end{pmatrix}=\underbrace{\begin{pmatrix}-3&1\\-1&-1\end{pmatrix}}_{A}\begin{pmatrix}X\\Y\end{pmatrix}$$
+特性方程式：$\det(A-\lambda I)=(-3-\lambda)(-1-\lambda)+1=\lambda^2+4\lambda+4=(\lambda+2)^2=0$
+</div>
+<div class="answer-box">
+$$\boxed{\lambda=-2 \text{ （重解）}}$$
+</div>
+
+<h3>一般解の導出</h3>
+<div class="step">
+固有ベクトル：$(A+2I)\mathbf{v}=\mathbf{0}$ より $(-1\;1)\mathbf{v}=0$ → $\mathbf{v}_1=(1,1)^T$。<br>
+広義固有ベクトル：$(A+2I)\mathbf{v}_2=\mathbf{v}_1$ → $-p+q=1$（例：$p=0,\,q=1$）→ $\mathbf{v}_2=(0,1)^T$。<br>
+一般解（$A,B$：任意定数）：
+$$\begin{pmatrix}X\\Y\end{pmatrix}=e^{-2t}\left[A\begin{pmatrix}1\\1\end{pmatrix}+B\left(t\begin{pmatrix}1\\1\end{pmatrix}+\begin{pmatrix}0\\1\end{pmatrix}\right)\right]$$
+</div>
+<div class="answer-box">
+$$\boxed{x(t)=\frac{1}{2}+(A+Bt)e^{-2t}}$$
+$$\boxed{y(t)=\frac{1}{2}+\bigl((A+B)+Bt\bigr)e^{-2t}}$$
+（$A,B$：初期条件で定まる任意定数）
+</div>
+<div class="note">
+重解の場合，単純な指数関数だけでなく $te^{\lambda t}$ の項が現れる（ヨルダン標準形に対応）。
+</div>
+
+<!-- ============================================================ -->
+<h2>【数学】大問2　複素数・複素関数</h2>
+
+<h3>2-1)　$|z+1|-|z-1|=1$ が表す曲線</h3>
+<div class="step">
+$z=x+jy$ とすると $|z+1|=\sqrt{(x+1)^2+y^2}$，$|z-1|=\sqrt{(x-1)^2+y^2}$。
+焦点 $(-1,0)$，$(1,0)$，距離差 $=1$ → 双曲線（右枝: $|z+1|>|z-1|$）。<br>
+$2a=1 \Rightarrow a=\tfrac{1}{2}$，$c=1$，$b^2=c^2-a^2=\tfrac{3}{4}$。
+</div>
+<div class="answer-box">
+$$\boxed{\frac{x^2}{\,1/4\,}-\frac{y^2}{\,3/4\,}=1, \quad x\geq\frac{1}{2}}$$
+（双曲線の右枝）
+</div>
+
+<h3>2-2)　コーシー・リーマン条件の判定</h3>
+<p><strong>① $f(z)=z^2$</strong></p>
+<div class="step">
+$f(x+jy)=(x^2-y^2)+j(2xy)=u+jv$<br>
+$\partial u/\partial x=2x=\partial v/\partial y$，$\partial u/\partial y=-2y=-\partial v/\partial x$ → C-R条件を全域で満たす。
+</div>
+<div class="answer-box">$f(z)=z^2$：正則（解析的）</div>
+
+<p><strong>② $f(z)=|z|^2=x^2+y^2$</strong></p>
+<div class="step">
+$u=x^2+y^2$，$v=0$。<br>
+$\partial u/\partial x=2x$，$\partial v/\partial y=0$ → $x=0$ の場合のみ等しい → C-R条件を全域では満たさない。
+</div>
+<div class="answer-box">$f(z)=|z|^2$：正則でない（$z=0$ のみで微分可能）</div>
+
+<!-- ============================================================ -->
+<h2>【数学】大問3　フーリエ近似（最小2乗誤差）</h2>
+<p>区間 $[0,L]$ の矩形波 $f(x)$（$0\leq x<L/2$ で $+1$，$L/2\leq x\leq L$ で $-1$）をコサイン基底 $\{\cos(n\pi x/L)\}$ で近似する。</p>
+
+<h3>直交性の確認</h3>
+<div class="step">
+$$\int_0^L \cos\frac{m\pi x}{L}\cos\frac{n\pi x}{L}dx = \begin{cases}L & (m=n=0)\\L/2 & (m=n\neq0)\\0 & (m\neq n)\end{cases}$$
+</div>
+
+<h3>最小2乗係数（ベッセルの不等式より最適係数）</h3>
+<div class="step">
+$$A_0=\frac{1}{L}\int_0^L f(x)dx=0 \quad (\text{奇対称})$$
+$$A_n=\frac{2}{L}\int_0^L f(x)\cos\frac{n\pi x}{L}dx=\frac{2}{L}\left[\int_0^{L/2}\cos\frac{n\pi x}{L}dx-\int_{L/2}^L\cos\frac{n\pi x}{L}dx\right]$$
+$$=\frac{2}{L}\cdot\frac{2L}{n\pi}\sin\frac{n\pi}{2}=\frac{4}{n\pi}\sin\frac{n\pi}{2}$$
+</div>
+<div class="answer-box">
+$$A_n = \frac{4}{n\pi}\sin\frac{n\pi}{2} = \begin{cases}4/(n\pi) & n=1,5,9,\ldots\\0 & n=2,4,6,\ldots\\-4/(n\pi) & n=3,7,11,\ldots\end{cases}$$
+最小2乗誤差：$\varepsilon^2=\|f\|^2-\sum_n A_n^2\cdot\frac{L}{2}$（パーセバルの等式）
+</div>
+
+<!-- ============================================================ -->
+<h2>【電磁気学】大問1　半球形同心導体容器の誘電緩和</h2>
+<p>半球殻形電極間に誘電率 $\varepsilon$，導電率 $\sigma$ の媒質が充填されている。</p>
+
+<h3>等価RC回路と誘電緩和時定数</h3>
+<div class="step">
+ガウスの法則より，半径 $r$ の半球面での電場：$E(r)=Q/(2\pi\varepsilon r^2)$（半球面積 $2\pi r^2$）<br>
+内球半径 $a$，外球半径 $b$ とすると：<br>
+静電容量：$C=2\pi\varepsilon/(1/a-1/b)=2\pi\varepsilon ab/(b-a)$<br>
+抵抗：$R=\rho(b-a)/(2\pi ab)=1/\sigma\cdot(b-a)/(2\pi ab)$（$\rho=1/\sigma$）
+</div>
+<div class="answer-box">
+誘電緩和時定数：$\tau=RC=\dfrac{\varepsilon}{\sigma}$（形状に依存しない）
+</div>
+<div class="note">
+$\tau=\varepsilon/\sigma$ は誘電緩和の一般式。媒質固有の量であり，電極形状・サイズに無関係。
+</div>
+
+<h3>過渡応答</h3>
+<div class="step">
+初期電荷 $Q_0$：$Q(t)=Q_0 e^{-t/\tau}$，電流 $i(t)=Q_0/\tau\cdot e^{-t/\tau}$
+</div>
+
+<!-- ============================================================ -->
+<h2>【電磁気学】大問2　磁性体境界面と境界条件</h2>
+<p>透磁率 $\mu_1,\mu_2$ の境界面（$y=0$ 平面）に磁界が入射する。</p>
+
+<h3>境界条件</h3>
+<div class="step">
+<strong>接線成分（$H$ の連続性）：</strong> $H_{1x}=H_{2x}$（磁界の接線成分は連続）<br>
+<strong>法線成分（$B$ の連続性）：</strong> $B_{1y}=B_{2y}$ → $\mu_1 H_{1y}=\mu_2 H_{2y}$
+</div>
+<div class="answer-box">
+$$H_{2x}=H_{1x}, \qquad H_{2y}=\frac{\mu_1}{\mu_2}H_{1y}$$
+</div>
+
+<h3>屈折の法則（スネルの法則の磁気版）</h3>
+<div class="step">
+入射角 $\theta_1$，屈折角 $\theta_2$：
+$$\frac{\tan\theta_2}{\tan\theta_1}=\frac{\mu_2}{\mu_1}$$
+</div>
+
+<h3>境界面に働く磁気的圧力</h3>
+<div class="answer-box">
+$$f=\frac{1}{2}\left(\frac{1}{\mu_2}-\frac{1}{\mu_1}\right)B_n^2+\frac{1}{2}(\mu_1-\mu_2)H_t^2$$
+（$B_n$：法線成分，$H_t$：接線成分）
+</div>
+
+<!-- ============================================================ -->
+<h2>【電磁気学】大問3　円形ループの磁界・相互インダクタンス・誘起EMF</h2>
+
+<h3>3-1)　円形ループ軸上の磁界</h3>
+<div class="step">
+半径 $a$，電流 $I$ の円形ループから軸方向距離 $x$ の点での磁界：<br>
+微小要素 $ds$ による $dH$ を積分すると，軸成分のみが残る：
+$$H_x=\int\frac{I\,ds}{4\pi R^2}\cdot\frac{a}{R}=\frac{Ia^2}{2(a^2+x^2)^{3/2}}$$
+（$R=\sqrt{a^2+x^2}$，$\cos\varphi=a/R$）
+</div>
+<div class="answer-box">
+$$\boxed{H(x)=\frac{Ia^2}{2(a^2+x^2)^{3/2}}}$$
+</div>
+
+<h3>3-2)　相互インダクタンス</h3>
+<div class="step">
+半径 $a$ のループ1（電流 $I_1$）が半径 $b$ のループ2（距離 $d$）に鎖交する磁束：
+$$\Phi_{12}=\mu_0\int_0^\infty H(x)\cdot\pi b^2\,\delta(x-d)\,dx \approx \mu_0\pi b^2\cdot\frac{I_1 a^2}{2(a^2+d^2)^{3/2}}$$
+（$b \ll a$ の場合：ループ面積全体で $H$ が一様と近似）
+</div>
+<div class="answer-box">
+$$\boxed{M=\frac{\mu_0\pi a^2 b^2}{2(a^2+d^2)^{3/2}}} \quad (b\ll a)$$
+</div>
+
+<h3>3-3)　移動ループの誘起EMF</h3>
+<div class="step">
+ループ2が速度 $v$ で $x$ 方向に移動するとき（$x=x(t)$）：
+$$\text{EMF}=-\frac{d\Phi_{12}}{dt}=-\frac{d}{dt}\left[\mu_0\pi b^2 H(x(t))\right]=-\mu_0\pi b^2\frac{dH}{dx}\cdot v$$
+$$\frac{dH}{dx}=-\frac{3Ia^2 x}{2(a^2+x^2)^{5/2}}$$
+</div>
+<div class="answer-box">
+$$\text{EMF}=\frac{3\mu_0\pi I a^2 b^2 xv}{2(a^2+x^2)^{5/2}}$$
+</div>
+
+<!-- ============================================================ -->
+<h2>【電気回路】大問1　RLC直列回路のラプラス変換解析</h2>
+<p>$L$，$C$，$R$ 直列回路（初期電荷なし，初期電流なし），ステップ電圧 $v(t)=Vu(t)$ 印加。</p>
+
+<h3>1)　ラプラス領域の回路方程式</h3>
+<div class="step">
+キャパシタ電圧 $V_C(s)$：
+$$LsI(s)+RI(s)+\frac{I(s)}{Cs}=\frac{V}{s} \quad\Rightarrow\quad I(s)=\frac{V/L}{s^2+(R/L)s+1/(LC)}$$
+$$V_C(s)=\frac{I(s)}{Cs}=\frac{V/(LC)}{s\left(s^2+\frac{R}{L}s+\frac{1}{LC}\right)}$$
+</div>
+
+<h3>2)　振動条件（判別式 $D < 0$）</h3>
+<div class="step">
+特性方程式の根：$s=-\dfrac{R}{2L}\pm\sqrt{\left(\dfrac{R}{2L}\right)^2-\dfrac{1}{LC}}$<br>
+振動（複素根）条件：
+$$\left(\frac{R}{2L}\right)^2<\frac{1}{LC} \quad\Rightarrow\quad R^2<\frac{4L}{C}$$
+</div>
+<div class="answer-box">
+$$\boxed{R < 2\sqrt{\frac{L}{C}}}$$
+</div>
+
+<h3>3)　時間応答 $v_C(t)$（振動の場合）</h3>
+<div class="step">
+$\alpha=\dfrac{R}{2L}$，$\omega_d=\sqrt{\dfrac{1}{LC}-\left(\dfrac{R}{2L}\right)^2}$ とおくと：
+</div>
+<div class="answer-box">
+$$\boxed{v_C(t)=V\left[1-e^{-\alpha t}\!\left(\cos\omega_d t+\frac{\alpha}{\omega_d}\sin\omega_d t\right)\right], \quad t\geq0}$$
+（$\alpha=R/(2L)$，$\omega_d=\sqrt{1/(LC)-\alpha^2}$）
+</div>
+
+<!-- ============================================================ -->
+<h2>【電気回路】大問2　MOSFETソース接地増幅回路</h2>
+
+<h3>2-1)　低周波電圧利得 $G(j\omega)$</h3>
+<div class="step">
+ソース接地小信号モデル（$g_m$：相互コンダクタンス，$r_d$：ドレイン抵抗，$R_D$：負荷）：
+$$v_{gs}=v_{in}, \quad i_d=g_m v_{gs}, \quad v_{out}=-i_d(r_d\|R_D)$$
+</div>
+<div class="answer-box">
+$$\boxed{G(j\omega)=\frac{v_{out}}{v_{in}}=-g_m(r_d\|R_D)} \quad (\text{低周波近似})$$
+</div>
+
+<h3>2-2)　入力カップリングコンデンサによる低域遮断角周波数 $\omega_c$</h3>
+<div class="step">
+入力側 RC：カップリングコンデンサ $C_1$，ゲートバイアス抵抗 $R_G$：
+$$\omega_c=\frac{1}{R_G C_1}$$
+</div>
+<div class="answer-box">
+$$\boxed{\omega_c=\frac{1}{R_G C_1}}$$
+$\omega>\omega_c$ で利得がほぼ一定（高域通過特性）
+</div>
+
+<h3>2-3)　ボード線図の概形</h3>
+<div class="note">
+$\omega\ll\omega_c$：利得は $-20\,\text{dB/dec}$ で低下（$C_1$ が高インピーダンス）。<br>
+$\omega\gg\omega_c$：利得一定 $|G|=g_m(r_d\|R_D)$。<br>
+$\omega=\omega_c$ でゲインが $-3\,\text{dB}$ となる。
+</div>
+
+<!-- ============================================================ -->
+<h2>解答まとめ</h2>
+<table>
+  <tr><th>分野</th><th>大問</th><th>キーワード</th><th>結果</th></tr>
+  <tr><td>数学</td><td>1</td><td>連立ODE・重解</td><td class="left">$\lambda=-2$（重解），$x=\frac{1}{2}+(A+Bt)e^{-2t}$</td></tr>
+  <tr><td>数学</td><td>2</td><td>双曲線・C-R条件</td><td class="left">$x^2/(1/4)-y^2/(3/4)=1$（右枝）</td></tr>
+  <tr><td>数学</td><td>3</td><td>フーリエ近似</td><td class="left">$A_n=\frac{4}{n\pi}\sin\frac{n\pi}{2}$</td></tr>
+  <tr><td>電磁気学</td><td>1</td><td>誘電緩和</td><td class="left">$\tau=\varepsilon/\sigma$</td></tr>
+  <tr><td>電磁気学</td><td>2</td><td>磁性体境界条件</td><td class="left">$H_{2x}=H_{1x}$，$H_{2y}=(\mu_1/\mu_2)H_{1y}$</td></tr>
+  <tr><td>電磁気学</td><td>3</td><td>円形ループ・M</td><td class="left">$H=Ia^2/[2(a^2+x^2)^{3/2}]$</td></tr>
+  <tr><td>電気回路</td><td>1</td><td>RLC振動条件</td><td class="left">$R<2\sqrt{L/C}$</td></tr>
+  <tr><td>電気回路</td><td>2</td><td>MOSFET増幅</td><td class="left">$\omega_c=1/(R_G C_1)$</td></tr>
+</table>
+
+<footer>東京科学大学（東京工業大学）大学院入試 H28年度（29大修）専門科目 解答解説</footer>
+</body>
+</html>

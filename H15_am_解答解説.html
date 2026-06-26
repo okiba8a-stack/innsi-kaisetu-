@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>H15年度 専門科目（午前）解答解説</title>
+  <script>
+    MathJax = { tex: { inlineMath: [['$','$'],['\\(','\\)']] }, options: { skipHtmlTags: ['script','noscript','style','textarea','pre'] } };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: "Yu Gothic","游ゴシック",sans-serif; font-size: 13pt; line-height: 1.9; color: #1a1a2e; background: #f4f7fb; padding: 40px; }
+    h1 { font-size: 20pt; color: #0d2b5e; border-bottom: 3px solid #0d2b5e; padding-bottom: 10px; margin-bottom: 6px; }
+    .meta { color: #666; font-size: 11pt; margin-bottom: 32px; }
+    h2 { font-size: 15pt; color: #fff; background: #0d2b5e; padding: 8px 16px; border-radius: 6px; margin: 36px 0 16px; }
+    h3 { font-size: 13pt; color: #0d2b5e; border-left: 4px solid #1e5fa8; padding-left: 10px; margin: 24px 0 10px; }
+    h4 { font-size: 12pt; color: #1e5fa8; margin: 18px 0 6px; }
+    .answer-box { background: #fff; border: 2px solid #1e5fa8; border-radius: 8px; padding: 16px 20px; margin: 12px 0; }
+    .note { background: #fffbe6; border-left: 4px solid #f0a500; padding: 10px 16px; margin: 10px 0; border-radius: 0 6px 6px 0; font-size: 12pt; }
+    .step { background: #f0f5ff; border-radius: 6px; padding: 12px 16px; margin: 8px 0; }
+    .result { background: #e8f4e8; border: 1px solid #4caf50; border-radius: 6px; padding: 10px 16px; margin: 10px 0; font-weight: bold; }
+    table { border-collapse: collapse; width: 100%; margin: 12px 0; }
+    th { background: #0d2b5e; color: #fff; padding: 8px 12px; text-align: center; }
+    td { border: 1px solid #c5d8f5; padding: 8px 12px; text-align: center; }
+    tr:nth-child(even) td { background: #f0f5ff; }
+    .tag { display: inline-block; background: #eef4ff; border: 1px solid #c5d8f5; border-radius: 20px; padding: 2px 10px; font-size: 10pt; color: #1e5fa8; margin: 2px; }
+    .choice-note { background: #fff0f0; border: 1px solid #ffaaaa; border-radius: 6px; padding: 10px 16px; margin: 12px 0; font-size: 12pt; }
+    footer { margin-top: 60px; color: #aaa; font-size: 10pt; text-align: center; }
+  </style>
+</head>
+<body>
+
+<h1>H15年度 専門科目（午前）解答解説</h1>
+<p class="meta">電気電子工学・電子物理工学 ／ 平成14年8月実施（9:30〜11:00）</p>
+<p class="meta">
+  <span class="tag">電気数学</span>
+  <span class="tag">電気回路</span>
+  <span class="tag">電磁気学</span>
+</p>
+<div class="choice-note">⚠️ 3題中2題を選択して解答する形式です。全問の解答を掲載します。</div>
+
+<!-- ===== 大問1 電気数学 ===== -->
+<h2>大問1【電気数学】3次元調和関数とフーリエ変換</h2>
+
+<p>$f(x,y,z) = \dfrac{1}{\sqrt{x^2+y^2+z^2}} = \dfrac{1}{r}$（$r > 0$）</p>
+
+<h3>問1）$\nabla f$ を求めよ</h3>
+<div class="step">
+  $\dfrac{\partial f}{\partial x} = -\dfrac{x}{(x^2+y^2+z^2)^{3/2}} = -\dfrac{x}{r^3}$，y, z 成分も同様。
+</div>
+<div class="result">
+  $$\nabla f = -\frac{\mathbf{r}}{r^3} \quad \text{（$\mathbf{r} = x\mathbf{i}+y\mathbf{j}+z\mathbf{k}$，大きさ $r$）}$$
+</div>
+
+<h3>問2）$\nabla^2 f$ を求めよ</h3>
+<div class="step">
+  $\nabla^2 f = \nabla\cdot(\nabla f) = \nabla\cdot\!\left(-\dfrac{\mathbf{r}}{r^3}\right)$
+  $$\frac{\partial}{\partial x}\!\left(-\frac{x}{r^3}\right) = -\frac{1}{r^3} + \frac{3x^2}{r^5}$$
+  3成分の和：$-\dfrac{3}{r^3}+\dfrac{3(x^2+y^2+z^2)}{r^5} = -\dfrac{3}{r^3}+\dfrac{3}{r^3}$
+</div>
+<div class="result">
+  $$\nabla^2 f = 0 \quad (r \ne 0)$$
+  $f = 1/r$ は原点を除く空間でラプラス方程式を満たす（調和関数）。
+</div>
+
+<h3>問3）$z = z_0 > 0$ 面での2次元フーリエ変換の証明</h3>
+
+<p>$F(k_x,k_y,z_0) = \dfrac{2\pi}{k}\exp(-kz_0)$（$k = \sqrt{k_x^2+k_y^2}$）を証明する。</p>
+
+<div class="step">
+  <strong>極座標変換：</strong>$x = r\cos\varphi$，$y = r\sin\varphi$，$dx\,dy = r\,dr\,d\varphi$
+  $$F = \int_0^\infty\!\!\int_0^{2\pi} \frac{1}{\sqrt{r^2+z_0^2}}\exp\!\bigl(-j(k_x r\cos\varphi + k_y r\sin\varphi)\bigr)\,r\,d\varphi\,dr$$
+  $k_x r\cos\varphi + k_y r\sin\varphi = rk\cos(\varphi - \alpha)$（$\alpha = \arctan(k_y/k_x)$）なので：
+  $$F = \int_0^\infty \frac{r}{\sqrt{r^2+z_0^2}}\left[\int_0^{2\pi}\exp(-jkr\cos(\varphi-\alpha))\,d\varphi\right]dr$$
+  内側の積分（変数変換 $\theta = \varphi - \alpha$）：
+  $$\int_0^{2\pi}\exp(-jkr\cos\theta)\,d\theta = 2\pi J_0(kr)$$
+  （0次ベッセル関数の定義 $J_0(r) = \frac{1}{2\pi}\int_0^{2\pi}\exp(-jr\cos\theta)d\theta$ を利用）
+</div>
+<div class="step">
+  したがって：
+  $$F = \int_0^\infty \frac{r}{\sqrt{r^2+z_0^2}}\cdot 2\pi J_0(kr)\,dr = 2\pi\cdot\frac{1}{k}\exp(-kz_0)$$
+  （与えられた公式 $\int_0^\infty \frac{r}{\sqrt{r^2+a^2}}J_0(kr)dr = \frac{1}{k}e^{-ka}$ に $a = z_0 > 0$ を代入）
+</div>
+<div class="result">
+  $$F(k_x,k_y,z_0) = \frac{2\pi}{k}\exp(-kz_0) \qquad \text{（証明された）}$$
+</div>
+
+<h3>問4）$\phi(x,y,z)$ のフーリエ変換</h3>
+
+<p>$\phi(x,y,z) = \displaystyle\sum_{i=1}^n w_i f(x-x_i, y-y_i, z-z_i)$，$z_i < 0$</p>
+
+<div class="step">
+  シフト定理と問3の結果を適用。$z_0 - z_i > 0$ なので各項のフーリエ変換：
+  $$\mathcal{F}[f(x-x_i, y-y_i, z_0-z_i)] = e^{-j(k_x x_i + k_y y_i)} \cdot \frac{2\pi}{k}\exp(-k(z_0-z_i))$$
+</div>
+<div class="result">
+  $$\Phi(k_x,k_y,z_0) = \frac{2\pi}{k}\exp(-kz_0)\sum_{i=1}^n w_i \exp\!\bigl(-j(k_x x_i+k_y y_i)+kz_i\bigr)$$
+  $G(k_x,k_y) = \displaystyle\sum_{i=1}^n w_i e^{-j(k_xx_i+k_yy_i)+kz_i}$ とおくと $\Phi = \dfrac{2\pi}{k}G\,e^{-kz_0}$
+</div>
+
+<h3>問5）$b_x$ の分布から $b_y$, $b_z$ を求める方法</h3>
+
+<div class="step">
+  $b_x = \partial\phi/\partial x$, $b_y = \partial\phi/\partial y$, $b_z = \partial\phi/\partial z$ のフーリエ変換（2次元）：
+  $$B_x = jk_x\Phi, \quad B_y = jk_y\Phi, \quad B_z = \frac{\partial\Phi}{\partial z_0} = -k\Phi$$
+</div>
+<div class="answer-box">
+  $B_x(k_x,k_y,z_0)$ が既知なら $\Phi = B_x/(jk_x)$ より：
+  $$B_y = \frac{k_y}{k_x}B_x, \quad B_z = \frac{jk}{k_x}B_x$$
+  逆2次元フーリエ変換で $b_y(x,y,z_0)$，$b_z(x,y,z_0)$ を復元できる。
+</div>
+<div class="note">この手法は磁気異常から地下の磁化分布を推定する地球物理学的インバース問題に対応する。</div>
+
+<h3>問6）$z = \zeta > z_0$ 面での $b_x, b_y, b_z$ の推定</h3>
+
+<div class="step">
+  問4の結果から：$\Phi(k_x,k_y,\zeta) = \Phi(k_x,k_y,z_0)\cdot e^{-k(\zeta - z_0)}$
+  （上方継続式：higher altitude では高波数成分が指数的に減衰）
+</div>
+<div class="answer-box">
+  $b_x(x,y,z_0)$ のフーリエ変換 $B_x(k_x,k_y,z_0) = jk_x\Phi(z_0)$ から：
+  $$B_x(k_x,k_y,\zeta) = jk_x\Phi(z_0)e^{-k(\zeta-z_0)} = B_x(k_x,k_y,z_0)\,e^{-k(\zeta-z_0)}$$
+  同様に $B_y,B_z$ も求まる。逆変換で実空間の分布を得る。
+  指数因子 $e^{-k(\zeta-z_0)}$ は高波数（高空間周波数）成分を強く減衰させる（低域通過フィルタ）。
+</div>
+
+<!-- ===== 大問2 電気回路 ===== -->
+<h2>大問2【電気回路】四端子回路・ラプラス変換・インピーダンス整合</h2>
+
+<h3>問1）四端子回路（ステップ入力 $e_1(t) = Eu(t)$）</h3>
+
+<p>$V(s) = \dfrac{E}{s(1+s\tau)}$（$\tau > 0$）</p>
+
+<h4>a) $v(t)$ の初期値・最終値</h4>
+<div class="step">
+  初期値定理：$v(0^+) = \lim_{s\to\infty}sV(s) = \lim_{s\to\infty}\dfrac{E}{1+s\tau} = 0$<br>
+  最終値定理：$v(\infty) = \lim_{s\to 0}sV(s) = \lim_{s\to 0}\dfrac{E}{1+s\tau} = E$
+</div>
+<div class="result">$v(0^+) = 0$，$v(\infty) = E$</div>
+
+<h4>b) コンデンサ電流 $i(t)$ の初期値・最終値</h4>
+<div class="step">
+  $I(s) = CsV(s) = \dfrac{CE}{1+s\tau}$<br>
+  初期値：$i(0^+) = \lim_{s\to\infty}sI(s) = \dfrac{CE}{\tau}$<br>
+  最終値：$i(\infty) = \lim_{s\to 0}sI(s) = 0$
+</div>
+<div class="result">$i(0^+) = CE/\tau = E/R$（$\tau = RC$），$i(\infty) = 0$</div>
+
+<h4>c) 四端子回路の構造</h4>
+<div class="answer-box">
+  $V(s)/E_1(s) = 1/(1+s\tau)$ は1次 RC ローパスフィルタの伝達関数。<br>
+  四端子回路内部は抵抗 $R$ のみ（内部抵抗）で，出力に $C$ を接続した構成。$\tau = RC$。
+  <div style="text-align:center;margin-top:10px">
+    <svg width="300" height="80" viewBox="0 0 300 80">
+      <line x1="10" y1="40" x2="50" y2="40" stroke="#333" stroke-width="2"/>
+      <rect x="50" y="28" width="50" height="24" fill="#fff" stroke="#333" stroke-width="2"/>
+      <text x="75" y="45" text-anchor="middle" font-size="14" fill="#0d2b5e">R</text>
+      <line x1="100" y1="40" x2="140" y2="40" stroke="#333" stroke-width="2"/>
+      <line x1="140" y1="20" x2="140" y2="60" stroke="#1e5fa8" stroke-width="2.5"/>
+      <line x1="155" y1="20" x2="155" y2="60" stroke="#1e5fa8" stroke-width="2.5"/>
+      <text x="148" y="15" text-anchor="middle" font-size="12" fill="#1e5fa8">C</text>
+      <line x1="155" y1="40" x2="200" y2="40" stroke="#333" stroke-width="2"/>
+      <text x="5" y="38" font-size="12" fill="#555">e</text>
+      <text x="205" y="38" font-size="12" fill="#555">v</text>
+      <line x1="10" y1="65" x2="200" y2="65" stroke="#333" stroke-width="1.5" stroke-dasharray="4,3"/>
+      <text x="148" y="79" text-anchor="middle" font-size="11" fill="#333">i(t)→</text>
+    </svg>
+  </div>
+</div>
+
+<h4>d) 妥当性の吟味</h4>
+<div class="answer-box">
+  ・$v(0^+) = 0$：コンデンサ電圧は急変不可 ✓<br>
+  ・$v(\infty) = E$：直流定常でコンデンサは開放 → 電源電圧と等しい ✓<br>
+  ・$i(0^+) = E/R$：直後はCが短絡，RのみでE/R ✓<br>
+  ・$i(\infty) = 0$：定常でコンデンサに電流流れず ✓
+</div>
+
+<h4>e) パルス電圧 $e_2(t)$ のラプラス変換</h4>
+<div class="step">
+  $e_2(t) = E[u(t) - u(t-T)]$（幅Tのパルス）
+</div>
+<div class="result">
+  $$E_2(s) = \frac{E}{s}(1 - e^{-sT})$$
+</div>
+
+<h4>f) コンデンサ電流の時間応答</h4>
+<div class="step">
+  $I_2(s) = CsV_2(s) = Cs\cdot\dfrac{E_2(s)}{1+s\tau} = \dfrac{CE(1-e^{-sT})}{1+s\tau}$<br>
+  $\mathcal{L}^{-1}\!\left[\dfrac{CE}{1+s\tau}\right] = \dfrac{CE}{\tau}e^{-t/\tau}u(t)$，遅延定理を利用。
+</div>
+<div class="result">
+  $$i_2(t) = \frac{CE}{\tau}\!\left[e^{-t/\tau}u(t) - e^{-(t-T)/\tau}u(t-T)\right]$$
+  $0 < t < T$：$i_2 = \dfrac{CE}{\tau}e^{-t/\tau}$（正，減衰）<br>
+  $t > T$：$i_2 = \dfrac{CE}{\tau}e^{-t/\tau}(1 - e^{T/\tau}) < 0$（電流逆転）
+</div>
+
+<h3>問2）インピーダンス整合</h3>
+
+<h4>a) 最大有能電力 $P_{AV}$</h4>
+<div class="step">
+  $P = V_0^2 R_L/(R_S+R_L)^2$，$R_L = R_S$ で最大。
+</div>
+<div class="result">$$P_{AV} = \frac{V_0^2}{4R_S}$$</div>
+
+<h4>b) 整合回路使用時の $R_L$ の電圧 $V_2$（無損失）</h4>
+<div class="step">
+  $P_2 = P_{AV} = V_2^2/R_L$ より $V_2 = \sqrt{P_{AV}\cdot R_L}$
+</div>
+<div class="result">$$V_2 = \frac{V_0}{2}\sqrt{\frac{R_L}{R_S}}$$</div>
+
+<h4>c) 理想変成器による整合（巻線比 $n_2/n_1$）</h4>
+<div class="step">
+  理想変成器の入力インピーダンス：$Z_{in} = (n_1/n_2)^2 R_L = R_S$
+</div>
+<div class="result">$$\frac{n_2}{n_1} = \sqrt{\frac{R_L}{R_S}}$$</div>
+
+<h4>d) LC整合回路（$R_L > R_S$，図2.5：L直列・Cシャント）</h4>
+<div class="step">
+  入力インピーダンス：$Z_{in} = j\omega L + \dfrac{R_L}{1+j\omega CR_L}$<br>
+  <br>
+  <strong>実部 $= R_S$：</strong>$\dfrac{R_L}{1+\omega^2C^2R_L^2} = R_S$ → $1+\omega^2C^2R_L^2 = \dfrac{R_L}{R_S}$<br>
+  <br>
+  <strong>虚部 $= 0$：</strong>$\omega L = \dfrac{\omega CR_L^2}{1+\omega^2C^2R_L^2} = \omega CR_LR_S$ → $L = CR_LR_S$
+</div>
+<div class="answer-box">
+  <strong>i) $\omega_0$：</strong>
+  $\omega_0^2C^2R_L^2 = (R_L-R_S)/R_S$ より
+  $$\omega_0 = \frac{1}{CR_L}\sqrt{\frac{R_L - R_S}{R_S}}$$
+  <strong>ii) L, C, $R_S$, $R_L$ の関係：</strong>
+  $$L = CR_LR_S, \quad \omega_0^2C^2R_L^2 = \frac{R_L - R_S}{R_S}$$
+  <strong>iii) $R_L$ 側からみたインピーダンス（$\omega = \omega_0$）：</strong>
+  整合条件の逆方向から：$Y_{out} = j\omega_0 C + \dfrac{1}{j\omega_0 L + R_S}$ を計算すると<br>
+  虚部がキャンセル（整合の相反性）し，$Z_{out} = R_L$
+</div>
+
+<h4>e) $|V_2/V_0|$ の周波数特性（グラフの概略）</h4>
+<div class="step">
+  $\omega=0$：Cは開放，Lはインピーダンスなし → 分圧 $|V_2/V_0| = R_L/(R_S+R_L)$<br>
+  $\omega=\omega_0$：整合 → 最大電力 → $|V_2/V_0| = \frac{1}{2}\sqrt{R_L/R_S} > R_L/(R_S+R_L)$ for $R_L>R_S$<br>
+  $\omega\to\infty$：Cが短絡（$R_L$を短絡），Lが開放 → $|V_2/V_0| \to 0$
+</div>
+<div class="answer-box" style="text-align:center">
+  <svg width="360" height="150" viewBox="0 0 360 150">
+    <line x1="40" y1="130" x2="340" y2="130" stroke="#333" stroke-width="1.5"/>
+    <line x1="60" y1="20" x2="60" y2="135" stroke="#333" stroke-width="1.5"/>
+    <text x="345" y="134" font-size="11" fill="#333">ω</text>
+    <text x="62" y="16" font-size="11" fill="#333">|V₂/V₀|</text>
+    <!-- 曲線 -->
+    <path d="M60,85 Q100,82 150,55 Q180,30 210,55 Q260,90 340,130" stroke="#1e5fa8" stroke-width="2.5" fill="none"/>
+    <!-- 参照線 -->
+    <line x1="60" y1="85" x2="350" y2="85" stroke="#aaa" stroke-dasharray="4,3" stroke-width="1"/>
+    <text x="10" y="89" font-size="9" fill="#888">RL/(RS+RL)</text>
+    <line x1="60" y1="30" x2="180" y2="30" stroke="#f0a500" stroke-dasharray="4,3" stroke-width="1"/>
+    <text x="10" y="33" font-size="9" fill="#f0a500">½√RL/RS</text>
+    <line x1="180" y1="30" x2="180" y2="130" stroke="#aaa" stroke-dasharray="4,3" stroke-width="1"/>
+    <text x="172" y="144" font-size="11" fill="#333">ω₀</text>
+    <text x="60" y="144" font-size="11" fill="#333">0</text>
+  </svg>
+  <p style="font-size:11pt;color:#555;margin-top:4px">バンドパス的特性（$\omega_0$ 付近で最大）</p>
+</div>
+
+<!-- ===== 大問3 電磁気学 ===== -->
+<h2>大問3【電磁気学】静電界と磁束密度</h2>
+
+<h3>問1) 真空中の電荷</h3>
+
+<h4>a) 接地導体平面と点電荷 +Q（鏡像法）</h4>
+
+<p>鏡像電荷 $-Q$ を導体面の対称位置（A から導体を挟んで距離 a）に置く。</p>
+
+<div style="margin:8px 0">
+<strong>i) +Q に働く力：</strong>
+<div class="result">
+  大きさ：$F = \dfrac{Q^2}{16\pi\varepsilon_0 a^2}$，方向：導体面に向かう（引力）
+</div>
+
+<strong>ii) 電気力線の様子：</strong>
+<div class="answer-box">
+  +Q を中心に放射状に出た電気力線はすべて導体表面に直角に入射し，表面に終端する。
+  +Q と鏡像 -Q の場合と類似した双極子状分布（導体面が対称面）。
+</div>
+
+<strong>iii) 導体表面上の点 B ($x$ 軸座標 $x$) での電界：</strong>
+<div class="step">
+  座標系：導体面を $y=0$，+Q は $(0, a, 0)$，鏡像 $-Q$ は $(0, -a, 0)$，B は $(x, 0, 0)$。<br>
+  +Q，-Q からの電界の x成分は打ち消し，y成分のみ残る：
+  $$E_x = 0, \quad E_y = -\frac{Qa}{2\pi\varepsilon_0(x^2+a^2)^{3/2}}$$
+</div>
+<div class="result">
+  電界は導体面に垂直（導体内向き），大きさ：
+  $$E = \frac{Qa}{2\pi\varepsilon_0(x^2+a^2)^{3/2}}$$
+</div>
+
+<strong>iv) 表面電荷密度 $\sigma(x)$：</strong>
+<div class="result">
+  $$\sigma(x) = \varepsilon_0 E_{n}\big|_{\rm outward} = -\frac{Qa}{2\pi(x^2+a^2)^{3/2}}$$
+  （負：導体に負電荷が誘起）$x=0$ で最大，$|x|\to\infty$ で $\to 0$。
+</div>
+</div>
+
+<h4>b) 半径 $a$ の導体球（電荷 $+Q$）</h4>
+<div class="answer-box">
+  球対称性よりガウスの法則から：
+  <table>
+    <tr><th>領域</th><th>$E$</th><th>$V$（基準：無限遠）</th></tr>
+    <tr><td>$r \le a$（導体内）</td><td>$0$</td><td>$\dfrac{Q}{4\pi\varepsilon_0 a}$（一定）</td></tr>
+    <tr><td>$r > a$（外部）</td><td>$\dfrac{Q}{4\pi\varepsilon_0 r^2}$</td><td>$\dfrac{Q}{4\pi\varepsilon_0 r}$</td></tr>
+  </table>
+</div>
+
+<h4>c) 同心導体球（+2Q）と球殻（−Q）</h4>
+
+<div class="step">
+  ガウスの法則を半径 $r$ の球面に適用（各領域での囲まれる電荷を確認）：
+  <ul>
+    <li>$r < a$：導体内 → $E = 0$</li>
+    <li>$a < r < 2a$：囲む電荷 $= +2Q$ → $E = \dfrac{2Q}{4\pi\varepsilon_0 r^2}$</li>
+    <li>$r > 2a$：囲む電荷 $= 2Q + (-Q) = +Q$ → $E = \dfrac{Q}{4\pi\varepsilon_0 r^2}$</li>
+  </ul>
+</div>
+
+<strong>i) 電界 $E(r)$：</strong>
+<div class="result">
+  $$E(r) = \begin{cases} 0 & 0 \le r < a \\ \dfrac{Q}{2\pi\varepsilon_0 r^2} & a < r < 2a \\[6pt] \dfrac{Q}{4\pi\varepsilon_0 r^2} & r > 2a \end{cases}$$
+</div>
+
+<strong>ii) 導体球と球殻を導線接続した時の電位 $V(r)$：</strong>
+<div class="step">
+  接続により両者は同電位（1つの導体）。全電荷 $= 2Q + (-Q) = +Q$ が外表面（$r = 2a$）に集中。<br>
+  $r < 2a$ 内部：$E = 0$ → 電位一定 $= Q/(4\pi\varepsilon_0 \cdot 2a)$
+</div>
+<div class="result">
+  $$V(r) = \begin{cases} \dfrac{Q}{8\pi\varepsilon_0 a} & 0 \le r \le 2a \\[6pt] \dfrac{Q}{4\pi\varepsilon_0 r} & r > 2a \end{cases}$$
+</div>
+
+<h3>問2) 電流と磁束密度</h3>
+
+<h4>a) 無限長円筒導体（半径 $a$，内部空洞，電流 $I$）</h4>
+<div class="step">
+  アンペールの法則 $\oint\mathbf{B}\cdot d\mathbf{l} = \mu_0 I_{enc}$：<br>
+  $r < a$（空洞内）：$I_{enc} = 0$ → $B = 0$<br>
+  $r > a$（外部）：$B \cdot 2\pi r = \mu_0 I$
+</div>
+<div class="result">
+  $$B(r) = \begin{cases} 0 & 0 \le r < a \\ \dfrac{\mu_0 I}{2\pi r} & r > a \end{cases}$$
+  方向：電流の向きに対して右ねじの方向（円周方向）
+</div>
+
+<h4>b) 二本の平行円筒導体（間隔 $d$，往復電流 $I$）の $x$ 軸上の磁束密度</h4>
+<div class="step">
+  左円筒（$x = 0$）を電流 $+I$（$+z$方向），右円筒（$x = d$）を電流 $-I$（$-z$方向）とする。<br>
+  各円筒からの寄与をアンペールの法則と重ね合わせで計算：
+</div>
+<div class="answer-box">
+  <table>
+    <tr><th>領域</th><th>$B$ の大きさ</th><th>方向</th></tr>
+    <tr><td>$|x| < a$（左筒内）</td><td>$\dfrac{\mu_0 I}{2\pi(d-x)}$（右筒のみ）</td><td>$+y$</td></tr>
+    <tr><td>$a < x < d-a$（導体間）</td><td>$\dfrac{\mu_0 I}{2\pi}\!\!\left(\dfrac{1}{x}+\dfrac{1}{d-x}\right)$</td><td>$+y$（同方向で加算）</td></tr>
+    <tr><td>$|x-d| < a$（右筒内）</td><td>$\dfrac{\mu_0 I}{2\pi x}$（左筒のみ）</td><td>$+y$</td></tr>
+    <tr><td>$x > d+a$（右側外部）</td><td>$\dfrac{\mu_0 I}{2\pi}\!\!\left(\dfrac{1}{x}-\dfrac{1}{x-d}\right)$</td><td>反方向（減算）</td></tr>
+  </table>
+  <p style="margin-top:6px;font-size:11pt">導体間では両円筒の磁界が同方向に加算されて最大，外側では打ち消し合う。</p>
+</div>
+
+<h4>c) 往復二導体の単位長さあたりの自己インダクタンス</h4>
+<div class="step">
+  $d \gg a$ の近似。両導体間の鎖交磁束（単位長さ）：
+  $$\frac{\Phi}{l} \approx 2\times\frac{\mu_0 I}{2\pi}\ln\frac{d}{a} = \frac{\mu_0 I}{\pi}\ln\frac{d}{a}$$
+</div>
+<div class="result">
+  $$\frac{L}{l} = \frac{\mu_0}{\pi}\ln\frac{d}{a}$$
+</div>
+
+<h4>d) 実体（中実）円柱導体に変えた場合のインダクタンスの変化</h4>
+<div class="answer-box">
+  中実導体では導体内部にも磁界が存在する（内部インダクタンス）。単位長さの内部インダクタンス：各導体 $\mu_0/(8\pi)$（均一電流分布の場合），往復で $\mu_0/(4\pi)$。<br>
+  単位長あたりの自己インダクタンス：
+  $$\frac{L}{l} = \frac{\mu_0}{\pi}\left(\ln\frac{d}{a} + \frac{1}{4}\right)$$
+  <strong>増加する（内部インダクタンスの分だけ）。</strong>
+</div>
+
+<h4>e) 高周波交流電流での電流密度分布（表皮効果）</h4>
+<div class="answer-box">
+  高周波では表皮効果（skin effect）により，電流は導体表面に集中し<strong>不均一分布</strong>となる。<br>
+  表皮深さ $\delta = \sqrt{2/(\omega\mu_0\sigma)}$ が小さくなり，電流は外表面の薄い層に集中。<br>
+  理由：交流磁場が導体内に浸透するにつれて誘導起電力が逆向きに生じ，内部電流を打ち消す。<br>
+  結果：内部磁束（内部インダクタンス）が減少し，有効インダクタンスは空洞円筒の値に近づく。
+</div>
+
+<!-- ===== まとめ ===== -->
+<h2>解答まとめ</h2>
+<table>
+  <tr><th>大問</th><th>科目</th><th>主要結果</th></tr>
+  <tr><td>1-1</td><td>電気数学</td><td>$\nabla f = -\mathbf{r}/r^3$</td></tr>
+  <tr><td>1-2</td><td>電気数学</td><td>$\nabla^2 f = 0$（調和関数）</td></tr>
+  <tr><td>1-3</td><td>電気数学</td><td>$F(k_x,k_y,z_0) = (2\pi/k)\exp(-kz_0)$</td></tr>
+  <tr><td>2-1a</td><td>電気回路</td><td>$v(0^+)=0$，$v(\infty)=E$；$i(0^+)=CE/\tau$，$i(\infty)=0$</td></tr>
+  <tr><td>2-1f</td><td>電気回路</td><td>$i_2(t) = \frac{CE}{\tau}[e^{-t/\tau}u(t)-e^{-(t-T)/\tau}u(t-T)]$</td></tr>
+  <tr><td>2-2a</td><td>電気回路</td><td>$P_{AV} = V_0^2/(4R_S)$</td></tr>
+  <tr><td>2-2c</td><td>電気回路</td><td>$n_2/n_1 = \sqrt{R_L/R_S}$</td></tr>
+  <tr><td>3-1a-i</td><td>電磁気学</td><td>$F = Q^2/(16\pi\varepsilon_0 a^2)$（引力）</td></tr>
+  <tr><td>3-1b</td><td>電磁気学</td><td>$E = Q/(4\pi\varepsilon_0 r^2)$，$V = Q/(4\pi\varepsilon_0 r)$（$r\ge a$）</td></tr>
+  <tr><td>3-2a</td><td>電磁気学</td><td>$B = 0$（$r<a$），$\mu_0 I/(2\pi r)$（$r>a$）</td></tr>
+  <tr><td>3-2c</td><td>電磁気学</td><td>$L/l = (\mu_0/\pi)\ln(d/a)$</td></tr>
+</table>
+
+<footer>解答解説作成：Claude（Anthropic）</footer>
+</body>
+</html>

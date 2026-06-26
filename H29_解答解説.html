@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>H29年度 専門科目 総合 解答解説</title>
+  <script>
+    MathJax = {
+      tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']], tags: 'ams' },
+      options: { skipHtmlTags: ['script','noscript','style','textarea','pre'] }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: "Yu Gothic","游ゴシック",sans-serif; font-size: 13pt; line-height: 1.9; color: #1a1a2e; background: #f4f7fb; padding: 40px; }
+    h1 { font-size: 19pt; color: #0d2b5e; border-bottom: 3px solid #0d2b5e; padding-bottom: 10px; margin-bottom: 6px; }
+    .meta { color: #666; font-size: 11pt; margin-bottom: 36px; }
+    h2 { font-size: 15pt; color: #0d2b5e; background: #e8f0fb; border-left: 5px solid #1e5fa8; padding: 8px 14px; margin: 40px 0 16px; border-radius: 0 6px 6px 0; }
+    h3 { font-size: 13pt; color: #1e5fa8; border-bottom: 1px solid #c5d8f5; margin: 28px 0 10px; padding-bottom: 4px; }
+    .answer-box { background: #fff; border: 2px solid #1e5fa8; border-radius: 6px; padding: 14px 20px; margin: 12px 0; }
+    .step { background: #eef4ff; border-left: 3px solid #5b8dee; padding: 10px 16px; margin: 10px 0; border-radius: 0 4px 4px 0; }
+    .note { background: #fffbe6; border-left: 4px solid #f0ad00; padding: 10px 16px; margin: 12px 0; border-radius: 0 4px 4px 0; font-size: 11.5pt; }
+    table { border-collapse: collapse; width: 100%; margin: 16px 0; font-size: 11.5pt; }
+    th { background: #0d2b5e; color: #fff; padding: 8px 12px; text-align: center; }
+    td { border: 1px solid #c5d8f5; padding: 8px 12px; text-align: center; }
+    td.left { text-align: left; }
+    tr:nth-child(even) td { background: #f0f6ff; }
+    footer { margin-top: 60px; color: #aaa; font-size: 10pt; text-align: center; }
+    @media print { body { background: #fff; padding: 20px; } }
+  </style>
+</head>
+<body>
+
+<h1>H29年度 専門科目（総合）解答解説</h1>
+<p class="meta">東京工業大学 大学院修士課程入試（平成29年8月実施・30大修） ／ 数学・電磁気学・電気回路</p>
+
+<!-- ============================================================ -->
+<h2>【数学】大問1　常微分方程式</h2>
+
+<h3>1-①　$\dfrac{d^2y}{dx^2}+4\dfrac{dy}{dx}+4y=0$</h3>
+<div class="step">
+特性方程式：$r^2+4r+4=(r+2)^2=0$ → $r=-2$（重解）
+</div>
+<div class="answer-box">
+$$\boxed{y=(C_1+C_2 x)e^{-2x}}$$
+</div>
+
+<h3>1-②　$\dfrac{dy}{dx}=y(y+2)$（分離変数法）</h3>
+<div class="step">
+$$\frac{dy}{y(y+2)}=dx \quad\Rightarrow\quad \frac{1}{2}\left(\frac{1}{y}-\frac{1}{y+2}\right)dy=dx$$
+$$\frac{1}{2}\ln\left|\frac{y}{y+2}\right|=x+C_0 \quad\Rightarrow\quad \frac{y}{y+2}=Ae^{2x}$$
+</div>
+<div class="answer-box">
+$$\boxed{y=\frac{2Ae^{2x}}{1-Ae^{2x}}} \quad (A\text{：任意定数}),\quad \text{また} y=0,\;y=-2 \text{ も特解}$$
+</div>
+
+<h3>1-③　$xy\dfrac{dy}{dx}=2y^2+x^2$（同次型）</h3>
+<div class="step">
+$u=y^2/x^2$（または $v=y/x$）と置換。$y^2=ux^2$ とおくと $2y\,dy/dx=u'x^2+2ux$，<br>
+すなわち $xy\,dy/dx=\frac{x^2}{2}(xu'+2u)$。代入して：
+$$\frac{x}{2}(xu'+2u)=2ux^2/x^2\cdot x^2+x^2 \quad\Rightarrow\quad \frac{x^2}{2}u'=x^2(1-0)$$
+実際には $xy\,y'=2y^2+x^2$ → $u=y/x$, $y=ux$, $y'=u+xu'$ と置換：
+$$x(ux)(u+xu')=2u^2x^2+x^2 \quad\Rightarrow\quad u(u+xu')=2u^2+1$$
+$$xu\,u'=u^2+1 \quad\Rightarrow\quad \frac{u\,du}{u^2+1}=\frac{dx}{x}$$
+$$\frac{1}{2}\ln(u^2+1)=\ln|x|+C \quad\Rightarrow\quad u^2+1=Ax^2$$
+</div>
+<div class="answer-box">
+$$\boxed{y^2=Ax^4-x^2} \quad \left(u=\frac{y}{x}より\;\frac{y^2}{x^2}=Ax^2-1\right) \quad (A\text{：任意定数})$$
+</div>
+
+<!-- ============================================================ -->
+<h2>【数学】大問2　ラプラス変換とフーリエ級数</h2>
+
+<h3>2-1)　台形パルス $f_1(t)$ のラプラス変換</h3>
+<div class="step">
+台形パルス：$0\to a$ で線形増加（傾き $1/a$），$a\to b$ で一定（値 $1$），$b\to a+b$ で線形減少。<br>
+単位ランプ $r(t)=tu(t)$，$\mathcal{L}[r(t)]=1/s^2$ および時間シフト定理 $e^{-as}/s^2$ を利用：
+$$f_1(t)=\frac{1}{a}[r(t)-r(t-a)-r(t-b)+r(t-a-b)]$$
+</div>
+<div class="answer-box">
+$$F_1(s)=\frac{1}{as^2}\left(1-e^{-as}-e^{-bs}+e^{-(a+b)s}\right)=\frac{(1-e^{-as})(1-e^{-bs})}{as^2}$$
+</div>
+
+<h3>2-2)　三角波 $f_2(t)$ のフーリエ係数</h3>
+<div class="step">
+周期 $T$，振幅 $A$ の三角波（$0\leq t\leq T/2$ で $f_2=4At/T$，$T/2\leq t\leq T$ で $f_2=4A(T-t)/T$ となる全波整流型等）：
+$$a_0=\frac{2}{T}\int_0^T f_2(t)dt=\frac{A}{2}\cdot 2=A \quad(\text{三角波の場合，平均値}=A/2)$$
+実際の三角波（$-A$〜$A$，平均 $0$）では $a_0=0$，$a_k=0$ for 偶数，$b_k$ が非零。<br>
+奇関数三角波（$-A$〜$A$）：
+$$b_k=\frac{2}{T}\int_0^T f_2(t)\sin\frac{2\pi k t}{T}dt = \frac{8A}{(k\pi)^2}(-1)^{(k-1)/2} \quad (k\text{奇数})$$
+</div>
+<div class="answer-box">
+$a_0$：直流成分（三角波の平均値）<br>
+$a_k=\frac{2}{T}\int_0^T f_2(t)\cos\frac{2\pi k t}{T}dt$（偶関数の場合のみ非零）<br>
+$b_1=\frac{8A}{\pi^2}$（基本波正弦成分，奇対称三角波の場合）
+</div>
+
+<!-- ============================================================ -->
+<h2>【数学】大問3　複素関数論</h2>
+
+<h3>3-1)　コーシー・リーマン条件</h3>
+<div class="step">
+$f(z)=u(x,y)+jv(x,y)$ が正則 ↔ C-R方程式：
+$$\frac{\partial u}{\partial x}=\frac{\partial v}{\partial y},\quad \frac{\partial u}{\partial y}=-\frac{\partial v}{\partial x}$$
+</div>
+
+<h3>3-2)　$h(z)=2+\dfrac{2z}{z-2}$ の特異点・留数・周回積分</h3>
+<div class="step">
+$h(z)=2+\dfrac{2z}{z-2}=2+\dfrac{2(z-2)+4}{z-2}=4+\dfrac{4}{z-2}$<br>
+特異点：$z=2$（1位の極），$\dfrac{4}{z-2}$ の形から留数 $\text{Res}[h,2]=4$。
+</div>
+<div class="answer-box">
+特異点：$z=2$（1位の極）<br>
+留数：$\text{Res}[h,2]=4$<br>
+周回積分（$z=2$ を内部に含む閉曲線 $C$）：
+$$\oint_C h(z)\,dz = 2\pi j\cdot 4 = 8\pi j$$
+</div>
+<div class="note">
+留数定理：$\oint_C f(z)\,dz=2\pi j\sum_k\text{Res}[f,z_k]$（$z_k$ は $C$ 内の極）
+</div>
+
+<!-- ============================================================ -->
+<h2>【電磁気学】大問1　等速運動電荷と円軌道電流</h2>
+
+<h3>1-a)　$z$ 軸上を等速 $v$ で運動する荷電粒子（電荷 $q$）の磁束密度</h3>
+<div class="step">
+電荷 $q$ が速度 $v\hat{z}$ で運動 ↔ 直線電流 $I=\rho v$（$\rho$：線電荷密度）と等価。<br>
+点 $\text{P}$ での磁束密度（ビオ・サバールの法則）：
+$$d\mathbf{B}=\frac{\mu_0}{4\pi}\frac{I\,d\mathbf{l}\times\hat{\mathbf{R}}}{R^2}$$
+$z$ 軸から距離 $\rho_P$ の点での磁束密度（アンペールの法則から）：
+$$B=\frac{\mu_0 qv}{2\pi\rho_P^2}$$（点電荷の場合）
+</div>
+<div class="answer-box">
+点電荷 $q$ が $z=vt$ を通過するとき，点 $\text{P}(x_P, y_P, z_P)$ での：
+$$\mathbf{B}=\frac{\mu_0 qv}{4\pi}\frac{\hat{z}\times\hat{R}}{R^2}, \quad \hat{R}=\frac{\mathbf{r}_P-\mathbf{r}_q}{|\mathbf{r}_P-\mathbf{r}_q|}$$
+</div>
+
+<h3>1-b)　導線に働く力 $F$</h3>
+<div class="step">
+微小長さ $dl$ の電流素子 $I\,dl$ に働く力：$d\mathbf{F}=I\,d\mathbf{l}\times\mathbf{B}$
+</div>
+<div class="answer-box">
+$$F=\int I\,dl\times B$$
+（具体値は配置・電流方向に依存）
+</div>
+
+<h3>1-c)　円軌道電流の作る磁場</h3>
+<div class="step">
+半径 $a$，周期 $T$ で円運動する電荷 $q$：等価電流 $I=q/T=qv/(2\pi a)$。<br>
+中心（$x=0$）の磁場：$B_0=\mu_0 I/(2a)$<br>
+軸上（$x=x_P$）の磁場：$B_P=\mu_0 Ia^2/[2(a^2+x_P^2)^{3/2}]$
+</div>
+<div class="answer-box">
+$$B_0=\frac{\mu_0 I}{2a}, \qquad B_P=\frac{\mu_0 I a^2}{2(a^2+x_P^2)^{3/2}}$$
+</div>
+
+<!-- ============================================================ -->
+<h2>【電磁気学】大問2　3平板コンデンサ（可動極板 B）</h2>
+<p>A（$x=0$，固定，$V=V_0$），C（$x=d$，固定，$V=0$，接地），B（$x=x_B$，可動，絶縁）。</p>
+
+<h3>2-a)　電荷 $Q_A, Q_C$（B は浮遊）</h3>
+<div class="step">
+A-B 間コンデンサ：$C_1=\varepsilon_0 S/x_B$，B-C 間：$C_2=\varepsilon_0 S/(d-x_B)$（直列接続）。<br>
+全体容量：$C=C_1 C_2/(C_1+C_2)=\varepsilon_0 S/d$（$d$ のみに依存）。
+$$Q_A = C\cdot V_0 = \frac{\varepsilon_0 S V_0}{d}$$
+</div>
+<div class="answer-box">
+$$Q_A=\frac{\varepsilon_0 S V_0}{d}, \qquad Q_C=-\frac{\varepsilon_0 S V_0}{d}$$
+（B の浮遊電位は $V_B=V_0(d-x_B)/d$）
+</div>
+
+<h3>2-b)　静電エネルギー $U$ と静電力 $F$</h3>
+<div class="step">
+$U=Q_A^2/(2C)=\varepsilon_0 S V_0^2/(2d)$（$x_B$ に無依存） → $F=-\partial U/\partial x_B=0$。<br>
+これは B が帯電していないため（A の電圧 $V_0$ 一定の状態）。<br>
+B の電荷は A 側に $-Q_A \cdot C_2/(C_1+C_2)$，C 側に $Q_A\cdot C_1/(C_1+C_2)$ と分布し，合計ゼロ。
+</div>
+<div class="answer-box">
+B への正味の力：$F=0$（対称性より，A-B 間の引力と B-C 間の引力が等しい場合はゼロにはならない）<br>
+正確には：$F_B=\frac{Q_B^2}{2\varepsilon_0 S}=0$（B の総電荷がゼロなので合力がキャンセルする方向次第）
+</div>
+
+<h3>2-c)　スイッチ OFF 後に B を移動させたときの誘導電流</h3>
+<div class="step">
+スイッチ OFF 後：A の電荷 $Q_A'$ は一定。B を移動させると $C_1, C_2$ が変化し，B 上の電荷が再分布 → A-B 間の電荷変化により回路に誘導電流が流れる。
+</div>
+<div class="answer-box">
+誘導電流：$I=\dfrac{dQ_A'}{dt}$（B の移動による $C_1$ の時間変化から計算）
+</div>
+
+<!-- ============================================================ -->
+<h2>【電磁気学】大問3　マクスウェル方程式と平面波</h2>
+
+<h3>3-1)　マクスウェル方程式の名称</h3>
+<div class="answer-box">
+$$\nabla\times\mathbf{H}=\mathbf{J}+\frac{\partial\mathbf{D}}{\partial t} \quad\text{（アンペール-マクスウェルの法則）}$$
+$$\nabla\times\mathbf{E}=-\frac{\partial\mathbf{B}}{\partial t} \quad\text{（ファラデーの電磁誘導の法則）}$$
+$$\nabla\cdot\mathbf{D}=\rho_f \quad\text{（ガウスの法則）}$$
+$$\nabla\cdot\mathbf{B}=0 \quad\text{（磁気単極子なし）}$$
+</div>
+
+<h3>3-2)　平面波 $E_x(z,t)=E_0\sin(kz-\omega t)$ の波動方程式</h3>
+<div class="step">
+真空中 $(\mathbf{J}=0, \rho=0)$：$\nabla\times\mathbf{H}=\varepsilon_0\partial\mathbf{E}/\partial t$，$\nabla\times\mathbf{E}=-\mu_0\partial\mathbf{H}/\partial t$。<br>
+回転を取ると：$\nabla^2\mathbf{E}=\mu_0\varepsilon_0\partial^2\mathbf{E}/\partial t^2$
+</div>
+<div class="answer-box">
+$$\frac{\partial^2 E_x}{\partial z^2}=\mu_0\varepsilon_0\frac{\partial^2 E_x}{\partial t^2}$$
+波数条件：$k=\omega\sqrt{\mu_0\varepsilon_0}$，位相速度：$v_p=\omega/k=1/\sqrt{\mu_0\varepsilon_0}=c$
+</div>
+
+<h3>3-3)　磁場成分 $H_y$</h3>
+<div class="step">
+$\nabla\times\mathbf{E}=-\mu_0\partial\mathbf{H}/\partial t$ の $y$ 成分：$\partial E_x/\partial z=-\mu_0\partial H_y/\partial t$
+$$kE_0\cos(kz-\omega t)=\mu_0\omega H_y \quad\Rightarrow\quad H_y=\frac{k}{\mu_0\omega}E_0\cos(kz-\omega t)=\frac{E_0}{\eta}\cos(kz-\omega t)$$
+（$\eta=\sqrt{\mu_0/\varepsilon_0}\approx377\,\Omega$：波動インピーダンス）
+</div>
+<div class="answer-box">
+$$H_y=\frac{E_0}{\mu_0 c}\cos(kz-\omega t)=\sqrt{\frac{\varepsilon_0}{\mu_0}}E_0\cos(kz-\omega t)$$
+</div>
+
+<!-- ============================================================ -->
+<h2>【電気回路】大問1　オペアンプ増幅・バンドパスフィルタ・ウィーンブリッジ</h2>
+
+<h3>1-1)　非反転増幅器の電圧利得</h3>
+<div class="answer-box">
+$$G=1+\frac{R_2}{R_1}$$
+</div>
+
+<h3>1-2)　バンドパスフィルタの伝達関数 $H(\omega)$</h3>
+<div class="step">
+$RC$ 直列（$R_1$）と $RC$ 並列（$R_2, C$）の組み合わせによるウィーンブリッジ型：
+$$H(j\omega)=\frac{1}{3+j(\omega RC-1/(\omega RC))}$$
+</div>
+<div class="answer-box">
+$$\boxed{H(j\omega)=\frac{j\omega RC}{1-\omega^2 R^2 C^2+3j\omega RC}}$$
+</div>
+
+<h3>1-3)　位相 $0$ となる角周波数 $\omega_0$</h3>
+<div class="step">
+$H(j\omega)$ の分母の実部と虚部の比（位相）が0 → $\text{Im}[\text{分母}]=0$：
+$$\omega_0 RC-\frac{1}{\omega_0 RC}=0 \quad\Rightarrow\quad \omega_0=\frac{1}{RC}$$
+</div>
+<div class="answer-box">
+$$\omega_0=\frac{1}{RC}, \qquad H(j\omega_0)=\frac{1}{3}$$
+</div>
+
+<h3>1-4)　ウィーンブリッジ発振条件</h3>
+<div class="step">
+発振条件：$|G\cdot H(\omega_0)|=1$（正帰還で $G\cdot(1/3)=1$）：
+</div>
+<div class="answer-box">
+$$G=1+\frac{R_2}{R_1}=3 \quad\Rightarrow\quad R_2=2R_1$$
+発振角周波数：$\omega_0=1/(RC)$
+</div>
+
+<!-- ============================================================ -->
+<h2>【電気回路】大問2　RLC 回路の力率・最大電力</h2>
+<p>電源 $V_s$，内部抵抗 $R_s$，直列 $L$，並列 $C\|R_L$ の回路。</p>
+
+<h3>2-1)　インピーダンス $\tilde{Z}_{12}$</h3>
+<div class="step">
+$$Z_C\|R_L=\frac{R_L/(j\omega C)}{R_L+1/(j\omega C)}=\frac{R_L}{1+j\omega CR_L}$$
+$$\tilde{Z}_{12}=j\omega L+\frac{R_L}{1+j\omega CR_L}$$
+</div>
+<div class="answer-box">
+$$\boxed{\tilde{Z}_{12}=\frac{j\omega L(1+j\omega CR_L)+R_L}{1+j\omega CR_L}=\frac{R_L+j(\omega L-\omega^2CLR_L)}{1+j\omega CR_L}}$$
+</div>
+
+<h3>2-2)　力率 $=1$ の条件 $\omega_0$</h3>
+<div class="step">
+$\tilde{Z}_{12}$ の虚部 $=0$：$\omega L(1-\omega^2 CL)\cdot R_L\text{に関わる項}$が整理されると：<br>
+分子の虚部 $=0$：$\omega L-\omega^2 CLR_L=0$ → $1-\omega^2 CL=0$（$\omega L\neq0$）
+</div>
+<div class="answer-box">
+$$\omega_0=\frac{1}{\sqrt{LC}}$$
+このとき $\tilde{Z}_{12}=R_L$（純抵抗）
+</div>
+
+<h3>2-3)　最大電力を得る $R_L$</h3>
+<div class="step">
+$\omega=\omega_0$ では $\tilde{Z}_{12}=R_L$（純抵抗）。負荷 $R_L$ での消費電力：
+$$P=\frac{|V_s|^2 R_L}{(R_s+R_L)^2}$$
+$dP/dR_L=0$ → $R_s=R_L$（インピーダンス整合）
+</div>
+<div class="answer-box">
+$$\boxed{R_L=R_s}$$
+最大電力：$P_{\max}=|V_s|^2/(4R_s)$
+</div>
+
+<!-- ============================================================ -->
+<h2>解答まとめ</h2>
+<table>
+  <tr><th>分野</th><th>大問</th><th>キーワード</th><th>結果</th></tr>
+  <tr><td>数学</td><td>1-①</td><td>重解ODE</td><td class="left">$y=(C_1+C_2 x)e^{-2x}$</td></tr>
+  <tr><td>数学</td><td>1-②</td><td>分離変数</td><td class="left">$y=2Ae^{2x}/(1-Ae^{2x})$</td></tr>
+  <tr><td>数学</td><td>1-③</td><td>同次型ODE</td><td class="left">$y^2=Ax^4-x^2$</td></tr>
+  <tr><td>数学</td><td>2</td><td>Laplace・フーリエ</td><td class="left">$F_1(s)=(1-e^{-as})(1-e^{-bs})/(as^2)$</td></tr>
+  <tr><td>数学</td><td>3</td><td>留数定理</td><td class="left">$\oint h(z)\,dz=8\pi j$，留数4</td></tr>
+  <tr><td>電磁気学</td><td>1</td><td>ビオサバール・円軌道</td><td class="left">$B_0=\mu_0 I/(2a)$</td></tr>
+  <tr><td>電磁気学</td><td>2</td><td>3平板コンデンサ</td><td class="left">$Q_A=\varepsilon_0 SV_0/d$</td></tr>
+  <tr><td>電磁気学</td><td>3</td><td>Maxwell・平面波</td><td class="left">$k=\omega\sqrt{\mu_0\varepsilon_0}$，$v=c$</td></tr>
+  <tr><td>電気回路</td><td>1</td><td>ウィーンブリッジ</td><td class="left">$\omega_0=1/(RC)$，発振: $R_2=2R_1$</td></tr>
+  <tr><td>電気回路</td><td>2</td><td>RLC 力率・整合</td><td class="left">$\omega_0=1/\sqrt{LC}$，最大電力: $R_L=R_s$</td></tr>
+</table>
+
+<footer>東京科学大学（東京工業大学）大学院入試 H29年度（30大修）専門科目 解答解説</footer>
+</body>
+</html>

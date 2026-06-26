@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>H24年度 電気回路 午前 解答解説</title>
+  <script>
+    MathJax = { tex: { inlineMath: [['$','$']], displayMath: [['$$','$$']] } };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "Yu Gothic", "游ゴシック", sans-serif;
+      font-size: 13pt;
+      line-height: 1.9;
+      color: #1a1a2e;
+      background: #f4f7fb;
+      padding: 40px;
+    }
+    h1 { font-size: 20pt; color: #0d2b5e; border-bottom: 3px solid #0d2b5e; padding-bottom: 10px; margin-bottom: 6px; }
+    .subtitle { color: #666; font-size: 11pt; margin-bottom: 36px; }
+    h2 { font-size: 15pt; color: #0d2b5e; margin: 40px 0 16px; padding: 8px 16px; background: #e8f0fb; border-left: 5px solid #1e5fa8; border-radius: 4px; }
+    h3 { font-size: 13pt; color: #1e5fa8; margin: 28px 0 10px; border-bottom: 1px solid #c5d8f5; padding-bottom: 4px; }
+    .answer-box { background: #fff; border: 1px solid #c5d8f5; border-radius: 8px; padding: 20px 28px; margin: 12px 0 20px; }
+    .step { background: #f0f6ff; border-left: 3px solid #1e5fa8; padding: 10px 18px; margin: 10px 0; border-radius: 0 4px 4px 0; }
+    .result { background: #fff8e1; border: 2px solid #f9a825; border-radius: 6px; padding: 10px 18px; margin: 12px 0; font-weight: bold; }
+    .note { background: #f3f9f3; border-left: 3px solid #4caf50; padding: 8px 16px; margin: 10px 0; font-size: 11.5pt; color: #2e5f2e; }
+    footer { margin-top: 60px; color: #aaa; font-size: 10pt; text-align: center; }
+    a { color: #1e5fa8; }
+    table { border-collapse: collapse; margin: 12px 0; }
+    th, td { border: 1px solid #c5d8f5; padding: 6px 14px; }
+    th { background: #e8f0fb; color: #0d2b5e; }
+  </style>
+</head>
+<body>
+
+<h1>H24年度 電気回路 午前 解答解説</h1>
+<p class="subtitle">平成23年8月17日実施 ／ 電気回路（単独科目）</p>
+
+<!-- ===== 大問1 ===== -->
+<h2>大問1：二端子対回路（Fパラメータ・整合・反復インピーダンス）</h2>
+
+<h3>問1）直列 $Z$ と並列 $Y$ の F パラメータ</h3>
+<div class="answer-box">
+  F（ABCD）パラメータの定義：$\begin{pmatrix}V_1\\I_1\end{pmatrix} = \begin{pmatrix}A&B\\C&D\end{pmatrix}\begin{pmatrix}V_2\\I_2\end{pmatrix}$
+  <div class="step">
+    <b>直列インピーダンス $Z$（図1.1(a)）</b>：$V_1 = V_2 + ZI_2$，$I_1 = I_2$（電流は通過）：
+    $$[F] = \begin{pmatrix}1 & Z \\ 0 & 1\end{pmatrix}$$
+  </div>
+  <div class="step">
+    <b>並列アドミタンス $Y$（図1.1(b)）</b>：$V_1 = V_2$，$I_1 = I_2 + YV_2$：
+    $$[F] = \begin{pmatrix}1 & 0 \\ Y & 1\end{pmatrix}$$
+  </div>
+</div>
+
+<h3>問2）図1.2（直列 $Z_1$＋並列 $Z_2$）の F パラメータ</h3>
+<div class="answer-box">
+  直列 $Z_1$ と並列 $1/Z_2$（アドミタンス $1/Z_2$）の縦続接続：
+  $$[F] = \begin{pmatrix}1&Z_1\\0&1\end{pmatrix}\begin{pmatrix}1&0\\1/Z_2&1\end{pmatrix} = \begin{pmatrix}1+Z_1/Z_2 & Z_1 \\ 1/Z_2 & 1\end{pmatrix}$$
+  <div class="result">
+    $$A = 1+\frac{Z_1}{Z_2},\quad B = Z_1,\quad C = \frac{1}{Z_2},\quad D = 1$$
+  </div>
+  <div class="note">
+    この回路は $AD - BC = (1+Z_1/Z_2)\cdot1 - Z_1\cdot(1/Z_2) = 1$（相反回路）を満たす。
+  </div>
+</div>
+
+<h3>問3）整合条件と整合インピーダンスの一般式</h3>
+<div class="answer-box">
+  <div class="step">
+    <b>整合条件</b>：入力インピーダンス $Z_i$（2-2'を $R_L$ 終端したときの1-1'から右を見込むインピーダンス）が電源インピーダンス $R_S$ に等しく，
+    出力インピーダンス $Z_o$（1-1'を $R_S$ 終端したときの2-2'から左を見込むインピーダンス）が $R_L$ に等しいこと：
+    $$Z_i = R_S,\quad Z_o = R_L$$
+  </div>
+  <div class="step">
+    F パラメータを用いた表示：
+    $$Z_i = \frac{AR_L + B}{CR_L + D}, \quad Z_o = \frac{DR_S + B}{CR_S + A}$$
+  </div>
+  <div class="step">
+    $Z_i = R_S$ と $Z_o = R_L$ を連立して解く。
+    (1)：$R_S(CR_L + D) = AR_L + B$
+    (2)：$R_L(CR_S + A) = DR_S + B$
+
+    (1)$-$(2)：$(CR_SR_L + DR_S) - (CR_SR_L + AR_L) = AR_L - DR_S$
+    $\Rightarrow DR_S - AR_L = AR_L - DR_S \Rightarrow DR_S = AR_L$
+
+    (1)に代入：$CR_SR_L = B$（上を使って整理）→ $(1)$: $CR_SR_L + DR_S = AR_L + B$ から $CR_SR_L = AR_L+B-DR_S = B$（$DR_S = AR_L$ より）。
+    よって $R_SR_L = B/C$，また $R_L/R_S = D/A$ から：
+    $$R_S^2 = R_S\cdot R_S = \frac{B}{C}\cdot\frac{R_S}{R_L}\cdot R_S = \frac{B}{C}\cdot\frac{A}{D}$$
+  </div>
+  <div class="result">
+    $$\boxed{R_S = \sqrt{\frac{AB}{CD}}}, \quad R_L = \sqrt{\frac{BD}{AC}}, \quad R_SR_L = \frac{B}{C}$$
+  </div>
+</div>
+
+<h3>問4）図1.2 の直並列回路の $R_S$，$R_L$，$R_SR_L$</h3>
+<div class="answer-box">
+  問2）より $A=1+Z_1/Z_2$，$B=Z_1$，$C=1/Z_2$，$D=1$：
+  <div class="step">
+    $$R_S = \sqrt{\frac{AB}{CD}} = \sqrt{\frac{(1+Z_1/Z_2)\cdot Z_1}{(1/Z_2)\cdot 1}} = \sqrt{Z_1 Z_2\left(1+\frac{Z_1}{Z_2}\right)} = \sqrt{Z_1(Z_1+Z_2)}$$
+    $$R_L = \sqrt{\frac{BD}{AC}} = \sqrt{\frac{Z_1\cdot 1}{(1+Z_1/Z_2)\cdot(1/Z_2)}} = \sqrt{\frac{Z_1 Z_2^2}{Z_1+Z_2}} = Z_2\sqrt{\frac{Z_1}{Z_1+Z_2}}$$
+    $$R_SR_L = \frac{B}{C} = \frac{Z_1}{1/Z_2} = Z_1 Z_2$$
+  </div>
+  <div class="result">
+    $$R_S = \sqrt{Z_1(Z_1+Z_2)},\quad R_L = Z_2\sqrt{\frac{Z_1}{Z_1+Z_2}},\quad R_SR_L = Z_1 Z_2$$
+  </div>
+  <div class="note">
+    $Z_1$，$Z_2$ が正の実数（純抵抗）のとき $R_S$，$R_L$ も正の実数として整合インピーダンスが定義できる。
+  </div>
+</div>
+
+<h3>問5）反復インピーダンス $Z_L$</h3>
+<div class="answer-box">
+  <div class="step">
+    2-2'端子に $Z_L$ を接続したとき，1-1'端子から見た入力インピーダンスが $Z_L$ になる条件：
+    $$Z_L = \frac{AZ_L + B}{CZ_L + D}$$
+    $CZ_L^2 + DZ_L = AZ_L + B$：
+    $$CZ_L^2 + (D-A)Z_L - B = 0$$
+    二次方程式の解：$(D-A)^2 + 4BC = (A+D)^2 - 4(AD-BC) = (A+D)^2 - 4$（$AD-BC=1$ を利用）
+    $$Z_L = \frac{(A-D) \pm \sqrt{(A+D)^2 - 4}}{2C}$$
+  </div>
+  <div class="result">
+    $$Z_L = \frac{A-D}{2C} \pm \frac{\sqrt{(A+D)^2-4}}{2C}$$
+    （符号はエネルギー吸収 $\text{Re}(Z_L) \geq 0$ の条件で選択）
+  </div>
+</div>
+
+<h3>問6）無限梯子形回路の入力インピーダンス $Z_i$</h3>
+<div class="answer-box">
+  <div class="step">
+    自己相似性（無限に続くため，$Z_i$ を1段加えても変わらない）：
+    $$Z_i = Z_1 + \frac{Z_2 Z_i}{Z_2 + Z_i}$$
+    $Z_i(Z_2 + Z_i) = Z_1(Z_2 + Z_i) + Z_2 Z_i$ を展開：
+    $$Z_i^2 - Z_1 Z_i - Z_1 Z_2 = 0$$
+    $$Z_i = \frac{Z_1}{2} \pm \sqrt{\frac{Z_1^2}{4} + Z_1 Z_2}$$
+  </div>
+
+  <b>a）$Z_1 = R_1$，$Z_2 = R_2$（純抵抗）</b>
+  <div class="step">
+    $Z_i = \dfrac{R_1}{2} \pm \sqrt{\dfrac{R_1^2}{4} + R_1 R_2}$
+
+    根号内は正。$Z_i > 0$（物理的に正の抵抗）でなければならないから，$+$ 符号のみ採用。
+    $-$ 符号は $Z_i = R_1/2 - \sqrt{R_1^2/4 + R_1R_2} < 0$（不適）。
+  </div>
+  <div class="result">
+    $$Z_i = \frac{R_1}{2} + \sqrt{\frac{R_1^2}{4} + R_1 R_2}$$
+  </div>
+
+  <b>b）$Z_1 = j\omega L_1$，$Z_2 = 1/(j\omega C_2)$（直列 L・並列 C）</b>
+  <div class="step">
+    $$Z_i = \frac{j\omega L_1}{2} \pm \sqrt{-\frac{\omega^2 L_1^2}{4} + \frac{L_1}{C_2}}$$
+    根号内 $= L_1/C_2 - \omega^2 L_1^2/4$ の正負で場合分け（$\omega_c^2 = 4/(L_1 C_2)$ を遮断角周波数とする）：
+
+    <b>通過域 $(\omega < \omega_c)$</b>：根号内 $> 0$，$Z_i = j\dfrac{\omega L_1}{2} + \sqrt{\dfrac{L_1}{C_2}-\dfrac{\omega^2 L_1^2}{4}}$（実部あり，エネルギー伝達）
+
+    $-$ 符号の解は実部が負になり（無限回路はエネルギーを吸収するので実部非負でなければならない），不適。
+
+    <b>阻止域 $(\omega > \omega_c)$</b>：根号内 $< 0$，
+    $Z_i = j\dfrac{\omega L_1}{2} \pm j\sqrt{\dfrac{\omega^2 L_1^2}{4}-\dfrac{L_1}{C_2}}$（純虚数，エネルギー伝達なし）
+
+    虚部の符号：伝送線路類比から正の虚部（誘導性）が物理的に適切（$+$ 符号のみ）。
+  </div>
+  <div class="result">
+    通過域（$\omega < 2/\sqrt{L_1 C_2}$）：$Z_i = \sqrt{\dfrac{L_1}{C_2}-\dfrac{\omega^2 L_1^2}{4}} + j\dfrac{\omega L_1}{2}$（実部あり，実効インピーダンス）<br>
+    阻止域（$\omega > 2/\sqrt{L_1 C_2}$）：$Z_i = j\left(\dfrac{\omega L_1}{2} + \sqrt{\dfrac{\omega^2 L_1^2}{4}-\dfrac{L_1}{C_2}}\right)$（純虚数）
+  </div>
+  <div class="note">
+    この回路は低域通過フィルタ（LPF）として機能する。遮断角周波数 $\omega_c = 2/\sqrt{L_1 C_2}$ 以下で信号が伝搬し，以上では反射（阻止）される。
+  </div>
+</div>
+
+<!-- ===== 大問2 ===== -->
+<h2>大問2：三相回路</h2>
+
+<p>線間電圧実効値 200 V，角周波数 $\omega$。</p>
+
+<h3>問1）Y結線RL直列回路の相電圧 $V_{UN}$ の振幅</h3>
+<div class="answer-box">
+  Y結線の相電圧（実効値）= 線間電圧/$\sqrt{3}$：
+  $$V_{UN,\rm rms} = \frac{200}{\sqrt{3}} = \frac{200\sqrt{3}}{3} \approx 115.5 \text{ V}$$
+  <div class="result">
+    振幅（最大値）$= \sqrt{2}\cdot\dfrac{200}{\sqrt{3}} = \dfrac{200\sqrt{2}}{\sqrt{3}} = \dfrac{200\sqrt{6}}{3} \approx 163 \text{ V}$
+    （有効数字2桁：$1.6\times10^2$ V）
+  </div>
+</div>
+
+<h3>問2）RL直列回路の電流 $I_U$</h3>
+<div class="answer-box">
+  <div class="step">
+    インピーダンス：$Z = R + j\omega L = 30 + 40j$ Ω，$|Z| = \sqrt{30^2+40^2} = 50$ Ω
+    $$|I_U| = \frac{V_{UN,\rm rms}}{|Z|} = \frac{200/\sqrt{3}}{50} = \frac{4}{\sqrt{3}} \approx 2.31 \text{ A}$$
+    位相角（遅れ）：$\theta = \arctan(40/30) = \arctan(4/3) \approx 53.1°$
+  </div>
+  <div class="result">
+    $|I_U| \approx 2.3$ A（有効数字2桁），位相は $V_{UN}$ より $53°$ 遅れ
+  </div>
+</div>
+
+<h3>問3）回路全体の消費電力</h3>
+<div class="answer-box">
+  3相合計（各相の消費電力は $|I_U|^2 R$）：
+  $$P = 3|I_U|^2 R = 3\cdot\left(\frac{4}{\sqrt{3}}\right)^2\cdot 30 = 3\cdot\frac{16}{3}\cdot 30 = 480 \text{ W}$$
+  <div class="result">
+    $P = 480$ W（有効数字2桁：$4.8\times10^2$ W）
+  </div>
+  <div class="note">
+    別解（線間電圧使用）：$P = \sqrt{3}\cdot V_{line}\cdot I_U\cdot\cos\theta = \sqrt{3}\cdot 200\cdot(4/\sqrt{3})\cdot(30/50) = 480$ W。
+  </div>
+</div>
+
+<h3>問4）力率</h3>
+<div class="answer-box">
+  <div class="result">
+    $$\cos\theta = \frac{R}{|Z|} = \frac{30}{50} = 0.60$$
+  </div>
+</div>
+
+<h3>問5）Δ結線（R, L, C）のフェーザと $1/(\omega C)$</h3>
+<div class="answer-box">
+  <div class="step">
+    端子X に流入する電流：$I_X = I_C + I_R$（KCL。CはX端子に接続するC辺の電流，RはX端子に接続するR辺の電流）。<br>
+    三相対称の線間電圧 $V_{line} = \sqrt{3}V_{ph}$，各辺の電圧は線間電圧。
+
+    相電圧を $V_X = V_{ph}\angle0°$ として，隣接する線間電圧を設定（正相順 X→Y→Z で右回り）：
+    $$V_{ZX}(\text{Z-X間，CはZX辺}) = \sqrt{3}V_{ph}\angle{-150°} \text{（または }150°\text{相当）}$$
+
+    C辺の電流（Z→X 方向）：$I_C = V_{ZX}\cdot j\omega C$，CがZX間に挿入されている場合，Z→X方向に電流が流れると位相は $V_{ZX}$ より $90°$ 進み。<br>
+    R辺の電流（Y→X 方向，RはYX辺）：$I_R = V_{YX}/R$，位相は $V_{YX}$ と同位相。
+
+    力率1の条件（$I_X$ が $V_X$ と同位相，虚部 = 0）を解くと：
+    $$\frac{1}{\omega C} = \sqrt{3}R$$
+  </div>
+  <div class="result">
+    $$\boxed{\frac{1}{\omega C} = \sqrt{3}R}$$
+  </div>
+  <div class="note">
+    フェーザ図（ベクトル図）：$I_R$ は $V_{YX}$ と同位相（$-150°$方向），$I_C$ は $V_{ZX}$ より $90°$ 進み。$I_X = I_C + I_R$ が実軸（$0°$）方向となる条件が $1/(\omega C) = \sqrt{3}R$。
+  </div>
+</div>
+
+<h3>問6）$\omega L$ を $R$ で表せ</h3>
+<div class="answer-box">
+  <div class="step">
+    Y端子の電流 $I_Y$ を同様に計算。L辺（YZ辺）の電流 $I_L$（Y→Z方向：$V_{YZ}/(j\omega L)$）とR辺（YX辺）の電流 $I_R$ からY端子のKCL：
+    $$I_Y = I_L + I_R' \quad\text{（Y端子に流入する各辺の電流の和）}$$
+    $I_Y$ が $V_Y$（位相 $-120°$ または $+120°$）と同位相（力率1）の条件から虚部=0 を解く：
+    $$\omega L = \sqrt{3}R$$
+  </div>
+  <div class="result">
+    $$\boxed{\omega L = \sqrt{3}R}$$
+  </div>
+  <div class="note">
+    $1/(\omega C) = \omega L = \sqrt{3}R$ → CとLは同じリアクタンスを持ち，この条件は LC共振（$\omega^2 LC = 1$）に対応する。
+  </div>
+</div>
+
+<h3>問7）等価なY結線三相対称回路</h3>
+<div class="answer-box">
+  <div class="step">
+    $1/(\omega C) = \omega L = \sqrt{3}R$ の条件下で線電流の大きさを計算（問5の結果から）：
+    $$|I_X| = \frac{V_{ph}}{R} \quad\text{（等価Y抵抗の電流と一致）}$$
+    力率1で $|I_X| = V_{ph}/R$ → 等価Y相インピーダンス：
+    $$Z_Y = \frac{V_{ph}}{|I_X|} = R$$
+  </div>
+  <div class="result">
+    等価Y結線三相対称回路：各相に純抵抗 $R$ を接続した Y 結線。<br>
+    （Δ結線の $R$，$L$，$C$ が上記の整合条件を満たすとき，外部からは各相抵抗 $R$ の対称Y負荷と等価）
+  </div>
+  <div class="note">
+    確認：等価Y回路の消費電力 $= 3(V_{ph}/R)^2\cdot R = 3V_{ph}^2/R$。Δ回路でもRで消費される電力が主成分となり，LとCは無効電力のみ（力率1条件）。
+  </div>
+</div>
+
+<footer>
+  解答解説作成：Claude（Anthropic）| <a href="index.html">← 一覧に戻る</a>
+</footer>
+
+</body>
+</html>

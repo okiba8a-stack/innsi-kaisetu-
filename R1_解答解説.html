@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>R1年度 専門科目 総合 解答解説</title>
+  <script>
+    MathJax = {
+      tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']], tags: 'ams' },
+      options: { skipHtmlTags: ['script','noscript','style','textarea','pre'] }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: "Yu Gothic","游ゴシック",sans-serif; font-size: 13pt; line-height: 1.9; color: #1a1a2e; background: #f4f7fb; padding: 40px; }
+    h1 { font-size: 19pt; color: #0d2b5e; border-bottom: 3px solid #0d2b5e; padding-bottom: 10px; margin-bottom: 6px; }
+    .meta { color: #666; font-size: 11pt; margin-bottom: 36px; }
+    h2 { font-size: 15pt; color: #0d2b5e; background: #e8f0fb; border-left: 5px solid #1e5fa8; padding: 8px 14px; margin: 40px 0 16px; border-radius: 0 6px 6px 0; }
+    h3 { font-size: 13pt; color: #1e5fa8; border-bottom: 1px solid #c5d8f5; margin: 28px 0 10px; padding-bottom: 4px; }
+    .answer-box { background: #fff; border: 2px solid #1e5fa8; border-radius: 6px; padding: 14px 20px; margin: 12px 0; }
+    .step { background: #eef4ff; border-left: 3px solid #5b8dee; padding: 10px 16px; margin: 10px 0; border-radius: 0 4px 4px 0; }
+    .note { background: #fffbe6; border-left: 4px solid #f0ad00; padding: 10px 16px; margin: 12px 0; border-radius: 0 4px 4px 0; font-size: 11.5pt; }
+    table { border-collapse: collapse; width: 100%; margin: 16px 0; font-size: 11.5pt; }
+    th { background: #0d2b5e; color: #fff; padding: 8px 12px; text-align: center; }
+    td { border: 1px solid #c5d8f5; padding: 8px 12px; text-align: center; }
+    td.left { text-align: left; }
+    tr:nth-child(even) td { background: #f0f6ff; }
+    footer { margin-top: 60px; color: #aaa; font-size: 10pt; text-align: center; }
+    @media print { body { background: #fff; padding: 20px; } }
+  </style>
+</head>
+<body>
+
+<h1>R1年度 専門科目（総合）解答解説</h1>
+<p class="meta">東京工業大学 大学院修士課程入試（令和元年8月実施・2020大修） ／ 数学・電磁気学・電気回路・量子力学/物性基礎</p>
+
+<!-- ============================================================ -->
+<h2>【数学】大問1　フーリエ変換の性質</h2>
+<p>$F(\omega)=\displaystyle\int_{-\infty}^\infty f(t)e^{-j\omega t}dt$，$F(\omega)=R(\omega)+jX(\omega)=|F(\omega)|e^{-j\varphi(\omega)}$</p>
+
+<h3>1)　$F(-\omega)$ が複素共役 → 各成分の偶奇性</h3>
+<div class="step">
+$f(t)$ が実数 → $F(-\omega)=F^*(\omega)$：<br>
+$R(-\omega)+jX(-\omega)=R(\omega)-jX(\omega)$<br>
+→ $R(-\omega)=R(\omega)$（偶関数），$X(-\omega)=-X(\omega)$（奇関数）<br>
+→ $|F(-\omega)|=|F^*(\omega)|=|F(\omega)|$（偶関数），$\varphi(-\omega)=-\varphi(\omega)$（奇関数）
+</div>
+<div class="answer-box">
+$R(\omega)$：<strong>偶関数</strong>，$X(\omega)$：<strong>奇関数</strong>，$|F(\omega)|$：<strong>偶関数</strong>，$\varphi(\omega)$：<strong>奇関数</strong>
+</div>
+
+<h3>2)　$f(at)$ のフーリエ変換（$a>0$）</h3>
+<div class="step">
+$\int_{-\infty}^\infty f(at)e^{-j\omega t}dt \overset{\tau=at}{=}\int_{-\infty}^\infty f(\tau)e^{-j(\omega/a)\tau}\frac{d\tau}{a}=\frac{1}{a}F\!\left(\frac{\omega}{a}\right)$
+</div>
+<div class="answer-box">$$\text{FT}[f(at)]=\frac{1}{a}F\!\left(\frac{\omega}{a}\right)$$（時間圧縮 → 周波数帯域拡大，エネルギー保存）</div>
+
+<h3>3)　$f(t-t_0)$ のフーリエ変換（時間シフト定理）</h3>
+<div class="step">
+$\int f(t-t_0)e^{-j\omega t}dt\overset{\tau=t-t_0}{=}\int f(\tau)e^{-j\omega(\tau+t_0)}d\tau=e^{-j\omega t_0}F(\omega)$
+</div>
+<div class="answer-box">$$\text{FT}[f(t-t_0)]=e^{-j\omega t_0}F(\omega)$$（振幅は変わらず，位相だけ $e^{-j\omega t_0}$ のシフト）</div>
+
+<h3>4)　$f'(t)$ のフーリエ変換（微分定理）</h3>
+<div class="step">
+部分積分：$\int_{-\infty}^\infty f'(t)e^{-j\omega t}dt=\bigl[f(t)e^{-j\omega t}\bigr]_{-\infty}^\infty+j\omega\int_{-\infty}^\infty f(t)e^{-j\omega t}dt$<br>
+$|F(\omega)|<\infty$ より $f(\pm\infty)=0$ → 第1項 $=0$
+</div>
+<div class="answer-box">$$\text{FT}[f'(t)]=j\omega F(\omega)$$（微分 → $j\omega$ の乗算，$n$ 階微分 → $(j\omega)^n F(\omega)$）</div>
+
+<h3>5)　$f(t)e^{-j\omega_0 t}$ のフーリエ変換（変調定理）</h3>
+<div class="step">
+$\int f(t)e^{-j\omega_0 t}e^{-j\omega t}dt=\int f(t)e^{-j(\omega+\omega_0)t}dt=F(\omega+\omega_0)$
+</div>
+<div class="answer-box">$$\text{FT}[f(t)e^{-j\omega_0 t}]=F(\omega+\omega_0) \quad (\text{周波数シフト})$$</div>
+
+<h3>6)　$f(t)\cos(\omega_0 t)$ のフーリエ変換（AM 変調）</h3>
+<div class="step">
+$\cos(\omega_0 t)=\tfrac{1}{2}(e^{j\omega_0 t}+e^{-j\omega_0 t})$ を代入し，5) の結果を利用：
+$$\text{FT}[f(t)\cos\omega_0 t]=\frac{1}{2}[F(\omega-\omega_0)+F(\omega+\omega_0)]$$
+</div>
+<div class="answer-box">$$\text{FT}[f(t)\cos\omega_0 t]=\frac{1}{2}\bigl[F(\omega-\omega_0)+F(\omega+\omega_0)\bigr]$$</div>
+
+<h3>7)　$g(t)=f(t)\cos(\omega_0 t)$ のスペクトル $|G(\omega)|$ の概形（$\omega\geq0$）</h3>
+<div class="note">
+$|G(\omega)|=\tfrac{1}{2}|F(\omega-\omega_0)+F(\omega+\omega_0)|$。$\omega_1, \omega_2\ll\omega_0$ なので，$|F|$ のピーク（$\omega_1, \omega_2$ 付近）が $+\omega_0$ および $-\omega_0$ だけシフトした形が $\omega\geq0$ に現れる。$\omega\geq0$ 部分では $F(\omega-\omega_0)$ 成分（$\omega_0\pm\omega_1$，$\omega_0\pm\omega_2$ にピーク）が見えるスペクトル形状。
+</div>
+
+<!-- ============================================================ -->
+<h2>【数学】大問2　不定積分と微分方程式</h2>
+
+<h3>2-1a)　$\displaystyle\int\frac{1}{x^2+4}dx$</h3>
+<div class="answer-box">
+$$\int\frac{1}{x^2+4}dx=\frac{1}{2}\arctan\frac{x}{2}+C$$
+（$x=2\tan\theta$ と置換，または公式 $\int 1/(x^2+a^2)dx=(1/a)\arctan(x/a)$）
+</div>
+
+<h3>2-1b)　$\displaystyle\int\frac{4x}{x^2+1}dx$</h3>
+<div class="answer-box">
+$$\int\frac{4x}{x^2+1}dx=2\ln(x^2+1)+C$$
+（分子 $4x=2\cdot 2x$，分母 $x^2+1$ の導関数 $2x$ を利用）
+</div>
+
+<h3>2-2)　$\dfrac{dy}{dx}=\dfrac{3x+2y-4}{2x-3y+6}$</h3>
+
+<p><strong>a) 定点の移動（$k=x-a$，$m=y-b$）</strong></p>
+<div class="step">
+定数項を消去する条件：$3a+2b-4=0$，$2a-3b+6=0$。<br>
+これを解くと：$13b-26=0\Rightarrow b=2$，$a=(4-2\times2)/3=0$
+</div>
+<div class="answer-box">$$a=0,\quad b=2 \quad (k=x,\;m=y-2)$$
+変換後：$\dfrac{dm}{dk}=\dfrac{3k+2m}{2k-3m}$</div>
+
+<p><strong>b) $u=m/k\,(k>0)$ と置換した $dm/dk$</strong></p>
+<div class="step">
+$m=uk$，$dm/dk=u+k\,du/dk$。代入：
+$$u+k\frac{du}{dk}=\frac{3+2u}{2-3u}\quad\Rightarrow\quad k\frac{du}{dk}=\frac{3+2u}{2-3u}-u=\frac{3+3u^2}{2-3u}=\frac{3(1+u^2)}{2-3u}$$
+</div>
+<div class="answer-box">$$\frac{dm}{dk}=u+k\frac{du}{dk},\quad k\frac{du}{dk}=\frac{3(1+u^2)}{2-3u}$$</div>
+
+<p><strong>c) $du/dk=E/D$（$D$ は $u$ のみ，$E=3/k$）</strong></p>
+<div class="answer-box">
+$$D(u)=\frac{2-3u}{1+u^2},\quad E=\frac{3}{k}$$
+$$\text{（変数分離：}\frac{2-3u}{1+u^2}du=\frac{3}{k}dk\text{）}$$
+</div>
+
+<p><strong>d) 一般解：$F-3\log k+C=0$</strong></p>
+<div class="step">
+左辺積分：$\displaystyle\int\frac{2-3u}{1+u^2}du=2\arctan u-\frac{3}{2}\ln(1+u^2)+\text{const}$<br>
+右辺：$3\ln k+\text{const}$
+</div>
+<div class="answer-box">
+$$F(u)=2\arctan u-\frac{3}{2}\ln(1+u^2) \quad (\text{ただし }u=m/k)$$
+一般解：$F(m/k)-3\ln k+C=0$
+</div>
+
+<p><strong>e) 特殊解（$x=1$，$y=2$ を代入）</strong></p>
+<div class="step">
+$x=1, y=2 \Rightarrow k=1, m=0, u=0$：$F(0)=0$，$3\ln1=0$ → $C=0$。<br>
+$F = 2\arctan(m/k)-\tfrac{3}{2}\ln(1+u^2)=0$ を $x,y$ で表す：<br>
+$m=y-2$，$k=x$，$k^2+m^2=x^2+(y-2)^2$。
+$2\arctan\dfrac{m}{k}=\dfrac{3}{2}\ln(k^2+m^2)$ より，$4\arctan G-3\log H=0$：
+</div>
+<div class="answer-box">
+$$G=\frac{y-2}{x},\quad H=x^2+(y-2)^2$$
+</div>
+
+<!-- ============================================================ -->
+<h2>【電磁気学】大問1　球状電荷分布</h2>
+<p>半径 $a$，電荷密度 $\rho$（一様），誘電率 $\varepsilon_0$。</p>
+
+<h3>1-a)　電界 $E(r)$ とグラフ概略</h3>
+<div class="step">
+ガウスの法則 $\oint\mathbf{D}\cdot d\mathbf{A}=Q_{enc}$：
+$r>a$：$4\pi r^2\varepsilon_0 E=\tfrac{4}{3}\pi a^3\rho$ → $E=\rho a^3/(3\varepsilon_0 r^2)$<br>
+$r<a$：$4\pi r^2\varepsilon_0 E=\tfrac{4}{3}\pi r^3\rho$ → $E=\rho r/(3\varepsilon_0)$（線形増加）
+</div>
+<div class="answer-box">
+$$E(r)=\begin{cases}\dfrac{\rho r}{3\varepsilon_0} & (r<a)\\[6pt]\dfrac{\rho a^3}{3\varepsilon_0 r^2} & (r>a)\end{cases}$$
+$r=a$ で連続（$E_{\max}=\rho a/(3\varepsilon_0)$），$r\to\infty$ で $E\to0$
+</div>
+
+<h3>1-b)　電位 $V(r)$（無限遠 $V=0$）</h3>
+<div class="step">
+$r>a$：$V=\int_r^\infty E\,dr'=\rho a^3/(3\varepsilon_0 r)$<br>
+$r<a$：$V=V(a)+\int_r^a E\,dr'=\rho a^2/(3\varepsilon_0)+\rho(a^2-r^2)/(6\varepsilon_0)=\rho(3a^2-r^2)/(6\varepsilon_0)$
+</div>
+<div class="answer-box">
+$$V(r)=\begin{cases}\dfrac{\rho(3a^2-r^2)}{6\varepsilon_0} & (r<a)\\[6pt]\dfrac{\rho a^3}{3\varepsilon_0 r} & (r>a)\end{cases}$$
+中心 $V(0)=\rho a^2/(2\varepsilon_0)$，表面 $V(a)=\rho a^2/(3\varepsilon_0)$
+</div>
+
+<h3>1-c)　$r<a$ での各方向成分</h3>
+<div class="step">
+$r<a$ で $E=\rho r/(3\varepsilon_0)$，方向は動径 $\hat{r}=(x/r, y/r, z/r)$：
+</div>
+<div class="answer-box">
+$$E_x=\frac{\rho x}{3\varepsilon_0},\quad E_y=\frac{\rho y}{3\varepsilon_0},\quad E_z=\frac{\rho z}{3\varepsilon_0}$$
+</div>
+
+<h3>2-a)　小球（中心 $(d,0,0)$，半径 $b$）を追加：内部電界</h3>
+<div class="step">
+重ね合わせの原理：追加小球（密度 $\rho_1$）の電界を加算。<br>
+小球内点 $(x,y,z)$ での追加球の寄与：$\rho_1(x-d, y, z)/(3\varepsilon_0)$。
+</div>
+<div class="answer-box">
+追加領域内 $\mathbf{E}$ 成分：
+$$E_x=\frac{\rho x+\rho_1(x-d)}{3\varepsilon_0},\quad E_y=\frac{(\rho+\rho_1)y}{3\varepsilon_0},\quad E_z=\frac{(\rho+\rho_1)z}{3\varepsilon_0}$$
+</div>
+
+<h3>2-b)　小球内を空洞にした場合（$\rho=0$ の球）の電界</h3>
+<div class="step">
+元の球（密度 $\rho$，全域）から小球（密度 $\rho$，半径 $b$, 中心 $(d,0,0)$）を引いたもの。<br>
+空洞内（原点座標）での電界：
+$\mathbf{E}_{\text{original}}-\mathbf{E}_{\text{removed ball}}$<br>
+$\mathbf{E}=\rho\mathbf{r}/(3\varepsilon_0)-\rho(\mathbf{r}-\mathbf{d})/(3\varepsilon_0)=\rho\mathbf{d}/(3\varepsilon_0)$
+</div>
+<div class="answer-box">
+$$\mathbf{E}=\frac{\rho d}{3\varepsilon_0}\hat{x} \quad\text{（空洞内で一様，$+x$ 方向）}$$
+</div>
+
+<!-- ============================================================ -->
+<h2>【電磁気学】大問2　円電流の磁界とトロイダルコイル</h2>
+
+<h3>2-1)　円電流の磁束密度（空欄 ①〜⑥）</h3>
+<div class="step">
+① $\mathbf{B}_\perp$ の積分でキャンセル → $|\mathbf{B}_1|=B_{1z}$（$z$ 成分のみ）→ $\boxed{①=0}$（$x,y$ 成分の消去）<br>
+② ビオ・サバールの法則<br>
+③ $dB=\dfrac{\mu_0 I\,ds}{4\pi R^2}$（$d\mathbf{s}\perp\mathbf{R}$ より）<br>
+④ $\cos\varphi=\dfrac{a}{R}=\dfrac{a}{\sqrt{a^2+z_1^2}}$<br>
+⑤ $dB_z=\dfrac{\mu_0 Ia\,ds}{4\pi(a^2+z_1^2)^{3/2}}$<br>
+⑥ $B_z=\dfrac{\mu_0 Ia^2}{2(a^2+z_1^2)^{3/2}}$（$\int ds=2\pi a$）
+</div>
+<div class="answer-box">
+$$\mathbf{B}_1=\left(0,\;0,\;\frac{\mu_0 Ia^2}{2(a^2+z_1^2)^{3/2}}\right)$$
+</div>
+
+<h3>2-2)　トロイダルコイル（内半径 $a$，外半径 $b$，厚さ $h$，巻数 $N$，透磁率 $\mu$）</h3>
+
+<p><strong>a) コア内の磁束密度（アンペールの法則）</strong></p>
+<div class="step">
+半径 $r$（$a<r<b$）の閉曲線に囲まれる電流 $=NJ$：
+$$B_\theta\cdot 2\pi r=\mu NJ \quad\Rightarrow\quad B_\theta=\frac{\mu NJ}{2\pi r}$$
+$B_r=B_z=0$（対称性）→ $\boxed{B_r=B_z=0,\;B_\theta=\mu NJ/(2\pi r)}$
+</div>
+
+<p><strong>b) コア外側 $B=0$ の説明</strong></p>
+<div class="note">
+$r>b$ の閉曲線（全コイル巻数を囲む）：往復電流 $NJ-NJ=0$ → アンペールの法則より $\mathbf{B}=0$。
+</div>
+
+<p><strong>c) 断面を貫く磁束 $\Phi$</strong></p>
+<div class="step">
+$$\Phi=\int_a^b B_\theta h\,dr=\frac{\mu NJh}{2\pi}\int_a^b\frac{dr}{r}=\frac{\mu NJh}{2\pi}\ln\frac{b}{a}$$
+</div>
+<div class="answer-box">$$\Phi=\frac{\mu NJh}{2\pi}\ln\frac{b}{a}$$</div>
+
+<p><strong>d) 磁気エネルギー $U$</strong></p>
+<div class="step">
+$U=\displaystyle\frac{1}{2\mu}\int B^2 dV=\frac{1}{2\mu}\int_a^b\!\left(\frac{\mu NJ}{2\pi r}\right)^2 2\pi r h\,dr=\frac{\mu N^2 J^2 h}{4\pi}\ln\frac{b}{a}$
+</div>
+<div class="answer-box">$$U=\frac{\mu N^2 J^2 h}{4\pi}\ln\frac{b}{a}$$</div>
+
+<p><strong>e) 自己インダクタンス $L$</strong></p>
+<div class="answer-box">
+$$L=\frac{N\Phi}{J}=\frac{\mu N^2 h}{2\pi}\ln\frac{b}{a}$$
+（確認：$U=\tfrac{1}{2}LJ^2$ より $L=2U/J^2=\mu N^2 h\ln(b/a)/(2\pi)$ ✓）
+</div>
+
+<!-- ============================================================ -->
+<h2>【電気回路】大問1　RC 回路の過渡応答</h2>
+<p>図 1.1：$R$-$C$ 直列回路，端子 ab に $v(t)$ 印加，$v_c(t)$：キャパシタ電圧，$t=0$ で $v_c=0$。</p>
+
+<h3>1)　回路方程式</h3>
+<div class="answer-box">$$RC\frac{dv_c}{dt}+v_c=v(t)$$</div>
+
+<h3>2)　ステップ電圧 $v(t)=Vu(t)$ の応答</h3>
+<div class="answer-box">$$v_c(t)=V\left(1-e^{-t/(RC)}\right),\quad t\geq0$$</div>
+
+<h3>3)　十分時間後の静電エネルギー</h3>
+<div class="answer-box">$$E_C=\frac{1}{2}CV^2$$</div>
+
+<h3>4)　$v(t)=2V\,(0\leq t<a)$，$v(t)=V\,(t\geq a)$ の応答</h3>
+<div class="step">
+$0\leq t<a$：$v_c=2V(1-e^{-t/(RC)})$，$v_c(a^-)=2V(1-e^{-a/(RC)})$<br>
+$t\geq a$：新たな目標値 $V$，初期値 $v_c(a)$：
+$$v_c=V+\bigl[v_c(a)-V\bigr]e^{-(t-a)/(RC)}=V+V\bigl[1-2e^{-a/(RC)}\bigr]e^{-(t-a)/(RC)}$$
+</div>
+<div class="answer-box">
+$$v_c(t)=\begin{cases}2V\!\left(1-e^{-t/(RC)}\right) & 0\leq t<a\\[4pt] V+V\!\left(1-2e^{-a/(RC)}\right)e^{-(t-a)/(RC)} & t\geq a\end{cases}$$
+</div>
+
+<h3>5)　$t\geq a$ で放電する条件</h3>
+<div class="step">
+$v_c(a)>V$ （目標値より高い → 放電）：$2V(1-e^{-a/(RC)})>V$ → $e^{-a/(RC)}<1/2$
+</div>
+<div class="answer-box">$$a>RC\ln2$$</div>
+
+<h3>6)　$t\geq a$ で電流 $=0$ となる $R,C$ の条件（問4 の設定で）</h3>
+<div class="step">
+$t\geq a$ で $i=C\,dv_c/dt=0$ → $v_c=V$（一定），つまり $v_c(a)=V$：
+$2V(1-e^{-a/(RC)})=V$ → $e^{-a/(RC)}=1/2$ → $a=RC\ln2$<br>
+0 から $a$ まで抵抗 $R$ の消費電力量：<br>
+電源供給 $W_s=\int_0^a 2V\cdot i\,dt=2V\cdot C\cdot v_c(a)=2CV^2$<br>
+$C$ に蓄積 $W_C=(1/2)CV^2$（$v_c(0)=0\to V$）<br>
+$R$ で消費 $W_R=2CV^2-(1/2)CV^2=(3/2)CV^2$
+</div>
+<div class="answer-box">
+条件：$a=RC\ln2$<br>
+$R$ での消費電力量：$W_R=\dfrac{3}{2}CV^2$
+</div>
+
+<h3>7)　端子 ab から供給された電力量（$t=0$ から $a$ まで）</h3>
+<div class="answer-box">$$W_{ab}=2CV^2$$（上記 $W_s$ と同じ，問6 の条件下）</div>
+
+<!-- ============================================================ -->
+<h2>【電気回路】大問2　理想オペアンプ回路</h2>
+
+<h3>2-1)　加算増幅器（図 2.1）</h3>
+<div class="step">
+$v_A, v_B, v_C$ 各々 $R_1$ を通じて $-$ 端子へ，$R_2$ がフィードバック：
+$$i_-=\frac{v_A}{R_1}+\frac{v_B}{R_1}+\frac{v_C}{R_1}=\frac{v_D-0}{R_2}\cdot(-1)$$
+</div>
+<div class="answer-box">
+$$v_D=-\frac{R_2}{R_1}(v_A+v_B+v_C)$$
+</div>
+
+<h3>2-2)　入力インピーダンス</h3>
+<div class="answer-box">
+$v_A/i_A=v_B/i_B=v_C/i_C=R_1$（仮想接地で $-$ 端子は $0\,\text{V}$）
+</div>
+
+<h3>2-3)　フィルタ伝達関数 $H(j\omega)=v_B/v_A$（図 2.2）</h3>
+<div class="step">
+図 2.2：$v_A$ → $R$ → $+$ 端子，$+$ 端子から $C$ で接地。電圧フォロワ構成のRC入力。
+$$H(j\omega)=\frac{1/(j\omega C)}{R+1/(j\omega C)}=\frac{1}{1+j\omega RC}$$
+</div>
+<div class="answer-box">$$H(j\omega)=\frac{1}{1+j\omega RC} \quad\text{（低域通過フィルタ）}$$</div>
+
+<h3>2-4)　$v_C=v_A$ 常成立の条件（図 2.2 と図 2.3 の縦続接続）</h3>
+<div class="step">
+図 2.3：非反転増幅器，$v_B$ 入力，$C'$ 直列・$R'$ フィードバック形の増幅 → $H_2=1+j\omega R'C'$。<br>
+縦続：$H_1\cdot H_2=\dfrac{1+j\omega R'C'}{1+j\omega RC}=1$（全 $\omega$）条件：
+</div>
+<div class="answer-box">$$R'C'=RC$$</div>
+
+<h3>2-5)　微分回路（図 2.4）の比例定数 $k$</h3>
+<div class="step">
+$C$ 入力，$R$ フィードバック（反転増幅形微分回路）：
+$v_B=-RC\dfrac{dv_A}{dt}$
+</div>
+<div class="answer-box">$$k=-RC$$（$v_B=k\,dv_A/dt$）</div>
+
+<h3>2-6)　入力インピーダンス $Z_{in}=v_A/i_A$（図 2.5）</h3>
+<div class="step">
+図 2.5：$Z_1$ が出力と $-$ 端子間，$Z_2$ が $-$ 端子と接地間，$Z_3$ が出力とどこかに接続。<br>
+一般化インピーダンスコンバータ（GIC）構成：
+</div>
+<div class="answer-box">$$Z_{in}=\frac{Z_1 Z_3}{Z_2}$$</div>
+
+<h3>2-7)　$Z_1=R_1$，$Z_2=1/(j\omega C)$，$Z_3=R_3$ のとき $Z_{in}=j\omega L_e$</h3>
+<div class="step">
+$Z_{in}=\dfrac{R_1\cdot R_3}{1/(j\omega C)}=j\omega R_1 R_3 C$
+</div>
+<div class="answer-box">$$L_e=R_1 R_3 C$$</div>
+
+<!-- ============================================================ -->
+<h2>【量子力学/物性基礎】大問1　半無限ポテンシャルの束縛状態</h2>
+<p>ポテンシャル：$U(x)=+\infty\;(x<0)$，$-U_0\;(0\leq x\leq a)$（$U_0>0$），$0\;(a<x)$。質量 $m$，エネルギー $-U_0<E<0$。</p>
+
+<h3>1)　空欄 ①〜⑫</h3>
+<div class="step">
+<b>領域1 ($0\leq x\leq a$)：</b>シュレーディンガー方程式 $-\dfrac{\hbar^2}{2m}\dfrac{d^2\Psi_1}{dx^2} - \underbrace{U_0\Psi_1(x)}_{①} = E\Psi_1$<br>
+変形：$\dfrac{d^2\Psi_1}{dx^2} = -k_1^2\Psi_1$，$k_1=\boxed{③}=\dfrac{\sqrt{2m(U_0+E)}}{\hbar}$（$U_0+E>0$ ✓）<br>
+一般解：$\Psi_1 = A_1\sin k_1 x + B_1\underbrace{\cos k_1 x}_{④}$<br><br>
+<b>領域2 ($a<x$)：</b>$U=0$ なので $-\dfrac{\hbar^2}{2m}\dfrac{d^2\Psi_2}{dx^2} = \underbrace{E\Psi_2(x)}_{②}$<br>
+変形：$\dfrac{d^2\Psi_2}{dx^2} = k_2^2\Psi_2$，$k_2=\boxed{⑤}=\dfrac{\sqrt{-2mE}}{\hbar}>0$（$E<0$ より）<br>
+一般解：$\Psi_2 = A_2\underbrace{e^{-k_2 x}}_{⑥} + B_2 e^{k_2 x}$<br><br>
+<b>境界条件：</b>$x<0$ で $U=\infty$ → $\Psi_1(0)=\underbrace{0}_{⑦}$ → $B_1=\underbrace{0}_{⑧}$，$\Psi_1(x)=\underbrace{A_1\sin k_1 x}_{⑨}$<br>
+規格化：$\displaystyle\lim_{x\to\infty}\Psi_2(x)=\underbrace{0}_{⑩}$ → $B_2=\underbrace{0}_{⑪}$，$\Psi_2(x)=\underbrace{A_2 e^{-k_2 x}}_{⑫}$
+</div>
+<div class="answer-box">
+<table>
+<tr><th>空欄</th><th>答え</th><th>空欄</th><th>答え</th></tr>
+<tr><td>①</td><td>$U_0\Psi_1(x)$</td><td>⑦ $\Psi_1(0)=$</td><td>$0$</td></tr>
+<tr><td>②</td><td>$E\Psi_2(x)$</td><td>⑧ $B_1=$</td><td>$0$</td></tr>
+<tr><td>③ $k_1$</td><td>$\sqrt{2m(U_0+E)}/\hbar$</td><td>⑨ $\Psi_1(x)=$</td><td>$A_1\sin k_1 x$</td></tr>
+<tr><td>④</td><td>$\cos(k_1 x)$</td><td>⑩</td><td>$0$</td></tr>
+<tr><td>⑤ $k_2$</td><td>$\sqrt{-2mE}/\hbar$</td><td>⑪ $B_2=$</td><td>$0$</td></tr>
+<tr><td>⑥</td><td>$e^{-k_2 x}$</td><td>⑫ $\Psi_2(x)=$</td><td>$A_2 e^{-k_2 x}$</td></tr>
+</table>
+</div>
+
+<h3>2)　$x=a$ での連続条件と固有方程式</h3>
+<div class="step">
+$\Psi_1(a)=\Psi_2(a)$：$A_1\sin k_1 a = A_2 e^{-k_2 a}$ …(i)<br>
+$\Psi_1'(a)=\Psi_2'(a)$：$A_1 k_1\cos k_1 a = -A_2 k_2 e^{-k_2 a}$ …(ii)<br>
+(ii) ÷ (i)：$k_1\cot k_1 a = -k_2$
+</div>
+<div class="answer-box">
+$$k_1\cot(k_1 a) = -k_2 \quad \text{かつ} \quad k_1^2+k_2^2 = \frac{2mU_0}{\hbar^2}$$
+この連立方程式を（図的に）解くと固有エネルギー $E$ が決まる。
+</div>
+
+<h3>3)　$E=-U_0/2$ の固有状態が存在するための最小 $a$</h3>
+<div class="step">
+$E=-U_0/2$：$k_1=k_2=\dfrac{\sqrt{mU_0}}{\hbar}$（等しくなる）<br>
+固有方程式：$\cot(k_1 a)=-1$ → $k_1 a=\dfrac{3\pi}{4}+n\pi$（$n=0,1,2,\ldots$）<br>
+最小は $n=0$：$k_1 a=\dfrac{3\pi}{4}$
+</div>
+<div class="answer-box">
+$$a_{\min} = \frac{3\pi}{4k_1} = \frac{3\pi\hbar}{4\sqrt{mU_0}}$$
+</div>
+<div class="note">
+$k_1 a<3\pi/4$ では固有方程式を満たす解が存在しない。$a=a_{\min}$ のとき初めて $E=-U_0/2$ の束縛状態が現れる。
+</div>
+
+<!-- ============================================================ -->
+<h2>【量子力学/物性基礎】大問2　真性半導体のフェルミ・ディラック分布</h2>
+<p>$F(E)=\dfrac{1}{1+\exp\!\left[\dfrac{E-E_F}{kT}\right]}$：フェルミ準位 $E_F$，ボルツマン定数 $k$，絶対温度 $T\neq0$。</p>
+
+<h3>1)　$E=E_F$ での傾き</h3>
+<div class="step">
+$$\frac{\partial F}{\partial E} = -\frac{1}{kT}\cdot\frac{e^{(E-E_F)/kT}}{\left(1+e^{(E-E_F)/kT}\right)^2}$$
+$E=E_F$ で $e^0=1$，分母 $=(1+1)^2=4$：
+</div>
+<div class="answer-box">
+$$\left[\frac{\partial F(E)}{\partial E}\right]_{E=E_F} = -\frac{1}{4kT}$$
+</div>
+
+<h3>2)　温度 $T_2=2T_1$ での $F(E)$ 概形（図 2.1 に描く）</h3>
+<div class="note">
+$E_F$ での傾きは $-1/(8kT_1)$（$T_1$ のとき $-1/(4kT_1)$ より緩い）。$F(E_F)=1/2$ は不変。曲線はより緩やかな S 字形に。
+</div>
+
+<h3>3)　正孔占有確率 $F_h(E)$ と $T_1$ での概形（図 2.2 に描く）</h3>
+<div class="answer-box">
+$$F_h(E) = 1-F(E) = \frac{\exp[(E-E_F)/(kT)]}{1+\exp[(E-E_F)/(kT)]} = \frac{1}{1+\exp\!\left[\dfrac{E_F-E}{kT}\right]}$$
+（$E\gg E_F$ で $F_h\approx1$，$E\ll E_F$ で $F_h\approx0$）
+</div>
+
+<h3>4)　$F_h(E)$ のボルツマン分布近似</h3>
+<div class="step">
+価電子帯 $E\ll E_F$ → $\exp[(E_F-E)/(kT)]\gg1$：
+</div>
+<div class="answer-box">
+$$F_h(E) \approx \exp\!\left[\frac{E-E_F}{kT}\right]$$
+</div>
+
+<h3>5)　正孔密度 $p(E)=G_h(E)F_h(E)$ が最大となる $E_1$（導出過程も記すこと）</h3>
+<div class="step">
+$G_h(E)=\dfrac{1}{2\pi^2}\!\left(\dfrac{2m_h^*}{\hbar^2}\right)^{3/2}\!(E_V-E)^{1/2}$，$F_h(E)\approx e^{(E-E_F)/(kT)}$<br>
+$p(E)\propto(E_V-E)^{1/2}\exp\!\left[\dfrac{E-E_F}{kT}\right]$。微分してゼロと置く：<br>
+$\dfrac{dp}{dE}=\left[-\dfrac{1}{2(E_V-E)^{1/2}}\cdot e^{(\cdot)} + (E_V-E)^{1/2}\cdot\dfrac{1}{kT}\cdot e^{(\cdot)}\right]=0$<br>
+$-\dfrac{1}{2(E_V-E)} + \dfrac{1}{kT} = 0$ → $E_V-E = \dfrac{kT}{2}$
+</div>
+<div class="answer-box">
+$$E_1 = E_V - \frac{kT}{2}$$
+</div>
+
+<h3>6)　価電子帯全体の正孔密度 $p$（空欄①の導出）</h3>
+<div class="step">
+$$p = \int_{-\infty}^{E_V}G_h(E)F_h(E)\,dE = \frac{1}{2\pi^2}\!\left(\frac{2m_h^*}{\hbar^2}\right)^{3/2}\!\!\int_{-\infty}^{E_V}(E_V-E)^{1/2}e^{(E-E_F)/(kT)}\,dE$$
+$u=(E_V-E)/(kT)$（$dE=-kT\,du$，$u:0\to\infty$）と置換：
+$$p = \frac{1}{2\pi^2}\!\left(\frac{2m_h^*}{\hbar^2}\right)^{3/2}\!\!(kT)^{3/2}e^{(E_V-E_F)/(kT)}\underbrace{\int_0^\infty u^{1/2}e^{-u}\,du}_{=\,\pi^{1/2}/2}$$
+</div>
+<div class="answer-box">
+$$p = 2\left(\frac{m_h^* kT}{2\pi\hbar^2}\right)^{3/2}\exp\!\underbrace{\left[\frac{E_V-E_F}{kT}\right]}_{\text{空欄①}}$$
+空欄①$= \dfrac{E_V-E_F}{kT}$
+</div>
+<div class="note">
+$N_V \equiv 2(m_h^*kT/(2\pi\hbar^2))^{3/2}$：価電子帯有効状態密度。$p=N_V e^{-(E_F-E_V)/(kT)}$。
+</div>
+
+<!-- ============================================================ -->
+<h2>解答まとめ</h2>
+<table>
+  <tr><th>分野</th><th>大問</th><th>キーワード</th><th>結果</th></tr>
+  <tr><td>数学</td><td>1</td><td>フーリエ変換性質</td><td class="left">微分→$j\omega F$，シフト→$e^{-j\omega t_0}F$，変調→周波数シフト</td></tr>
+  <tr><td>数学</td><td>2</td><td>不定積分・ODE</td><td class="left">$G=(y-2)/x$，$H=x^2+(y-2)^2$</td></tr>
+  <tr><td>電磁気学</td><td>1</td><td>球状電荷</td><td class="left">空洞内：一様電界 $\rho d/(3\varepsilon_0)$</td></tr>
+  <tr><td>電磁気学</td><td>2</td><td>トロイダルコイル</td><td class="left">$L=\mu N^2 h/(2\pi)\cdot\ln(b/a)$</td></tr>
+  <tr><td>電気回路</td><td>1</td><td>RC 過渡応答</td><td class="left">放電条件 $a>RC\ln2$，$W_R=(3/2)CV^2$</td></tr>
+  <tr><td>電気回路</td><td>2</td><td>オペアンプ回路</td><td class="left">GIC：$Z_{in}=Z_1Z_3/Z_2$，$L_e=R_1R_3C$</td></tr>
+  <tr><td>量子力学</td><td>1</td><td>半無限ポテンシャル</td><td class="left">$k_1\cot(k_1 a)=-k_2$，最小 $a=3\pi\hbar/(4\sqrt{mU_0})$（$E=-U_0/2$）</td></tr>
+  <tr><td>物性基礎</td><td>2</td><td>フェルミ・ディラック分布</td><td class="left">傾き $-1/(4kT)$，$E_1=E_V-kT/2$，①$=(E_V-E_F)/(kT)$</td></tr>
+</table>
+
+<footer>東京科学大学（東京工業大学）大学院入試 R1年度（2020大修）専門科目 解答解説</footer>
+</body>
+</html>
