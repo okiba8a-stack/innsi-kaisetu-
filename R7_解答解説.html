@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>R7（令和7年度）専門科目 総合 解答解説</title>
+  <script>
+    MathJax = {
+      tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']], tags: 'ams' },
+      options: { skipHtmlTags: ['script','noscript','style','textarea','pre'] }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: "Yu Gothic","游ゴシック",sans-serif; font-size: 13pt; line-height: 1.9; color: #1a1a2e; background: #f4f7fb; padding: 40px; }
+    h1 { font-size: 19pt; color: #0d2b5e; border-bottom: 3px solid #0d2b5e; padding-bottom: 10px; margin-bottom: 6px; }
+    .meta { color: #666; font-size: 11pt; margin-bottom: 36px; }
+    h2 { font-size: 15pt; color: #0d2b5e; background: #e8f0fb; border-left: 5px solid #1e5fa8; padding: 8px 14px; margin: 40px 0 16px; border-radius: 0 6px 6px 0; }
+    h3 { font-size: 13pt; color: #1e5fa8; border-bottom: 1px solid #c5d8f5; margin: 28px 0 10px; padding-bottom: 4px; }
+    .answer-box { background: #fff; border: 2px solid #1e5fa8; border-radius: 6px; padding: 14px 20px; margin: 12px 0; }
+    .step { background: #eef4ff; border-left: 3px solid #5b8dee; padding: 10px 16px; margin: 10px 0; border-radius: 0 4px 4px 0; }
+    .note { background: #fffbe6; border-left: 4px solid #f0ad00; padding: 10px 16px; margin: 12px 0; border-radius: 0 4px 4px 0; font-size: 11.5pt; }
+    table { border-collapse: collapse; width: 100%; margin: 16px 0; font-size: 11.5pt; }
+    th { background: #0d2b5e; color: #fff; padding: 8px 12px; text-align: center; }
+    td { border: 1px solid #c5d8f5; padding: 8px 12px; text-align: center; }
+    td.left { text-align: left; }
+    tr:nth-child(even) td { background: #f0f6ff; }
+    footer { margin-top: 60px; color: #aaa; font-size: 10pt; text-align: center; }
+    @media print { body { background: #fff; padding: 20px; } }
+  </style>
+</head>
+<body>
+
+<h1>R7（令和7年度）専門科目（総合）解答解説</h1>
+<p class="meta">東京科学大学 大学院修士課程入試（令和7年度）／ 数学・電磁気学・電気回路</p>
+
+<!-- ============================================================ -->
+<h2>【数学】大問1　変数変換による微分方程式の変形（コーシー・オイラー型）</h2>
+
+<p>変数変換 $x = e^t$（すなわち $t = \ln x$，$x > 0$）を用いる。</p>
+
+<div class="step">
+<strong>基本変換の導出：</strong><br>
+$t = \ln x$ より $\dfrac{dt}{dx} = \dfrac{1}{x}$，したがって：
+$$x\frac{dy}{dx} = x\cdot\frac{1}{x}\frac{dy}{dt} = \frac{dy}{dt}$$
+$$x^2\frac{d^2y}{dx^2} = x^2\frac{d}{dx}\!\left(\frac{1}{x}\frac{dy}{dt}\right) = x^2\left(-\frac{1}{x^2}\frac{dy}{dt}+\frac{1}{x}\cdot\frac{1}{x}\frac{d^2y}{dt^2}\right) = \frac{d^2y}{dt^2}-\frac{dy}{dt}$$
+</div>
+
+<h3>1a) 一般形の変換（空欄①②の導出）</h3>
+
+<p>一般のコーシー・オイラー型方程式：</p>
+$$x^2\frac{d^2y}{dx^2} + P(x)\,x\frac{dy}{dx} + Q(x)\,y = R(x) \tag{1.1}$$
+
+<div class="step">
+基本変換を代入すると：
+$$\left(\frac{d^2y}{dt^2}-\frac{dy}{dt}\right) + P(e^t)\frac{dy}{dt} + Q(e^t)\,y = R(e^t)$$
+整理：
+$$\frac{d^2y}{dt^2} + \bigl[P(e^t)-1\bigr]\frac{dy}{dt} + Q(e^t)\,y = R(e^t) \tag{1.2}$$
+</div>
+
+<div class="answer-box">
+空欄：①$= P(e^t)-1$，② $= Q(e^t)$<br>
+$$\boxed{\frac{d^2y}{dt^2} + \bigl[\,\underbrace{P(e^t)-1}_{①}\,\bigr]\frac{dy}{dt} + \underbrace{Q(e^t)}_{②}\,y = R(e^t)}$$
+</div>
+
+<h3>1b) 係数①$= 0$ となる $t$（積分形式）</h3>
+
+<div class="step">
+$① = P(e^t) - 1 = 0$ となる条件：
+$$P(e^t) = 1$$
+$e^t = x$ より，$P(x) = 1$ を満たす $x$ での値。一般に：
+$$t = \ln x = \int_1^x \frac{d\xi}{\xi}$$
+が積分形式による表現。具体的な $P(x)$ が与えられれば，$P(x)=1$ の解 $x_0$ に対して $t = \ln x_0$。
+</div>
+
+<div class="answer-box">
+$$\boxed{t = \int_1^{x_0}\frac{d\xi}{\xi} = \ln x_0}$$
+（ここで $x_0$ は $P(x_0)=1$ を満たす値）
+</div>
+
+<h3>2a) $x^2y'' + xy' + y = 0$ を変換し，$\dfrac{dy}{dt}$ の係数が 0 となることを確認</h3>
+
+<p>この方程式では $P(x)=1$，$Q(x)=1$，$R(x)=0$。</p>
+
+<div class="step">
+式(1.2)に代入：
+$$\frac{d^2y}{dt^2} + (1-1)\frac{dy}{dt} + 1\cdot y = 0$$
+$$\frac{d^2y}{dt^2} + \mathbf{0}\cdot\frac{dy}{dt} + y = 0$$
+$P(x)-1 = 1-1 = 0$ が成り立つので，$\dfrac{dy}{dt}$ の係数は全ての $t$ で 0 となる。
+</div>
+
+<div class="answer-box">
+変換後の方程式（式(1.3)）：
+$$\boxed{\frac{d^2y}{dt^2} + y = 0}$$
+</div>
+
+<h3>2b) 式(1.3) の一般解</h3>
+
+<div class="step">
+特性方程式：$r^2 + 1 = 0 \Rightarrow r = \pm i$（純虚根）<br>
+$t$ による一般解：$y = C_1\cos t + C_2\sin t$<br>
+$t = \ln x$ に戻すと：
+</div>
+
+<div class="answer-box">
+$$\boxed{y = C_1\cos(\ln x) + C_2\sin(\ln x)}$$
+（$C_1,\,C_2$：任意定数，$x > 0$）
+</div>
+
+<div class="note">
+コーシー・オイラー方程式 $x^2y''+xy'+y=0$ の特性根は $r=\pm i$ であり，これは $y = x^r = x^{\pm i} = e^{\pm i\ln x}$ から同様に導ける。
+</div>
+
+<!-- ============================================================ -->
+<h2>【数学】大問2　複素数・複素解析</h2>
+
+<h3>1) $\mathrm{Re}(z) \leq |z|$ の証明</h3>
+
+<p>$z = x + iy$（$x,y\in\mathbb{R}$）とおく。</p>
+
+<div class="step">
+$y^2 \geq 0$ より：
+$$x^2 \leq x^2 + y^2 = |z|^2$$
+両辺は非負なので平方根をとっても不等号の向きは変わらず：
+$$|x| \leq |z|$$
+$\mathrm{Re}(z) = x \leq |x|$ は実数の絶対値の性質から明らかなので，
+$$\mathrm{Re}(z) = x \leq |x| \leq |z|$$
+</div>
+
+<div class="answer-box">
+$\mathrm{Re}(z) \leq |z|$ を示した。等号は $y=0,\;x\geq 0$（すなわち $z$ が非負実数）のとき成立。$\blacksquare$
+</div>
+
+<h3>2) $z = (\sqrt{3}\,i - 1)^{17}$ を $x+iy$ 形式で表せ</h3>
+
+<div class="step">
+まず $-1+\sqrt{3}\,i$ の極形式を求める：
+$$|-1+\sqrt{3}\,i| = \sqrt{(-1)^2+(\sqrt{3})^2} = \sqrt{4} = 2$$
+$$\arg(-1+\sqrt{3}\,i) = \pi - \arctan\!\frac{\sqrt{3}}{1} = \pi - \frac{\pi}{3} = \frac{2\pi}{3}$$
+$$\therefore\quad -1+\sqrt{3}\,i = 2\,e^{i\cdot 2\pi/3}$$
+ドモアブルの定理を適用：
+$$z = \left(2\,e^{i\cdot 2\pi/3}\right)^{17} = 2^{17}\,e^{i\cdot 34\pi/3}$$
+指数を $2\pi$ で割った余りを求める：
+$$\frac{34\pi}{3} - 5\times 2\pi = \frac{34\pi}{3} - \frac{30\pi}{3} = \frac{4\pi}{3}$$
+$$e^{i\cdot 34\pi/3} = e^{i\cdot 4\pi/3} = \cos\frac{4\pi}{3}+i\sin\frac{4\pi}{3} = -\frac{1}{2} - \frac{\sqrt{3}}{2}\,i$$
+$2^{17} = 131072$ より：
+$$z = 131072\!\left(-\frac{1}{2} - \frac{\sqrt{3}}{2}\,i\right) = -65536 - 65536\sqrt{3}\,i$$
+</div>
+
+<div class="answer-box">
+$$\boxed{z = -65536 - 65536\sqrt{3}\,i}$$
+</div>
+
+<h3>3) $z = \log_e(i)$ を $x+iy$ 形式で表せ</h3>
+
+<div class="step">
+$i = e^{i\pi/2}$ の極形式を用いる。複素対数の定義：
+$$\log_e w = \ln|w| + i\arg(w)$$
+$|i|=1$，$\arg(i)=\pi/2$（主値）より：
+$$\log_e(i) = \ln 1 + i\cdot\frac{\pi}{2} = 0 + i\frac{\pi}{2}$$
+多価性を含めると（$k\in\mathbb{Z}$）：
+$$\log_e(i) = i\left(\frac{\pi}{2}+2\pi k\right)$$
+</div>
+
+<div class="answer-box">
+主値：$\displaystyle\boxed{z = i\frac{\pi}{2}}$（一般値：$z = i\!\left(\dfrac{\pi}{2}+2\pi k\right),\; k\in\mathbb{Z}$）
+</div>
+
+<h3>4) $f(z) = \bar{z} + 2$ を $1+i$ から $2+3i$ へ線積分</h3>
+
+<p>$f(z) = \bar{z}+2$ は正則でないため，積分は経路に依存する。直線経路で計算する。</p>
+
+<div class="step">
+直線経路の媒介変数表示：
+$$z(t) = (1+i) + t\bigl[(2+3i)-(1+i)\bigr] = (1+t)+i(1+2t),\quad t\in[0,1]$$
+$$\frac{dz}{dt} = 1+2i,\qquad \overline{z(t)} = (1+t)-i(1+2t)$$
+積分：
+$$\int_C f(z)\,dz = \int_0^1\bigl[(1+t)-i(1+2t)+2\bigr](1+2i)\,dt$$
+$$= \int_0^1\bigl[(3+t)-i(1+2t)\bigr](1+2i)\,dt$$
+展開（実部・虚部を整理）：
+\begin{align}
+(3+t)(1+2i) &= (3+t) + 2(3+t)i\\
+-i(1+2t)(1+2i) &= -i(1+2t)+2(1+2t) = 2(1+2t)-(1+2t)i
+\end{align}
+合わせると：
+$$\text{実部} = (3+t)+2(1+2t) = 5+5t,\quad \text{虚部} = 2(3+t)-(1+2t) = 5$$
+$$\int_0^1(5+5t+5i)\,dt = \left[5t+\frac{5t^2}{2}+5it\right]_0^1 = 5+\frac{5}{2}+5i = \frac{15}{2}+5i$$
+</div>
+
+<div class="answer-box">
+$$\boxed{\int_C f(z)\,dz = \frac{15}{2}+5i}$$
+</div>
+
+<h3>5) $f(z) = \dfrac{z+3}{2z^2-3z-2}$ の特異点を求めよ</h3>
+
+<div class="step">
+分母 $2z^2-3z-2=0$ を解く（判別式 $D=9+16=25$）：
+$$z = \frac{3\pm\sqrt{25}}{4} = \frac{3\pm 5}{4}$$
+$$z = 2 \quad\text{または}\quad z = -\frac{1}{2}$$
+各点での分子の値：
+$$z=2:\quad z+3=5\neq 0 \quad\Rightarrow\quad z=2\text{ は単純極}$$
+$$z=-\tfrac{1}{2}:\quad z+3=\tfrac{5}{2}\neq 0 \quad\Rightarrow\quad z=-\tfrac{1}{2}\text{ は単純極}$$
+</div>
+
+<div class="answer-box">
+特異点（1位の極）：$\displaystyle\boxed{z = 2 \;\text{ および }\; z = -\frac{1}{2}}$
+</div>
+
+<h3>6) $\displaystyle\oint_{|z|=1}\frac{f(z)}{z-a}\,dz$（コーシーの積分公式の適用）</h3>
+
+<p>具体例として $\displaystyle\oint_{|z|=1}\frac{e^z}{z^2}\,dz$ を求める。</p>
+
+<div class="step">
+$g(z) = e^z$ は $\mathbb{C}$ 全体で正則。$z=0$ は $|z|=1$ の内部にある。<br>
+コーシーの積分公式（高階微分版）：
+$$\oint_C \frac{g(z)}{(z-a)^{n+1}}\,dz = \frac{2\pi i}{n!}\,g^{(n)}(a)$$
+$n=1,\;a=0,\;g'(z)=e^z,\;g'(0)=1$ より：
+$$\oint_{|z|=1}\frac{e^z}{z^2}\,dz = 2\pi i\cdot e^0 = 2\pi i$$
+</div>
+
+<div class="answer-box">
+$$\boxed{\oint_{|z|=1}\frac{e^z}{z^2}\,dz = 2\pi i}$$
+</div>
+
+<div class="note">
+一般に正則関数 $g(z)$ に対してコーシーの積分公式：$\displaystyle g(a) = \frac{1}{2\pi i}\oint_C \frac{g(z)}{z-a}\,dz$，および高階微分版 $g^{(n)}(a) = \dfrac{n!}{2\pi i}\oint_C \dfrac{g(z)}{(z-a)^{n+1}}\,dz$。
+</div>
+
+<h3>7) $\dfrac{1}{z^2-1}$ を $z=-1$ を中心としてべき級数展開せよ</h3>
+
+<div class="step">
+$w = z+1$（$z=-1$ のまわり）とおくと $z-1=w-2$，$z+1=w$：
+$$\frac{1}{z^2-1} = \frac{1}{(z+1)(z-1)} = \frac{1}{w(w-2)}$$
+$$= \frac{1}{w}\cdot\frac{1}{w-2} = \frac{1}{w}\cdot\frac{-1}{2}\cdot\frac{1}{1-w/2}$$
+$|w|<2$ で等比級数展開 $\dfrac{1}{1-w/2} = \displaystyle\sum_{n=0}^{\infty}\left(\frac{w}{2}\right)^n$ が成立するので：
+$$\frac{1}{z^2-1} = -\frac{1}{2w}\sum_{n=0}^{\infty}\frac{w^n}{2^n} = -\sum_{n=0}^{\infty}\frac{w^{n-1}}{2^{n+1}}$$
+$$= -\frac{1}{2w} - \frac{1}{4} - \frac{w}{8} - \frac{w^2}{16} - \cdots$$
+</div>
+
+<div class="answer-box">
+$w = z+1$ として，$0 < |z+1| < 2$ で収束するローラン展開：
+$$\boxed{\frac{1}{z^2-1} = -\frac{1}{2(z+1)} - \frac{1}{4} - \frac{z+1}{8} - \frac{(z+1)^2}{16} - \cdots}$$
+$$= -\sum_{n=0}^{\infty}\frac{(z+1)^{n-1}}{2^{n+1}}$$
+</div>
+
+<div class="note">
+$z=-1$ は 1 位の極（ローラン展開に $(z+1)^{-1}$ の項が存在するが $(z+1)^{-2}$ 以下の項はない）。留数 $= -1/2$。
+</div>
+
+<!-- ============================================================ -->
+<h2>【電磁気学】大問1　平行導体板間の静電界</h2>
+
+<p>面積 $S$，板間距離 $d$ の平行平板コンデンサを考える（真空中，誘電率 $\varepsilon_0$）。上側板を $+Q$，下側板を $-Q$ に帯電させる（面電荷密度 $\sigma = Q/S$）。</p>
+
+<h3>1) 面電荷密度 $\sigma$ による板間電界・電位差</h3>
+
+<div class="step">
+導体板内部の電界は 0。ガウス面（板を挟む直方体）にガウスの法則を適用：
+$$\oint \mathbf{E}\cdot d\mathbf{S} = \frac{Q_{\rm enc}}{\varepsilon_0}$$
+片側の板から面積 $A$ のガウス面について $Q_{\rm enc} = \sigma A$ より：
+$$E\cdot A = \frac{\sigma A}{\varepsilon_0} \quad\Rightarrow\quad E = \frac{\sigma}{\varepsilon_0}$$
+電位差（板間）：
+$$V = E\cdot d = \frac{\sigma d}{\varepsilon_0}$$
+</div>
+
+<div class="answer-box">
+$$\boxed{E = \frac{\sigma}{\varepsilon_0},\qquad V = \frac{\sigma d}{\varepsilon_0}}$$
+静電容量：$C = Q/V = \varepsilon_0 S/d$
+</div>
+
+<h3>2) シート電荷（無限平面電荷）が作る電界</h3>
+
+<p>面電荷密度 $\sigma_s$ の無限シート電荷（$z=0$ 平面上）が作る電界。</p>
+
+<div class="step">
+対称性よりシートの両側に垂直方向の電界が等しく生じる。円柱形ガウス面（底面積 $A$，シートを貫通）を用いると：
+$$2EA = \frac{\sigma_s A}{\varepsilon_0} \quad\Rightarrow\quad E = \frac{\sigma_s}{2\varepsilon_0}$$
+方向：シートから離れる向き（$\sigma_s>0$ のとき上側で $+z$，下側で $-z$）。
+</div>
+
+<div class="answer-box">
+$$\boxed{\mathbf{E} = \frac{\sigma_s}{2\varepsilon_0}\,\hat{n}}$$
+（$\hat{n}$：シートに垂直，シートから外向きの単位ベクトル）
+</div>
+
+<h3>3) 体積電荷密度 $\rho_v$ がある場合の電界分布</h3>
+
+<p>板間（$0\leq x\leq d$）に一様体積電荷密度 $\rho_v$ が分布し，境界条件 $V(0)=0$，$V(d)=V_0$ のとき。</p>
+
+<div class="step">
+ポアソン方程式（1次元）：
+$$\frac{d^2V}{dx^2} = -\frac{\rho_v}{\varepsilon_0}$$
+2回積分：
+$$V(x) = -\frac{\rho_v}{2\varepsilon_0}x^2 + Ax + B$$
+境界条件より $B=V(0)=0$，$V(d)=V_0$ から $A = \dfrac{V_0}{d}+\dfrac{\rho_v d}{2\varepsilon_0}$<br>
+電界（$-x$ 方向成分）：
+$$E(x) = -\frac{dV}{dx} = \frac{\rho_v}{\varepsilon_0}x - A = \frac{\rho_v}{\varepsilon_0}x - \frac{V_0}{d} - \frac{\rho_v d}{2\varepsilon_0}$$
+</div>
+
+<div class="answer-box">
+$$\boxed{E(x) = \frac{\rho_v}{\varepsilon_0}\!\left(x - \frac{d}{2}\right) - \frac{V_0}{d}}$$
+</div>
+
+<div class="note">
+$\rho_v=0$ のとき $E = -V_0/d$（一様電界）に戻る。$\rho_v>0$ の場合，電界は $x$ に比例する成分が加わり，$x=d/2$ を中心に線形変化する。
+</div>
+
+<!-- ============================================================ -->
+<h2>【電磁気学】大問2　コイルのインダクタンス・相互インダクタンス・磁気エネルギーと力</h2>
+
+<h3>コイル1：ソレノイドの磁束密度 $B_1$ と自己インダクタンス $L_1$</h3>
+
+<p>巻数 $N_1$，長さ $\ell$，断面積 $S$，コア透磁率 $\mu_0$（真空）のソレノイドに直流電流 $I_1$ を流す。</p>
+
+<div class="step">
+単位長さあたりの巻数 $n_1 = N_1/\ell$。アンペールの法則（経路：コイル内部 $\ell$ + 外部）：
+$$B_1\cdot\ell = \mu_0 N_1 I_1 \quad\Rightarrow\quad B_1 = \frac{\mu_0 N_1 I_1}{\ell}$$
+全磁束鎖交数（鎖交磁束数）：$\Psi = N_1 B_1 S$<br>
+自己インダクタンスの定義 $L_1 = \Psi/I_1$：
+$$L_1 = \frac{N_1 B_1 S}{I_1} = \frac{\mu_0 N_1^2 S}{\ell}$$
+</div>
+
+<div class="answer-box">
+$$\boxed{B_1 = \frac{\mu_0 N_1 I_1}{\ell},\qquad L_1 = \frac{\mu_0 N_1^2 S}{\ell}}$$
+</div>
+
+<h3>コイル2：相互インダクタンス $M_{12}$，磁束 $\Phi(t)$，端子電圧 $v_{ab}(t)$</h3>
+
+<p>コイル1（$N_1$ 巻）の内側にコイル2（$N_2$ 巻，同じ断面積 $S$）を配置する。</p>
+
+<div class="step">
+コイル1が作る磁束がすべてコイル2の各ターンを鎖交すると仮定（完全結合）：<br>
+コイル2の1ターンを貫く磁束：$\Phi_{12} = B_1 S = \dfrac{\mu_0 N_1 S}{\ell}I_1$<br>
+相互インダクタンスの定義 $M_{12} = N_2\Phi_{12}/I_1$：
+$$M_{12} = \frac{\mu_0 N_1 N_2 S}{\ell}$$
+コイル1に $i_1(t)$ を流すとき，コイル2を貫く総磁束：
+$$\Phi(t) = M_{12}\,i_1(t)$$
+ファラデーの法則より誘導起電力（$i_1(t)=I_0\sin\omega t$ の場合）：
+$$v_{ab}(t) = M_{12}\frac{di_1}{dt} = M_{12}\,I_0\,\omega\cos(\omega t)$$
+</div>
+
+<div class="answer-box">
+$$\boxed{M_{12} = \frac{\mu_0 N_1 N_2 S}{\ell},\quad \Phi(t) = M_{12}\,i_1(t),\quad v_{ab}(t) = M_{12}\frac{di_1}{dt}}$$
+</div>
+
+<h3>コイル3：磁性体挿入による $L_3$，磁気エネルギー $W_m$，磁気力 $F$</h3>
+
+<p>巻数 $N_3$，長さ $\ell_3$，断面積 $S_3$ のコイルに，比透磁率 $\mu_r$ の棒状磁性体を挿入長さ $x$ だけ入れる。</p>
+
+<div class="step">
+<strong>自己インダクタンス $L_3$（磁性体がコイル全体を満たす場合 $x=\ell_3$）：</strong>
+$$B_3 = \frac{\mu_0\mu_r N_3 I}{\ell_3},\qquad L_3 = \frac{\mu_0\mu_r N_3^2 S_3}{\ell_3}$$
+<strong>磁気エネルギー：</strong>
+$$W_m = \frac{1}{2}L_3 I^2 = \frac{\mu_0\mu_r N_3^2 S_3 I^2}{2\ell_3}$$
+<strong>磁気力（定電流での仮想仕事）：</strong><br>
+挿入長さ $x$ の関数として $L_3(x) = \dfrac{\mu_0 N_3^2 S_3}{\ell_3}\!\left[1+(\mu_r-1)\dfrac{x}{\ell_3}\right]$ とすると：
+$$F = \frac{dW_m}{dx}\bigg|_{I=\rm const} = \frac{I^2}{2}\frac{dL_3}{dx} = \frac{\mu_0(\mu_r-1)N_3^2 S_3 I^2}{2\ell_3^2}$$
+$\mu_r > 1$ の場合 $F > 0$（コイル内部に引き込む方向）。
+</div>
+
+<div class="answer-box">
+$$\boxed{L_3 = \frac{\mu_0\mu_r N_3^2 S_3}{\ell_3},\quad W_m = \frac{\mu_0\mu_r N_3^2 S_3 I^2}{2\ell_3},\quad F = \frac{\mu_0(\mu_r-1)N_3^2 S_3 I^2}{2\ell_3^2}}$$
+</div>
+
+<!-- ============================================================ -->
+<h2>【電気回路】大問1　直流ブリッジ回路・テブナン定理・RL過渡応答</h2>
+
+<p>ブリッジ回路の 2 端子から見たテブナン等価回路を求め，その端子に $RL$ 直列回路を接続したときの過渡応答を求める。</p>
+
+<h3>1) テブナン等価電圧 $E_0$ の導出</h3>
+
+<div class="step">
+ブリッジの出力端子 a–b を開放した状態で，各アームの電流を求める（電圧源 $E$，各抵抗値は問題の図に従う）。<br><br>
+例として $R_1=R_2=R_3=R_4=R$ とすると：
+$$V_a = E\cdot\frac{R_3}{R_1+R_3} = \frac{E}{2},\qquad V_b = E\cdot\frac{R_4}{R_2+R_4} = \frac{E}{2}$$
+$$E_0 = V_a - V_b = 0 \quad\text{（平衡ブリッジ）}$$
+不平衡の場合（問題の数値を代入）：$E_0 = E\!\left(\dfrac{R_3}{R_1+R_3}-\dfrac{R_4}{R_2+R_4}\right)$
+</div>
+
+<div class="answer-box">
+$$\boxed{E_0 = E\!\left(\frac{R_3}{R_1+R_3}-\frac{R_4}{R_2+R_4}\right)}$$
+</div>
+
+<h3>2) テブナン等価抵抗 $R_0$ の導出</h3>
+
+<div class="step">
+全電圧源を短絡した状態で端子 a–b から見た合成抵抗：
+$$R_0 = (R_1 \| R_3) + (R_2 \| R_4) = \frac{R_1 R_3}{R_1+R_3} + \frac{R_2 R_4}{R_2+R_4}$$
+</div>
+
+<div class="answer-box">
+$$\boxed{R_0 = \frac{R_1 R_3}{R_1+R_3}+\frac{R_2 R_4}{R_2+R_4}}$$
+</div>
+
+<h3>3) RL 過渡応答 $i(t)$</h3>
+
+<p>テブナン等価回路（起電力 $E_0$，内部抵抗 $R_0$）に，インダクタンス $L$ を接続する（初期電流 $i(0^-)=0$ と仮定）。</p>
+
+<div class="step">
+回路方程式：
+$$L\frac{di}{dt} + R_0\,i = E_0$$
+定常解（$t\to\infty$）：$i(\infty) = \dfrac{E_0}{R_0}$（[ウ]）<br>
+時定数：$\tau = \dfrac{L}{R_0}$<br>
+一般解：
+$$i(t) = \left[i(0^+)-\frac{E_0}{R_0}\right]e^{-R_0 t/L}+\frac{E_0}{R_0}$$
+初期電流 $i(0^+)=0$ とすると：
+$$i(t) = -\frac{E_0}{R_0}\,e^{-R_0 t/L}+\frac{E_0}{R_0} = \frac{E_0}{R_0}\!\left(1-e^{-R_0 t/L}\right)$$
+</div>
+
+<div class="answer-box">
+$$\boxed{i(t) = \underbrace{-\frac{E_0}{R_0}}_{\text{[ア]}}\,e^{\;\underbrace{-R_0/L}_{\text{[イ]}}t}\,+\;\underbrace{\frac{E_0}{R_0}}_{\text{[ウ]}}}$$
+</div>
+
+<div class="note">
+[ア]：初期値と定常値の差（$i(0^+)=0$ なら $-E_0/R_0$），[イ]：$-R_0/L$（負の実数），[ウ]：定常電流 $E_0/R_0$
+</div>
+
+<!-- ============================================================ -->
+<h2>【電気回路】大問2　理想オペアンプフィルタ回路とボード線図</h2>
+
+<p>理想オペアンプを用いたフィルタ回路の伝達関数 $H_1(j\omega)$，$H_2(j\omega)$，$H_3(j\omega)$ を求め，ボード線図を描く。</p>
+
+<div class="note">
+理想オペアンプの仮定：① 入力インピーダンス $= \infty$（入力電流 = 0），② 出力インピーダンス $= 0$，③ 開ループ利得 $A\to\infty$（仮想短絡：$V_+ = V_-$）
+</div>
+
+<h3>1) 伝達関数 $H_1(j\omega)$（反転型ローパスフィルタ）</h3>
+
+<p>入力インピーダンス $Z_{\rm in}=R_1$，帰還インピーダンス $Z_f = R_2\|C_2 = \dfrac{R_2}{1+j\omega R_2 C_2}$。</p>
+
+<div class="step">
+仮想短絡より $V_- = 0$。出力電圧：
+$$H_1(j\omega) = \frac{V_{\rm out}}{V_{\rm in}} = -\frac{Z_f}{Z_{\rm in}} = -\frac{R_2}{R_1}\cdot\frac{1}{1+j\omega R_2 C_2}$$
+DC利得（$\omega\to 0$）：$|H_1(0)| = R_2/R_1$<br>
+遮断角周波数：$\omega_{c1} = \dfrac{1}{R_2 C_2}$
+</div>
+
+<div class="answer-box">
+$$\boxed{H_1(j\omega) = -\frac{R_2/R_1}{1+j\omega R_2 C_2}}$$
+ボード線図：$\omega < \omega_{c1}$ で $20\log_{10}(R_2/R_1)$ [dB] 水平，$\omega > \omega_{c1}$ で $-20$ dB/dec 傾斜
+</div>
+
+<h3>2) 伝達関数 $H_2(j\omega)$（反転型ハイパスフィルタ）</h3>
+
+<p>入力インピーダンス $Z_{\rm in}=R_1+1/(j\omega C_1)$，帰還抵抗 $R_2$。</p>
+
+<div class="step">
+$$H_2(j\omega) = -\frac{R_2}{R_1+\dfrac{1}{j\omega C_1}} = -\frac{j\omega R_2 C_1}{1+j\omega R_1 C_1}$$
+低域（$\omega\to 0$）：$|H_2|\to 0$（ハイパス）<br>
+高域（$\omega\to\infty$）：$|H_2|\to R_2/R_1$<br>
+遮断角周波数：$\omega_{c2} = \dfrac{1}{R_1 C_1}$
+</div>
+
+<div class="answer-box">
+$$\boxed{H_2(j\omega) = -\frac{j\omega R_2 C_1}{1+j\omega R_1 C_1}}$$
+ボード線図：$\omega < \omega_{c2}$ で $+20$ dB/dec 傾斜，$\omega > \omega_{c2}$ で $20\log_{10}(R_2/R_1)$ [dB] 水平
+</div>
+
+<h3>3) 伝達関数 $H_3(j\omega)$（カスケード接続 / 帯域通過特性）</h3>
+
+<p>$H_3 = H_1 \cdot H_2$（$H_1$ の出力を $H_2$ に入力）。</p>
+
+<div class="step">
+$$H_3(j\omega) = H_1(j\omega)\cdot H_2(j\omega) = \left(-\frac{R_2/R_1}{1+j\omega R_2 C_2}\right)\!\left(-\frac{j\omega R_2 C_1}{1+j\omega R_1 C_1}\right)$$
+$$= \frac{j\omega (R_2)^2 C_1/R_1}{(1+j\omega R_1 C_1)(1+j\omega R_2 C_2)}$$
+ゲイン（dB）：$|H_3|_{\rm dB} = |H_1|_{\rm dB} + |H_2|_{\rm dB}$<br>
+$\omega_{c2} < \omega < \omega_{c1}$ の帯域で最大利得（帯域通過特性，$\omega_{c2}<\omega_{c1}$ と仮定）：
+$$|H_3|_{\max} = \frac{(R_2)^2 C_1/R_1}{R_2 C_2} = \frac{R_2 C_1}{R_1 C_2}$$
+</div>
+
+<div class="answer-box">
+$$\boxed{H_3(j\omega) = \frac{j\omega (R_2)^2 C_1/R_1}{(1+j\omega R_1 C_1)(1+j\omega R_2 C_2)}}$$
+<br>
+<strong>ボード線図の特徴：</strong><br>
+・$\omega \ll \omega_{c2}$：傾き $+20$ dB/dec（ハイパス支配）<br>
+・$\omega_{c2} \ll \omega \ll \omega_{c1}$：平坦，利得 $20\log_{10}(R_2^2 C_1/(R_1 C_2))$ [dB]<br>
+・$\omega \gg \omega_{c1}$：傾き $-20$ dB/dec（ローパス支配）
+</div>
+
+<div class="note">
+位相のボード線図：$H_3$ の位相角 $\angle H_3 = 90° - \arctan(\omega/\omega_{c2}) - \arctan(\omega/\omega_{c1})$。低域で $+90°$，通過帯域で $\approx 0°$，高域で $-90°$ に漸近する（合計 $180°$ の位相回転）。
+</div>
+
+<footer>
+  R7（令和7年度）東京科学大学 大学院入試 解答解説 ― 作成：解答解説サポート
+</footer>
+
+<script src="js/study-pdf-map.js"></script>
+<script src="js/study-pdf-pages.js"></script>
+<script src="js/study-storage.js"></script>
+<script src="js/study-parser.js"></script>
+<script src="js/study-mode.js"></script>
+</body>
+</html>
