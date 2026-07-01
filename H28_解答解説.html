@@ -32,248 +32,545 @@
 <body>
 
 <h1>H28年度 専門科目（総合）解答解説</h1>
-<p class="meta">東京工業大学 大学院修士課程入試（平成28年8月実施・29大修） ／ 数学・電磁気学・電気回路</p>
+<p class="meta">東京科学大学（東京工業大学）大学院修士課程入試（平成28年度・29大修）／ 数学・電磁気学・電気回路</p>
 
 <!-- ============================================================ -->
 <h2>【数学】大問1　連立定係数常微分方程式</h2>
-<p>$$\frac{dx}{dt}=-3x+y+1, \qquad \frac{dy}{dt}=-x-y+1$$</p>
+<p>$$\frac{dx}{dt}=-3x+y+1\cdots(1.1),\qquad\frac{dy}{dt}=-x-y+1\cdots(1.2)$$</p>
 
-<h3>固定点の求め方</h3>
+<h3>1) 式(1.1)を変形して，$\dfrac{dx}{dt}$および$x$を用いて$y$を表す</h3>
 <div class="step">
-$\dot{x}=\dot{y}=0$ とおくと，$-3x_0+y_0+1=0$，$-x_0-y_0+1=0$。
-加算：$-4x_0+2=0 \Rightarrow x_0=\tfrac{1}{2}$，代入：$y_0=\tfrac{1}{2}$。
-</div>
-
-<h3>固有値の計算</h3>
-<div class="step">
-$X=x-\tfrac{1}{2}$，$Y=y-\tfrac{1}{2}$ と置くと：
-$$\frac{d}{dt}\begin{pmatrix}X\\Y\end{pmatrix}=\underbrace{\begin{pmatrix}-3&1\\-1&-1\end{pmatrix}}_{A}\begin{pmatrix}X\\Y\end{pmatrix}$$
-特性方程式：$\det(A-\lambda I)=(-3-\lambda)(-1-\lambda)+1=\lambda^2+4\lambda+4=(\lambda+2)^2=0$
+式(1.1)を$y$について解く：
+$$\frac{dx}{dt}=-3x+y+1 \quad\Longrightarrow\quad y = \frac{dx}{dt}+3x-1$$
 </div>
 <div class="answer-box">
-$$\boxed{\lambda=-2 \text{ （重解）}}$$
+$$\boxed{y = \frac{dx}{dt}+3x-1}$$
 </div>
 
-<h3>一般解の導出</h3>
+<h3>2) 1)の結果を式(1.2)に代入してyを消去し，xのみの非斉次常微分方程式を導く</h3>
 <div class="step">
-固有ベクトル：$(A+2I)\mathbf{v}=\mathbf{0}$ より $(-1\;1)\mathbf{v}=0$ → $\mathbf{v}_1=(1,1)^T$。<br>
-広義固有ベクトル：$(A+2I)\mathbf{v}_2=\mathbf{v}_1$ → $-p+q=1$（例：$p=0,\,q=1$）→ $\mathbf{v}_2=(0,1)^T$。<br>
-一般解（$A,B$：任意定数）：
-$$\begin{pmatrix}X\\Y\end{pmatrix}=e^{-2t}\left[A\begin{pmatrix}1\\1\end{pmatrix}+B\left(t\begin{pmatrix}1\\1\end{pmatrix}+\begin{pmatrix}0\\1\end{pmatrix}\right)\right]$$
+1)で得た$y = \dfrac{dx}{dt}+3x-1$ を$t$で微分：
+$$\frac{dy}{dt} = \frac{d^2x}{dt^2}+3\frac{dx}{dt}$$
+これを式(1.2)の左辺に代入。右辺には$y$の式も代入：
+$$\frac{d^2x}{dt^2}+3\frac{dx}{dt} = -x - \left(\frac{dx}{dt}+3x-1\right)+1 = -4x - \frac{dx}{dt}+2$$
+移項して整理：
+$$\frac{d^2x}{dt^2}+4\frac{dx}{dt}+4x = 2$$
 </div>
 <div class="answer-box">
-$$\boxed{x(t)=\frac{1}{2}+(A+Bt)e^{-2t}}$$
-$$\boxed{y(t)=\frac{1}{2}+\bigl((A+B)+Bt\bigr)e^{-2t}}$$
-（$A,B$：初期条件で定まる任意定数）
+$$\boxed{\frac{d^2x}{dt^2}+4\frac{dx}{dt}+4x = 2}$$
+</div>
+
+<h3>3) 2)の非斉次常微分方程式を解き，xの一般解を求める</h3>
+<div class="step">
+<strong>【同次方程式の解】</strong>特性方程式：
+$$\lambda^2+4\lambda+4=0 \quad\Rightarrow\quad (\lambda+2)^2=0 \quad\Rightarrow\quad \lambda=-2\text{（重解）}$$
+重解の場合，同次解は：
+$$x_h = (C_1+C_2 t)e^{-2t}$$
+<strong>【特殊解】</strong>右辺が定数なので$x_p=$定数を仮定：
+$$4x_p=2 \quad\Rightarrow\quad x_p=\frac{1}{2}$$
+</div>
+<div class="answer-box">
+$$\boxed{x(t) = \left(C_1+C_2 t\right)e^{-2t}+\frac{1}{2}}$$
+（$C_1,\,C_2$：初期条件で定まる任意定数）
+</div>
+
+<h3>4) 1)および3)の結果を利用して，yの一般解を求める</h3>
+<div class="step">
+1)の結果 $y = \dfrac{dx}{dt}+3x-1$ に3)の$x(t)$を代入する。<br><br>
+まず$\dfrac{dx}{dt}$を計算：
+$$\frac{dx}{dt} = C_2 e^{-2t}+(C_1+C_2 t)(-2e^{-2t}) = \bigl[C_2-2C_1-2C_2 t\bigr]e^{-2t}$$
+代入すると：
+$$y = \bigl[C_2-2C_1-2C_2 t\bigr]e^{-2t}+3\bigl(C_1+C_2 t\bigr)e^{-2t}+\frac{3}{2}-1$$
+$$= \bigl[(C_1+C_2)+C_2 t\bigr]e^{-2t}+\frac{1}{2}$$
+</div>
+<div class="answer-box">
+$$\boxed{y(t) = \bigl[(C_1+C_2)+C_2 t\bigr]e^{-2t}+\frac{1}{2}}$$
 </div>
 <div class="note">
-重解の場合，単純な指数関数だけでなく $te^{\lambda t}$ の項が現れる（ヨルダン標準形に対応）。
+固定点$\dot{x}=\dot{y}=0$は$x_0=y_0=\tfrac{1}{2}$。$\lambda=-2$（重解）なので固定点は安定螺旋状に引き込まれる（$t\to\infty$で$x,y\to\tfrac{1}{2}$）。
 </div>
 
 <!-- ============================================================ -->
 <h2>【数学】大問2　複素数・複素関数</h2>
+<p>虚数単位$j$（$j^2=-1$），$z=x+jy$（$x,y$は実数）とする。</p>
 
-<h3>2-1)　$|z+1|-|z-1|=1$ が表す曲線</h3>
+<h3>1) $|z+1|-|z-1|=1$ が複素平面上で表す図形</h3>
 <div class="step">
-$z=x+jy$ とすると $|z+1|=\sqrt{(x+1)^2+y^2}$，$|z-1|=\sqrt{(x-1)^2+y^2}$。
-焦点 $(-1,0)$，$(1,0)$，距離差 $=1$ → 双曲線（右枝: $|z+1|>|z-1|$）。<br>
-$2a=1 \Rightarrow a=\tfrac{1}{2}$，$c=1$，$b^2=c^2-a^2=\tfrac{3}{4}$。
+$|z+1|=\sqrt{(x+1)^2+y^2}$（点$(-1,0)$からの距離），$|z-1|=\sqrt{(x-1)^2+y^2}$（点$(1,0)$からの距離）。<br><br>
+2焦点$F_1(-1,0)$，$F_2(1,0)$からの距離の差が$1$（定数）の点の軌跡 →  <strong>双曲線</strong>。<br><br>
+$|z+1|-|z-1|=1>0$ より$|z+1|>|z-1|$，すなわち$F_1$より$F_2$に近い側 → <strong>右枝</strong>。<br><br>
+$2a=1 \Rightarrow a=\tfrac{1}{2}$，$\;c=1$，$\;b^2=c^2-a^2=\tfrac{3}{4}$
 </div>
 <div class="answer-box">
-$$\boxed{\frac{x^2}{\,1/4\,}-\frac{y^2}{\,3/4\,}=1, \quad x\geq\frac{1}{2}}$$
-（双曲線の右枝）
+$$\boxed{\frac{x^2}{\,1/4\,}-\frac{y^2}{\,3/4\,}=1,\quad x\geq\frac{1}{2}}$$
+双曲線の右枝（頂点$(\tfrac{1}{2},\,0)$，漸近線$y=\pm\sqrt{3}\,x$）
 </div>
 
-<h3>2-2)　コーシー・リーマン条件の判定</h3>
-<p><strong>① $f(z)=z^2$</strong></p>
-<div class="step">
-$f(x+jy)=(x^2-y^2)+j(2xy)=u+jv$<br>
-$\partial u/\partial x=2x=\partial v/\partial y$，$\partial u/\partial y=-2y=-\partial v/\partial x$ → C-R条件を全域で満たす。
-</div>
-<div class="answer-box">$f(z)=z^2$：正則（解析的）</div>
+<h3>2) 複素関数の正則判定（コーシー・リーマン条件）</h3>
 
-<p><strong>② $f(z)=|z|^2=x^2+y^2$</strong></p>
+<p><strong>a) $\displaystyle f(z)=\frac{x+y}{x^2+y^2}+j\,\frac{x-y}{x^2+y^2}$</strong></p>
 <div class="step">
-$u=x^2+y^2$，$v=0$。<br>
-$\partial u/\partial x=2x$，$\partial v/\partial y=0$ → $x=0$ の場合のみ等しい → C-R条件を全域では満たさない。
+$u=\dfrac{x+y}{x^2+y^2}$，$v=\dfrac{x-y}{x^2+y^2}$ とおいてC-R条件 $\partial u/\partial x=\partial v/\partial y$，$\partial u/\partial y=-\partial v/\partial x$ を確認する。
+$$\frac{\partial u}{\partial x}=\frac{(x^2+y^2)-(x+y)\cdot 2x}{(x^2+y^2)^2}=\frac{y^2-x^2-2xy}{(x^2+y^2)^2}$$
+$$\frac{\partial v}{\partial y}=\frac{-(x^2+y^2)-(x-y)\cdot 2y}{(x^2+y^2)^2}=\frac{y^2-x^2-2xy}{(x^2+y^2)^2}$$
+$\therefore\;\dfrac{\partial u}{\partial x}=\dfrac{\partial v}{\partial y}$ ✓
+$$\frac{\partial u}{\partial y}=\frac{x^2-y^2-2xy}{(x^2+y^2)^2},\qquad
+-\frac{\partial v}{\partial x}=-\frac{y^2-x^2+2xy}{(x^2+y^2)^2}=\frac{x^2-y^2-2xy}{(x^2+y^2)^2}$$
+$\therefore\;\dfrac{\partial u}{\partial y}=-\dfrac{\partial v}{\partial x}$ ✓<br><br>
+C-R条件は$z\neq0$の全域で成立。この関数は$f(z)=\dfrac{1+j}{z}$に等しい（確認：$\dfrac{(1+j)(x-jy)}{x^2+y^2}=\dfrac{(x+y)+j(x-y)}{x^2+y^2}$ ✓）。
 </div>
-<div class="answer-box">$f(z)=|z|^2$：正則でない（$z=0$ のみで微分可能）</div>
+<div class="answer-box">
+<strong>正則</strong>（$z\neq0$ の全域）。導関数：
+$$f'(z)=\frac{d}{dz}\!\left[\frac{1+j}{z}\right]=-\frac{1+j}{z^2}$$
+$x,y$で表すと：$z^2=(x^2-y^2)+j(2xy)$ なので
+$$f'(z)=\frac{-（1+j）}{(x^2-y^2)+j(2xy)}=\frac{(y^2-x^2-2xy)+j(y^2-x^2+2xy)}{(x^2+y^2)^2}$$
+</div>
+
+<p><strong>b) $f(z)=(\cos x+j\sin x)\exp(-y)$</strong></p>
+<div class="step">
+$\cos x+j\sin x=e^{jx}$ より $f(z)=e^{jx}\cdot e^{-y}=e^{jx-y}=e^{j(x+jy)}=e^{jz}$。<br>
+$u=e^{-y}\cos x$，$v=e^{-y}\sin x$ としてC-R条件を確認：
+$$\frac{\partial u}{\partial x}=-e^{-y}\sin x,\quad \frac{\partial v}{\partial y}=-e^{-y}\sin x \quad\Rightarrow\quad\frac{\partial u}{\partial x}=\frac{\partial v}{\partial y}\checkmark$$
+$$\frac{\partial u}{\partial y}=-e^{-y}\cos x,\quad -\frac{\partial v}{\partial x}=-e^{-y}\cos x \quad\Rightarrow\quad\frac{\partial u}{\partial y}=-\frac{\partial v}{\partial x}\checkmark$$
+全平面で成立（整関数）。
+</div>
+<div class="answer-box">
+<strong>正則</strong>（全平面で解析的，整関数）。$f(z)=e^{jz}$ の導関数：
+$$f'(z)=je^{jz}=j(\cos x+j\sin x)e^{-y}=(-\sin x+j\cos x)e^{-y}$$
+</div>
 
 <!-- ============================================================ -->
-<h2>【数学】大問3　フーリエ近似（最小2乗誤差）</h2>
-<p>区間 $[0,L]$ の矩形波 $f(x)$（$0\leq x<L/2$ で $+1$，$L/2\leq x\leq L$ で $-1$）をコサイン基底 $\{\cos(n\pi x/L)\}$ で近似する。</p>
+<h2>【数学】大問3　最小2乗近似（周期矩形波とコサイン基底）</h2>
+<p>
+周期$2\pi$の矩形波$f(x)$：$\left(-\dfrac{\pi}{2}\leq x\leq\dfrac{\pi}{2}\right)$で$+1$，$\left(-\pi\leq x<-\dfrac{\pi}{2}\right)$および$\left(\dfrac{\pi}{2}<x\leq\pi\right)$で$-1$。<br>
+誤差$E=\displaystyle\int_{-\pi}^{\pi}\{f(x)-g(x)\}^2\,dx$。
+</p>
 
-<h3>直交性の確認</h3>
+<h3>1) $g(x)=A\cos x$ としたときのEを計算する</h3>
 <div class="step">
-$$\int_0^L \cos\frac{m\pi x}{L}\cos\frac{n\pi x}{L}dx = \begin{cases}L & (m=n=0)\\L/2 & (m=n\neq0)\\0 & (m\neq n)\end{cases}$$
-</div>
-
-<h3>最小2乗係数（ベッセルの不等式より最適係数）</h3>
-<div class="step">
-$$A_0=\frac{1}{L}\int_0^L f(x)dx=0 \quad (\text{奇対称})$$
-$$A_n=\frac{2}{L}\int_0^L f(x)\cos\frac{n\pi x}{L}dx=\frac{2}{L}\left[\int_0^{L/2}\cos\frac{n\pi x}{L}dx-\int_{L/2}^L\cos\frac{n\pi x}{L}dx\right]$$
-$$=\frac{2}{L}\cdot\frac{2L}{n\pi}\sin\frac{n\pi}{2}=\frac{4}{n\pi}\sin\frac{n\pi}{2}$$
+展開する：
+$$E=\int_{-\pi}^{\pi}f^2\,dx - 2A\int_{-\pi}^{\pi}f(x)\cos x\,dx + A^2\int_{-\pi}^{\pi}\cos^2 x\,dx$$
+各積分を計算する。$f(x)^2=1$ なので：
+$$\int_{-\pi}^{\pi}f^2\,dx = 2\pi$$
+$$\int_{-\pi}^{\pi}f(x)\cos x\,dx = \int_{-\pi/2}^{\pi/2}\cos x\,dx - \int_{-\pi}^{-\pi/2}\cos x\,dx - \int_{\pi/2}^{\pi}\cos x\,dx$$
+$$=\bigl[\sin x\bigr]_{-\pi/2}^{\pi/2} - \bigl[\sin x\bigr]_{-\pi}^{-\pi/2} - \bigl[\sin x\bigr]_{\pi/2}^{\pi}$$
+$$=(1-(-1))-(-1-0)-(0-1)=2+1+1=4$$
+$$\int_{-\pi}^{\pi}\cos^2 x\,dx=\pi$$
 </div>
 <div class="answer-box">
-$$A_n = \frac{4}{n\pi}\sin\frac{n\pi}{2} = \begin{cases}4/(n\pi) & n=1,5,9,\ldots\\0 & n=2,4,6,\ldots\\-4/(n\pi) & n=3,7,11,\ldots\end{cases}$$
-最小2乗誤差：$\varepsilon^2=\|f\|^2-\sum_n A_n^2\cdot\frac{L}{2}$（パーセバルの等式）
+$$\boxed{E = \pi A^2-8A+2\pi}$$
+</div>
+
+<h3>2) $\partial E/\partial A=0$ からEを最小とするAを求める</h3>
+<div class="step">
+$$\frac{\partial E}{\partial A}=2\pi A-8=0 \quad\Longrightarrow\quad A=\frac{4}{\pi}$$
+このとき$E_{\min}=2\pi-\dfrac{16}{\pi}$（パーセバルの等式の形）。
+</div>
+<div class="answer-box">
+$$\boxed{A=\frac{4}{\pi}}$$
+</div>
+
+<h3>3) $g(x)=B\cos 2x$ として，Eを最小とするBを求める</h3>
+<div class="step">
+まず$\displaystyle\int_{-\pi}^{\pi}f(x)\cos 2x\,dx$を計算する：
+$$\int_{-\pi/2}^{\pi/2}\cos 2x\,dx=\left[\frac{\sin 2x}{2}\right]_{-\pi/2}^{\pi/2}=\frac{\sin\pi-\sin(-\pi)}{2}=0$$
+$$\int_{-\pi}^{-\pi/2}\cos 2x\,dx=\left[\frac{\sin 2x}{2}\right]_{-\pi}^{-\pi/2}=\frac{\sin(-\pi)-\sin(-2\pi)}{2}=0$$
+$$\int_{\pi/2}^{\pi}\cos 2x\,dx=\left[\frac{\sin 2x}{2}\right]_{\pi/2}^{\pi}=\frac{\sin 2\pi-\sin\pi}{2}=0$$
+$\therefore\displaystyle\int_{-\pi}^{\pi}f\cos 2x\,dx=0$<br><br>
+よって $E=2\pi+\pi B^2$，$\;\dfrac{\partial E}{\partial B}=2\pi B=0$。
+</div>
+<div class="answer-box">
+$$\boxed{B=0}$$
+（$\cos 2x$は$f(x)$と直交するため，最適近似係数はゼロ）
+</div>
+
+<h3>4) $g(x)=C\cos 3x$ として，Eを最小とするCを求める</h3>
+<div class="step">
+$$\int_{-\pi/2}^{\pi/2}\cos 3x\,dx=\left[\frac{\sin 3x}{3}\right]_{-\pi/2}^{\pi/2}=\frac{\sin(3\pi/2)-\sin(-3\pi/2)}{3}=\frac{-1-1}{3}=-\frac{2}{3}$$
+$$\int_{-\pi}^{-\pi/2}\cos 3x\,dx=\left[\frac{\sin 3x}{3}\right]_{-\pi}^{-\pi/2}=\frac{\sin(-3\pi/2)-\sin(-3\pi)}{3}=\frac{1-0}{3}=\frac{1}{3}$$
+$$\int_{\pi/2}^{\pi}\cos 3x\,dx=\left[\frac{\sin 3x}{3}\right]_{\pi/2}^{\pi}=\frac{\sin 3\pi-\sin(3\pi/2)}{3}=\frac{0-(-1)}{3}=\frac{1}{3}$$
+$\therefore\displaystyle\int_{-\pi}^{\pi}f\cos 3x\,dx=-\frac{2}{3}-\frac{1}{3}-\frac{1}{3}=-\frac{4}{3}$<br><br>
+$E=2\pi-2C\cdot\left(-\dfrac{4}{3}\right)+\pi C^2=2\pi+\dfrac{8C}{3}+\pi C^2$，$\quad\dfrac{\partial E}{\partial C}=\dfrac{8}{3}+2\pi C=0$
+</div>
+<div class="answer-box">
+$$\boxed{C=-\frac{4}{3\pi}}$$
+</div>
+
+<h3>5) $g(x)=\alpha\cos x+\beta\cos 2x+\gamma\cos 3x$ のとき，α, β, γはA, B, Cと同じ値になるか</h3>
+<div class="step">
+$E$を展開すると，コサイン関数の直交性
+$$\int_{-\pi}^{\pi}\cos(mx)\cos(nx)\,dx=0\quad(m\neq n)$$
+により，異なる基底間の交差項がすべて消える：
+$$E=2\pi-8\alpha+\frac{8\gamma}{3}+\pi\alpha^2+\pi\beta^2+\pi\gamma^2$$
+$\alpha,\beta,\gamma$それぞれについて偏微分してゼロとおくと，各係数の最適化が完全に独立する：
+$$\frac{\partial E}{\partial\alpha}=-8+2\pi\alpha=0\;\Rightarrow\;\alpha=\frac{4}{\pi}=A$$
+$$\frac{\partial E}{\partial\beta}=2\pi\beta=0\;\Rightarrow\;\beta=0=B$$
+$$\frac{\partial E}{\partial\gamma}=\frac{8}{3}+2\pi\gamma=0\;\Rightarrow\;\gamma=-\frac{4}{3\pi}=C$$
+</div>
+<div class="answer-box">
+<strong>同じ値になる（$\alpha=A,\;\beta=B,\;\gamma=C$）。</strong><br>
+<strong>理由：</strong>コサイン関数は区間$[-\pi,\pi]$上で互いに直交するため，$g$の各係数を最適化する問題はそれぞれ完全に独立している。ある係数を変えても他の係数の最適値には影響しない（交差項がゼロになる）。
 </div>
 
 <!-- ============================================================ -->
 <h2>【電磁気学】大問1　半球形同心導体容器の誘電緩和</h2>
-<p>半球殻形電極間に誘電率 $\varepsilon$，導電率 $\sigma$ の媒質が充填されている。</p>
+<p>内半径$a$，外半径$b$の半球殻形電極間に誘電率$\varepsilon$，導電率$\sigma$の媒質が充填。外側接地，内側に初期電荷$q_0$（$t=0$）。</p>
 
-<h3>等価RC回路と誘電緩和時定数</h3>
+<h3>1) 電界強度$E(t)$を$q(t)$で表す（$a<r<b$）</h3>
 <div class="step">
-ガウスの法則より，半径 $r$ の半球面での電場：$E(r)=Q/(2\pi\varepsilon r^2)$（半球面積 $2\pi r^2$）<br>
-内球半径 $a$，外球半径 $b$ とすると：<br>
-静電容量：$C=2\pi\varepsilon/(1/a-1/b)=2\pi\varepsilon ab/(b-a)$<br>
-抵抗：$R=\rho(b-a)/(2\pi ab)=1/\sigma\cdot(b-a)/(2\pi ab)$（$\rho=1/\sigma$）
+半径$r$の半球面（面積$=2\pi r^2$）にガウスの法則を適用する。<br>
+電界は球対称（動径方向）なので：
+$$\varepsilon\cdot E(r,t)\cdot 2\pi r^2 = q(t)$$
 </div>
 <div class="answer-box">
-誘電緩和時定数：$\tau=RC=\dfrac{\varepsilon}{\sigma}$（形状に依存しない）
-</div>
-<div class="note">
-$\tau=\varepsilon/\sigma$ は誘電緩和の一般式。媒質固有の量であり，電極形状・サイズに無関係。
+$$\boxed{E(r,t)=\frac{q(t)}{2\pi\varepsilon r^2}}\quad\text{（中心から外向きを正，$a<r<b$）}$$
 </div>
 
-<h3>過渡応答</h3>
+<h3>2) 内側導体容器の電位$V(t)$を$q(t)$で表す</h3>
 <div class="step">
-初期電荷 $Q_0$：$Q(t)=Q_0 e^{-t/\tau}$，電流 $i(t)=Q_0/\tau\cdot e^{-t/\tau}$
+外側導体の電位をゼロ（接地）として，内側から外側への線積分：
+$$V(t)=\int_a^b E(r,t)\,dr=\frac{q(t)}{2\pi\varepsilon}\int_a^b\frac{dr}{r^2}=\frac{q(t)}{2\pi\varepsilon}\left[\frac{1}{a}-\frac{1}{b}\right]=\frac{q(t)(b-a)}{2\pi\varepsilon ab}$$
+</div>
+<div class="answer-box">
+$$\boxed{V(t)=\frac{q(t)(b-a)}{2\pi\varepsilon ab}}$$
+</div>
+
+<h3>3) 全電流$I(t)$を電流密度$j(t)$で表す（$a<r<b$）</h3>
+<div class="step">
+半径$r$の半球面にわたる全電流：
+$$I(t)=j(t)\cdot 2\pi r^2$$
+なお，オームの法則より$j(t)=\sigma E(r,t)=\dfrac{\sigma q(t)}{2\pi\varepsilon r^2}$を代入すると$I(t)=\dfrac{\sigma q(t)}{\varepsilon}$（$r$によらず一定：電流保存を確認できる）。
+</div>
+<div class="answer-box">
+$$\boxed{I(t)=j(t)\cdot 2\pi r^2}$$
+</div>
+
+<h3>4) 電荷保存則から$q(t)$に関する微分方程式をたてる</h3>
+<div class="step">
+外向きに電流が流れると内側の電荷は減少する（電荷保存則）：
+$$-\frac{dq}{dt}=I(t)=\frac{\sigma q(t)}{\varepsilon}$$
+</div>
+<div class="answer-box">
+$$\boxed{\frac{dq}{dt}+\frac{\sigma}{\varepsilon}\,q(t)=0}$$
+</div>
+
+<h3>5) $I(t)$を$\varepsilon$，$\sigma$，$q_0$で表す</h3>
+<div class="step">
+4)の微分方程式を初期条件$q(0)=q_0$で解く：$q(t)=q_0\exp\!\left(-\dfrac{\sigma}{\varepsilon}t\right)$<br>
+3)より$I(t)=\dfrac{\sigma q(t)}{\varepsilon}$。
+</div>
+<div class="answer-box">
+$$\boxed{I(t)=\frac{\sigma q_0}{\varepsilon}\exp\!\left(-\frac{\sigma}{\varepsilon}t\right)}$$
+誘電緩和時定数：$\tau=\varepsilon/\sigma$（媒質固有，形状・サイズに無関係）
+</div>
+
+<h3>6) 等価RC回路とI(t)をRおよびCで表す</h3>
+<div class="step">
+半球形電極系の静電容量と抵抗を求める：
+$$C=\frac{2\pi\varepsilon ab}{b-a},\qquad R=\frac{1}{\sigma}\cdot\frac{b-a}{2\pi ab}=\frac{b-a}{2\pi\sigma ab}$$
+積を確認：$RC=\dfrac{\varepsilon}{\sigma}=\tau$ ✓（誘電緩和時定数と一致）<br><br>
+等価回路はRとCの並列接続（RC並列回路）で，初期電荷$q_0$がCに蓄えられた状態。<br>
+電圧：$V(t)=\dfrac{q(t)}{C}=\dfrac{q_0}{C}e^{-t/(RC)}$，電流：$I(t)=\dfrac{V(t)}{R}=\dfrac{q_0}{RC}e^{-t/(RC)}$
+</div>
+<div class="answer-box">
+$$\boxed{I(t)=\frac{q_0}{RC}\exp\!\left(-\frac{t}{RC}\right)}$$
+（等価回路：$R$と$C$の並列，$R=\dfrac{b-a}{2\pi\sigma ab}$，$C=\dfrac{2\pi\varepsilon ab}{b-a}$）
 </div>
 
 <!-- ============================================================ -->
-<h2>【電磁気学】大問2　磁性体境界面と境界条件</h2>
-<p>透磁率 $\mu_1,\mu_2$ の境界面（$y=0$ 平面）に磁界が入射する。</p>
+<h2>【電磁気学】大問2　磁性体境界面と導線に働く力（像電流法）</h2>
+<p>透磁率$\mu$の磁性体（$y<0$）と真空（$y>0$，透磁率$\mu_0$）の境界面$y=0$。<br>
+境界面から距離$a$の真空中$(0,a)$に電流$I$（$+z$方向）が流れる。</p>
 
-<h3>境界条件</h3>
+<h3>1) 境界条件（答えのみ）</h3>
+<div class="answer-box">
+<ul>
+  <li><strong>磁界の接線成分：</strong>$H_{1t}=H_{2t}$</li>
+  <li><strong>磁束密度の法線成分：</strong>$B_{1n}=B_{2n}$，すなわち$\mu_0 H_{1n}=\mu H_{2n}$</li>
+</ul>
+</div>
+
+<h3>2) 境界条件の導出</h3>
 <div class="step">
-<strong>接線成分（$H$ の連続性）：</strong> $H_{1x}=H_{2x}$（磁界の接線成分は連続）<br>
-<strong>法線成分（$B$ の連続性）：</strong> $B_{1y}=B_{2y}$ → $\mu_1 H_{1y}=\mu_2 H_{2y}$
+<strong>【接線成分 $H_{1t}=H_{2t}$】</strong><br>
+境界をまたぐ微小矩形ループにアンペールの法則 $\oint\mathbf{H}\cdot d\mathbf{l}=I_\text{enc}$ を適用する。
+境界に平行な辺を$l$，垂直な辺を$\delta\to 0$ とすると，$I_\text{enc}=0$（表面自由電流なし）より：
+$$H_{1t}\cdot l-H_{2t}\cdot l=0 \quad\Rightarrow\quad H_{1t}=H_{2t}$$
+
+<strong>【法線成分 $B_{1n}=B_{2n}$】</strong><br>
+境界をまたぐ微小円柱（底面積$S$，高さ$\delta\to0$）に $\oint\mathbf{B}\cdot d\mathbf{S}=0$ を適用する。
+側面の寄与が消えるので：
+$$B_{1n}\cdot S-B_{2n}\cdot S=0 \quad\Rightarrow\quad B_{1n}=B_{2n}$$
+</div>
+
+<h3>3) 真空側（$y>0$）の境界面上の点Pにおける磁界$H_{1x}$，$H_{1y}$</h3>
+<div class="step">
+真空側の磁界 ＝ 電流$I$（位置$(0,a)$）による磁界 ＋ 影像電流$I'$（位置$(0,-a)$）による磁界。<br><br>
+電流$I$の位置から点P（境界面上）までの距離を$r$，$y$軸（法線方向）からの角度を$\theta$とすると：$a=r\cos\theta$，水平距離$d=r\sin\theta$。<br><br>
+電流$I$から点Pへのベクトル$(d,-a)=(r\sin\theta,-r\cos\theta)$ を反時計回りに90°回転：$(r\cos\theta, r\sin\theta)$<br>
+電流$I'$（位置$(0,-a)$）から点Pへのベクトル$(d,a)=(r\sin\theta,r\cos\theta)$ を反時計回りに90°回転：$(-r\cos\theta, r\sin\theta)$<br><br>
+各電流の磁界を合成する（$x$：境界面接線方向，$y$：法線方向）：
+$$H_{1x}=\frac{I\cos\theta}{2\pi r}+\frac{-I'\cos\theta}{2\pi r}=\frac{(I-I')\cos\theta}{2\pi r}$$
+$$H_{1y}=\frac{I\sin\theta}{2\pi r}+\frac{I'\sin\theta}{2\pi r}=\frac{(I+I')\sin\theta}{2\pi r}$$
 </div>
 <div class="answer-box">
-$$H_{2x}=H_{1x}, \qquad H_{2y}=\frac{\mu_1}{\mu_2}H_{1y}$$
+$$\boxed{H_{1x}=\frac{(I-I')\cos\theta}{2\pi r},\qquad H_{1y}=\frac{(I+I')\sin\theta}{2\pi r}}$$
 </div>
 
-<h3>屈折の法則（スネルの法則の磁気版）</h3>
+<h3>4) 磁性体中（$y<0$）の境界面上の点Pにおける磁界$H_{2x}$，$H_{2y}$</h3>
 <div class="step">
-入射角 $\theta_1$，屈折角 $\theta_2$：
-$$\frac{\tan\theta_2}{\tan\theta_1}=\frac{\mu_2}{\mu_1}$$
+磁性体中の磁界 ＝ 全空間を透磁率$\mu$の磁性体としたとき，電流$I$の位置$(0,a)$に影像電流$I''$を流した場合に等しい。
+電流$I''$から点P（境界面上）までの距離・角度はIと同じなので（ともに距離$r$，角度$\theta$）：
+$$H_{2x}=\frac{I''\cos\theta}{2\pi r},\qquad H_{2y}=\frac{I''\sin\theta}{2\pi r}$$
+</div>
+<div class="answer-box">
+$$\boxed{H_{2x}=\frac{I''\cos\theta}{2\pi r},\qquad H_{2y}=\frac{I''\sin\theta}{2\pi r}}$$
 </div>
 
-<h3>境界面に働く磁気的圧力</h3>
+<h3>5) 1)の境界条件をもとに$I'$と$I''$を$I$で表す</h3>
+<div class="step">
+境界条件を3), 4)の結果に適用する。<br><br>
+<strong>接線成分（$x$方向）$H_{1x}=H_{2x}$：</strong>
+$$\frac{(I-I')\cos\theta}{2\pi r}=\frac{I''\cos\theta}{2\pi r} \quad\Rightarrow\quad I-I'=I''\;\cdots(i)$$
+<strong>法線成分（$y$方向）$\mu_0 H_{1y}=\mu H_{2y}$：</strong>
+$$\frac{\mu_0(I+I')\sin\theta}{2\pi r}=\frac{\mu I''\sin\theta}{2\pi r} \quad\Rightarrow\quad \mu_0(I+I')=\mu I''\;\cdots(ii)$$
+(i)を(ii)に代入：
+$$\mu_0(I+I')=\mu(I-I') \quad\Rightarrow\quad I'(\mu_0+\mu)=I(\mu-\mu_0) \quad\Rightarrow\quad I'=\frac{\mu-\mu_0}{\mu+\mu_0}I$$
+(i)に代入：
+$$I''=I-I'=I-\frac{\mu-\mu_0}{\mu+\mu_0}I=\frac{2\mu_0}{\mu+\mu_0}I$$
+</div>
 <div class="answer-box">
-$$f=\frac{1}{2}\left(\frac{1}{\mu_2}-\frac{1}{\mu_1}\right)B_n^2+\frac{1}{2}(\mu_1-\mu_2)H_t^2$$
-（$B_n$：法線成分，$H_t$：接線成分）
+$$\boxed{I'=\frac{\mu-\mu_0}{\mu+\mu_0}\,I,\qquad I''=\frac{2\mu_0}{\mu+\mu_0}\,I}$$
+（$\mu>\mu_0$のとき$I'>0$：影像電流は電流$I$と同方向）
+</div>
+
+<h3>6) 単位長さあたりに導線に働く力</h3>
+<div class="step">
+導線$(0,a)$は，影像電流$I'$（位置$(0,-a)$）が作る磁界から力を受ける。<br>
+導線と影像電流の距離：$2a$。影像電流が導線の位置に作る磁束密度（真空中）：
+$$B=\frac{\mu_0 I'}{2\pi\cdot 2a}=\frac{\mu_0 I'}{4\pi a}$$
+方向：$(0,-a)\to(0,a)$ のベクトルを反時計回りに90°回転 → $-x$方向。<br>
+電流$I$（$+z$方向）への力/長さ：$\mathbf{F}/L=I\hat{z}\times B(-\hat{x})=IB(-\hat{y})$<br>
+（$I$と$I'$が同方向 $(\mu>\mu_0)$ のとき，力は境界面へ向かう引力）
+</div>
+<div class="answer-box">
+$$\boxed{\frac{F}{L}=\frac{\mu_0 II'}{4\pi a}=\frac{\mu_0 I^2(\mu-\mu_0)}{4\pi a(\mu+\mu_0)}}$$
+（$\mu>\mu_0$のとき境界面へ向かう引力，$\mu<\mu_0$のとき斥力）
 </div>
 
 <!-- ============================================================ -->
 <h2>【電磁気学】大問3　円形ループの磁界・相互インダクタンス・誘起EMF</h2>
+<p>透磁率は全領域で$\mu_0$とする。</p>
 
-<h3>3-1)　円形ループ軸上の磁界</h3>
+<h3>1) 円形ループA（半径$a$，電流$I$）の軸上磁界</h3>
 <div class="step">
-半径 $a$，電流 $I$ の円形ループから軸方向距離 $x$ の点での磁界：<br>
-微小要素 $ds$ による $dH$ を積分すると，軸成分のみが残る：
-$$H_x=\int\frac{I\,ds}{4\pi R^2}\cdot\frac{a}{R}=\frac{Ia^2}{2(a^2+x^2)^{3/2}}$$
-（$R=\sqrt{a^2+x^2}$，$\cos\varphi=a/R$）
+ループの中心を原点，ループ面に垂直な$x$軸上の点（軸上距離$x$）での磁界をビオ=サバールの法則で求める。<br><br>
+ループ上の微小要素$ds$と$x$軸上の観測点の距離：$R=\sqrt{a^2+x^2}$。<br>
+$ds$による$dH$のうち，対称性から$x$軸成分のみが残る（$x$軸と$dH$のなす角$\varphi$は$\sin\varphi=a/R$）：
+$$H(x)=\oint\frac{I\,ds}{4\pi R^2}\cdot\frac{a}{R}=\frac{Ia}{4\pi R^3}\cdot 2\pi a=\frac{Ia^2}{2(a^2+x^2)^{3/2}}$$
 </div>
 <div class="answer-box">
-$$\boxed{H(x)=\frac{Ia^2}{2(a^2+x^2)^{3/2}}}$$
+$$\boxed{H(x)=\frac{Ia^2}{2(a^2+x^2)^{3/2}}\;[\text{A/m}]}$$
+（方向：電流の右ねじ方向，すなわち$+x$方向）
 </div>
 
-<h3>3-2)　相互インダクタンス</h3>
+<h3>2) ループAとループB（半径$b$，$x=d$の位置）の相互インダクタンス</h3>
 <div class="step">
-半径 $a$ のループ1（電流 $I_1$）が半径 $b$ のループ2（距離 $d$）に鎖交する磁束：
-$$\Phi_{12}=\mu_0\int_0^\infty H(x)\cdot\pi b^2\,\delta(x-d)\,dx \approx \mu_0\pi b^2\cdot\frac{I_1 a^2}{2(a^2+d^2)^{3/2}}$$
-（$b \ll a$ の場合：ループ面積全体で $H$ が一様と近似）
+$b\ll a$より，ループBの面積（$\pi b^2$）全体で磁界$H(d)$が一様と近似できる。<br>
+ループAの電流$I_A$がループBを貫く磁束：
+$$\Phi_{AB}=\mu_0 H(d)\cdot\pi b^2=\frac{\mu_0\pi a^2 b^2\,I_A}{2(a^2+d^2)^{3/2}}$$
 </div>
 <div class="answer-box">
-$$\boxed{M=\frac{\mu_0\pi a^2 b^2}{2(a^2+d^2)^{3/2}}} \quad (b\ll a)$$
+$$\boxed{M=\frac{\Phi_{AB}}{I_A}=\frac{\mu_0\pi a^2 b^2}{2(a^2+d^2)^{3/2}}}$$
 </div>
 
-<h3>3-3)　移動ループの誘起EMF</h3>
+<h3>3) ループBが速度$u$で移動するときの電圧計の電圧（時間の関数）とグラフ</h3>
 <div class="step">
-ループ2が速度 $v$ で $x$ 方向に移動するとき（$x=x(t)$）：
-$$\text{EMF}=-\frac{d\Phi_{12}}{dt}=-\frac{d}{dt}\left[\mu_0\pi b^2 H(x(t))\right]=-\mu_0\pi b^2\frac{dH}{dx}\cdot v$$
-$$\frac{dH}{dx}=-\frac{3Ia^2 x}{2(a^2+x^2)^{5/2}}$$
+$t=0$でループBが原点を通過し，$+x$方向に速度$u$で移動：$x=ut$。<br>
+ループBに一定電流$I$を流し，ループAに電圧計接続。<br>
+ループAを貫く鎖交磁束：$\Phi(t)=M(x)\cdot I=\dfrac{\mu_0\pi a^2 b^2 I}{2(a^2+u^2t^2)^{3/2}}$<br><br>
+電圧計の読み（誘起EMF）：
+$$V(t)=-\frac{d\Phi}{dt}=-I\cdot\frac{dM}{dx}\cdot u$$
+$$\frac{dM}{dx}=\frac{\mu_0\pi a^2 b^2}{2}\cdot\left(-\frac{3x}{(a^2+x^2)^{5/2}}\right)=-\frac{3\mu_0\pi a^2 b^2 ut}{2(a^2+u^2t^2)^{5/2}}$$
 </div>
 <div class="answer-box">
-$$\text{EMF}=\frac{3\mu_0\pi I a^2 b^2 xv}{2(a^2+x^2)^{5/2}}$$
+$$\boxed{V(t)=\frac{3\mu_0\pi a^2 b^2 I u^2 t}{2(a^2+u^2t^2)^{5/2}}}$$
+<strong>グラフの概形（奇関数）：</strong>
+<ul>
+  <li>$t<0$（ループBが原点に近づく）：$V<0$</li>
+  <li>$t=0$（ループBが原点通過）：$V=0$</li>
+  <li>$t>0$（ループBが遠ざかる）：$V>0$</li>
+  <li>$t=\pm a/(2u)$付近で最大・最小（$\pm V_\text{max}$），$t\to\pm\infty$で$V\to 0$</li>
+</ul>
 </div>
 
 <!-- ============================================================ -->
-<h2>【電気回路】大問1　RLC直列回路のラプラス変換解析</h2>
-<p>$L$，$C$，$R$ 直列回路（初期電荷なし，初期電流なし），ステップ電圧 $v(t)=Vu(t)$ 印加。</p>
+<h2>【電気回路】大問1　RLC並列回路のラプラス変換解析</h2>
+<p>図1.1：電圧源$E$とスイッチSWに直列の抵抗$R$，その後に$L$と$C$の並列結合。<br>
+初期条件：$v_C(0)=0$，$i_L(0)=0$。$t=0$でSW投入。</p>
 
-<h3>1)　ラプラス領域の回路方程式</h3>
+<h3>1) コンデンサ電圧$v_C(t)$のラプラス変換を表す式を導く</h3>
 <div class="step">
-キャパシタ電圧 $V_C(s)$：
-$$LsI(s)+RI(s)+\frac{I(s)}{Cs}=\frac{V}{s} \quad\Rightarrow\quad I(s)=\frac{V/L}{s^2+(R/L)s+1/(LC)}$$
-$$V_C(s)=\frac{I(s)}{Cs}=\frac{V/(LC)}{s\left(s^2+\frac{R}{L}s+\frac{1}{LC}\right)}$$
-</div>
-
-<h3>2)　振動条件（判別式 $D < 0$）</h3>
-<div class="step">
-特性方程式の根：$s=-\dfrac{R}{2L}\pm\sqrt{\left(\dfrac{R}{2L}\right)^2-\dfrac{1}{LC}}$<br>
-振動（複素根）条件：
-$$\left(\frac{R}{2L}\right)^2<\frac{1}{LC} \quad\Rightarrow\quad R^2<\frac{4L}{C}$$
+接続節点でのKCL（初期値ゼロ）：
+$$\frac{E/s-V_C(s)}{R}=I_L(s)+CsV_C(s)$$
+インダクタ電流：$I_L(s)=\dfrac{V_C(s)}{Ls}$（初期値ゼロ）<br>
+代入して整理：
+$$\frac{E}{s}-V_C=\frac{R V_C}{Ls}+RCsV_C=V_C\!\left(\frac{R}{Ls}+RCs\right)$$
+$$\frac{E}{s}=V_C\!\cdot\frac{RLCs^2+Ls+R}{Ls} \quad\Rightarrow\quad V_C(s)=\frac{EL}{RLCs^2+Ls+R}$$
+分母・分子を$RC$で割る：
 </div>
 <div class="answer-box">
-$$\boxed{R < 2\sqrt{\frac{L}{C}}}$$
+$$\boxed{V_C(s)=\frac{E/(RC)}{s^2+\dfrac{1}{RC}\,s+\dfrac{1}{LC}}}$$
 </div>
 
-<h3>3)　時間応答 $v_C(t)$（振動の場合）</h3>
+<h3>2) 極が互いに共役な複素数となるための抵抗Rが満たすべき条件</h3>
 <div class="step">
-$\alpha=\dfrac{R}{2L}$，$\omega_d=\sqrt{\dfrac{1}{LC}-\left(\dfrac{R}{2L}\right)^2}$ とおくと：
+特性方程式 $s^2+\dfrac{1}{RC}s+\dfrac{1}{LC}=0$ の判別式が負であることが必要：
+$$\Delta=\left(\frac{1}{RC}\right)^2-\frac{4}{LC}<0$$
+$$\frac{1}{R^2C^2}<\frac{4}{LC} \quad\Rightarrow\quad \frac{L}{4C}<R^2$$
 </div>
 <div class="answer-box">
-$$\boxed{v_C(t)=V\left[1-e^{-\alpha t}\!\left(\cos\omega_d t+\frac{\alpha}{\omega_d}\sin\omega_d t\right)\right], \quad t\geq0}$$
-（$\alpha=R/(2L)$，$\omega_d=\sqrt{1/(LC)-\alpha^2}$）
+$$\boxed{R>\frac{1}{2}\sqrt{\frac{L}{C}}}$$
 </div>
-
-<!-- ============================================================ -->
-<h2>【電気回路】大問2　MOSFETソース接地増幅回路</h2>
-
-<h3>2-1)　低周波電圧利得 $G(j\omega)$</h3>
-<div class="step">
-ソース接地小信号モデル（$g_m$：相互コンダクタンス，$r_d$：ドレイン抵抗，$R_D$：負荷）：
-$$v_{gs}=v_{in}, \quad i_d=g_m v_{gs}, \quad v_{out}=-i_d(r_d\|R_D)$$
-</div>
-<div class="answer-box">
-$$\boxed{G(j\omega)=\frac{v_{out}}{v_{in}}=-g_m(r_d\|R_D)} \quad (\text{低周波近似})$$
-</div>
-
-<h3>2-2)　入力カップリングコンデンサによる低域遮断角周波数 $\omega_c$</h3>
-<div class="step">
-入力側 RC：カップリングコンデンサ $C_1$，ゲートバイアス抵抗 $R_G$：
-$$\omega_c=\frac{1}{R_G C_1}$$
-</div>
-<div class="answer-box">
-$$\boxed{\omega_c=\frac{1}{R_G C_1}}$$
-$\omega>\omega_c$ で利得がほぼ一定（高域通過特性）
-</div>
-
-<h3>2-3)　ボード線図の概形</h3>
 <div class="note">
-$\omega\ll\omega_c$：利得は $-20\,\text{dB/dec}$ で低下（$C_1$ が高インピーダンス）。<br>
-$\omega\gg\omega_c$：利得一定 $|G|=g_m(r_d\|R_D)$。<br>
-$\omega=\omega_c$ でゲインが $-3\,\text{dB}$ となる。
+直列RLC（$R<2\sqrt{L/C}$で振動）とは逆に，並列回路では$R$が大きいほど損失が小さく振動しやすい。
+</div>
+
+<h3>3) 極が共役複素数となる場合に対して，逆ラプラス変換により$v_C(t)$を求める</h3>
+<div class="step">
+$\alpha=\dfrac{1}{2RC}$（減衰定数），$\omega_d=\sqrt{\dfrac{1}{LC}-\dfrac{1}{4R^2C^2}}$（減衰振動角周波数）とおくと：
+$$V_C(s)=\frac{E/RC}{(s+\alpha)^2+\omega_d^2}=\frac{E}{RC\omega_d}\cdot\frac{\omega_d}{(s+\alpha)^2+\omega_d^2}$$
+逆ラプラス変換表より（$\lambda=0$，$\mu=E/RC$，$a=\alpha$，$b=\omega_d$）：
+</div>
+<div class="answer-box">
+$$\boxed{v_C(t)=\frac{E}{RC\,\omega_d}\,e^{-\alpha t}\sin\omega_d t\quad(t\geq 0)}$$
+$$\left(\alpha=\frac{1}{2RC},\quad\omega_d=\sqrt{\frac{1}{LC}-\frac{1}{4R^2C^2}}\right)$$
+</div>
+
+<h3>4) $v_C(t)$の時間変化の概形を図示し，代表的な値を示す</h3>
+<div class="answer-box">
+<strong>グラフの特徴（代表値）：</strong>
+<ul>
+  <li>$v_C(0)=0$（初期値）</li>
+  <li>$t=0$での初期傾き：$\left.\dfrac{dv_C}{dt}\right|_{t=0}=\dfrac{E}{RC}$（$>0$，正の傾きで出発）</li>
+  <li>振動の包絡線：$\pm\dfrac{E}{RC\omega_d}e^{-\alpha t}$（指数的減衰）</li>
+  <li>第1ピーク到達時刻：$t_p=\dfrac{1}{\omega_d}\arctan\!\dfrac{\omega_d}{\alpha}$</li>
+  <li>減衰振動周期：$T_d=\dfrac{2\pi}{\omega_d}$</li>
+  <li>定常値：$v_C\to 0$（$t\to\infty$；定常状態でLが短絡となりコンデンサ電圧はゼロ）</li>
+</ul>
+</div>
+
+<!-- ============================================================ -->
+<h2>【電気回路】大問2　MOSFETソース接地増幅回路の周波数特性</h2>
+<p>$R_1=R_2=200\,\text{k}\Omega$，$R_D=10\,\text{k}\Omega$，$g_m=10\,\text{mS}$，$C=0.1\,\mu\text{F}$。</p>
+
+<h3>1) 図2.1の小信号等価回路</h3>
+<div class="answer-box">
+<ul>
+  <li>入力側：電圧源$v_\text{in}$ → カップリングコンデンサ$C$ → ゲートノード$G$</li>
+  <li>ゲートノード$G$からAC接地（GND）へ：$R_1\|R_2$（VCCはAC接地）</li>
+  <li>ゲート・ソース間電圧：$v_{gs}$（ソースはGNDに直結）</li>
+  <li>ドレイン電流源：$g_mv_{gs}$（ドレイン→ソース方向）</li>
+  <li>出力：ドレインノードと接地間に$R_D$（VCCはAC接地），$v_\text{out}$はここで取得</li>
+</ul>
+</div>
+
+<h3>2) 小信号等価回路から$G(j\omega)=v_\text{out}/v_\text{in}$を求める</h3>
+<div class="step">
+$R_G=R_1\|R_2=\dfrac{200\times200}{200+200}=100\;\text{k}\Omega$ とおく。<br><br>
+ゲートノード電圧（$C$と$R_G$による分圧）：
+$$v_{gs}=v_\text{in}\cdot\frac{R_G}{R_G+1/(j\omega C)}=v_\text{in}\cdot\frac{j\omega CR_G}{1+j\omega CR_G}$$
+出力電圧（電流源$g_mv_{gs}$が$R_D$を流れる）：
+$$v_\text{out}=-g_m v_{gs}\cdot R_D$$
+</div>
+<div class="answer-box">
+$$\boxed{G(j\omega)=\frac{v_\text{out}}{v_\text{in}}=-g_m R_D\cdot\frac{j\omega CR_G}{1+j\omega CR_G}}$$
+</div>
+
+<h3>3) 低域遮断角周波数$\omega_c$と高域利得$G_0$</h3>
+<div class="step">
+利得の大きさ：$|G(j\omega)|=g_m R_D\cdot\dfrac{\omega CR_G}{\sqrt{1+(\omega CR_G)^2}}$<br><br>
+高域（$\omega\gg\omega_c$）に対して$|G|\to g_m R_D$（一定）。<br>
+低域遮断条件（$-3\,\text{dB}$点）：$\omega_c CR_G=1$
+$$\omega_c=\frac{1}{CR_G}=\frac{1}{0.1\times10^{-6}\times100\times10^3}=\frac{1}{10^{-2}}=100\;\text{rad/s}$$
+高域利得：
+$$G_0=g_m R_D=10\times10^{-3}\times10\times10^3=100\quad(=40\,\text{dB})$$
+</div>
+<div class="answer-box">
+$$\boxed{\omega_c=100\;\text{rad/s},\qquad G_0=g_m R_D=100\;(40\,\text{dB})}$$
+</div>
+
+<h3>4) $G(j\omega)$の骨格ボード線図（$1\sim10^8\;\text{rad/s}$）</h3>
+<div class="answer-box">
+<strong>【利得線図 $|G(j\omega)|$ [dB]】</strong>
+<ul>
+  <li>$\omega<\omega_c=100\;\text{rad/s}$：$|G|\approx g_mR_D\cdot\omega CR_G$ → 傾き$+20\,\text{dB/dec}$で増加</li>
+  <li>$\omega=\omega_c=100\;\text{rad/s}$：$|G|=G_0/\sqrt{2}\approx37\,\text{dB}$（$-3\,\text{dB}$点）</li>
+  <li>$\omega>\omega_c$：$|G|\approx G_0=100$（$40\,\text{dB}$で一定）</li>
+</ul>
+<strong>【位相線図 $\angle G(j\omega)$】</strong>
+$$G(j\omega)=-g_mR_D\cdot\frac{j\omega CR_G}{1+j\omega CR_G}$$
+<ul>
+  <li>$\omega\ll\omega_c$：位相 $\to-180°+90°=-90°$（反転$-180°$＋コンデンサ$+90°$）</li>
+  <li>$\omega=\omega_c$：位相 $=-135°$</li>
+  <li>$\omega\gg\omega_c$：位相 $\to-180°$（反転のみ）</li>
+</ul>
 </div>
 
 <!-- ============================================================ -->
 <h2>解答まとめ</h2>
 <table>
-  <tr><th>分野</th><th>大問</th><th>キーワード</th><th>結果</th></tr>
-  <tr><td>数学</td><td>1</td><td>連立ODE・重解</td><td class="left">$\lambda=-2$（重解），$x=\frac{1}{2}+(A+Bt)e^{-2t}$</td></tr>
-  <tr><td>数学</td><td>2</td><td>双曲線・C-R条件</td><td class="left">$x^2/(1/4)-y^2/(3/4)=1$（右枝）</td></tr>
-  <tr><td>数学</td><td>3</td><td>フーリエ近似</td><td class="left">$A_n=\frac{4}{n\pi}\sin\frac{n\pi}{2}$</td></tr>
-  <tr><td>電磁気学</td><td>1</td><td>誘電緩和</td><td class="left">$\tau=\varepsilon/\sigma$</td></tr>
-  <tr><td>電磁気学</td><td>2</td><td>磁性体境界条件</td><td class="left">$H_{2x}=H_{1x}$，$H_{2y}=(\mu_1/\mu_2)H_{1y}$</td></tr>
-  <tr><td>電磁気学</td><td>3</td><td>円形ループ・M</td><td class="left">$H=Ia^2/[2(a^2+x^2)^{3/2}]$</td></tr>
-  <tr><td>電気回路</td><td>1</td><td>RLC振動条件</td><td class="left">$R<2\sqrt{L/C}$</td></tr>
-  <tr><td>電気回路</td><td>2</td><td>MOSFET増幅</td><td class="left">$\omega_c=1/(R_G C_1)$</td></tr>
+  <tr><th>分野</th><th>大問</th><th>小問</th><th>解答のポイント</th></tr>
+  <tr><td rowspan="4">数学</td><td rowspan="4">1</td>
+      <td>1)</td><td class="left">$y=\dot{x}+3x-1$</td></tr>
+  <tr><td>2)</td><td class="left">$\ddot{x}+4\dot{x}+4x=2$（重解$\lambda=-2$）</td></tr>
+  <tr><td>3)</td><td class="left">$x(t)=(C_1+C_2t)e^{-2t}+1/2$</td></tr>
+  <tr><td>4)</td><td class="left">$y(t)=[(C_1+C_2)+C_2t]e^{-2t}+1/2$</td></tr>
+  <tr><td rowspan="3">数学</td><td rowspan="3">2</td>
+      <td>1)</td><td class="left">双曲線右枝：$x^2/(1/4)-y^2/(3/4)=1$，$x\geq1/2$</td></tr>
+  <tr><td>2a)</td><td class="left">正則（$z\neq0$），$f(z)=(1+j)/z$，$f'(z)=-(1+j)/z^2$</td></tr>
+  <tr><td>2b)</td><td class="left">正則（整関数），$f(z)=e^{jz}$，$f'(z)=je^{jz}$</td></tr>
+  <tr><td rowspan="5">数学</td><td rowspan="5">3</td>
+      <td>1)</td><td class="left">$E=\pi A^2-8A+2\pi$</td></tr>
+  <tr><td>2)</td><td class="left">$A=4/\pi$</td></tr>
+  <tr><td>3)</td><td class="left">$B=0$（$\cos2x$は$f$と直交）</td></tr>
+  <tr><td>4)</td><td class="left">$C=-4/(3\pi)$</td></tr>
+  <tr><td>5)</td><td class="left">同じ値になる（余弦基底の直交性により独立最適化）</td></tr>
+  <tr><td rowspan="6">電磁気</td><td rowspan="6">1</td>
+      <td>1)</td><td class="left">$E(r,t)=q(t)/(2\pi\varepsilon r^2)$</td></tr>
+  <tr><td>2)</td><td class="left">$V(t)=q(t)(b-a)/(2\pi\varepsilon ab)$</td></tr>
+  <tr><td>3)</td><td class="left">$I(t)=j(t)\cdot 2\pi r^2$</td></tr>
+  <tr><td>4)</td><td class="left">$dq/dt+(\sigma/\varepsilon)q=0$</td></tr>
+  <tr><td>5)</td><td class="left">$I(t)=(\sigma q_0/\varepsilon)\exp(-\sigma t/\varepsilon)$</td></tr>
+  <tr><td>6)</td><td class="left">$I(t)=(q_0/RC)\exp(-t/RC)$，$\tau=RC=\varepsilon/\sigma$</td></tr>
+  <tr><td rowspan="6">電磁気</td><td rowspan="6">2</td>
+      <td>1)</td><td class="left">$H_{1t}=H_{2t}$，$\mu_0H_{1n}=\mu H_{2n}$</td></tr>
+  <tr><td>2)</td><td class="left">アンペールの法則（接線）・$\nabla\cdot B=0$のガウス則（法線）</td></tr>
+  <tr><td>3)</td><td class="left">$H_{1x}=(I-I')\cos\theta/(2\pi r)$，$H_{1y}=(I+I')\sin\theta/(2\pi r)$</td></tr>
+  <tr><td>4)</td><td class="left">$H_{2x}=I''\cos\theta/(2\pi r)$，$H_{2y}=I''\sin\theta/(2\pi r)$</td></tr>
+  <tr><td>5)</td><td class="left">$I'=(\mu-\mu_0)/(\mu+\mu_0)\cdot I$，$I''=2\mu_0/(\mu+\mu_0)\cdot I$</td></tr>
+  <tr><td>6)</td><td class="left">$F/L=\mu_0I^2(\mu-\mu_0)/[4\pi a(\mu+\mu_0)]$（引力：$\mu>\mu_0$）</td></tr>
+  <tr><td rowspan="3">電磁気</td><td rowspan="3">3</td>
+      <td>1)</td><td class="left">$H(x)=Ia^2/[2(a^2+x^2)^{3/2}]$</td></tr>
+  <tr><td>2)</td><td class="left">$M=\mu_0\pi a^2b^2/[2(a^2+d^2)^{3/2}]$</td></tr>
+  <tr><td>3)</td><td class="left">$V(t)=3\mu_0\pi a^2b^2Iu^2t/[2(a^2+u^2t^2)^{5/2}]$，奇関数の減衰波形</td></tr>
+  <tr><td rowspan="4">電気回路</td><td rowspan="4">1</td>
+      <td>1)</td><td class="left">$V_C(s)=(E/RC)/(s^2+s/(RC)+1/(LC))$</td></tr>
+  <tr><td>2)</td><td class="left">$R>(1/2)\sqrt{L/C}$</td></tr>
+  <tr><td>3)</td><td class="left">$v_C(t)=\frac{E}{RC\omega_d}e^{-\alpha t}\sin\omega_d t$</td></tr>
+  <tr><td>4)</td><td class="left">減衰正弦波，$v_C(0)=0$，$v_C(\infty)\to0$</td></tr>
+  <tr><td rowspan="4">電気回路</td><td rowspan="4">2</td>
+      <td>1)</td><td class="left">$v_\text{in}\to C\to(R_G\text{to GND})\to g_mv_{gs}\to R_D$</td></tr>
+  <tr><td>2)</td><td class="left">$G(j\omega)=-g_mR_D\cdot j\omega CR_G/(1+j\omega CR_G)$</td></tr>
+  <tr><td>3)</td><td class="left">$\omega_c=100\;\text{rad/s}$，$G_0=100\;(40\,\text{dB})$</td></tr>
+  <tr><td>4)</td><td class="left">$\omega_c$以下$+20\text{dB/dec}$，以上$40\text{dB}$一定，位相$-90°\to-180°$</td></tr>
 </table>
 
 <footer>東京科学大学（東京工業大学）大学院入試 H28年度（29大修）専門科目 解答解説</footer>
+<script src="js/study-pdf-map.js"></script>
+<script src="js/study-pdf-pages.js"></script>
+<script src="js/study-storage.js"></script>
+<script src="js/study-parser.js"></script>
+<script src="js/study-mode.js"></script>
 </body>
 </html>
