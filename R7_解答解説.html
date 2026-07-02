@@ -206,24 +206,26 @@ $$z=-\tfrac{1}{2}:\quad z+3=\tfrac{5}{2}\neq 0 \quad\Rightarrow\quad z=-\tfrac{1
 特異点（1位の極）：$\displaystyle\boxed{z = 2 \;\text{ および }\; z = -\frac{1}{2}}$
 </div>
 
-<h3>6) $\displaystyle\oint_{|z|=1}\frac{f(z)}{z-a}\,dz$（コーシーの積分公式の適用）</h3>
-
-<p>具体例として $\displaystyle\oint_{|z|=1}\frac{e^z}{z^2}\,dz$ を求める。</p>
+<h3>6) $\displaystyle\oint_{|z|=1}\dfrac{z+3}{2z^2-3z-2}\,dz$（留数定理）</h3>
 
 <div class="step">
-$g(z) = e^z$ は $\mathbb{C}$ 全体で正則。$z=0$ は $|z|=1$ の内部にある。<br>
-コーシーの積分公式（高階微分版）：
-$$\oint_C \frac{g(z)}{(z-a)^{n+1}}\,dz = \frac{2\pi i}{n!}\,g^{(n)}(a)$$
-$n=1,\;a=0,\;g'(z)=e^z,\;g'(0)=1$ より：
-$$\oint_{|z|=1}\frac{e^z}{z^2}\,dz = 2\pi i\cdot e^0 = 2\pi i$$
+分母を因数分解：$2z^2-3z-2 = (2z+1)(z-2)$。<br>
+特異点：$z=-\dfrac{1}{2}$（$\left|-\tfrac{1}{2}\right|=\tfrac{1}{2}<1$，積分路の<b>内部</b>）と $z=2$（$|2|=2>1$，<b>外部</b>）。
+</div>
+
+<div class="step">
+$z=-\dfrac{1}{2}$ での留数（1位の極）：
+$$\mathrm{Res}_{z=-1/2}\frac{z+3}{(2z+1)(z-2)} = \frac{z+3}{2(z-2)}\bigg|_{z=-1/2} = \frac{-\tfrac{1}{2}+3}{2\!\left(-\tfrac{1}{2}-2\right)} = \frac{\tfrac{5}{2}}{-5} = -\frac{1}{2}$$
+留数定理より：
+$$\oint_{|z|=1}\frac{z+3}{2z^2-3z-2}\,dz = 2\pi i\cdot\left(-\frac{1}{2}\right) = -\pi i$$
 </div>
 
 <div class="answer-box">
-$$\boxed{\oint_{|z|=1}\frac{e^z}{z^2}\,dz = 2\pi i}$$
+$$\boxed{\oint_{|z|=1}\frac{z+3}{2z^2-3z-2}\,dz = -\pi i}$$
 </div>
 
 <div class="note">
-一般に正則関数 $g(z)$ に対してコーシーの積分公式：$\displaystyle g(a) = \frac{1}{2\pi i}\oint_C \frac{g(z)}{z-a}\,dz$，および高階微分版 $g^{(n)}(a) = \dfrac{n!}{2\pi i}\oint_C \dfrac{g(z)}{(z-a)^{n+1}}\,dz$。
+コーシーの積分公式の参考：正則関数 $g(z)$ に対して $\displaystyle g(a) = \frac{1}{2\pi i}\oint_C \frac{g(z)}{z-a}\,dz$，高階微分版 $g^{(n)}(a) = \dfrac{n!}{2\pi i}\oint_C \dfrac{g(z)}{(z-a)^{n+1}}\,dz$。
 </div>
 
 <h3>7) $\dfrac{1}{z^2-1}$ を $z=-1$ を中心としてべき級数展開せよ</h3>

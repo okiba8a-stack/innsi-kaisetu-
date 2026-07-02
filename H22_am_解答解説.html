@@ -132,9 +132,7 @@
 <h3>問4：$R$ で消費されるエネルギー</h3>
 <div class="answer-box">
   <div class="step">
-    エネルギー保存を用いる。初期エネルギー（$C_1,C_2$ ともゼロ）から最終状態（$C_1: V_{SS}$，$C_2: 0$）への変化：
-    $$E_{V_{SS}} = C_1 V_{SS} \cdot \frac{C_1}{C_1+C_2}V_{SS} \cdot \frac{1}{???}$$
-    より直接計算：$v_0(t)$ を積分して $R$ の消費電力を積算。
+    $v_0(t)$ を積分して $R$ の消費電力を積算：
     $$W_R = \int_0^\infty \frac{v_0^2}{R}dt = \frac{1}{R}\left(\frac{C_1 V_{SS}}{C_1+C_2}\right)^2 \int_0^\infty e^{-2t/\tau}dt = \frac{1}{R}\cdot\frac{C_1^2 V_{SS}^2}{(C_1+C_2)^2}\cdot\frac{\tau}{2}$$
     $\tau = R(C_1+C_2)$ を代入：
     $$W_R = \frac{C_1^2 V_{SS}^2}{(C_1+C_2)^2}\cdot\frac{R(C_1+C_2)}{2R} = \frac{C_1^2 V_{SS}^2}{2(C_1+C_2)}$$
@@ -155,8 +153,7 @@
   </div>
   <div class="step">
     <b>$v_0(0^+)$</b>：接地切替直後，$C_1$ と $C_2$ が直列に充放電。$C_1$ の電荷 $Q_1 = C_1 V_{SS}$，$C_2$ の電荷 $Q_2 = 0$。直列回路なので電荷が均衡：
-    $$v_0(0^+) = \frac{C_1}{C_1+C_2}\cdot(-V_{SS}) \cdot \frac{C_2}{???}$$
-    実際には：$C_1$ は $-V_{SS}$（反転）となった電源として $C_2$ を充電：
+    $C_1$ は $-V_{SS}$（反転）となった電源として $C_2$ を充電：
     $$v_0(0^+) = -\frac{C_1}{C_1+C_2}V_{SS}$$
   </div>
   <div class="step">
