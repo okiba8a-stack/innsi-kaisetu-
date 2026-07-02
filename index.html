@@ -552,5 +552,12 @@
 
 <script src="js/study-storage.js"></script>
 <script src="js/study-index.js"></script>
+<script>
+  document.querySelectorAll('.btn-kaisetsu').forEach(a => a.target = '_blank');
+  document.querySelectorAll('.card').forEach(card => {
+    const m = card.getAttribute('onclick') && card.getAttribute('onclick').match(/'([^']+)'/);
+    if (m) card.setAttribute('onclick', `window.open('${m[1]}', '_blank')`);
+  });
+</script>
 </body>
 </html>
